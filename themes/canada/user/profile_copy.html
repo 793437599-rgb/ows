@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('My Profile')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/js/crompper/css/base.css"/>
+    <link rel="stylesheet" href="/static/js/crompper/css/cropper.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/phones2.js"></script>
+    <script src="/static/js/layui/layui.all.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+
+    <script src="/canada/js/html.js"></script>
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/zeroModal/css/zeroModal.css">
+    <script src="/static/js/zeroModal/js/zeroModal.min.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<style>
+    .change-avatar .layui-upload-img {
+        cursor: pointer;
+        border: 1px solid #bec5c6
+    }
+    .change-avatar h4 {
+        margin-left: 15px;
+    }
+    .layui-form-checkbox[lay-skin=primary] {
+        width: auto;
+    }
+    .layui-form-radio {
+        width: auto;
+    }
+    .layui-form-radio > div {
+        width: auto;
+    }
+    .upload-img-box {
+        display: inline-block;
+        position: relative;
+    }
+    .upload-img-box b {
+        position: absolute;
+        right: 3px;
+        bottom: 3px;
+        color: #b4b2bd;
+        font-size: 22px;
+        cursor: pointer;
+        z-index: 100;
+    }
+    .upload-img-box:hover b {
+        color: #44de14;
+    }
+.upload-img-add {
+        font-size: 100px;
+        color: #ddd;
+        display: inline-block;
+        vertical-align: middle;
+    }
+#diploma-upload-box {
+        display: inline-block;
+    }
+.bg-grey {
+        background-color: #DDD;
+    }
+.checkbox-disable {
+        cursor: not-allowed;
+    }
+.checkbox-disable.layui-form-checked {
+        opacity: .5;
+    }
+.layui-form-select.layui-select-disabled {
+        background-color: #ddd;
+    }
+.layui-form-select.layui-select-disabled .layui-input {
+        background-color: #ddd;
+        color: #444 !important;
+    }
+    .nav-left .layui-nav .layui-nav-item:first-child>a{
+        background: #D3101B;
+    }
+    .tel-input {
+      width: 100%;
+    }
+    .lo-listbox .code-btn {
+        position: absolute;
+        right: 5px;
+        bottom: 5px;
+        height: 36px;
+        line-height: 36px;
+        background: #0080a7;
+        color: #ffffff;
+        padding: 0 10px;
+        border-radius: 5px;
+        z-index: 1;
+        font-size: 14px;
+        width: 50%;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+    }
+.lo-listbox .code-disabled-btn {
+        border: 1px solid #e6e6e6;
+        background-color: #fbfbfb;
+        color: #c9c9c9;
+        cursor: not-allowed;
+    }
+    .bg-grey {
+        cursor: not-allowed;
+    }
+    .bg-grey:hover {
+        background: #DDD;
+    }
+    .layui-btn-disabled:hover{
+        color: #ffffff;
+    }
+</style>
+<section class="mainContent">
+    <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                <!--    user avatar Avatar   -->
+                {include file="public/nav_center_header" /}
+                <!-- <hr/> -->
+                <div class="errorMessage hide">
+                    <h2>{:lang('Validation error')}</h2>
+                    <p>{:lang('You must correct the following errors to continue')}:</p>
+                    <ul>
+                        <li class="email-error hide"><a href="">{:lang('Email address must be specified')}</a></li>
+                        <li class="hide"><a href="">{:lang('Date of Birth must be specified')}.</a></li>
+                        <li class="hide"><a href="">{:lang('Country of Birth must be specified')}.</a></li>
+                        <li class="hide"><a href="">{:lang('Country of Citizenship must be specified')}.</a></li>
+                        <li class="hide"><a href="">{:lang('Preferred email for contact must be specified')}.</a></li>
+                        <li class="hide"><a href="">{:lang('Preferred telephone for contact must be specified')}.</a></li>
+                        <li class="hide"><a href="">{:lang('Preferred address for contact must be specified')}.</a></li>
+                    </ul>
+                </div>
+                    <div class="layui-row profile">
+                        <!-- <h2>{:lang('Basic Information')}</h2> -->
+                        <form class="layui-form" action="{:url('index/user/modify_save')}">
+                        <div class="layui-col-sm12 content-box">
+                            <h1>{:lang('Basic Information')}</h1>
+                            <!--Name text box cannot be changed-->
+                            <div class="layui-row layui-col-space15">
+                                <div class="layui-col-sm4">
+                                    <div class="form-group">
+                                        <p><b>{:lang('First Name')}:</b></p>
+                                        <!-- bg-grey gray-color -->
+                                        <input class=" form-input" type="text" name="first_name"  value="{$user.firstname}" style="text-transform: uppercase;" id="first_name" lay-verify="required">
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm4">
+                                    <div class="form-group">
+                                        <p><b>{:lang('Middle Name')}:</b></p>
+                                        <input class="form-input" type="text" name="moddle_name" value="{$user.middlename}" style="text-transform: uppercase;" id="moddle_name" >
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm4">
+                                    <div class="form-group">
+                                        <p><b>{:lang('Last Name')}:</b></p>
+                                        <input class="form-input" type="text" name="last_name"   value="{$user.lastname}" style="text-transform: uppercase;" id="last_name" lay-verify="required">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-row layui-col-space15">
+                                <div class="layui-col-sm4">
+                                    <!--date of birth-->
+                                    <div class="form-group date">
+                                        <p><b>{:lang('Date of Birth')}:<span class="necessary">*</span></b></p>
+                                        <input type="text" name="birth_time" value="{$user.birth_time|default=''}" class="layui-input form-input " id="render_birth" placeholder="{:lang('Click to select date')}" autocomplete="off" lay-verify="required">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm4">
+                                    <div class="form-group">
+                                        <p><b>{:lang('Country of Citizenship')}:<span class="necessary">*</span></b></p>
+                                        <input type="text" class="layui-input " name="nationality" id="nationality" value="{:lang($user.nationality)}" placeholder="{:lang('Please fill in your nationality')}" list="nation" autocomplete="off" lay-verify="required">
+                                        <datalist id="nation">
+                                            {foreach name="country" item="vo"}
+                                            <option value="{$vo.name}">{$vo.name}</option>
+                                            {/foreach}
+                                        </datalist>
+                                    </div>
+                                    <!-- <div class="layui-col-sm12  add-address" id="name_change" style="text-align: right;">
+                                        <a class="layui-btn  layui-btn-normal btn-blue" id="modify_change">{:lang('Modify')}</a>
+                                        <a class="layui-btn btn-green baise_save {if $user.info_start gt 0} btn-grey {/if}" lay-submit >{:lang('Save')}</a>
+                                    </div> -->
+                                </div>
+                                <div class="layui-col-sm4">
+                                    <!--sex-->
+                                    <div class="form-group" style="padding-top: 35px;">
+                                        <b style="display:inline-block;margin: 6px 10px 0 0;vertical-align: middle;">{:lang('Gender')}:<span class="necessary">*</span></b>
+                                        <input type="radio"  name="sex"  readonly checked  value="Male" title="{:lang('Male')}" lay-verify="required">
+                                        <input type="radio"  name="sex"  readonly  value="Female" {if $user.sex eq 'Female'} checked {/if} title="{:lang('Female')}" lay-verify="required">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-row layui-col-space15">
+                                <div class="layui-col-sm4">
+                                    <div class="form-group">
+                                        <p><b>{:lang('Document Group')}</b></p>
+                                        <select name="document_group"  class="form-input" lay-filter="doc-group" id="doc-group" lay-verify="required" lay-ignore>
+                                            <option value="">{:lang('Choose Document Group')}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm4">
+                                    <div class="form-group">
+                                        <p><b>{:lang('Document Type')}</b></p>
+                                        <select name="document_type"  class="form-input" lay-filter="doc-type" id="doc-type" lay-verify="required" lay-ignore>
+                                            <option value="">{:lang('Choose Document Type')}</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm4">
+                                    <div class="form-group">
+                                        <p><b class="number_text">{:lang('ID Card/Passport')}</b></p>
+                                        <input type="text" class="layui-input" lay-verify="required" name="id_number" placeholder="{:lang('Please enter your ID Card/Passport')}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-row layui-col-space15">
+                                <div class="layui-col-sm4">
+                                    <p><b>{:lang('Country')}</b></p>
+                                    <!-- <input list="country" name="nationals" autocomplete="off" class="form-input"  lay-verify="required|en" autocomplete="off"/> -->
+                                    <select name="document_group"  class="form-input" lay-filter="doc-group" id="doc-group" lay-verify="required" lay-ignore>
+                                        <option value="">{:lang('Choose Your Country')}</option>
+                                    </select>
+                                </div>
+                                <div class="layui-col-sm4">
+                                    <p><b>{:lang('Cell-phone Number')}</b></p>
+                                    <div class="layui-col-sm4">
+                                        <div class="areaBox phone-box">
+                                            <div class="">
+                                                <img src="" alt="">
+                                                <span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="layui-col-sm8">
+                                        <input type="text" class="layui-input" lay-verify="required" name="id_number" placeholder="{:lang('Please enter your mobile phone number')}">
+                                    </div>
+                                </div>          
+                                <div class="layui-col-sm4">
+                                    <p><b>{:lang('Phone Verification Code')}</b></p>
+                                    <input type="text" class="layui-input" lay-verify="required" name="id_number" placeholder="{:lang('Please enter the phone verification code')}">
+                                </div>
+                            </div>
+                        </div>
+                        </form>
+                        <!-- Avatar/File -->
+                        <div class="layui-col-sm12 content-box">
+                            <h1>{:lang('Image Information')}</h1>
+                            <div class="layui-row layui-col-space15">
+                                <div class="form-group layui-col-sm4">
+                                    <!-- Avatar -->
+                                    <p><b>{:lang('ID Photo')}:</b> <span id="layer-photos-demo" class="view-pop"><i class="fa fa-eye"></i>Standard <img layer-pid layer-src="/canada/images/id-photo.jpg" src="/canada/images/id-photo.jpg" ></span></p>
+                                    <div class="layui-upload change-avatar">
+                                        <div class="layui-upload-list">
+                                            <input type="hidden" id="avatar-input" name="head_img" value="{$user.head_img|default=''}">
+                                            <img  class="layui-upload-img" id="avatar-img" {notempty name="user.head_img"} src="{$user.head_img}" {else} src="/static/images/person-icon.png" {/notempty}  >
+                                            <i class="fa fa-trash sfz-del-avatar" id="userimg" aria-hidden="true"></i>
+                                            <a class="layui-btn layui-btn-primary" id="up-img-touch">{:lang ('Change')}</a>
+                                            <!-- <h4>{:lang('Change Avatar')}</h4> -->
+                                            <p id="avatarText"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group layui-col-sm8">
+                                    <div class="layui-upload change-avatar">
+                                        <div>
+                                            <b>{:lang('Photos of Documents')}</b>
+                                            <div class="questionBtn">
+                                                <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                                <div>
+                                                    <p>{:lang('The maximum allowed file size for uploads is')} 2048 KB.</p>
+                                                    <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                                                    <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                                                    <p>{:lang('(if applicable)')}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="layui-upload-list">
+                                            <div class="uploa-pre-view" id="diploma-pre">
+                                                {notempty name="$order['diploma']"}
+                                                {foreach name="$order['diploma']" item="vo" key="k"}
+                                                {php}
+                                                $ext = strtolower(pathinfo($vo, PATHINFO_EXTENSION));
+                                                {/php}
+                                                <div class="layui-inline uploadImg {if $ext == 'pdf'} upload-pdf {else/} preview {/if}">
+                                                    <img src="{if $ext == 'pdf'} /canada/images/icon-images/PDF.png {else/} {$vo} {/if}" alt="">
+                                                    <i class="fa fa-trash sfz-del" aria-hidden="true"></i>
+                                                    <input type="hidden" class="diploma" name="diploma[]" value="{$vo}">
+                                                </div>
+                                                {/foreach}
+                                                {/notempty}
+                                            </div>
+                                            <div class="layui-upload-drag" id="diploma-file"  {if !empty($order['diploma']) && count($order['diploma']) >= 8} style="display:none" {/if} >
+                                                <i class="icon iconfont">&#xe66b;</i>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                </div>
+                            </div>
+                        </div>
+                        <!--Shipping address-->
+                        <form  class="layui-form"  action="{:url('index/user/address_save')}">
+                        <div class="layui-col-sm12 content-box">
+                            <h1>{:lang('Full Address')}</h1>
+                            <!-- <div class="layui-row">
+                                <div class="layui-col-sm12">
+                                    <div class="variable-content">
+                                        <p>{:lang('You can provide multiple addresses. Fill out the information and click the "Add Another Address" button')}.</p>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <div class="layui-row layui-col-space15 form-group" >
+                                <div class="layui-col-sm4">
+                                    <p><b>{:lang('Country')}</b></p>
+                                    <select id="nationals" class="form-input " name="national" lay-filter="nationals" lay-ignore lay-search lay-verify="required">
+                                        <option value="" selected>{:lang('Enter or search your country')}</option>
+                                       
+                                    </select>
+                                </div>
+                                <div class="layui-col-sm4">
+                                    <p><b>{:lang('State\Province')}</b></p>
+                                    <select id="nationals"  class="form-input " name="national" lay-filter="nationals" lay-ignore lay-search lay-verify="required">
+                                        <option value="" selected>{:lang('Enter or search your state\province')}</option>
+                                       
+                                    </select>
+                                </div>
+                                <!--city-->
+                                <div class="layui-col-sm4  {empty name='$address.city'} layui-hide  {/empty} " id="city_hid" >
+                                    <p><b>{:lang('City')}:</b></p>
+                                    <select name="city"  class="form-input" id="city" lay-search lay-ignore  lay-filter="city"  >
+                                        <option value="" selected>{:lang('Enter or search your city')}</option>
+                                    </select>
+                                </div>
+                           
+                                <!--County/District-->
+                                <!-- <div class="layui-col-sm3 {if !in_array($address.city,array_column($add_county,'city_code'))} layui-hide {/if}" id="county_hid">
+                                    <p><b>{:lang('County')}:</b></p>
+                                    <select name="county" disabled class="form-input bg-grey" id="county"  lay-ignore  lay-search lay-verify="required">
+                                        <option value="" selected>{:lang('Choose')}...</option>
+                                        {foreach name="add_county" item="vo"}
+                                        {if condition="$vo.city_code eq $address.city"}
+                                        <option value="{$vo.code}"  {if condition="$address.county eq $vo.code"}selected  {/if}>{$vo.name}</option>
+                                        {/if}
+                                        {/foreach}
+                                    </select>
+                                </div> -->
+                            </div>
+                            <div class="layui-row layui-col-space15">
+                                <!--Address one-->
+                                <div class="layui-col-sm6">
+                                    <p><b>{:lang('Address 1 or Business Name')}:</b></p>
+                                    <input type="text" name="detailed" autocomplete="off" class="form-input " id="address_name" lay-verify="required" value="{$address.detailed|default=''}" >
+                                </div>
+                                <!--Postcode-->
+                                <div class="layui-col-sm6">
+                                    <p><b>{:lang('Zip/Postal')}:</b></p>
+                                    <input type="text" name="zip" class="form-input " autocomplete="off" id="zip" value="{$address.zip|default=''}"  lay-verify="required">
+                                </div>
+                            </div>
+                            <!-- <div class="layui-row">
+                                <div class="layui-col-sm12">
+                                    <div class="variable-content">
+                                        <p>{:lang('Please include international dialing information in the area code field, if applicable')}.</p>
+                                    </div>
+                                </div>
+                            </div> -->
+                            <!-- <div class="layui-row layui-col-space15">
+                               Phone zone selection
+                                <div class="layui-col-sm2">
+                                    <p><b>{:lang('Area')}:</b></p>
+                                    <div class="areaBox" >
+                                        <div class="areaDisabled">
+                                            <img src="/imgs/{$user.qujianimg|default='Canada.png'} " alt="">
+                                            <span>+{$user.qujian|default='1'}</span>
+                                        </div>
+                                        <ul>
+                                            {foreach name="mobile_arr" item="vo"}
+                                            <li data-area="{$vo.qujian}" data-src="/imgs/{$vo.imgs}">
+                                                <img src="/imgs/{$vo.imgs}" alt="">
+                                                <span>{$vo.name} {$vo.qujian} </span>
+                                            </li>
+                                            {/foreach}
+                                        </ul>
+                                    </div>
+                                    <input type="hidden" name="qujian" value="{$user.qujian|default='+1'}">
+                                </div>
+                              Phone number input
+                                <div class="layui-col-sm3">
+                                    <p><b>{:lang('Number')}:</b></p>
+                                    <input type="text" class="form-input phone bg-grey" autocomplete="off" name="mobile" value="{$user.mobile == ''?'':$user.mobile}" id="mobile"  disabled lay-verify="required">
+                                </div>
+                            </div> -->
+                            <!-- <div class="layui-row">
+                                <div class="layui-col-sm12  add-address" style="text-align: right;">
+                                    <a class="layui-btn  layui-btn-normal btn-blue" id="address_change">{:lang('Modify')}</a>
+                                    <a class="layui-btn btn-green baise_save {if $user.info_start gt 0} btn-grey {/if}" lay-submit>{:lang('Save')}</a>
+                                </div>
+                            </div> -->
+                        </div>
+                        </form>
+                <input type="hidden" id="eduinfo" value="{$user|eduinfo} ">
+                <div class="profile-btnbox">    
+                   <button  class="profile-btn-save"  id="btn-apply">Save</button>
+                   <button  class="profile-btn-apply  layui-btn-disabled">Apply For Degree Assessed Storage</button>
+                   <!-- 禁用  layui-btn-disabled
+                        可选状态 apply-yong  -->
+                </div>
+            </div>
+    </div>
+</section>
+{if condition="$user.open_start==0"}
+<div class="w-tips" id="tips">
+    <div class="w-tips-boxmask"></div>
+    <div class="w-tips-top">
+        <div class="w-tips-model" style="width: 750px;">
+            <div class="w-tips-content">
+                <div class="teiem">
+                    <div class="tips-cont-top">
+                        <div class="tips-contop-item">
+                            <div><h1>WSE Reminder</h1></div>
+                            <div><i class="iconfont icon-cross" id="tips-cross"></i></div>
+                        </div>
+                    </div>
+                    <div class="tipsimg"><img src="/canada/images/tips.png" alt=""></div>
+                    <div><p>{:lang('Your Basic Information Is Not Perfect, Please Complete Your Basic Information')}</p></div>
+                    <div class="tips-cont-flex ">
+                        <div class="tips-btn"><a href="javascript:;">{:lang('to be perfect')}</a></div>
+                        <div class="layui-input-block block2">
+                            <input type="checkbox" name="like1[read]"  id="1112"  lay-skin="primary" title="Don't remind me again">
+                            <span>{:lang("Don't remind me again")}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/if}
+<!--Picture upload box-->
+<div class="eg-container" id="basic-eg-container">
+    <div class="layui-row eg-main" style="display: none">
+        <div class="layui-col-xs12 layui-col-sm9 layui-col-space20 ">
+            <div class="eg-wrapper">
+                <img class="cropper" src="" alt="Picture" style="display:none;">
+            </div>
+        </div>
+        <div class="layui-col-xs12 layui-col-sm3 layui-col-space20" >
+            <div class="eg-preview clearfix" style="text-align: center">
+                <div class="preview preview-lg"></div>
+            </div>
+        </div>
+    </div>
+    <div class="btns" style="display: none">
+        <button type="button" class="layui-btn" id="getDataURL">{:lang('Confirm')}</button>
+        <button type="button" class="layui-btn layui-btn-primary" id="avatar-cancel">{:lang('Cancel')}</button>
+    </div>
+    <div class="upload_box">
+        <img src="/canada/images/id-photo.jpg" alt="">
+        <button class="add-avatar layui-btn layui-btn-danger"  id="upload">{:lang('Add Avatar')}</button>
+        <p>{:lang('The size of the picture is within 5M')}</p>
+    </div>
+</div>
+<div class="w-tips" id="apply-degree" style="display: none;">
+    <div class="w-tips-boxmask"></div>
+    <div class="w-tips-top">
+        <div class="w-tips-model" style="width: 750px;">
+            <div class="w-tips-content">
+                <div class="teiem">
+                    <div class="tips-cont-top">
+                        <div class="tips-contop-item">
+                            <div><h1>Reminder</h1></div>
+                            <div><i class="iconfont icon-cross" id="tips-cross"></i></div>
+                        </div>
+                    </div>
+                    <div class="tipsimg degree-img"><img src="/canada/images/complete-info.svg"  alt=""></div>
+                    <div class="apply-degree-text"><p>{:lang('Your basic information has been completed, you can apply for Degree  Assessed  Storage.')}</p></div>
+                    <div class="apply-degree-btn">
+                        <a href="javascript:;" class="apply-degree-cancel">Cancel</a>
+                        <a href="javascript:;" class="apply-degree-now">Apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#btn-apply').click(function(){
+        $('#apply-degree').show()
+    })
+    $('#nameAppear').click(function () {
+        layer.open({
+            title: 'Help',
+            content: '{:lang("Enter a name in this field that you wish to appear on certificates, transcripts and other official documents issued by the ")}',
+            btn: 'CLOSE'
+        });
+    });
+    $('#1112').click(function () {
+        $.post('/index/user/remind', {id: 1}, function (data) {
+            console.log(data)
+        })
+    });
+    layui.use(['form', 'laydate', 'upload','layer'], function () {
+        var form = layui.form,
+            laydate = layui.laydate,
+            upload = layui.upload,
+            layer = layui.layer;
+        laydate.render({
+            elem: '#render_birth',
+            type: 'date',
+            lang: 'en',
+            max: 0
+        });
+        var tips = 1;
+        layer.photos({
+            photos: '.preview',
+            closeBtn: 2,
+            tab: function (pic, layero) {
+                console.log(pic) //当前图片的一些信息
+            }
+        });
+        let diploma_num = 8 - $('#diploma-pre').children().length;
+        let diplomaInst = upload.render({
+            elem: '#diploma-file'
+            , url: '/upload' //改成您自己的上传接口
+            , accept: 'file'
+            , multiple: true
+            , number: diploma_num
+            , exts: 'pdf|jpeg|png|jpg'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    let img = '';
+                    let upload_class = '';
+                    if (file.type == 'application/pdf') {
+                        img = '/canada/images/icon-images/PDF.png';
+                        upload_class = 'upload-pdf';
+                        // $('#uploadDemoView').append('<div class="layui-inline uploadImg upload-pdf" id="uploadImg_'+ sfz +'"><img src="/canada/images/icon-images/PDF.png"><i class="fa fa-trash sfz-del" aria-hidden="true"></i></div>');
+                    } else {
+                        //$('#uploadDemoView').append('<div class="layui-inline uploadImg preview" id="uploadImg_'+ sfz +'"><img src="' + result + '"><i class="fa fa-trash sfz-del" aria-hidden="true"></i></div>');
+                        img = result;
+                        upload_class = 'preview';
+                    }
+                    let content = '<div id="up-dip-item-'+index+'" class="layui-inline uploadImg ' + upload_class + '">' +
+                        '<img src="' + img + '">' +
+                        '<i class="fa fa-trash sfz-del" aria-hidden="true"></i>' +
+                        '</div>';
+                    $('#diploma-pre').append(content);
+                });
+            }
+            , done: function (res, index) {
+                if (res.code != 1) { 
+                    return layer.msg('Upload Failed');
+                } else {
+                    if ($('#diploma-file').hasClass('layui-form-danger')) {
+                        $('#diploma-file').removeClass('layui-form-danger')
+                    }
+                    $('#up-dip-item-'+index).append('<input type="hidden" class="diploma" name="diploma" value="' + res.msg + '">');
+                    diploma_num--;
+                    if ($('#diploma-pre').children().length >= 8) {
+                        $('#diploma-file').hide();
+                    }
+                }
+            }
+        });
+        let transfer_num = 8 - $('#transcript-pre').children().length;
+        let transferInit = upload.render({
+            elem: '#transcript-file'
+            , url: '/upload'
+            , accept: 'file'
+            , multiple: true
+            , number: transfer_num
+            , exts: 'pdf|jpeg|png|jpg'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    let img = '';
+                    let upload_class = '';
+                    console.log(file.type);
+                    if (file.type == 'application/pdf') {
+                        img = '/canada/images/icon-images/PDF.png';
+                        upload_class = 'upload-pdf';
+                    } else {
+                        img = result;
+                        upload_class = 'preview';
+                    }
+                    let content = '<div id="up_trans_item_'+ index +'" class="layui-inline uploadImg ' + upload_class + '">' +
+                        '<img src="' + img + '">' +
+                        '<i class="fa fa-trash sfz-del" aria-hidden="true"></i>' +
+                        '</div>';
+                    $('#transcript-pre').append(content);
+                });
+            }
+            , done: function (res,index) {
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed');
+                } else {
+                    // return layer.msg('The Transcript Upload Failed Can\'t Be More Than 8');
+                    if ($('#transcript-file').hasClass('layui-form-danger')) {
+                        $('#transcript-file').removeClass('layui-form-danger')
+                    }
+                    $('#up_trans_item_' + index).append('<input type="hidden" class="transcript" name="transcript" value="' + res.msg + '">');
+                    transfer_num--
+                    if ($('#transcript-pre').children().length >= 8) {
+                        $('#transcript-file').hide();
+                    }
+                }
+            }
+        });
+       
+        let fill_status = '{$user.info_start}';
+        if (fill_status == 0) {
+            dearchive($('#modify_change'), 'modify');
+            dearchive($('#address_change'), 'address');
+            $('#up-img-touch').show();
+        }
+        var uploadInst = upload.render({
+            elem: '#avatar-upload'
+            , url: '/index/user/upload'
+            , before: function (obj) {
+                //Pre-read local file example, ie8 is not supported
+                obj.preview(function (index, file, result) {
+                    $('#avatar-img').attr('src', result); //Picture link (base64)
+                });
+            }
+            , done: function (res) {
+               // If the upload fails
+                if (res.code == 1) {
+                    $('#avatar-input').val(res.msg);
+                    $('#avatar-img').attr('src', res.msg);
+                    $('#userimg').removeClass('layui-hide');
+                } else {
+                    //Upload successfully
+                    return layer.msg('Upload Failed');
+                }
+            }
+            , error: function () {
+                //Demonstrate failure status and implement retransmission
+                var demoText = $('#avatarText');
+                demoText.html('<span style="color: #FF5722;">Upload Failed</span> <a class="layui-btn layui-btn-xs demo-reload">{:lang("Try Again")}</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    uploadInst.upload();
+                });
+            }
+        });
+        // Birth information modification button
+        $('#modify_change').click(function () {
+            var ck = $('#eduinfo').val();
+            console.log(ck);
+            if (ck == 0) {
+                zeroModal.alert({
+                    content: "{:lang('Your information has been successfully evaluated. Modifying the information will change your evaluation information. Please proceed with caution.')}",
+                    okTitle: '{:lang("Apply for Modification")}',
+                    okFn: function () {
+                        location.href = "{:url('index/user/applications_info',['id'=>19])}";
+                    },
+                    cancel: true,
+                    cancelTitle: 'Cancel',
+                });
+                return false;
+            }
+            if ($('#userimg').hasClass('layui-hide')) {
+                var imgs = $('#avatar-input').val();
+                if (imgs != '') {
+                    $('#userimg').removeClass('layui-hide');
+                }``
+            }
+            $('#up-img-touch').show();
+            dearchive(this, 'modify');
+        });
+
+        function dearchive(elem, filter) {
+            let doms = $(elem).parents('.content-box').find('input,select');
+            doms.removeClass('bg-grey').attr({'disabled': false, 'readonly': false});
+            form.render();
+            $(elem).siblings('.layui-btn').attr({
+                'disabled': false,
+                'lay-filter': filter
+            }).removeClass('bg-grey btn-grey').addClass('btn-green');
+            let area = $(elem).parents('.content-box').find('.areaBox')
+            if (area.length > 0) {
+                $(".areaBox div").removeClass("areaDisabled");
+            }
+        }
+        function unarchive(elem) {
+            let doms = $(elem).parents('.content-box').find('input,select');
+            doms.addClass('bg-grey').attr({'disabled': true, 'readonly': true});
+            form.render();
+            $(elem).attr({'disabled': true, 'lay-filter': ''}).removeClass('btn-green').addClass('bg-grey');
+            let area = $(elem).parents('.content-box').find('.areaBox')
+            if (area.length > 0) {
+                $(".areaBox div").addClass("areaDisabled");
+            }
+        }
+        var uploadInst = upload.render({
+            elem: '#upload' //Bound element
+            , url: '/upload/' //Upload interface
+            , auto: false
+            , choose: function (obj) {
+                obj.preview(function (index, file, result) {
+                    // $('.cropper').attr('src',result);
+                    $('.eg-main').show();
+                    $('.btns').show();
+                    $('.upload_box').hide()
+                    $('.cropper').cropper('replace', result, true);
+                })
+            }
+            , done: function (res) {
+                //Upload completed callback
+            }
+            , error: function () {
+                //Request exception callback
+            }
+        });
+        $('#up-img-touch').click(function () {
+            $('#up-img-touch').removeClass('layui-form-danger-border');
+            initCropper('.cropper');
+            layer.open({
+                type: 1,
+                content: $('#basic-eg-container'),
+                title: '',
+                area: ['680px', '416px'],
+                // cancel: function (index, layero) {
+                //     // return false;
+                //     $('.cropper').attr('src', '');
+                //     $('.cropper').cropper('destroy');
+                // }
+            });
+        });
+        var initCropper = function (elem) {
+            $('.eg-main').hide();
+            $('.btns').hide();
+            $('.upload_box').show();
+            let options = {
+                aspectRatio: 5 / 7,
+                preview: ".preview",
+                done: function (data) {
+                    console.log(data);
+                },
+                build: function (e) {
+                    console.log(e.type);
+                },
+                built: function (e) {
+                    console.log(e.type);
+                },
+                dragstart: function (e) {
+                    console.log(e.type);
+                },
+                dragmove: function (e) {
+                    console.log(e.type);
+                },
+                dragend: function (e) {
+                    console.log(e.type);
+                }
+            };
+            $.fn.cropper.setDefaults(options);
+            if ($(elem).siblings().length >= 1) {
+                $(elem).cropper('destroy')
+                $(elem).attr('src', '').siblings().remove();
+            }
+            $(elem).cropper(options);
+        }
+        initCropper('.cropper');
+        $("#getDataURL").click(function () {
+            var dataURL = $('.cropper').cropper("getDataURL");
+            $('#avatar-input').val(dataURL);
+            $('#avatar-img').attr('src', dataURL);
+            layer.closeAll();
+            layer.msg('{:lang("successfully")}', {icon: 1, time: 1000}, function () {
+            })
+        });
+        $('#avatar-cancel').click(function () {
+            initCropper('.cropper');
+        })
+        $('#address_change').click(function () {
+            dearchive(this, 'address');
+            $('.areaBox').find('.areaDisabled').removeClass('areaDisabled');
+        });
+        $(document).on('click', '.sfz-del-avatar', function () {
+            $('#avatar-input').val('');
+            $('#avatar-img').attr('src', '/static/images/person-icon.png');
+            $('#userimg').addClass('layui-hide');
+        });
+    });
+    $("#nationals").change(function () {
+        $(this).removeClass('error_border');
+        var national = $(this).children('option:selected').val();
+        $('#province option').remove();
+        $('#city option').remove();
+        $('#county option').remove();
+        $('#province_hid').hide();
+        $('#city_hid').hide();
+        $('#county_hid').hide();
+        if (national) {
+            $.ajax({
+                type: "POST",
+                url: "{:url('/index/common/getProvince')}",
+                dataType: "json",
+                data: {'national': national},
+                success: function (f) {
+                    var area = JSON.parse(f);
+                    console.log(area);
+                    var l = f.length;
+                    let option = '<option value="" selected="">Choose...</option>';
+                    $('#province option').eq(0).siblings().remove();
+                    if (area.province != null && area.province != undefined && area.province != '') {
+                        $('#province_hid').removeClass('layui-hide').show();
+                        $.each(area.province, function (index, item) {
+                            option += '<option value="' + item.code + '">' + item.name + '</option>';
+                        });
+                        $('#province').append(option);
+                    } else {
+                        $('#province_hid').hide();
+                        $('#city_hid').removeClass('layui-hide').show();
+                        $('#city option').eq(0).siblings().remove();
+                        $.each(area.city, function (index, item) {
+                            option += '<option value="' + item.code + '">' + item.name + '</option>';
+                        });
+                        $('#city').append(option);
+                    }
+                }
+            });
+        }
+    });
+    // Ajax Four-level linkage between provinces, cities and counties to obtain second-level administrative regions
+    $("#province").change(function () {
+        var province = document.getElementById('province').value;
+        $(this).removeClass('error_border');
+        $('#city_hid').hide();
+        $('#county_hid').hide();
+        let option = '';
+        if (province) {
+            $.ajax({
+                type: "POST",
+                url: "{:url('/index/user/getCity')}",
+                dataType: "json",
+                data: {'province': province},
+                success: function (city) {
+                    let option = '<option value="" selected="">Choose...</option>';
+                    city = JSON.parse(city);
+                    console.log(city);
+                    if (city.length < 1) {
+                        return
+                    }
+                    $('#city_hid').removeClass('layui-hide').show();
+                    $('#city option').eq(0).siblings().remove();
+                    $.each(city, function (index, item) {
+                        option += '<option value="' + item.code + '">' + item.name + '</option>';
+                    })
+                    $('#city').append(option);
+                }
+            })
+        }
+    });
+    // Ajax National, province, city and county four-level linkage to obtain three-level administrative region
+    $("#city").change(function () {
+        $(this).removeClass('error_border');
+        // Get the city ID number
+        var city = document.getElementById('city').value;
+        $('#county_hid').hide();
+        if (city) {
+            $.ajax({
+                type: "POST",
+                url: "{:url('/index/user/getCounty')}",
+                dataType: "json",
+                data: {'city': city},
+                success: function (county) {
+                    county = JSON.parse(county);
+                    if (county.length < 1) {
+                        return
+                    }
+                    let option = '<option value="" selected="">Choose...</option>';
+                    $('#county_hid').removeClass('layui-hide').show();
+                    $('#county option').eq(0).siblings().remove();
+                    $.each(county, function (index, item) {
+                        option += '<option value="' + item.code + '">' + item.name + '</option>';
+                    })
+                    $('#county').append(option);
+                }
+            })
+        }
+    });
+    $("#country").change(function () {
+        $(this).removeClass('error_border');
+    });
+</script>
+<script src="/static/js/crompper/js/cropper.js"></script>
+<script>
+    $('.areaBox div').on('click', function () {
+        if (!$(this).hasClass('areaDisabled')) {
+            $(this).siblings().fadeIn() 
+        }
+    })
+    $('.areaBox li').on('click', function (e) {
+        e.stopPropagation();
+        $('.areaBox ul').fadeOut()
+        var src = $(this).attr('data-src'), areaNum = $(this).attr('data-area');
+        $('.areaBox div img').attr('src', src)
+        $('.areaBox div span').text(areaNum)
+        $('[name="qujian"]').val(areaNum);
+    })
+    $(document).click(function (event) {
+        var _con = $('.areaBox');  // Set target area
+        if (!_con.is(event.target) && _con.has(event.target).length === 0) { // Mark 1
+            $('.areaBox ul').fadeOut();     //Fade out
+        }
+    });
+    $('.icon-cross, .tips-btn a').on('click', function () {
+        $('.w-tips').hide()
+    })
+    layui.use(['form', 'laydate', 'upload'], function () {
+        var form = layui.form,
+            laydate = layui.laydate,
+            upload = layui.upload;
+        })
+</script>
+</body>
+</html>

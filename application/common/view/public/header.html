@@ -1,0 +1,106 @@
+    <header class="hd-content">
+    	<div id="menuMobile">
+	        <i class="fa fa-bars"></i>
+	    </div>
+        <div class="hd-line"></div>
+        <div class='hd-box'>
+        	<div class="hd-other">
+            	 <div class="social-share" data-initialized="true">
+						<a href="#" class="social-share-icon icon-google"></a>
+						<a href="#" class="social-share-icon icon-twitter"></a>
+						<a href="#" class="social-share-icon icon-facebook"></a>
+						<a href="#" class="social-share-icon icon-linkedin"></a>
+				</div>
+	            <div class="hd-about">
+		  			<a href="/ku">QUERY VALIDATION</a>
+		  		</div>
+		  		<div class="hd-lang">ENG</div>
+            </div>
+            <a class="hd-logo" href="/">
+                <img src="{$C['site_logo']}" />
+                <span>{$C['site_logo_text']}</span>
+            </a>
+        </div>
+    </header>
+    <div class="hd-nav">
+    	<div class="nav-bg">
+	        <!--<nav class="hd-navbox">
+	            {volist name="nav" id="vo"}
+	                <a href="{$vo.link}">{$vo.name}</a> 
+	            {/volist}
+	        </nav>-->
+	        <nav class="hd-navbox">
+				{volist name="nav" id="level1"}	 
+			  		<a href="javascript:;"> {$level1.name}</a>
+				{/volist}	
+			 </nav>
+		</div>
+		
+	    <div class="nav-downbox">	
+	        {volist name="nav" id="level1"}	            
+				{volist name="level1['_child']" id="level2"}
+					<div class="down-list">
+						<div class="main-title">
+							<h1><a href="{$level2.link}">{$level2.name}</a> </h1>
+						</div>
+						{volist name="level2['_child']" id="level3"}
+							<div class="dow-col">
+								<h1 class="dow-coltit"><a href="{$level3.link}">{$level3.name}</a></h1>
+								{volist name="level3['_child']" id="level4"}
+									<div class="dow-com">
+										<h1 class="dow-coltit"><a href="{$level4.link}">{$level4.name}</a></h1>
+										<ul>
+											{volist name="level4['_child']" id="level5"}
+												<li>
+													<a href="{$level5.link}">{$level5.name}</a>
+												</li>											
+											{/volist}							
+										</ul>
+									</div>
+								{/volist}							
+
+							</div>
+						{/volist}
+					</div>	
+				{/volist}
+			{/volist}			  
+		</div>
+
+	  	<script>
+			$(function () {
+	            $(".nav-downbox").find(".down-list").hide();
+	            $(".nav-bg a ").click("mouseover", function () {
+					document.body.scrollTop = document.documentElement.scrollTop = 0;
+	                var index = $(this).index();
+	                if ($(this).hasClass("nav-active")) {
+	                    $(this).parent().parent().next().find(".down-list").slideUp();
+	                    $(this).removeClass("nav-active");
+	                } else {
+	                    $(this).parent().parent().next().find(".down-list").hide().eq(index).slideDown();
+	                    $(this).addClass("nav-active").siblings().removeClass("nav-active");
+	                }
+	            });
+
+	            $('#menuMobile').click(function () {
+					document.body.scrollTop = document.documentElement.scrollTop = 0;
+	                if ($('.hd-nav').is(':hidden')){
+	                    $('.hd-content').css('position','fixed');
+	                    $('.hd-box').css('height','.8rem');
+	                } else {
+	                    $('.hd-content').css('position','relative');
+	                    $('.hd-box').css('height','1.35rem');
+	                }
+	                $('.hd-nav').toggle('fast');
+	                $('.social-share').toggle();
+	                $('.hd-about').toggle();
+	            });
+
+	            var browserWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+	            if (browserWidth < 751) {
+	                $('.hd-navbox a:first-child').addClass('nav-active');
+	                $('.down-list:first-child').show();
+	            }
+
+	        })
+		  </script>
+    </div>

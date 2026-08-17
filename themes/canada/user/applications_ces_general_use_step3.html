@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('WSE-DAE for General Use')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/static/js/crompper/css/base.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/iconfont.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+<!--    <script src="/static/js/layui/layui.all.js"></script>-->
+    <script src="/canada/js/html.js"></script>
+    <style type="text/css">
+        .layui-upload-list .uploa-pre-view {
+            display: inline-block;
+        }
+        .layui-upload-list .layui-upload-drag i {
+            font-size: 24px;
+            margin: 0;
+            padding: 0;
+        }
+        .upload-error {
+            border-color: #FF5722;
+        }
+        .verify-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="">
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                <!--    user avatar    -->
+                {include file="public/_app_dae_steps"}
+                <!--    steps    -->
+                <div class="layui-row steps" style="margin-top:  12px;">
+                    <div class="layui-col-sm12">
+                        <h3>{:lang('EDUCATION INFORMATION')}</h3>
+                        <p>{:lang('Instructions for submitting academic documents')}</p>
+                        <br>
+                        <div class="card-style">
+                            <h5>{:lang('General Instructions')}</h5>
+                            <p>{:lang('Supporting academic documents required within your application vary by country. For instructions on documents specific to your country of education please refer to our online country specific academic document tool.')}</p>
+                        </div>
+                        <br>
+                        <form class="edu-form" id="infodata" action="">
+                            <div class="card-style">
+                                <div class="layui-row layui-col-space15 form-group">
+                                    <div class="layui-col-sm4">
+                                        <p><b>{:lang('Countries of study')}:</b><span class="necessary">*</span></p>
+                                        <input list="country_list" id="country" name="edu_nationality" autocomplete="off" class="form-input" value="{$order.edu_nationality}" lay-verify="required|en" autocomplete="off" placeholder="{:lang('Please select or enter your Country')}"/>
+                                        <datalist id="country_list" lang="en">
+                                            {foreach name="country" item="vo"}<option value="{$vo.name_en}"  label="{:lang($vo.name_en)}">{/foreach}
+                                        </datalist>
+                                    </div>
+                                    <div class="layui-col-sm4" {if empty($edu_provinces) && empty($order.edu_province) && $order.edu_city } style="display: none;"{/if}>
+                                    <p><b>{:lang('Province/State')}:</b><span class="necessary">*</span></p>
+                                    <input list="province_list" name="edu_province" id="province" autocomplete="off" class="form-input" value="{$order.edu_province}" lay-verify="required|en" autocomplete="off" placeholder="{:lang('Please select or enter your Province')}"/>
+                                    <datalist id="province_list" lang="en">
+                                        {volist name="edu_provinces" id="vo"}
+                                        <option value="{$vo.name_en}"  label="{:lang($vo.name_en)}">
+                                            {/volist}
+                                    </datalist>
+                                </div>
+                                <div class="layui-col-sm4">
+                                    <p><b>{:lang('City')}:</b><span class="necessary">*</span></p>
+                                    <input id="city" list="city_list" name="edu_city" autocomplete="off" class="form-input" value="{$order.edu_city}" lay-verify="required|en" autocomplete="off" placeholder="{:lang('Please select or enter your City')}"/>
+                                    <datalist id="city_list" lang="en">
+                                        {volist name="edu_cities" id="vo"}
+                                        <option value="{$vo.name_en}"  label="{:lang($vo.name_en)}">
+                                            {/volist}
+                                    </datalist>
+                                </div>
+                                <div class="layui-col-sm8">
+                                    <p><b>{:lang('Name of Academic Institution')}</b><span class="necessary">*</span></p>
+                                    <input type="hidden" name="user_order_id" value="{$order.id}">
+                                    <input list="cars" name="school" autocomplete="off" class="form-input" value="{$order.university}" lay-verify="required" placeholder="{:lang('Please select or enter your Name of Academic Institution')}"/>
+                                    <datalist id="cars">
+                                        {volist name="schools" id="vo"}<option value="{$vo.name_en}" label="{:lang($vo.name_en)}">{/volist}
+                                    </datalist>
+                                    <!--< p class="variable-content">{:lang('Provide the name of the institution as it appears on your academic credential.')}</p> -->
+                                </div>
+                                <div class="layui-col-sm4">
+                                    <p><b>{:lang('University nature')}</b><span class="necessary">*</span></p>
+                                    <select name="university_type" id="" class="layui-input">
+                                        <option value="1" {if $order.university_type == 1 } selected {/if}>{:lang('Public universities')}</option>
+                                        <option value="2" {if $order.university_type == 2 } selected {/if}>{:lang('Private university')}</option>
+                                        <option value="3" {if $order.university_type == 3 } selected {/if}>{:lang('Language school')}</option>
+                                        <option value="4" {if $order.university_type == 4 } selected {/if}>{:lang('Preparatory school')}</option>
+                                        <option value="5" {if $order.university_type == 5 } selected {/if}>{:lang('Training school')}</option>
+                                    </select>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="card-style ">
+                        <!--                                <div class="form-group degree-box">-->
+                        <!--                                    <p><b>{:lang('Name of Certificate/Diploma/Degree Program')}</b><span class="necessary">*</span></p>-->
+                        <!--                                    <input type="text" class="form-input" lay-verify="required|en" name="degree_program" value="{$order.degree_program}" placeholder="{:lang('Example: Engineering, Science, Arts')}">-->
+                        <!--                                    <div class="degree-btn">-->
+                        <!--                                        <span>of</span>-->
+                        <!--                                        <a {$order['degree']=='Bachelor' ?'class="layui-btn layui-btn-sm"':'class="layui-btn layui-btn-primary layui-btn-sm"'} {empty name="$order['degree']"} class="layui-btn layui-btn-sm" {/empty} data-degree="Bachelor">{:lang('Bachelor')}</a>-->
+                        <!--                                        <a {$order['degree']=='Master' ?'class="layui-btn layui-btn-sm"':'class="layui-btn layui-btn-primary layui-btn-sm"'} data-degree="Master">{:lang('Master')}</a>-->
+                        <!--                                        <a {$order['degree']=='PH.D.' ?'class="layui-btn layui-btn-sm"':'class="layui-btn layui-btn-primary layui-btn-sm"'} data-degree="PH.D.">{:lang('PH.D.')}</a>-->
+                        <!--                                        <a {$order['degree']=='Diploma' ?'class="layui-btn layui-btn-sm"':'class="layui-btn layui-btn-primary layui-btn-sm"'} data-degree="Diploma">{:lang('Diplomas')}</a>-->
+                        <!--                                    </div>-->
+                        <!--                                    <input type="hidden" name="degree" id="degrees" value="{$order.degree|default=''}" lay-verify="required">-->
+                        <!--                                </div>-->
+                        <div class="form-group degree-box">
+                            <p><b>{:lang('Name of Certificate/Diploma/Degree Program')}</b><span class="necessary">*</span></p>
+                            <div class="degree-btn">
+
+
+                                <a {if  $order['degree']=='' || ($order['degree']=='Bachelor')}class="layui-btn layui-btn-sm" {else/}  class="layui-btn layui-btn-primary layui-btn-sm"  {/if} data-degree="Bachelor">{:lang('Bachelor')}</a>
+                                <a {$order['degree']=='Master' ?'class="layui-btn layui-btn-sm"':'class="layui-btn layui-btn-primary layui-btn-sm"'} data-degree="Master">{:lang('Master')}</a>
+                                <a {$order['degree']=='PH.D.' ?'class="layui-btn layui-btn-sm"':'class="layui-btn layui-btn-primary layui-btn-sm"'} data-degree="PH.D."  onclick="searchaa()">{:lang('PH.D.')}</a>
+                                <a {$order['degree']=='Diploma' ?'class="layui-btn layui-btn-sm"':'class="layui-btn layui-btn-primary layui-btn-sm"'} data-degree="Diploma">{:lang('Diplomas')}</a>
+                                <span>of</span>
+                                <input type="hidden" name="degree" id="degrees" value="{$order.degree|default=''}" lay-verify="required">
+                            </div>
+                            <script type="text/javascript">
+                                function searchaa() {
+                                    $('[name="degree_program"]').val('PH.D.');
+                                }
+                                // $(document).ready(function(){
+                                //   var dua = '{$order['degree']}'
+                                //   console.log(dua)
+                                //   if (dua=='Bachelor') {
+                                //    // $('.onceschox2').hide();
+                                //   } else if (dua=='Master') {
+                                //   //  $('.onceschox1').hide();
+                                //   }
+                                // });
+                                // {if !empty($order['degree']) &&  $order['degree'] !='Bachelor'} style="display:none" {/if}
+                            </script>
+                            <div class="form-input degree-list">
+                                <input  {if   $order['degree']=='Master'} style="display:none"{/if} class="onceschox1" type="text" list="degreeBox" name="degree_program" value="{$order.degree_program}" placeholder="{:lang('Please select or enter your Name of Academic Institution')}" autocomplete="off">
+                                <datalist id="degreeBox"   >
+                                    <option value="Engineering"  label="{:lang('Engineerings')}">
+                                    <option value="Science"  label="{:lang('Sciences ')}">
+                                    <option value="Arts"  label="{:lang('Arts')}">
+                                    <option value="Education"  label="{:lang('Educations ')}">
+                                    <option value="BusinessAdm"  label="{:lang('BusinessAdms')}">
+                                </datalist>
+                                <input {if  $order['degree']!='Master'} style="display:none"{/if} class="onceschox2"  type="text" list="degreeBox1" name="degree_program" lay-verify="required" value="{$order.degree_program}" placeholder="{:lang('Please select or enter your Name of Academic Institution')}" autocomplete="off">
+                                <datalist id="degreeBox1">
+                                    <option value="Science"   label="{:lang('Science')}">
+                                    <option value="Engineering"   label="{:lang('Engineering')}">
+                                    <option value="Business Administration"   label="{:lang('Business Administration')}">
+                                </datalist>
+                            </div>
+                        </div>
+                        <div class="layui-row layui-col-space15 layui-form">
+                            <div class="form-group layui-col-sm6">
+                                <p><b>{:lang('Student Card Number')}</b><span class="necessary">*</span></p>
+                                <input type="text" class="form-input" lay-verify="required" name="student_id" value="{$order.student_id}" placeholder="{:lang('Please enter your Student Card Number')}">
+                                <!--  <p class="variable-content">{:lang('Numbers only in years or credits')}</p> -->
+                            </div>
+                            <div class="form-group layui-form layui-col-sm6">
+                                <p><b>{:lang('Graduated')}</b></p>
+                                <input type="radio" name="graduated" checked lay-verify="required" value="1" title="{:lang('Yes')}" lay-filter='graduated'>
+                                <input type="radio" name="graduated" {$order.graduated== 0 ? "checked":""} lay-verify="required" value="0" title="{:lang('No')}" lay-filter='graduated' >
+                            </div>
+                        </div>
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-col-sm6">
+                                <p><b>{:lang('Main subject area of study')}: </b><span class="necessary">*</span></p>
+                                <input type="text" class="layui-input" value="{$order.faculty}" name="faculty" lay-verify="required|en"  list="main_subject" autocomplete="off" placeholder="{:lang('Please select or enter your Main subject area of study')}">
+                                <datalist id="main_subject">
+                                    {volist name="subjects" id="vo"}
+                                    <option value="{$vo.title_en}" label="{:lang($vo.title_en)}">
+                                    {/volist}
+                                </datalist>
+                            </div>
+                            <div class="layui-col-sm6">
+                                <p><b>{:lang('Major')}: </b><span class="necessary">*</span></p>
+                                <input type="text" class="layui-input" value="{$order.major}" name="major" list="majors" lay-verify="required|en" autocomplete="off" placeholder="{:lang('Please select or enter your Major')}">
+                                <datalist id="majors">
+                                    {volist name="majors" id="vo"}
+                                    <option value="{$vo.name_en}" label="{:lang($vo.name_en)}">
+                                    {/volist}
+                                </datalist>
+                            </div>
+                        </div>
+                        <div class="form-group date layui-form">
+                            <div class="layui-row layui-col-space15">
+                                <div class="layui-col-sm6 ">
+                                    <p><b>{:lang('Dates Attended')}</b><span class="necessary">*</span></p>
+                                    <input type="text" class="form-input time-pointer" id="datesAttendedFrom" lay-verify="required" placeholder="{:lang('Click to select date')}" autocomplete="off" name="completion_date" value="{$order.start_date == '0000-00-00' ? '' : $order.start_date}" readonly="readonly">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <div class="layui-col-sm6 ">
+                                    <p><b>{:lang('Date Issued')}</b><span class="necessary">*</span></p>
+                                    <input type="text" class="form-input time-pointer" id="DateIssued" lay-verify="required" placeholder="{:lang('Click to select date')}" autocomplete="off"  name="issued_date" value="{$order.completion_date == '0000-00-00' ? '' : $order.completion_date}" readonly="readonly">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group layui-form">
+                            <div class="layui-row  layui-col-space15">
+                                <div class="layui-col-sm6 ">
+                                    <p><b>{:lang('Use service code')}</b></p>
+                                    <input type="radio" {if strlen($order.edu_code) >5} disabled="" {/if} name="graduated1" checked lay-verify="required" value="1" title="{:lang('Yes')}" lay-filter='graduated1'>
+                                    <input type="radio" {if strlen($order.edu_code) >5} disabled="" {/if}  name="graduated1" {$order.edu_code=='' ? "checked":""} lay-verify="required" value="0" title="{:lang('No')}" lay-filter='graduated1' >
+                                </div>
+                                <div class="layui-col-sm6 "  id="codelisthide" style=" position: relative; {if strlen($order.edu_code) <5} display: none; {/if}" >
+                                    <p><b>{:lang('Service Encode')}</b></p>
+                                    <input type="text" name="edu_code"   lay-verify="required"  value="{$order.edu_code|default=''}" {if strlen($order.edu_code) >5} readonly {/if}  placeholder="{:lang('Please enter service code')}"  onkeyup="this.value=this.value.replace(/[, ]/g,'')"  autocomplete="off"  class="layui-input" >
+                                    {if strlen($order.edu_code) <5}   <button class="layui-btn verify-btn" id="verify2" type="button">{:lang('Verify')}</button>{/if}
+                                    <script type="text/javascript">
+                                        $('#verify2').on('click', function () {
+                                            var codelists =    $("input[name='edu_code']").val();
+                                            var order_id =    $("input[name='user_order_id']").val();
+                                            if (codelists=='') {
+                                                //return alert('{:lang("Please fill in the data")}');
+                                                return layer.msg('{:lang("Please fill in the data")}', {icon: 5})
+                                            }
+                                            $.ajax({
+                                                url: '{:url("/index/user/usercode_bind")}',
+                                                type: "POST",
+                                                data: {code: codelists,orderid: order_id},
+                                                success: function (res) {
+                                                    if (res.code == 20000) {
+                                                        layer.msg('{:lang("Code can use")}', {icon: 6, time: 1500}, function () {
+                                                            //window.location.reload();//刷新父页面
+                                                        });
+                                                    } else {
+                                                        layer.msg('{:lang("Code can not use")}', {icon: 5})
+                                                    }
+                                                }
+                                            });
+                                            return false;
+                                            //alert( codelists + '  class  ' + order_id );
+                                        })
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="card-style layui-form">
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-upload change-avatar">
+                                <div>
+                                    <b>{:lang('Diploma')}: </b><span class="necessary">*</span>
+                                    <div class="questionBtn">
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                        <div>
+                                            <p>{:lang('The maximum allowed file size for uploads is')} 2048 KB.</p>
+                                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                                            <p>{:lang('(if applicable)')}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <a class="layui-btn layui-btn-primary" id="ID-upload">{:lang('Upload')}</a> -->
+                                <div class="layui-upload-list">
+                                    <div class="uploa-pre-view" id="diploma-pre">
+                                        {notempty name="$order['diploma']"}
+                                        {foreach name="$order['diploma']" item="vo" key="k"}
+                                        {php}
+                                        $ext = strtolower(pathinfo($vo, PATHINFO_EXTENSION));
+                                        {/php}
+                                        <div class="layui-inline uploadImg {if $ext == 'pdf'} upload-pdf {else/} preview {/if}">
+                                            <img src="{if $ext == 'pdf'} /canada/images/icon-images/PDF.png {else/} {:url('open/Resource/show_img')}?image={:urlencode($vo)} {/if}" alt="">
+                                            <i class="fa fa-trash sfz-del" aria-hidden="true"></i>
+                                            <input type="hidden" class="diploma" name="diploma" value="{$vo}">
+                                        </div>
+                                        {/foreach}
+                                        {/notempty}
+                                    </div>
+                                    <div class="layui-upload-drag" id="diploma-file"  {if !empty($order['diploma']) && count($order['diploma']) >= 8} style="display:none" {/if} >
+                                        <i class="icon iconfont">&#xe66b;</i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-upload change-avatar">
+                                <div>
+                                    <b>{:lang('Transcript')}: </b><span class="necessary">*</span>
+                                    <div class="questionBtn">
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                        <div>
+                                            <p>{:lang('The maximum allowed file size for uploads is')} 2048 KB.</p>
+                                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                                            <p>{:lang('Upload both sides of your academic records (transcript /statement of marks) for all years of studies.')}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <a class="layui-btn layui-btn-primary" id="ID-upload">{:lang('Upload')}</a> -->
+                                <div class="layui-upload-list">
+                                    <div class="uploa-pre-view" id="transcript-pre">
+                                        {notempty name="$order['transcript']"}
+                                        {foreach name="$order['transcript']" item="vo" key="k"}
+                                        {php}
+                                        $ext = strtolower(pathinfo($vo, PATHINFO_EXTENSION));
+                                        {/php}
+                                        <div class="layui-inline uploadImg {if $ext == 'pdf'} upload-pdf {else/} preview {/if}">
+                                            <img src="{if $ext == 'pdf'} /canada/images/icon-images/PDF.png {else/}{:url('open/Resource/show_img')}?image={:urlencode($vo)} {/if}" alt="">
+                                            <i class="fa fa-trash sfz-del" aria-hidden="true"></i>
+                                            <input type="hidden" class="transcript" name="transcript" value="{$vo}">
+                                        </div>
+                                        {/foreach}
+                                        {/notempty}
+                                    </div>
+                                    <div class="layui-upload-drag" id="transcript-file"  {if !empty($order['transcript']) && count($order['transcript']) >= 8} style="display:none" {/if}>
+                                    <i class="icon iconfont">&#xe66b;</i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-row layui-col-space15 layui-form">
+                            <div class="layui-upload change-avatar">
+                                <div>
+                                    <b>{:lang('Handheld Diploma')}: </b><span class="necessary">*</span>
+                                    <div class="questionBtn">
+                                        <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                        <div>
+                                            <p>{:lang('The maximum allowed file size for uploads is')} 2048 KB.</p>
+                                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                                            <p>{:lang('(if applicable)')}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <a class="layui-btn layui-btn-primary" id="ID-upload">{:lang('Upload')}</a> -->
+                                <div class="layui-upload-list">
+                                    <div class="uploa-pre-view" id="hand-diploma-pre">
+                                        {notempty name="$order['hand_diploma']"}
+                                        {foreach name="$order['hand_diploma']" item="vo" key="k"}
+                                        {php}
+                                        $ext = strtolower(pathinfo($vo, PATHINFO_EXTENSION));
+                                        {/php}
+                                        <div class="layui-inline uploadImg {if $ext == 'pdf'} upload-pdf {else/} preview {/if}">
+                                            <img src="{if $ext == 'pdf'} /canada/images/icon-images/PDF.png {else/} {:url('open/Resource/show_img')}?image={:urlencode($vo)} {/if}" alt="">
+                                            <i class="fa fa-trash sfz-del" aria-hidden="true"></i>
+                                            <input type="hidden" class="hand_diploma" name="hand_diploma" value="{$vo}">
+                                        </div>
+                                        {/foreach}
+                                        {/notempty}
+                                    </div>
+                                    <div class="layui-upload-drag" id="hand-diploma-file"  {if !empty($order['hand_diploma']) && count($order['hand_diploma']) >= 8} style="display:none" {/if} >
+                                        <i class="icon iconfont">&#xe66b;</i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-row layui-col-space15">
+                                <div class="layui-upload change-avatar">
+                                    <div>
+                                        <b>{:lang('Handheld Transcript')}: </b><span class="necessary">*</span>
+                                        <div class="questionBtn">
+                                            <i class="fa fa-question-circle" aria-hidden="true"></i>
+                                            <div>
+                                                <p>{:lang('The maximum allowed file size for uploads is')} 2048 KB.</p>
+                                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                                                <p>{:lang('Upload both sides of your academic records (transcript /statement of marks) for all years of studies.')}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <a class="layui-btn layui-btn-primary" id="ID-upload">{:lang('Upload')}</a> -->
+                                    <div class="layui-upload-list">
+                                        <div class="uploa-pre-view" id="hand-transcript-pre">
+                                            {notempty name="$order['hand_transcript']"}
+                                            {foreach name="$order['hand_transcript']" item="vo" key="k"}
+                                            {php}
+                                            $ext = strtolower(pathinfo($vo, PATHINFO_EXTENSION));
+                                            {/php}
+                                            <div class="layui-inline uploadImg {if $ext == 'pdf'} upload-pdf {else/} preview {/if}">
+                                                <img src="{if $ext == 'pdf'} /canada/images/icon-images/PDF.png {else/} {:url('open/Resource/show_img')}?image={:urlencode($vo)} {/if}" alt="">
+                                                <i class="fa fa-trash sfz-del" aria-hidden="true"></i>
+                                                <input type="hidden" class="hand_transcript" name="hand_transcript" value="{$vo}">
+                                            </div>
+                                            {/foreach}
+                                            {/notempty}
+                                        </div>
+                                        <div class="layui-upload-drag" id="hand-transcript-file"  {if !empty($order['hand_transcript']) && count($order['hand_transcript']) >= 8} style="display:none" {/if}>
+                                            <i class="icon iconfont">&#xe66b;</i>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="layui-col-sm12 layui-form">
+                        <a class="layui-btn layui-btn-primary save" lay-submit lay-filter="save">{:lang('Save This Page')}</a>
+                        <a href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort-1])}" class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+                        <a class="layui-btn mazarine right next-page" lay-submit lay-filter="save2">{:lang('Next Page')}</a>
+                        <br/>
+                        <br/>
+                    </div>
+                    </form>
+                </div>
+            </div>
+            {if $order.status >= 3}
+            <script>
+                $('input').attr('disabled', true);
+                $('input[type=checkbox]').attr('disabled', false);
+                $('select').attr('disabled', true);
+                $('button').attr('disabled', true);
+            </script>
+            {/if}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--Picture upload box-->
+<div class="eg-container" id="diploma-picture">
+    <div class="upload_box">
+        <img class="eg-img" src="/canada/images/avatar/d-hand.svg">
+        <div class="eg-img-box">
+            <img src="/canada/images/avatar/hand-error-head.svg" alt="">
+            <img src="/canada/images/avatar/hand-error-bottom.svg" alt="">
+            <img src="/canada/images/avatar/hand-error-left.svg" alt="">
+        </div>
+        <p>{:lang('Please ensure that your head, arms, and hand-held documents are completely displayed on the screen.')}</p>
+        <button class="add-avatar layui-btn layui-btn-danger" type="button" id="diplomaUpload">{:lang('Add Handheld Diploma')}</button>
+    </div>
+</div>
+<div class="eg-container" id="transcript-picture">
+    <div class="upload_box">
+        <img class="eg-img" src="/canada/images/avatar/T-hand.svg">
+        <div class="eg-img-box">
+            <img src="/canada/images/avatar/hand-error-head.svg" alt="">
+            <img src="/canada/images/avatar/hand-error-bottom.svg" alt="">
+            <img src="/canada/images/avatar/hand-error-left.svg" alt="">
+        </div>
+        <p>{:lang('Please ensure that your head, arms, and hand-held documents are completely displayed on the screen.')}</p>
+        <button class="add-avatar layui-btn layui-btn-danger" type="button" id="transcriptUpload">{:lang('Add Handheld Transcript')}</button>
+    </div>
+</div>
+
+<script>
+    var degree = '';
+    let graduated = '{$order.graduated|default=1}';
+    $('.degree-btn a').on('click', function () {
+        $('.degree-btn a').removeClass('layui-form-danger');
+        if ($(this).hasClass('layui-btn-primary')) {
+            $(this).removeClass('layui-btn-primary').siblings('a').addClass('layui-btn-primary')
+        }
+        degree = $(this).attr('data-degree')
+        $('#degrees').val(degree);
+        if (degree=='Bachelor') {
+            $('[name="degree_program"]').val('');
+            $('.onceschox2').hide();
+            $('.onceschox1').show();
+        } else if (degree=='Master') {
+            $('[name="degree_program"]').val('');
+            $('.onceschox1').hide();
+            $('.onceschox2').show();
+        } else if (degree=='Diploma') {
+            $('[name="degree_program"]').val('');
+            $('.onceschox2').hide();
+            $('.onceschox1').show();
+        }
+    })
+    $('.questionBtn i').on('click', function (e) {
+        e.stopPropagation()
+        $(this).siblings('div').fadeToggle()
+    })
+    $(document).mouseup(function (e) {
+        var pop = $('.questionBtn');
+        if (!pop.is(e.target) && pop.has(e.target).length === 0) {
+            $('.questionBtn div').fadeOut()
+        }
+    });
+    $('.trans_del').on('click', function () {
+        $(this).parents('li').remove();
+    });
+    layui.use(['form', 'laydate', 'upload','layer'], function () {
+        var form = layui.form,
+            laydate = layui.laydate,
+            upload = layui.upload;
+        var tips = 1;
+        var layer = layui.layer;
+        layer.photos({
+            photos: '.preview',
+            closeBtn: 2,
+            tab: function (pic, layero) {
+                console.log(pic) //当前图片的一些信息
+            }
+        });
+
+        let diploma_num = 8 - $('#diploma-pre').children().length;
+        let diploma_index;
+        let diplomaInst = upload.render({
+            elem: '#diploma-file'
+            , url: '/upload'
+            , accept: 'file'
+            , multiple: true
+            , number: diploma_num
+            , exts: 'pdf|jpeg|png|jpg'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    diploma_index = layer.load();
+                    let img = '';
+                    let upload_class = '';
+                    if (file.type == 'application/pdf') {
+                        img = '/canada/images/icon-images/PDF.png';
+                        upload_class = 'upload-pdf';
+                    } else {
+                        img = result;
+                        upload_class = 'preview';
+                    }
+                    let content = '<div id="up-dip-item-' + index + '" class="layui-inline uploadImg ' + upload_class + '">' +
+                        '<img src="' + img + '">' +
+                        '<i class="fa fa-trash sfz-del" aria-hidden="true"></i>' +
+                        '</div>';
+                    $('#diploma-pre').append(content);
+                });
+            }
+            , done: function (res, index) {
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed', function () {
+                        layer.close(diploma_index);
+                    });
+                } else {
+                    if ($('#diploma-file').hasClass('layui-form-danger')) {
+                        $('#diploma-file').removeClass('layui-form-danger')
+                    }
+                    $('#up-dip-item-' + index).append('<input type="hidden" class="diploma" name="diploma" value="' + res.msg + '">');
+                    diploma_num--;
+                    if ($('#diploma-pre').children().length >= 8) {
+                        $('#diploma-file').hide();
+                    }
+                    layer.close(diploma_index);
+                }
+            }
+        });
+
+        let hand_diploma_num = 8 - $('#diploma-pre').children().length;
+        let hand_diploma_index;
+        $('#hand-diploma-file').on('click', function () {
+            layer.open({
+                type: 1,
+                content: $('#diploma-picture'),
+                title: '',
+                area: ['680px', '520px'],
+            });
+            $('#diplomaUpload').on('click', function () {
+                layer.closeAll()
+            })
+        })
+        let handDiplomaInst = upload.render({
+            elem: '#diplomaUpload'
+            , url: '/upload'
+            , accept: 'file'
+            , multiple: true
+            , number: hand_diploma_num
+            , exts: 'pdf|jpeg|png|jpg'
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    hand_diploma_index = layer.load();
+                    let img = '';
+                    let upload_class = '';
+                    if (file.type == 'application/pdf') {
+                        img = '/canada/images/icon-images/PDF.png';
+                        upload_class = 'upload-pdf';
+                    } else {
+                        img = result;
+                        upload_class = 'preview';
+                    }
+                    let content = '<div id="up-dip-item-' + index + '" class="layui-inline uploadImg ' + upload_class + '">' +
+                        '<img src="' + img + '">' +
+                        '<i class="fa fa-trash sfz-del" aria-hidden="true"></i>' +
+                        '</div>';
+                    $('#hand-diploma-pre').append(content);
+                });
+            }
+            , done: function (res, index) {
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed', function () {
+                        layer.close(hand_diploma_index);
+                    });
+                } else {
+                    if ($('#hand-diploma-file').hasClass('layui-form-danger')) {
+                        $('#hand-diploma-file').removeClass('layui-form-danger')
+                    }
+                    $('#up-dip-item-' + index).append('<input type="hidden" class="hand_diploma" name="hand_diploma" value="' + res.msg + '">');
+                    hand_diploma_num--;
+                    if ($('#hand-diploma-pre').children().length >= 8) {
+                        $('#hand-diploma-file').hide();
+                    }
+                    layer.close(hand_diploma_index);
+                }
+            }
+        });
+
+        let transfer_num = 8 - $('#transcript-pre').children().length;
+        let transfer_index;
+        let transferInit = upload.render({
+            elem: '#transcript-file'
+            , url: '/upload'
+            , accept: 'file'
+            , multiple: true
+            , number: transfer_num
+            , exts: 'pdf|jpeg|png|jpg'
+            , before: function (obj) {
+                transfer_index = layer.load();
+                //预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    let img = '';
+                    let upload_class = '';
+                    if (file.type == 'application/pdf') {
+                        img = '/canada/images/icon-images/PDF.png';
+                        upload_class = 'upload-pdf';
+                    } else {
+                        img = result;
+                        upload_class = 'preview';
+                    }
+                    let content = '<div id="up_trans_item_'+ index +'" class="layui-inline uploadImg ' + upload_class + '">' +
+                        '<img src="' + img + '">' +
+                        '<i class="fa fa-trash sfz-del" aria-hidden="true"></i>' +
+                        '</div>';
+                    $('#transcript-pre').append(content);
+                });
+            }
+            , done: function (res,index) {
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed',function(){
+                        layer.close(transfer_index);
+                    });
+                } else {
+                    // return layer.msg('The Transcript Upload Failed Can\'t Be More Than 8');
+                    if ($('#transcript-file').hasClass('layui-form-danger')) {
+                        $('#transcript-file').removeClass('layui-form-danger')
+                    }
+                    $('#up_trans_item_' + index).append('<input type="hidden" class="transcript" name="transcript" value="' + res.msg + '">');
+                    transfer_num--
+                    if ($('#transcript-pre').children().length >= 8) {
+                        $('#transcript-file').hide();
+                    }
+                    layer.close(transfer_index);
+                }
+            }
+        });
+
+        let hand_transfer_num = 8 - $('#transcript-pre').children().length;
+        let hand_transfer_index;
+        $('#hand-transcript-file').on('click', function () {
+            layer.open({
+                type: 1,
+                content: $('#transcript-picture'),
+                title: '',
+                area: ['680px', '520px'],
+            });
+            $('#transcriptUpload').on('click', function () {
+                layer.closeAll()
+            })
+        })
+        let handTransferInit = upload.render({
+            elem: '#transcriptUpload'
+            , url: '/upload'
+            , accept: 'file'
+            , multiple: true
+            , number: hand_transfer_num
+            , exts: 'pdf|jpeg|png|jpg'
+            , before: function (obj) {
+                hand_transfer_index = layer.load();
+                // 预读本地文件示例，不支持ie8
+                obj.preview(function (index, file, result) {
+                    let img = '';
+                    let upload_class = '';
+                    if (file.type == 'application/pdf') {
+                        img = '/canada/images/icon-images/PDF.png';
+                        upload_class = 'upload-pdf';
+                    } else {
+                        img = result;
+                        upload_class = 'preview';
+                    }
+                    let content = '<div id="up_trans_item_'+ index +'" class="layui-inline uploadImg ' + upload_class + '">' +
+                        '<img src="' + img + '">' +
+                        '<i class="fa fa-trash sfz-del" aria-hidden="true"></i>' +
+                        '</div>';
+                    $('#hand-transcript-pre').append(content);
+                });
+            }
+            , done: function (res,index) {
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed',function(){
+                        layer.close(hand_transfer_index);
+                    });
+                } else {
+                    // return layer.msg('The Transcript Upload Failed Can\'t Be More Than 8');
+                    if ($('#hand-transcript-file').hasClass('layui-form-danger')) {
+                        $('#hand-transcript-file').removeClass('layui-form-danger')
+                    }
+                    $('#up_trans_item_' + index).append('<input type="hidden" class="hand_transcript" name="hand_transcript" value="' + res.msg + '">');
+                    transfer_num--
+                    if ($('#hand-transcript-pre').children().length >= 8) {
+                        $('#hand-transcript-file').hide();
+                    }
+                    layer.close(hand_transfer_index);
+                }
+            }
+        });
+        form.on('submit(save)', function (data) {
+            let formData = {};
+            let flag = true;
+            let forms = $('#infodata input,#infodata select');
+            let data_state = 'Complete';
+            $.each(forms, function (index, item) {
+                let val = $(item).val().replace(/^\s*|\s*$/g,"");
+                let verify = $(item).attr('lay-verify');
+                let name = $(item).attr('name');
+                if (verify == null || verify == undefined) {
+                    verify = ''
+                }
+                verify = verify.split('|');
+                if (verify.indexOf('en') > -1) {
+                    let regx = /^[\da-zA-Z~!\-=`@#$%^&*().\s,]*$/;
+                    if (!regx.test(val)) {
+                        $(item).focus();
+                        $(item).addClass('layui-form-danger');
+                        layer.tips('{:lang("Incorrect format: Can only be composed of English or Numbers")}',$(item),{tips:[3, '#FF5722'], end:function(){}})
+                        flag = false;
+                        return flag;
+                    }
+                }
+                let type = $(item).attr('type');
+                if (type == 'radio') {
+                    let checked = $(item).attr('checked');
+                    if (!(checked == '' || checked == null)) {
+                        formData[$(item).attr('name')] = val;
+                    }
+                } else {
+                    formData[$(item).attr('name')] = val;
+                }
+            });
+            if (!flag) {
+                return ;
+            }
+            let dips = $('.diploma');
+            let trans = $('.transcript');
+            let hdips = $('.hand_diploma');
+            let htrans = $('.hand_transcript');
+            let diploma = [];
+            let transcript = [];
+            let hand_diploma = [];
+            let hand_transcript = [];
+            $.each(dips, function (index, dip) {
+                diploma[index] = $(dip).val();
+            })
+            $.each(trans, function (index, tran) {
+                transcript[index] = $(tran).val();
+            });
+            $.each(hdips, function (index, dip) {
+                hand_diploma[index] = $(dip).val();
+            });
+            $.each(htrans, function (index, tran) {
+                hand_transcript[index] = $(tran).val();
+            })
+
+            formData['transcript'] = transcript;
+            formData['diploma'] = diploma;
+            formData['hand_transcript'] = hand_transcript;
+            formData['hand_diploma'] = hand_diploma;
+            formData['graduated'] = graduated;
+            formData['user_order_id'] = '{$order.id}';
+            formData['sort'] = '{$sort}';
+            if (diploma.length == 0) {
+                formData['diploma'] = '';
+                data_state = 'Incomplete';
+            }
+            if (transcript.length == 0) {
+                formData['transcript'] = '';
+                data_state = 'Incomplete';
+            }
+            if (hand_diploma.length == 0) {
+                formData['hand_diploma'] = '';
+                data_state = 'Incomplete';
+            }
+            if (hand_transcript.length == 0) {
+                formData['hand_transcript'] = '';
+                data_state = 'Incomplete';
+            }
+            formData['data_state'] = data_state;
+            formData['app_id'] = '{$order.app_id}';
+            $.post('/save_upload', formData, function (result) {
+                if (result.code == 20000) {
+                    layer.msg(result.msg,{icon:1});
+                    let state_item =  $('.step-arrow-box>a>.step-arrow-wrap span').eq(formData['sort'] - 1);
+                    let icon = state_item.children('.fa-exclamation-circle');
+                    if (data_state == "Complete"){
+                        icon.remove();
+                    }else {
+                        if(icon.length == 0){
+                            state_item.prepend('<i class="fa fa-exclamation-circle"></i>');
+                        }
+                    }
+                } else {
+                    layer.msg(result.msg, {icon: 5,time:1000});
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+
+
+        form.on('submit(save2)', function () {
+            let formData = {};
+            let flag = true;
+            let forms = $('#infodata').find('input,select');
+            let error_index = 0;
+            $.each(forms, function (index, item) {
+                let val = $(item).val().replace(/^\s*|\s*$/g, "");
+                let verify = $(item).attr('lay-verify');
+                let name =  $(item).attr('name');
+                if (verify == null || verify == undefined) {
+                    verify = ''
+                }
+                let msg = '';
+                verify = verify.split('|');
+                if (verify.indexOf('required') > -1 && (val == null || val == undefined || val == '')) {
+                    if ($(item).is(':hidden')) {
+                        return true;
+                    }
+                    if ($(item).attr('name') == 'degree'){
+                        $('.degree-btn a').addClass('layui-form-danger');
+                        layer.tips('{:lang("Please choose your degree")}',$('.degree-btn'),{tips:[3, '#FF5722'],time:2000})
+                        flag = false;
+                        return flag;
+                    }
+                    if(name == 'completion_date' || name ==  'issued_date'){
+                        layer.tips('{:lang("Require can not be empty")}',$(item),{tips:[3, '#FF5722'],time:1000,end:function(){
+                                $(item).focus();
+                            }})
+                    } else {
+                        $(item).focus();
+                        layer.tips('{:lang("Require can not be empty")}',$(item),{tips:[3, '#FF5722'],time:1000,end:function(){}})
+                    }
+                    $(item).addClass('layui-form-danger');
+                    flag = false;
+                    return flag;
+                }
+                if (verify.indexOf('en') > -1) {
+                    let regx = /^[\da-zA-Z~!\-=`@#$%^&*().\s,]*$/;
+                    if (!regx.test(val)) {
+                        $(item).addClass('layui-form-danger');
+                        // layer.msg('Incorrect format: Can only be composed of English or Numbers', {icon: 5,time:1000});
+                        layer.tips('{:lang("Incorrect format: Can only be composed of English or Numbers")}',$(item),{tips:[3, '#FF5722'], end:function(){
+                                console.log('tips关闭回调');
+                            }})
+                        flag = false;
+                        return flag;
+                    }
+                }
+                let type = $(item).attr('type');
+                if (type == 'radio') {
+                    let checked = $(item).attr('checked');
+                    if (!(checked == '' || checked == null || checked == undefined)) {
+                        formData[$(item).attr('name')] = val;
+                    }
+                } else {
+                    formData[$(item).attr('name')] = val;
+                }
+            })
+            if (!flag) {
+                return;
+            }
+            let dips = $('.diploma');
+            let trans = $('.transcript');
+            let hdips = $('.hand_diploma');
+            let htrans = $('.hand_transcript');
+            let diploma = [];
+            let transcript = [];
+            let hand_diploma = [];
+            let hand_transcript = [];
+            $.each(dips, function (index, dip) {
+                diploma[index] = $(dip).val();
+            })
+            $.each(trans, function (index, tran) {
+                transcript[index] = $(tran).val();
+            });
+            $.each(hdips, function (index, dip) {
+                hand_diploma[index] = $(dip).val();
+            });
+            $.each(htrans, function (index, tran) {
+                hand_transcript[index] = $(tran).val();
+            })
+            if (diploma.length == 0) {
+                $('#diploma-file').addClass('layui-form-danger');
+                // layer.msg('Please upload your degree certificate', {icon: 5,time:1000});
+                layer.tips('{:lang("Please upload your degree certificate")}',$('#diploma-file'),{tips:[3, '#FF5722']})
+                return;
+            }
+            if (transcript.length == 0) {
+                $('#transcript-file').addClass('layui-form-danger');
+                // layer.msg('Please upload your transcript', {icon: 5,time:1000});
+                layer.tips('{:lang("Please upload your transcript")}', $('#transcript-file'),{tips:[3, '#FF5722']})
+                return;
+            }
+            if (hand_diploma.length == 0) {
+                $('#hand-diploma-file').addClass('layui-form-danger');
+                // layer.msg('Please upload your degree certificate', {icon: 5,time:1000});
+                layer.tips('{:lang("Please upload your handheld degree certificate")}',$('#hand-diploma-file'),{tips:[3, '#FF5722']})
+                return;
+            }
+            if (hand_transcript.length == 0) {
+                $('#hand-transcript-file').addClass('layui-form-danger');
+                // layer.msg('Please upload your transcript', {icon: 5,time:1000});
+                layer.tips('{:lang("Please upload your handheld transcript")}', $('#hand-transcript-file'),{tips:[3, '#FF5722']})
+                return;
+            }
+            formData['transcript'] = transcript;
+            formData['diploma'] = diploma;
+            formData['hand_transcript'] = hand_transcript;
+            formData['hand_diploma'] = hand_diploma;
+            formData['graduated'] = graduated;
+            if (formData['degree']==undefined ) {
+                formData['degree'] = 'Bachelor';
+            }
+         
+            $.post("{:url('/save_next',['app_id'=>$order.app_id,'sort'=>$sort+1])}", formData, function (result) {
+                if (result.code == 20000) {
+                    window.location.href = result.data;
+                } else if (result.code == 10404) {
+                    $('[name="edu_code"]').addClass('layui-form-danger');
+                    layer.msg(result.msg, {icon: 5,time:1500});
+                } else {
+                    layer.msg(result.msg, {icon: 5,time:1000});
+                }
+
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        form.on('radio(graduated1)', function(data){
+            if (data.value==1) {
+                $('#codelisthide').show()
+            } else {
+                $('#codelisthide').hide()
+            }
+        });
+
+
+
+        laydate.render({
+            elem: '#datesAttendedFrom',
+            lang: 'en'
+            ,max:0,
+            format: 'dd-MM-yyyy'
+            , done: function (value, date, endDate) {
+                let issueDate = $('#DateIssued').val();
+                $('#datesAttendedFrom').removeClass('layui-form-danger');
+                let attendTime = new Date(value).getTime();
+                let issueTime = null;
+                if (issueDate != null && issueDate != undefined && issueDate != '') {
+                    issueTime = new Date(issueDate).getTime();
+                    if (attendTime > issueTime) {
+                        layer.msg('The start date must be less than the end date', {icon: 0,time:1000}, function () {
+                            $('#datesAttendedFrom').focus().val('').addClass('layui-form-danger');
+                        });
+                    }
+                }
+            }
+        });
+        laydate.render({
+            elem: '#DateIssued',
+            lang: 'en'
+            ,max:0,
+            format: 'dd-MM-yyyy'
+            , done: function (value, date, endDate) {
+                let issueDate = $('#datesAttendedFrom').val();
+                $('#DateIssued').removeClass('layui-form-danger');
+                let attendTime = new Date(value).getTime();
+                let issueTime = null;
+                if (issueDate != null && issueDate != undefined && issueDate != '') {
+                    issueTime = new Date(issueDate).getTime();
+                    if (attendTime < issueTime) {
+                        layer.msg('The end date must be greater than the start date', {icon: 0,time:1000}, function () {
+                            $('#DateIssued').focus().val('').addClass('layui-form-danger');
+                        });
+                    }
+                }
+            }
+        });
+        form.on('select(mainSubject)', function (data) {
+            document.getElementById("pastJointSubject").innerHTML = '';
+            // 获得改变研究科目的ID
+            var mch_id = document.getElementById('pastMainSubject').value;
+            $.ajax({
+                type: "POST",
+                url: "{:url('/index/user/getProfile')}",
+                dataType: "json",
+                data: {'faculty': mch_id},
+                success: function (data) {
+                    // //empty() 方法从被选元素移除所有内容
+                    // $("select[name='major']").empty();
+                    var l = data.length;
+                    var str = '';
+                    for (var i = 0; i < l; i++) {
+                        str += "<option value=\"";
+                        str += data[i]['id'];
+                        str += "\">";
+                        str += data[i]['title'];
+                        str += "</option>";
+                        str += "\n";
+                    }
+                    $('#pastJointSubject').append(str);
+                    form.render('select');
+                }
+            });
+        })
+        $('#HandoverCompany').blur(function () {
+            event.stopPropagation();
+            $('.selectBox-item').toggle()
+        })
+        var k = 0;
+        $(document).on('click', '.sfz-del', function () {
+            let pre_id = $(this).parents('.uploa-pre-view').attr('id');
+            if (pre_id == 'diploma-pre') {
+                diploma_num++;
+                diplomaInst.reload({
+                    number:diploma_num
+                });
+            } else if (pre_id == 'transcript-pre') {
+                transfer_num++;
+                transferInit.reload({
+                    number:transfer_num
+                });
+            }
+            $(this).parents('.layui-upload-list').find('.layui-upload-drag').show();
+            $(this).parents('.uploadImg').remove();
+        });
+        form.render();
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#nationals").change(function () {
+            var national = $(this).children('option:selected').val();
+            $('#province_hid').hide();
+            $('#city_hid').hide();
+            $('#county_hid').hide();
+            if (national) {
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('/index/common/getProvince')}",
+                    dataType: "json",
+                    data: {'national': national},
+                    success: function (f) {
+                        var area = JSON.parse(f);
+                        var l = f.length;
+                        let option = '';
+                        $('#province option').eq(0).siblings().remove();
+                        if (area.province != null && area.province != undefined && area.province != '') {
+                            $('#province_hid').removeClass('layui-hide').show();
+                            $.each(area.province, function (index, item) {
+                                option += '<option value="' + item.code + '">' + item.name + '</option>';
+                            });
+                            $('#province').append(option);
+                        } else {
+                            $('#province_hid').hide();
+                            $('#city_hid').removeClass('layui-hide').show();
+                            $('#city option').eq(0).siblings().remove();
+                            $.each(area.city, function (index, item) {
+                                option += '<option value="' + item.code + '">' + item.name + '</option>';
+                            });
+                            $('#city').append(option);
+                        }
+                    }
+                });
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('/index/user/getschoolss')}",
+                    dataType: "json",
+                    data: {'national': national},
+                    success: function (data) {
+                        $('[name="school"]').val('');
+                        $('#cars option').remove();
+                        $('#cars').append(data);
+                    }
+                })
+            }
+        });
+        // Ajax 国省市县四级联动 获取二级行政区
+        $("#province").change(function () {
+            var province = document.getElementById('province').value;
+            $('#city_hid').hide();
+            $('#county_hid').hide();
+            let option = '';
+            if (province) {
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('/index/user/getCity')}",
+                    dataType: "json",
+                    data: {'province': province},
+                    success: function (city) {
+                        let option = '';
+                        city = JSON.parse(city);
+                        // console.log(city);
+                        if (city.length == 0) {
+                            return
+                        }
+                        $('#city_hid').show();
+                        $('#city option').eq(0).siblings().remove();
+                        $.each(city, function (index, item) {
+                            option += '<option value="' + item.code + '">' + item.name + '</option>';
+                        })
+                        $('#city').append(option);
+                    }
+                })
+            }
+        });
+        // Ajax 国省市县四级联动 获取三级行政区
+        $("#city").change(function () {
+            // 获取市级ID编号
+            var city = document.getElementById('city').value;
+            $('#county_hid').hide();
+            if (city) {
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('/index/user/getCounty')}",
+                    dataType: "json",
+                    data: {'city': city},
+                    success: function (county) {
+                        county = JSON.parse(county);
+                        if (county.length < 1) {
+                            return
+                        }
+                        let option = '';
+                        $('#county_hid').removeClass('layui-hide').show();
+                        $('#county option').eq(0).siblings().remove();
+                        $.each(county, function (index, item) {
+                            option += '<option value="' + item.code + '">' + item.name + '</option>';
+                        })
+                        $('#county').append(option);
+                    }
+                })
+            }
+        });
+        // Ajax动态进行研究科目的改变
+        $("#pastMainSubject").change(function () {
+            document.getElementById("pastJointSubject").innerHTML = '';
+            // 获得改变研究科目的ID
+            var mch_id = document.getElementById('pastMainSubject').value;
+            $.ajax({
+                type: "POST",
+                url: "{:url('/index/user/getProfile')}",
+                dataType: "json",
+                data: {'faculty': mch_id},
+                success: function (data) {
+                    // //empty() 方法从被选元素移除所有内容
+                    // $("select[name='major']").empty();
+                    var l = data.length;
+                    var str = '';
+                    for (var i = 0; i < l; i++) {
+                        str += "<option value=\"";
+                        str += data[i]['id'];
+                        str += "\">";
+                        str += data[i]['title'];
+                        str += "</option>";
+                        str += "\n";
+                    }
+                    $('#pastJointSubject').append(str);
+                }
+            })
+        });
+
+        $('[name="edu_nationality"]').on('input', function () {
+            let national = $(this).val();
+            let country = $('#country option');
+            if (national != '{$order.edu_nationality}') {
+                $('[name="school"]').val('');
+                $('#cars option').remove();
+                $.each(country,function (index,item) {
+                    let val = $(item).val();
+                    if (national == val){
+                        $.ajax({
+                            type: "POST",
+                            url: "{:url('/index/common/getSchools')}",
+                            dataType: "json",
+                            data: {country: national},
+                            success: function (res) {
+                                let html = '';
+                                $.each(res.data,function(index,item){
+                                    html += '<option value="'+ item.name_en +'" label="'+ item.name_en +'">';
+                                });
+                                $('#cars').append(html);
+                            }
+                        })
+                        return false;
+                    }
+                })
+            }
+        })
+
+        $('#country').on('input', function () {
+            let national = $(this).val();
+            let nationals = $('#country_list option');
+            if (national != '{$address.national|default=""}') {
+                $('#province').val('').parents('.layui-col-sm4').show();
+                $('#city').val('').parents('.layui-col-sm4').show();
+                $('#province_list').empty();
+                $('#city_list').empty();
+                $('[name="school"]').val('');
+                $('#cars option').remove();
+                $.each(nationals, function (index, item) {
+                    let val = $(item).val();
+                    if (national == val) {
+                        falg = false;
+                        $.ajax({
+                            type: "POST",
+                            url: "{:url('/index/common/getProvince')}",
+                            dataType: "json",
+                            data: {
+                                national: national,
+                                type: 'NAME'
+                            },
+                            success: function (res) {
+                                let option = '';
+                                if (res.city != undefined && res.city.length >
+                                    0) {
+                                    $.each(res.city, function (index, item) {
+                                        option += '<option value="' + item.name_en + '">' + item.name_en + '</option>';
+                                    });
+                                    $('#province_list').parents('.layui-col-sm4').hide();
+                                    $('#city_list').empty().append(option);
+                                } else if ((res.province != undefined && res.province.length > 0)) {
+                                    $.each(res.province, function (index, item) {
+                                        option += '<option value="' + item.name_en + '">' + item.name_en + '</option>';
+                                    });
+                                    $('#province_list').parents('.layui-col-sm4').show();
+                                    $('#province_list').empty().append(option);
+                                }
+                            }
+                        })
+                        $.ajax({
+                            type: "POST",
+                            url: "{:url('/index/common/getSchools')}",
+                            dataType: "json",
+                            data: {country: national},
+                            success: function (res) {
+                                let html = '';
+                                $.each(res.data,function(index,item){
+                                    html += '<option value="'+ item.name_en +'" label="'+ item.name_en +'">';
+                                });
+                                $('#cars').append(html);
+                            }
+                        })
+                        return false;
+                    }
+                })
+            }
+        })
+
+        $('#province').on('input', function () {
+            let province = $(this).val();
+            let provinces = $('#province_list option');
+            if (province != '{$address.province|default=""}') {
+                $('#city').val('').parents('.layui-col-sm4').show();
+                $('#city_list').empty();
+                $.each(provinces, function (index, item) {
+                    let val = $(item).val();
+                    if (province == val) {
+                        $.ajax({
+                            type: "POST",
+                            url: "{:url('/index/common/getCity')}",
+                            dataType: "json",
+                            data: {
+                                province: province,
+                                type: 'NAME'
+                            },
+                            success: function (res) {
+                                console.log(res);
+                                let option = '';
+                                $.each(res, function (index, item) {
+                                    option += '<option value="' + item
+                                            .name_en + '">' + item.name_en +
+                                        '</option>';
+                                });
+                                $('#city_list').empty().append(option);
+                            }
+                        })
+                        return false;
+                    }
+                })
+            }
+        })
+
+        // $('[name="school"]').on('input',function(){
+        //     let university  =  $(this).val();
+        //     let schools =  $('#cars option');
+        //     if (university != '{$order.university}'){
+        //         $('[name="major"]').val('');
+        //         $('#majors option').remove();
+        //         $.each(schools,function (index,item) {
+        //             let val = $(item).val();
+        //             if (university == val){
+        //                 $.ajax({
+        //                     type: "POST",
+        //                     url: "{:url('/index/common/getMajors')}",
+        //                     dataType: "json",
+        //                     data: {university: university},
+        //                     success: function (res) {
+        //                         let html = '';
+        //                         $.each(res.data,function(index,item){
+        //                             html += '<option value="'+ item.name_en +'" label="'+ item.name_en +'">';
+        //                         });
+        //                         $('#majors').append(html);
+        //                     }
+        //                 })
+        //                 return false;
+        //             }
+        //         })
+        //     }
+        // });
+    });
+</script>
+</body>
+</html>

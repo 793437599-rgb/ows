@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+<head>
+    <meta charset="utf-8"/>
+    <title>CANADA.EDUCATION DATA</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Keywords" content=""/>
+    <meta name="Description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/education.css"/>
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <script src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+</head>
+<body>
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'><a class="hd-logo" href="/"> <img src="/canada/images/logo.png"/> </a>
+        <div class="infor-off"><a href="/logout"> <img src="/canada/images/off-icon.svg"/> <span>Exit</span>
+        </a></div>
+    </div>
+</header>
+<section class="information-wrap">
+    <h2>PERSONAL DATA DISPLAY</h2>
+    <div class="information transcript">
+        <div class="header">
+            <div class="img-box">
+                <img src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"'/>
+            </div>
+            <div class="info">
+                <h3>{$info.name}</h3>
+            </div>
+<ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a href="/info/edu_id/{$v.id}">Information</a>
+                        </li>
+                        <li><a href="/transcript/edu_id/{$v.id}">Transcript</a></li>
+                    </ol>
+                </li>
+{/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/info">Information</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+<li><a href="/transfer">TRANSFER</a></li>
+</ul>
+</div>
+    </div>
+    <div class="infor-right">
+        <div class="application border-shadow">
+            <div class="introduction"><h4>National Student Clearinghouse</h4>
+                <div style="text-align: justify;"><p>The <a href="http://www.studentclearinghouse.org"
+                                                            target="_blank"><span>National Student Clearinghouse</span></a>
+                    (a nonprofit formed in 1993) is the trusted source for and leading provider of higher education
+                    verifications and electronic education record exchanges, handling more than 700 million verification
+                    requests and 250 million education record exchanges annually. The Clearinghouse serves as a single
+                    point of contact for the collection and timely exchange of accurate and comprehensive enrollment,
+                    degree, and certificate records on behalf of its more than 3,500 participating higher education
+                    institutions, which represent 98 percent of all students in public and private U.S. institutions.
+                    The Clearinghouse also provides thousands of high schools and districts with continuing collegiate
+                    enrollment, progression, and completion statistics on their alumni.</p>
+                    <p>Through its verification, electronic exchange, and reporting services, the Clearinghouse saves
+                        the education community cumulatively more than 500 million dollars annually. Most Clearinghouse
+                        services are provided to colleges and universities at little or no charge, including enhanced
+                        transcript and research services, enabling institutions to redistribute limited staff and budget
+                        resources to more important student service efforts. Clearinghouse services are designed to
+                        facilitate an institution’s compliance with the Family Educational Rights and Privacy Act, The
+                        Higher Education Act, and other applicable laws.</p>
+                    <p>In addition, the Clearinghouse provides accurate, timely enrollment and degree verifications to
+                        student loan providers, employers, student credit issuers, the U.S. Department of Education, and
+                        others who access its registry more than half a billion times annually.</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="table-bg"></div>
+</section>
+<div class="infor-ft"><a href="#">Home</a>&nbsp;|&nbsp; <span>Copyright © Canada education data</span></div>
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+</script>
+</body>
+</html>

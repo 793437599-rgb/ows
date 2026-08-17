@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>Reset password</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/header-footer.css">
+    <link rel="stylesheet" href="/canada/css/login-new.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+</head>
+<body>
+{include file="public/header-login" /}
+
+<section class="main">
+    <div class="container">
+        <div class="row reset-info">
+            <div class="col-xs-12">
+                <div class="page-header"><h1>{:lang('Password reset confirmation')}</h1></div>
+                <p class="alert alert-info"><i class="fa fa-exclamation-circle"></i>{:lang('If your account exists you will be sent an email')}
+                    <a href="log">{:lang('Login In')}</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{include file="public/footer-login" /}
+</body>
+
+</html>

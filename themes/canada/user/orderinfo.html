@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.all.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <script src="/static/js/jquery.flexslider-min.js"></script>
+    <script src="/static/js/viewer-jquery.min.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <title>help-center</title>
+    <style type="text/css">
+        .msgMask {
+            text-align: center;
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .msgMask img {
+            display: block;
+            margin: 30px auto 20px;
+        }
+
+        .nav-left .layui-nav .layui-nav-item:nth-child(2) > a {
+            background: #D3101B;
+        }
+    </style>
+</head>
+<body>
+    {include file="public/header-user" /}
+    <section class="mainContent">
+        <div>
+            <div class="layui-row ">
+                <div class="layui-col-sm2 nav-fixed">
+                    {include file="public/nav-left" /}
+                </div>
+                <div class="layui-col-sm10 storage-sessterm">
+                    <div class="storage-stem-box">
+                        <div class="storage-top">
+                            <div class="storage-top-text top-blue storage2 popups">
+                                <div class="top-title top-title-left">
+                                    <h2>{:lang('Original File-Information Storage')}</h2>
+                                    <p>{:lang('You can view the transcripts, graduation certificates, identity documents, etc. provided when you apply for the service here.')}</p>
+                                </div>
+                                <div><img src="/canada/images/my-storage/wse-top-1.png" alt=""></div>
+                            </div>
+                            <div class="storage-top-text top-green storage1 popups">
+                                <div class="top-title top-title-left">
+                                    <h2>{:lang('WSE Assessment file Storage')}</h2>
+                                    <p>{:lang("You can view WSE's evaluation book, transcript and blockchain storage information evaluated based on your original file-information.")}</p>
+                                </div>
+                                <div><img src="/canada/images/my-storage/wse-top-2.png" alt=""></div>
+                            </div>
+                            {if $certificate_number > 0}
+                            <script type="text/javascript">
+                                $('.storage1').click(function () {
+                                    window.location.href = '{:url("index/user/storageList",["show"=>0])}';
+                                })
+                                $('.storage2').click(function () {
+                                    window.location.href = '{:url("index/user/storageList",["show"=>1])}';
+                                })
+                            </script>
+                            {/if}
+                        </div>
+                        <div>
+                            <div class="storage-center">
+                                <div class="storage-content-center popups">
+                                    <a href="{:url('index/user/orderinfo_sharing')}">
+                                        <div class="center-top">
+                                            <h2>{:lang('Electronic Certificate Sharing')}</h2>
+                                            <p>{:lang('You can share your certificate to others by link or email')}</p>
+                                        </div>
+                                        <div class="center-bottom">
+                                            <object><a href="{:url('index/user/orderinfo_sharing')}">GO <i class="iconfont icon-Right"></i></a></object>
+                                            <img src="/canada/images/my-storage/wes-d-pic.svg" alt="">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="storage-content-center popups">
+                                    <a href="{:url('index/user/orderinfo_translation')}">
+                                        <div class="center-top">
+                                            <h2>{:lang('Translation-Notarization')}</h2>
+                                            <p>{:lang('Here you can apply for evaluation certificates and achievement certificates in different languages according to different countries.')}</p>
+                                        </div>
+                                        <div class="center-bottom">
+                                            <object><a href="{:url('index/user/orderinfo_translation')}">GO <i class="iconfont icon-Right"></i></a></object> 
+                                            <img src="/canada/images/my-storage/wse-t-pic.svg" alt="">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="storage-content-center">
+                                    <a href="{:url('index/user/orderinfo_query_history')}">
+                                        <div class="center-top">
+                                            <h2>{:lang('Query History')}</h2>
+                                            <p>{:lang('In order to ensure the security of your data, we have made a record of the inquirers of your evaluation certificate. You can view the inquiry record here.')}</p>
+                                        </div>
+                                        <div class="center-bottom">
+                                            <object><a href="javascript:;">GO <i class="iconfont icon-Right"></i></a></object>
+                                            <img src="/canada/images/my-storage/wse-e-pic.svg" alt="">
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="storage-content-center">
+                                    <a href="{:url('index/about/blockchain')}">
+                                        <div class="center-top">
+                                            <h2 style="font-size: 17.5px;">{:lang('Original Document Verification')}</h2>
+                                            <p>{:lang('All your information is stored in the blockchain by WSE, and you can verify whether your information has been tampered with here.')}</p>
+                                        </div>
+                                        <div class="center-bottom">
+                                            <object><a href="{:url('index/about/blockchain')}">GO <i class="iconfont icon-Right"></i></a></object>
+                                            <img src="/canada/images/my-storage/wse-o-pic.svg" alt="">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="storage-center">
+                                <div class="storage-bottom-content">
+                                    <a href="{:url('index/user/revisions')}">
+                                        <h2>{:lang('Revision History')}</h2> 
+                                        <div class="storage-bottom-img">
+                                            <div><p>{:lang('Your information storage history.')}</p></div>
+                                            <i class="iconfont icon-version"></i>
+                                        </div>
+                                    </a> 
+                                </div>
+                                <div class="storage-bottom-content" id="otherStorage">
+                                    <a href="javascript:;">
+                                        <h2>{:lang('Other File Storage')}</h2>
+                                        <div class="storage-bottom-img">
+                                            <div><p>{:lang('You can apply for blockchain to store other documents')}.</p></div>
+                                            <i class="iconfont icon-report"></i>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="storage-bottom-content">
+                                    <a href="{:url('index/about/helpcenter')}">
+                                        <h2>{:lang('User Guide')}</h2>
+                                        <div class="storage-bottom-img">
+                                            <div><p>{:lang('If you have any questions, please check the help.')}</p></div>
+                                            <i class="iconfont icon-user_Guide"></i>
+                                        </div>
+                                    </a> 
+                                </div>
+                                <div class="storage-bottom-content">
+                                    <a href="{:url('index/about/questionnaire')}">
+                                        <h2>{:lang('Customer Service Center')}</h2>
+                                        <div class="storage-bottom-img">
+                                            <div><p>{:lang('Weekday')} 09:00 ~ 18:00</p></div>
+                                            <i class="iconfont icon-Customer_service"></i> 
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        layer.photos({
+            photos: '.layer-photos-demo',
+            anim: 5
+        });
+        $('#otherStorage').click(function () {
+            layer.open({
+                title: '',
+                btn: ['OK'],
+                content: "{:lang('The function is under test and development.')}"
+            });
+        })
+
+        $(document).on('click', '.popups', function () {
+            let num = '{$certificate_number|default=0}'
+            if (num == 0){
+                zeroModal.alert({
+                    content: "{:lang("You have not applied for a certificate yet, please apply for a certificate first.")}",
+                    okTitle: '{:lang("Apply Now!")}',
+                    okFn: function () {
+                        location.href = "{:url('/applications_info',['id'=>3])}";
+                    },
+                    cancel: true,
+                });
+                return false;
+            }
+
+        });
+    </script>
+</body>
+</html>

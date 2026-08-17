@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+<head>
+    <meta charset="utf-8"/>
+    <title>UNITED KINGDOM EDUCATION DATA</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/application.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+</head>
+<body>
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'>
+        <a class="hd-logo" href="/">
+            <img src="/canada/images/logo.png"/>
+        </a>
+        <div class="infor-off">
+            <a href="/logout">
+                <img src="/canada/images/off-icon.svg"/>
+                <span>{:lang('Exit')}</span>
+            </a>
+        </div>
+    </div>
+</header>
+<section class="information-wrap">
+    <h2>{:lang('PERSONAL DATA DISPLAY')}</h2>
+    <div class="information transcript">
+        <div class="header">
+            <div class="img-box">
+                <img src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"'/>
+            </div>
+            <div class="info">
+                <h3>{$info.name}</h3>
+            </div>
+<ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                    	<li><a href="/info/edu_id/{$v.id}">{:lang('Information')}</a></li>
+                        <li><a  href="/edit_edu/edu_id/{$v.id}">{:lang('Edit degree')}</a>
+                        </li>
+                        <li><a href="/transcript/edu_id/{$v.id}">{:lang('Transcript')}</a></li>
+                        <li><a href="/edit_grade/edu_id/{$v.id}">{:lang('Edit grades')}</a></li>
+</ol>
+                </li>
+{/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/info">{:lang('Information')}</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+<li><a href="/transfer">{:lang('TRANSFER')}</a></li>
+</ul>
+</div>
+    </div>
+    <div class="infor-right">
+<div class="application border-shadow">
+            <div class="app_img">
+                <img src="/canada/images/application_1.png" alt="">
+            </div>
+            <div class="title">
+            	{:lang('Send certification/verification reports to international institution through CA UNIVERSITY!')}
+            </div>
+            <div class="app_btn">
+                <a href="/apply_select">{:lang('Send report')}</a>
+            </div>
+            <div class="normal-link">
+                <a href="/apply_introduction" target="_blank">{:lang('Function Introduction')}</a>
+            </div>
+        </div>
+<div class="border-shadow college-bar clearfix">
+            <ul>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_1.jpg" alt="">
+                    </div>
+                    <div class="college-name">CollegeNET, {:lang('Inc.')}</div>
+                    <div class="college-link">
+                        <a href="/apply_college/CollegeNET" target="_blank">{:lang('Introduction to Institutions')}</a><br>
+                        <a href="/apply_how" target="_blank">{:lang('How to Apply')}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_2.jpg" alt="">
+                    </div>
+                    <div class="college-name">Parchment {:lang('Inc.')}</div>
+                    <div class="college-link">
+                        <a href="/apply_college/Parchment" target="_blank">{:lang('Introduction to Institutions')}</a><br>
+                        <a href="/apply_how" target="_blank">{:lang('How to Apply')}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_3.jpg" alt="">
+                    </div>
+                    <div class="college-name">{:lang('National Student Clearinghouse')}</div>
+                    <div class="college-link">
+                        <a href="/apply_college/NSC" target="_blank">{:lang('Introduction to Institutions')}</a><br>
+                        <a href="/apply_how" target="_blank">{:lang('How to Apply')}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_4.png" alt="">
+                    </div>
+                    <div class="college-name">{:lang('Digitary')}</div>
+                    <div class="college-link">
+                        <a href="/apply_college/Digitary" target="_blank">{:lang('Introduction to Institutions')}</a><br>
+                        <a href="/apply_how" target="_blank">{:lang('How to Apply')}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_5.png" alt="">
+                    </div>
+                    <div class="college-name">{:lang('Dienst Uitvoering Onderwijs')}</div>
+                    <div class="college-link">
+                        <a href="/apply_college/DUO" target="_blank">{:lang('Introduction to Institutions')}</a><br>
+                        <a href="/apply_how" target="_blank">{:lang('How to Apply')}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_6.png" alt="">
+                    </div>
+                    <div class="college-name">{:lang('My eQuals')}</div>
+                    <div class="college-link">
+                        <a href="/apply_college/>My_eQuals" target="_blank">{:lang('Introduction to Institutions')}</a><br>
+                        <a href="/apply_how" target="_blank">{:lang('How to Apply')}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_7.png" alt="">
+                    </div>
+                    <div class="college-name">{:lang('World Education Services (WES)')}</div>
+                    <div class="college-link">
+                        <a href="/apply_college/WES" target="_blank">{:lang('Introduction to Institutions')}</a><br>
+                        <a href="/apply_how" target="_blank">{:lang('How to Apply')}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_8.png" alt="">
+                    </div>
+                    <div class="college-name">{:lang('China Study Abroad Network')}</div>
+                    <div class="college-link">
+                        <a href="/apply_college/cscse" target="_blank">{:lang('Introduction to Institutions')}</a><br>
+                        <a href="/apply_how" target="_blank">{:lang('How to Apply')}</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_9.png" alt="">
+                    </div>
+                    <div class="college-name">{:lang('China Abroad Student Information Service Network')}</div>
+                    <div class="college-link">
+                        <a href="/apply_college/cscss" target="_blank">{:lang('Introduction to Institutions')}</a><br>
+                        <a href="/apply_how" target="_blank">{:lang('How to Apply')}</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+    <div class="table-bg"></div>
+</section>
+<div class="infor-ft">
+    <a href="#">{:lang('Home')}</a>&nbsp;|&nbsp;
+    <span>Copyright © Canada education data</span>
+</div>
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>CANADA.EDUCATION DATA</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Keywords" content=""/>
+    <meta name="Description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/education.css"/>
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" href="/public/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <script src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <link rel="stylesheet" type="text/css" href="/canada/css/mobile.css"/>
+</head>
+<body>
+
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'>
+        <a class="hd-logo" href="/">
+            <img src="/canada/images/logo.png"/>
+        </a>
+        <div class="infor-off">
+            <a href="/logout">
+                <img src="/canada/images/off-icon.svg"/>
+                <span>Exit</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<section class="information-wrap">
+    <h2>PERSONAL DATA DISPLAY</h2>
+    <div class="information transcript">
+        <div class="header">
+            <div class="img-box">
+                <img src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"'/>
+            </div>
+            <div class="info">
+                <h3>{$info.name}</h3>
+            </div>
+
+            <ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a href="/info/edu_id/{$v.id}">Information</a>
+                        </li>
+                        <li><a href="/transcript/edu_id/{$v.id}">Transcript</a></li>
+                    </ol>
+                </li>
+
+                {/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/info">Information</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+
+                <li><a href="/transfer">TRANSFER</a></li>
+
+
+            </ul>
+
+        </div>
+    </div>
+    <div class="infor-right">
+        <div class="application border-shadow">
+            <div class="intro">
+                <h2>CA UNIVERSITY-Foreign Digital Transmission Service</h2>
+                <div class="intro_list intro_list_1 clearfix">
+                    <div class="left">
+                        <i class="top"></i>
+                        Function Description
+                        <i class="bottom"></i>
+                    </div>
+                    <div class="right">
+                        <span class="intro_circle"></span>
+                        Chinese students could send electronic verification reports (China Higher Education Student Record,
+                        China Higher Education Qualification Certificate, China Higher Education Student’s Academic Transcript,
+                        China National College Entrance Examination Results, China Secondary Education Qualification
+                        Certificate, China Secondary Education Student’s Academic Transcript and China High School Academic
+                        Proficiency Test Results) to the foreign universities via the CA UNIVERSITY-foreign transmission service.
+                        Click “How to apply” link on the corresponding CA UNIVERSITY-foreign portal page to view the details.
+                    </div>
+                </div>
+                <div class="intro_list intro_list_2 clearfix">
+                    <div class="left">
+                        <i class="top"></i>
+                        Postsecondary
+                        <br>
+                        Education
+                        <i class="bottom"></i>
+                    </div>
+                    <div class="right">
+                        <h6>Includes the graduate, undergraduate and junior college levels</h6>
+                        <h4>Chinese students</h4>
+                        <p><span class="intro_circle"></span>Use “Name” and “ID Number” to <a>register your CHSI Archive</a>,
+                            then check your <a>student record </a>(for those who have not completed their studies) or higher
+                            education qualification certificate (for those who have already graduated) information. If your
+                            student record or qualification certificate information cannot be found in your “CHSI Archive”,
+                            please contact the related management department in your school to check your name and personal
+                            identification number. Then use “Name” + “Identification Number” to conduct a re-registration to
+                            check the existence of your educational information.</p>
+                        <p><span class="intro_circle"></span>The personal information filled on the foreign school’s application
+                            websites should be consistent with that in your “CHSI Archive”. </p>
+                        <p><span class="intro_circle"></span>Please use the same personal identification number as filled in
+                            your CHSI Archive when applying for “Verification Report of China Higher Education Qualification
+                            Certificate”, “Verification Report of China Higher Education Student’s Academic Transcript” and
+                            other verification reports.</p>
+                        <h4>Students from other countries</h4>
+                        <p><span class="intro_circle"></span>Please contact the related management department in your school to
+                            confirm the personal identification number used to register your student record and higher education
+                            qualification. Then use the same identification number to apply for the “Verification Report of
+                            China Higher Education Qualification Certificate”, “Verification Report of China Higher Education
+                            Student’s Academic Transcript” and other verification reports as filled on the foreign school’s
+                            application websites.</p>
+                    </div>
+                </div>
+                <div class="intro_list intro_list_3 clearfix">
+                    <div class="left">
+                        <i class="top"></i>
+                        Secondary
+                        <br>
+                        Education
+                        <i class="bottom"></i>
+                    </div>
+                    <div class="right">
+                        <h6>Includes the high-school and secondary vocational education levels</h6>
+                        <p><span class="intro_circle"></span>The personal identification number used on the foreign school’s
+                            application websites, the CHSI Archive registration, the application for “Verification Report of
+                            China National College Entrance Examination (Gaokao) Scores”, “Verification Report of China
+                            Secondary Education Qualification Certificate”, “Verification Report of China Secondary Education
+                            Student’s Academic Transcript”, “Verification Report of China High School Academic Proficiency Test
+                            (Huikao) Results” should be the same.</p>
+                    </div>
+                </div>
+                <h3>Digital Transmission Service</h3>
+                <div class="intro_tab">
+                    <ul>
+                        <li class="intro_tab_active">ApplyWeb</li>
+                        <li>NSC</li>
+                        <li>Digitary</li>
+                        <li>DUO</li>
+                        <li>Parchment</li>
+                        <li>My eQuals</li>
+                        <li>WES</li>
+                    </ul>
+                </div>
+                <div class="intro_box">
+                    <div class="intro_item">
+                        <div class="apply_tit">
+                            <a href="" target="_blank">Introduction to Partner Institutions</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="" target="_blank">How to Apply</a>
+                        </div>
+                        <table cellpadding="0" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>University Name</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td> Portland State University</td>
+                            </tr>
+                            <tr>
+                                <td> Northwestern University</td>
+                            </tr>
+                            <tr>
+                                <td> Cornell University</td>
+                            </tr>
+                            <tr>
+                                <td> Georgia Tech</td>
+                            </tr>
+                            <tr>
+                                <td> University of Houston</td>
+                            </tr>
+                            <tr>
+                                <td> Washington State University</td>
+                            </tr>
+                            <tr>
+                                <td> Emory University</td>
+                            </tr>
+                            <tr>
+                                <td> Clemson University</td>
+                            </tr>
+                            <tr>
+                                <td> Radford University</td>
+                            </tr>
+                            <tr>
+                                <td> Syracuse University</td>
+                            </tr>
+                            <tr>
+                                <td> Stanford University</td>
+                            </tr>
+                            <tr>
+                                <td> Virginia Tech</td>
+                            </tr>
+                            <tr>
+                                <td> University of Pennsylvania</td>
+                            </tr>
+                            <tr>
+                                <td> Idaho State University</td>
+                            </tr>
+                            <tr>
+                                <td> University of Oklahoma</td>
+                            </tr>
+                            <tr>
+                                <td> University of Michigan Rackham Graduate School</td>
+                            </tr>
+                            <tr>
+                                <td> Kansas State University</td>
+                            </tr>
+                            <tr>
+                                <td> Oklahoma State University</td>
+                            </tr>
+                            <tr>
+                                <td> Lehigh University</td>
+                            </tr>
+                            <tr>
+                                <td> Washington University</td>
+                            </tr>
+                            <tr>
+                                <td> University of Tennessee - Graduate</td>
+                            </tr>
+                            <tr>
+                                <td> Fashion Institute of Technology</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="intro_item">
+                        <div class="apply_tit">
+                            <a href="" target="_blank">Introduction to Partner Institutions</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="" target="_blank">How to Apply</a>
+                        </div>
+                        <p>Note: Application code should be offered by the foreign universities, and universities can associate
+                            the received verification reports with the applicants according to the inputted application
+                            code.</p>
+                        <table cellpadding="0" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>University Name</th>
+                                <th width="220">Request Number Or Not</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td> Graduate Admission, McGill University（麦吉尔大学）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            <tr>
+                                <td> Virginia Commonwealth University, Office of Admissions（弗吉尼亚联邦大学，招生办公室）</td>
+                                <td><i class="fa fa-times-circle"></i> No</td>
+                            </tr>
+                            <tr>
+                                <td> The University of Texas at Austin（德克萨斯大学奥斯汀分校）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="intro_item">
+                        <div class="apply_tit">
+                            <a href="" target="_blank">Introduction to Partner Institutions</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="" target="_blank">How to Apply</a>
+                        </div>
+                        <table cellpadding="0" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>University Name</th>
+                                <th width="175">Country</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td class="tdL"> Swedish Council for Higher Education/Universitets - och hogskoleradet
+                                    (UHR)（瑞典高等教育委员会）
+                                </td>
+                                <td style="text-align:center"> 瑞典</td>
+                            </tr>
+                            <tr>
+                                <td> Educational Credential Evaluators, Inc. (ECE)（Educational Credential
+                                    Evaluators, Inc. (ECE)）
+                                </td>
+                                <td style="text-align:center"> 美国</td>
+                            </tr>
+                            <tr>
+                                <td> Educational Perspectives（Educational Perspectives）</td>
+                                <td style="text-align:center"> 美国</td>
+                            </tr>
+                            <tr>
+                                <td> London School of Economics（伦敦政治经济学院）</td>
+                                <td style="text-align:center"> 英国</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="intro_item">
+                        <div class="apply_tit">
+                            <a href="" target="_blank">Introduction to Partner Institutions</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="" target="_blank">How to Apply</a>
+                        </div>
+                        <p>Note: Application code should be offered by the foreign universities, and universities can associate
+                            the received verification reports with the applicants according to the inputted application
+                            code.</p>
+                        <table cellpadding="0" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th>University Name</th>
+                                <th width="220">Request Number Or Not</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td> InHolland University of Applied Sciences（荷兰应用科技大学）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            <tr>
+                                <td> University of Amsterdam（阿姆斯特丹大学）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            <tr>
+                                <td> VrijeUniversiteit Amsterdam（阿姆斯特丹自由大学）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            <tr>
+                                <td> Wageningen University &amp; Research（瓦格宁根大学）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            <tr>
+                                <td> Fontys University of Applied Sciences（方提斯应用科学大学）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            <tr>
+                                <td> Hotelschool The Hague（海牙酒店管理学院）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            <tr>
+                                <td> Stenden University of Applied Sciences（斯坦德应用科学大学）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            <tr>
+                                <td> Erasmus University Rotterdam（鹿特丹伊拉斯谟大学）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            <tr>
+                                <td> University of Groningen（格罗宁根大学）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            <tr>
+                                <td> Hanze University of Applied Sciences（格罗宁根汉斯应用科技大学）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            <tr>
+                                <td> Saxion University of Applied Sciences（萨克逊应用科学大学）</td>
+                                <td><i class="fa fa-check-circle"></i> Yes</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="intro_item">
+                        <div class="apply_tit">
+                            <a href="" target="_blank">Introduction to Partner Institutions</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="" target="_blank">How to Apply</a>
+                        </div>
+                        <div class="parchment">
+                            <ul class="parchment_tab">
+                                <li class="all">All</li>
+                                <li class="parchment_tab_act" >A</li>
+                                <li>B</li>
+                                <li>C</li>
+                                <li>D</li>
+                                <li>E</li>
+                                <li>F</li>
+                                <li>G</li>
+                                <li>H</li>
+                                <li>I</li>
+                                <li>J</li>
+                                <li>K</li>
+                                <li>L</li>
+                                <li>M</li>
+                                <li>N</li>
+                                <li>O</li>
+                                <li>P</li>
+                                <li>Q</li>
+                                <li>R</li>
+                                <li>S</li>
+                                <li>T</li>
+                                <li>U</li>
+                                <li>V</li>
+                                <li>W</li>
+                                <li>X</li>
+                                <li>Y</li>
+                                <li>Z</li>
+                            </ul>
+                            <div class="parchment_box">
+                                <div class="parchment_item" >
+                                    <p>American Sentinel University（美国森特奈尔大学）</p>
+                                    <p>American Association of Collegiate Registrars（美国大学注册官协会）</p>
+                                    <p>American Intercontinental University - Online（美国洲际大学-网络教学）</p>
+                                    <p>Allen School of Health Sciences - Brooklyn（艾伦健康科学学院-布鲁克林分校）</p>
+                                    <p>American InterContinental University - Houston（美国洲际大学-休斯敦分校）</p>
+                                    <p>American Association of Colleges of Nursing (AACN)（美国护理学学院协会（AACN））</p>
+                                    <p>Allen School of Health Sciences - Phoenix East（艾伦健康科学学院-东凤凰城分校）</p>
+                                    <p>American Association of Colleges of Osteopathic Medicine (AACOM)（美国骨科医学学院协会（AACOM））</p>
+                                    <p>Allen School of Health Sciences - Phoenix West（艾伦健康科学学院-西凤凰城分校）</p>
+                                    <p>American Public University System（美国公立大学系统）</p>
+                                    <p>Asnuntuck Community College（阿斯南塔克社区学院）</p>
+                                    <p>Arizona State University - Undergraduate Adm.（亚利桑那州立大学本科招生办公室）</p>
+                                    <p>American InterContinental University - Atlanta（美国洲际大学亚特兰大分校）</p>
+                                    <p>Ashford University（阿斯福德大学）</p>
+                                    <p>American Musical and Dramatic Academy（美国音乐戏剧学院）</p>
+                                    <p>Azusa Pacific University（阿苏萨太平洋大学）</p>
+                                    <p>Arapahoe Community College（阿拉珀霍社区学院）</p>
+                                    <p>Anderson University - Indiana（印第安纳州安德森大学）</p>
+                                    <p>Adelphi University（艾德菲大学）</p>
+                                    <p>Albion College（阿尔比恩学院）</p>
+                                    <p>Aiken Technical College（艾肯技术学院）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Bisk Education for the benefit of the University of St. Thomas（比斯克教育-圣托马斯大学服务）</p>
+                                    <p>Bryant &amp; Stratton College - Online（布莱恩斯特拉顿学院-网络教学）</p>
+                                    <p>Baylor University Office of the Registrar (Current Undergraduate
+                                        Students)（贝勒大学注册办公室（在校本科学生））</p>
+                                    <p>Bryant &amp; Stratton College - Greece（布莱恩斯特拉顿学院-格林斯分校）</p>
+                                    <p>Bisk Education for the benefit of New England College（比斯克教育-新英格兰学院服务）</p>
+                                    <p>Bisk Education for the benefit of Valparaiso University（比斯克教育-瓦尔帕莱索大学服务）</p>
+                                    <p>Bisk Education for the benefit of Villanova University
+                                        (Graduate)（比斯克教育-维拉诺瓦大学服务（研究生））</p>
+                                    <p>Bisk Education for the benefit of Michigan State University（比斯克教育-密歇根州立大学服务）</p>
+                                    <p>Bisk Education for the benefit of Florida Tech（比斯克教育-佛罗里达工学院服务）</p>
+                                    <p>Bryant &amp; Stratton College - Cleveland（布莱恩斯特拉顿学院-克利夫兰分校）</p>
+                                    <p>Bisk Education for the benefit of the University of Scranton（比斯克教育-斯克兰顿大学服务）</p>
+                                    <p>Bisk Education for the benefit of Jacksonville University（比斯克教育-杰克逊维尔大学服务）</p>
+                                    <p>Baylor University - Graduate Admissions（贝勒大学-研究生招生办）</p>
+                                    <p>Bryant &amp; Stratton College - Akron（布莱恩斯特拉顿学院-阿克伦分校）</p>
+                                    <p>Bryant &amp; Stratton College - Milwaukee Campuses（布莱恩斯特拉顿学院-密尔沃基分校）</p>
+                                    <p>Bisk Education for the benefit of Dominican University（比斯克教育-多米尼克大学服务）</p>
+                                    <p>Bisk Education for the benefit of the University of South Florida（比斯克教育-南佛罗里达大学服务）</p>
+                                    <p>Berks Technical Institute（伯克斯技术学院）</p>
+                                    <p>Butler University（巴特勒大学）</p>
+                                    <p>Bryant &amp; Stratton College - Syracuse North（布莱恩斯特拉顿学院-北雪城分校）</p>
+                                    <p>Bisk Education for the benefit of Villanova University
+                                        (Undergraduate)（比斯克教育-维拉诺瓦大学服务（本科生））</p>
+                                    <p>Bryant &amp; Stratton College - Richmond（布莱恩斯特拉顿学院里士满校区）</p>
+                                    <p>Blue Mountain Community College（蓝山社区学院）</p>
+                                    <p>Brookdale Community College（布鲁克代尔社区学院）</p>
+                                    <p>Bryant &amp; Stratton College - Eastlake（布莱恩斯特拉顿学院东湖校区）</p>
+                                    <p>Bryant &amp; Stratton College - Southtowns（布莱恩斯特拉顿学院南镇校区）</p>
+                                    <p>Bridgewater St Univ（布里奇沃特圣大学）</p>
+                                    <p>Bryant &amp; Stratton College - Amherst（布莱恩斯特拉顿学院阿莫斯特校区）</p>
+                                    <p>Ball State University（鲍尔州立大学）</p>
+                                    <p>Bryant &amp; Stratton College - Syracuse（布莱恩斯特拉顿学院锡拉丘兹校区）</p>
+                                    <p>Bryant &amp; Stratton College - Virginia Beach（布莱恩斯特拉顿学院弗吉尼亚海滩校区）</p>
+                                    <p>Brigham Young University Hawaii（杨百翰大学夏威夷分校）</p>
+                                    <p>Bucks County Community College（雄鹿县社区学院）</p>
+                                    <p>Bryant &amp; Stratton College - Henrietta（布莱恩斯特拉顿学院亨里埃塔校区）</p>
+                                    <p>Baylor University（贝勒大学）</p>
+                                    <p>Bloomsburg University of Pennsylvania（宾州布鲁姆斯堡大学）</p>
+                                    <p>Belmont University（贝尔蒙特大学）</p>
+                                    <p>Bryant &amp; Stratton College - Wauwatosa（布莱恩斯特拉顿学院沃瓦托萨校区）</p>
+                                    <p>Bryant &amp; Stratton College - Hampton（布莱恩斯特拉顿学院汉普顿校区）</p>
+                                    <p>Brooks Institute（布鲁克斯摄影学院）</p>
+                                    <p>Brandman University（布兰德曼大学）</p>
+                                    <p>Bryant &amp; Stratton College - Parma（布莱恩斯特拉顿学院帕尔马校区）</p>
+                                    <p>Brigham Young University Idaho（杨百翰大学爱达荷分校）</p>
+                                    <p>Brigham Young University（杨百翰大学）</p>
+                                    <p>Bethany College (KS)（贝森尼学院（堪萨斯州））</p>
+                                    <p>Bryant &amp; Stratton College - Buffalo（布莱恩斯特拉顿学院布法罗校区）</p>
+                                    <p>Barry University（巴里大学）</p>
+                                    <p>Bryant &amp; Stratton College - Albany（布莱恩斯特拉顿学院奥尔巴尼校区）</p>
+                                    <p>Berklee College of Music（伯克利音乐学院）</p>
+                                    <p>Biola University（百欧拉大学）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Charter Oak State College（查特欧克州立学院）</p>
+                                    <p>Creighton University（克瑞顿大学）</p>
+                                    <p>Concord University（康科德学院）</p>
+                                    <p>Career Technical College - Shreveport（职业技术学院-什里夫波特分校）</p>
+                                    <p>Colby Community College（科尔比社区学院）</p>
+                                    <p>Cornell University（康奈尔大学）</p>
+                                    <p>Chamberlain Campus（张伯伦学校）</p>
+                                    <p>Chamberlain Online（张伯伦网络教学）</p>
+                                    <p>Career Quest Learning Centers（职业探索学习中心）</p>
+                                    <p>Career Technical College - Monroe（职业技术学院-门罗分校）</p>
+                                    <p>Colorado Technical University - Denver（科罗拉多理工大学-丹佛分校）</p>
+                                    <p>County College of Morris（莫里斯县立学院）</p>
+                                    <p>Chattanooga State Community College（查塔努加州立技术社区学院）</p>
+                                    <p>Central Connecticut State Graduate Admissions（中央康涅狄格州立大学-研究生招生办）</p>
+                                    <p>Champlain College（张伯伦护理学院）</p>
+                                    <p>CES Admissions（CES招生办）</p>
+                                    <p>Colorado Technical University - Online（科罗拉多理工大学-网络教学）</p>
+                                    <p>Community College of Aurora（奥罗拉社区学院）</p>
+                                    <p>Community College of Denver（丹佛社区学院）</p>
+                                    <p>Colorado Northwestern Community College（科罗拉多西北社区学院）</p>
+                                    <p>Claflin University（克拉夫林大学）</p>
+                                    <p>Community College of Philadelphia（费城社区学院）</p>
+                                    <p>Colorado Technical University - Colorado Springs（罗拉多技术大学斯普林斯分校）</p>
+                                    <p>Clatsop Community College（克拉特索普社区学院）</p>
+                                    <p>Columbia College Chicago（芝加哥哥伦比亚学院）</p>
+                                    <p>Columbus State Community College（哥伦布州立社区学院）</p>
+                                    <p>Clemson University - Undergraduate Programs（克莱姆森大学本科教育）</p>
+                                    <p>College of Charleston（查尔斯顿学院）</p>
+                                    <p>Colorado State University - Pueblo（科罗拉多州立大学普韦布洛分校）</p>
+                                    <p>Cleveland State University（克利夫兰州立大学）</p>
+                                    <p>Coconino Community College（科科尼诺社区学院）</p>
+                                    <p>College of the Desert（沙漠学院）</p>
+                                    <p>Concordia University St. Paul（美国协和大学圣保罗分校）</p>
+                                    <p>Columbia Gorge Community College（哥伦比亚峡谷社区学院）</p>
+                                    <p>Colorado State University - Undergraduate（科罗拉多州立大学本科校区）</p>
+                                    <p>Columbia College (SC) - Undergraduate（哥伦比亚学院南卡罗莱纳州本科校区）</p>
+                                    <p>Colorado State University-Global Campus（科罗拉多州立大学全球校园）</p>
+                                    <p>Converse College（康威斯学院）</p>
+                                    <p>Central Michigan University（中央密歇根大学）</p>
+                                    <p>Capital Community College（首都社区学院）</p>
+                                    <p>Central Connecticut State University Admissions（康涅狄格州中央州立大学招生办公室）</p>
+                                    <p>California State University - Los Angeles（加州州立大学洛杉矶分校）</p>
+                                    <p>Central NM Community College（新墨西哥中央社区学院）</p>
+                                    <p>Cabrini College（卡布里尼学院）</p>
+                                    <p>California State University - Channel Islands（加州州立大学海峡群岛分校）</p>
+                                    <p>California State Polytechnic University, Pomona（加州州立理工大学波莫纳分校）</p>
+                                    <p>Chadron State College（查德隆州立学院）</p>
+                                    <p>California State University - Dominguez Hills（加州州立大学多多明格兹岗分校）</p>
+                                    <p>California Polytechnic State Univ - SLO（加州州立理工大学圣路易斯奥比斯波分校）</p>
+                                    <p>California State University - San Marcos（加州州立大学圣马科斯分校）</p>
+                                    <p>Chemeketa Community College（奇摩卡塔社区学院）</p>
+                                    <p>California State University - Fullerton（加州州立大学富尔顿分校）</p>
+                                    <p>California Institute of the Arts（加州艺术学院）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Delaware Technical CC Central（特拉华科技社区大学）</p>
+                                    <p>DeVry University-All locations（德瑞大学-所有校区）</p>
+                                    <p>Duquesne University International Admissions（杜肯大学-国际招生办）</p>
+                                    <p>Denmark Technical College（丹麦技术学院）</p>
+                                    <p>DePaul University（德保罗大学）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Eastern Connecticut State University Graduate
+                                        Division（东康涅狄格州立大学-研究生院）</p>
+                                    <p>ECPI University-Online（ECPI大学-网络教学）</p>
+                                    <p>Eastern Oregon University（东俄勒冈大学）</p>
+                                    <p>East Carolina University（东卡罗莱纳大学）</p>
+                                    <p>Eastern Kentucky University（东肯塔基大学）</p>
+                                    <p>Edinboro University（爱丁堡大学）</p>
+                                    <p>Eastern Connecticut State University Admissions（康涅狄格州东部州立大学招生办公室）</p>
+                                    <p>Emerson College（爱默生学院）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Fortis Online（弗里斯网络教育）</p>
+                                    <p>Florida Southern College（佛罗里达南方学院）</p>
+                                    <p>Fisher College（费舍尔学院）</p>
+                                    <p>Francis Marion University（弗朗西斯马里恩大学）</p>
+                                    <p>Florida International University（佛罗里达国际大学）</p>
+                                    <p>Furman University（傅尔曼大学）</p>
+                                    <p>Florida Polytechnic University（佛罗里达理工大学）</p>
+                                    <p>Front Range Community College - Westminster（弗兰特岭社区大学威斯敏斯特分校）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Georgetown College（乔治敦学院）</p>
+                                    <p>George Mason University（乔治梅森大学）</p>
+                                    <p>Greenville Technical College（格林维尔技术学院）</p>
+                                    <p>Grand Valley State University（伟谷州立大学）</p>
+                                    <p>Gateway Community College Admissions (CT)（捷威社区学院招生办公室康涅狄格州校区）</p>
+                                    <p>Georgetown University in Qatar（卡塔尔乔治城大学）</p>
+                                    <p>Grand Canyon University（大峡谷大学）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Herzing University Brookfield（荷晶大学-布鲁克菲尔德分校）</p>
+                                    <p>Holy Names University（圣名大学）</p>
+                                    <p>Herzing University Online（荷晶大学-网络教学）</p>
+                                    <p>Herzing University Minneapolis（荷晶大学-明尼阿波利斯分校）</p>
+                                    <p>Herzing University Orlando（荷晶大学-奥兰多分校）</p>
+                                    <p>Herzing University New Orleans（荷晶大学-新奥尔良分校）</p>
+                                    <p>Herzing University Toledo（荷晶大学-托莱多分校）</p>
+                                    <p>Herzing University Birmingham（荷晶大学-伯明翰分校）</p>
+                                    <p>Howard Community College（霍华德社区学院）</p>
+                                    <p>Herzing University - Kenosha（荷晶大学基诺沙分校）</p>
+                                    <p>Harcum College（哈克姆大学）</p>
+                                    <p>Hofstra University（霍夫斯特拉大学）</p>
+                                    <p>Housatonic Community College（休萨托尼克社区学院）</p>
+                                    <p>Horry-Georgetown Technical College（豪利乔治敦技术学院）</p>
+                                    <p>Herzing University Akron（荷晶大学阿克伦分校）</p>
+                                    <p>Holy Cross College（圣十字学院）</p>
+                                    <p>Herzing University - Madison（荷晶大学麦迪逊分校）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Indiana University School of Fine Arts
+                                        Bloomington（印第安纳大学-伯明顿艺术学院）</p>
+                                    <p>Indiana University Purdue University Fort Wayne（印第安纳普渡大学-韦恩堡分校）</p>
+                                    <p>International Education Corporation（国际教育公司）</p>
+                                    <p>Indiana Institute of Technology（印第安纳理工学院）</p>
+                                    <p>Indiana University Northwest（印第安纳大学西北分校）</p>
+                                    <p>Indiana University Southeast（印第安纳大学东南分校）</p>
+                                    <p>Imperial Valley College（帝王谷学院）</p>
+                                    <p>Indiana University - South Bend（印第安纳大学南本德分校）</p>
+                                    <p>Illinois State University（伊利诺伊州立大学）</p>
+                                    <p>Indiana State University（印第安纳州立大学）</p>
+                                    <p>Indiana University - Bloomington (Undergraduate Admissions)（印第安纳大学布卢明顿校区本科招生办公室）</p>
+                                    <p>Indiana University - Kokomo（印第安纳大学科科莫分校）</p>
+                                    <p>Indiana Univ Purdue Univ Columbus（美国印第安纳大学——普渡大学哥伦布分校）</p>
+                                    <p>Indiana Univ Purdue Univ Indianapolis（美国印第安纳大学——普渡大学印第安纳波利斯分校）</p>
+                                    <p>Indiana University East（印第安纳大学东分校）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Johnson C. Smith University（约翰逊C.史密斯大学）</p>
+                                    <p>Jacksonville University（杰克逊维尔大学）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Keller Grad School（凯乐研究生院）</p>
+                                    <p>Keene State College（基恩州立学院）</p>
+                                    <p>Kansas Wesleyan University（堪萨斯卫斯理大学）</p>
+                                    <p>Kaplan University Online（卡普兰在线大学）</p>
+                                    <p>Kennesaw State University（肯尼绍州立大学）</p>
+                                    <p>Klamath Community College（克拉马斯社区学院）</p>
+                                    <p>Kent State University（肯特州立大学）</p>
+                                    <p>Kentucky State University（肯塔基州立大学）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Lindenwood University（林登伍德大学）</p>
+                                    <p>LeTourneau University Global Campus Admissions（莱托诺大学-国际招生办）</p>
+                                    <p>Loyola University Chicago（芝加哥洛约拉大学）</p>
+                                    <p>Long Island University - Brooklyn（长岛大学布鲁克林校区）</p>
+                                    <p>Long Island University - Post Campus（长岛大学波斯特分校）</p>
+                                    <p>Lawrence Technological University（劳伦斯理工大学）</p>
+                                    <p>LIM College（纽约利姆时尚商业管理学院）</p>
+                                    <p>Lamar Community College（拉马尔社区学院）</p>
+                                    <p>Limestone College（莱姆斯通学院）</p>
+                                    <p>Linn-Benton Community College（林本顿社区学院）</p>
+                                    <p>Liberty University（利伯缇大学）</p>
+                                    <p>Lehigh Carbon Community College（利海卡本社区学院）</p>
+                                    <p>Lane Community College（雷恩社区学院）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Miami-Jacobs Career College -
+                                        Columbus（迈阿密雅各布职业学院-哥伦布分校）</p>
+                                    <p>Miami-Jacobs Career College - Springboro（迈阿密雅各布职业学院-斯普林伯勒分校）</p>
+                                    <p>Miller-Motte Technical College - Madison（米勒莫特技术学院-麦迪逊分校）</p>
+                                    <p>Miami-Jacobs Career College - Sharonville（迈阿密雅各布职业学院-沙伦维尔分校）</p>
+                                    <p>McCann School of Business &amp; Technology - Dickson City（麦肯商业技术学校-迪克森城分校）</p>
+                                    <p>Miller-Motte Technical College - Columbus（米勒莫特技术学院-哥伦布分校）</p>
+                                    <p>Miller-Motte College - Raleigh（米勒莫特学院-罗利分校）</p>
+                                    <p>Miller-Motte Technical College - Conway（米勒莫特技术学院-康威分校）</p>
+                                    <p>Miami-Jacobs Career College - Dayton（迈阿密雅各布职业学院-代顿分校）</p>
+                                    <p>Miller-Motte Technical College - Augusta（米勒莫特技术学院-奥古斯塔分校）</p>
+                                    <p>Miller-Motte College - Fayetteville（米勒莫特学院-费耶特维尔分校）</p>
+                                    <p>Maricopa Community College District（马利柯帕县社区学院）</p>
+                                    <p>McCann School of Business &amp; Technology - Wilkes-Barre（麦肯商业技术学校-威尔克斯巴勒分校）</p>
+                                    <p>Miller-Motte Technical College - Lynchburg（米勒莫特技术学院-林奇堡分校）</p>
+                                    <p>Miller-Motte College - Cary（米勒莫特学院-卡瑞分校）</p>
+                                    <p>Miller-Motte College - Greenville（米勒莫特学院-格林威尔分校）</p>
+                                    <p>Miller-Motte Technical College - Macon（米勒莫特技术学院-梅肯分校）</p>
+                                    <p>Miami-Jacobs Career College - Independence（迈阿密雅各布职业学院-独立村分校）</p>
+                                    <p>Miami-Jacobs Career College - Troy（迈阿密雅各布职业学院-特洛伊分校）</p>
+                                    <p>Miller-Motte Technical College - Charleston（米勒莫特技术学院-查尔斯顿分校）</p>
+                                    <p>Miller-Motte Technical College - Roanoke（米勒莫特技术学院-罗诺克分校）</p>
+                                    <p>Miller-Motte Technical College - Chattanooga（米勒莫特技术学院-查塔努加分校）</p>
+                                    <p>Miller-Motte College - Wilmington（米勒莫特学院-威明顿分校）</p>
+                                    <p>McCann School of Business &amp; Technology - Carlisle（麦肯商业技术学校-卡莱尔分校）</p>
+                                    <p>Madison College (Madison Area Technical College)（麦迪逊大学（麦迪逊技术学院））</p>
+                                    <p>Mt. Hood Community College（胡德雪山社区学院）</p>
+                                    <p>Minnesota State University - Mankato（明尼苏达州立大学曼卡托分校）</p>
+                                    <p>Manchester Community College（曼彻斯特社区学院）</p>
+                                    <p>Metro State University of Denver（丹佛大都会州立大学）</p>
+                                    <p>Maryland Institute College of Art（马里兰艺术学院）</p>
+                                    <p>Miller-Motte College - Jacksonville（米勒模特学院杰克逊维尔校区）</p>
+                                    <p>McCann School of Business &amp; Technology - Pottsville（麦克肯商业技术学校波茨维尔分校）</p>
+                                    <p>Mid Michigan Community College（中密歇根社区学院）</p>
+                                    <p>Millersville University of Pennsylvania（宾州米勒斯维尔大学）</p>
+                                    <p>Morgan Community College（摩根社区学院）</p>
+                                    <p>Mid-America Christian University（中美基督教大学）</p>
+                                    <p>Massachusetts College of Art and Design（麻省艺术与设计学院）</p>
+                                    <p>Marymount California University（玛丽蒙特加利福尼亚大学）</p>
+                                    <p>Montgomery College（蒙哥马利学院）</p>
+                                    <p>Mount Saint Mary College（圣玛丽山学院）</p>
+                                    <p>McCann School of Business &amp; Technology - Hazelton（麦克肯商业技术学校黑索顿分校）</p>
+                                    <p>Morgan State University（摩根州立大学）</p>
+                                    <p>Montclair State University (Undergraduate Admissions)（蒙特克莱尔州立大学（本科招生办公室））</p>
+                                    <p>Middlesex Community College（米德尔塞克斯社区学院）</p>
+                                    <p>Middlesex Community College (CT)（米德尔塞克斯社区学院康涅狄格州分校）</p>
+                                    <p>McCann School of Business and Technology - Allentown（麦克肯商业技术学校艾伦镇分校）</p>
+                                    <p>Miller-Motte Technical College - Clarksville（米勒莫特技术学院克拉克斯维尔校区）</p>
+                                    <p>Michigan State University（密歇根州立大学）</p>
+                                    <p>Milwaukee School of Engineering（密尔沃基工程学院）</p>
+                                    <p>McCann School of Business &amp; Technology - Sunbury（麦克肯商业技术学校森伯里分校）</p>
+                                    <p>Millsaps College（米尔萨普斯学院）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>NG Tech（NG科技）</p>
+                                    <p>New Mexico State University（新墨西哥州立大学）</p>
+                                    <p>Newberry College（纽柏利学院）</p>
+                                    <p>Naugatuck Valley Community College Registrar（诺格塔克谷社区学院注册办公室）</p>
+                                    <p>Northern Arizona University（北亚利桑那大学）</p>
+                                    <p>Northeastern Junior College（东北初级学院）</p>
+                                    <p>Northern Illinois University（北伊利诺伊大学）</p>
+                                    <p>Northwood University（诺斯伍德大学）</p>
+                                    <p>North Greenville University（北格林维尔大学）</p>
+                                    <p>Norwich University（诺威治大学）</p>
+                                    <p>Notre Dame of Maryland University（马里兰圣母学院）</p>
+                                    <p>Norwalk Community College Admissions（纽沃克社区学院招生办公室）</p>
+                                    <p>Northwestern Connecticut Community College（西北康涅狄格社区学院）</p>
+                                    <p>Naugatuck Valley Community College（诺格塔克谷社区学院）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Omaha School of Massage and
+                                        Healthcare（奥马哈按摩疗法与医疗保健学校）</p>
+                                    <p>Orangeburg-Calhoun Technical College（奥兰治堡卡尔霍恩技术学院）</p>
+                                    <p>Old Dominion University（老道明大学）</p>
+                                    <p>Oregon State University（俄勒冈州立大学）</p>
+                                    <p>Otero Junior College（奥特罗初级学院）</p>
+                                    <p>Oregon Institute of Technology（俄勒冈理工学院）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Purdue University - Northwest（普渡大学-西北分校）</p>
+                                    <p>Purdue University - North Central（普渡大学中北分校）</p>
+                                    <p>Purdue University - West Lafayette（普渡大学西拉法叶分校）</p>
+                                    <p>Peru State College（秘鲁州立学院）</p>
+                                    <p>Philadelphia University（费城大学）</p>
+                                    <p>Point Loma Nazarene University（波因特洛马拿撒勒大学）</p>
+                                    <p>Portland Community College（波特兰社区学院）</p>
+                                    <p>Pennsylvania State Univ - Undergraduate Admissions（宾夕法尼亚州立大学本科招生办公室）</p>
+                                    <p>Pratt Institute（普瑞特学院）</p>
+                                    <p>Pueblo Community College（普韦布洛社区学院）</p>
+                                    <p>Pepperdine University（佩珀代因大学）</p>
+                                    <p>Pikes Peak Community College（派克斯峰社区学院）</p>
+                                    <p>Portland State University（波特兰州立大学）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Quinebaug Valley Community College（奎因堡谷社区学院）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Rollins College（罗林斯学院）</p>
+                                    <p>Robert Morris University (PA)（罗伯特莫里斯大学宾夕法尼亚校区）</p>
+                                    <p>Rocky Mountain College of Art and Design（落基山艺术设计学院）</p>
+                                    <p>Regent University（瑞金大学）</p>
+                                    <p>Regis University（瑞吉斯大学）</p>
+                                    <p>Radford University（瑞德福大学）</p>
+                                    <p>Red Rocks Community College（红石社区学院）</p>
+                                    <p>Rivier University（里韦大学）</p>
+                                    <p>Ripon College（瑞盆学院）</p>
+                                    <p>Rogue Community College（罗格社区学院）</p>
+                                    <p>Raritan Valley Community College（拉里坦谷社区学院）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>San Joaquin Valley College -
+                                        Lancaster（圣华金谷学院-兰卡斯特分校）</p>
+                                    <p>San Joaquin Valley College - San Diego（圣华金谷学院-圣地亚哥分校）</p>
+                                    <p>Strayer University（斯特雷耶大学）</p>
+                                    <p>San Joaquin Valley College - Modesto（圣华金谷学院-莫德斯托分校）</p>
+                                    <p>Southern Connecticut State University - Graduate Admissions（南康涅狄格州立大学-研究生招生办）</p>
+                                    <p>Sherman College of Chiropractic / Pennsylvania College of
+                                        Chiropractic（谢尔曼脊疗按摩学院/宾夕法尼亚脊疗按摩学院）</p>
+                                    <p>San Joaquin Valley College - Hanford（圣华金谷学院-汉福德分校）</p>
+                                    <p>San Joaquin Valley College - Fresno（圣华金谷学院-佛雷斯诺分校）</p>
+                                    <p>San Joaquin Valley College - Ontario（圣华金谷学院-安大略分校）</p>
+                                    <p>San Joaquin Valley College - Temecula（圣华金谷学院-特曼库拉分校）</p>
+                                    <p>Southern Illinois University - Edwardsville（南伊利诺伊大学-爱德华威尔分校）</p>
+                                    <p>San Joaquin Valley College - Hesperia（圣华金谷学院-希斯皮里亚分校）</p>
+                                    <p>San Joaquin Valley College - Online（圣华金谷学院-网络教学）</p>
+                                    <p>Smart Degree（智能学位）</p>
+                                    <p>San Joaquin Valley College - Rancho Cordova（圣华金谷学院-兰乔科尔多瓦分校）</p>
+                                    <p>San Joaquin Valley College - Bakersfield（圣华金谷学院-贝克菲尔德分校）</p>
+                                    <p>San Joaquin Valley College - Aviation（圣华金谷学院-航空分校）</p>
+                                    <p>Southern New Hampshire University（新罕布什尔南方大学）</p>
+                                    <p>Stark State College（斯达克州立大学）</p>
+                                    <p>Spartanburg Methodist College（斯巴坦堡卫理公会学院）</p>
+                                    <p>St. Joseph's College NY - Long Island Campus（圣约瑟夫学院纽约长岛校区）</p>
+                                    <p>Southern Oregon University（南俄勒冈大学）</p>
+                                    <p>Southwestern Oregon Community College（西南俄勒冈社区学院）</p>
+                                    <p>Spartanburg Community College（斯巴坦堡社区学院）</p>
+                                    <p>Stockton University（斯托克顿学院）</p>
+                                    <p>Stetson University（斯泰森大学）</p>
+                                    <p>St. Joseph's College NY - Brooklyn Campus（圣约瑟夫学院纽约布鲁克林校区）</p>
+                                    <p>School of Visual Arts（视觉艺术学校）</p>
+                                    <p>San Francisco State University（旧金山州立大学）</p>
+                                    <p>Seton Hall University（西顿霍尔大学）</p>
+                                    <p>SUNY - Plattsburgh（纽约州立大学普拉茨堡校区）</p>
+                                    <p>Slippery Rock University of Pennsylvania（宾夕法尼亚州滑石大学）</p>
+                                    <p>Salem State University（萨勒姆州立大学）</p>
+                                    <p>San Diego State University（圣地亚哥州立大学）</p>
+                                    <p>San Joaquin Valley College - Visalia（圣华金谷学院维萨莉亚分校）</p>
+                                    <p>Southern Connecticut State University - Undergraduate Admissions（南康涅狄格州立大学本科招生处）</p>
+                                    <p>San Jose State University（圣何塞州立大学）</p>
+                                    <p>South Dakota State University（南达科他州立大学）</p>
+                                    <p>School of the Museum of Fine Arts（波士顿艺术博物馆附设学院）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>The Creative Circus（马戏创新）</p>
+                                    <p>The Juilliard School（朱利亚德学校）</p>
+                                    <p>Tillamook Bay Community College（提拉穆克湾学院）</p>
+                                    <p>Texas Christian University（德克萨斯基督教大学）</p>
+                                    <p>Towson University (MD)（陶森大学（MD））</p>
+                                    <p>Tucson College（图森大学）</p>
+                                    <p>Tulane University（杜兰大学）</p>
+                                    <p>The University of Tampa（坦帕大学）</p>
+                                    <p>The Citadel（要塞军事学院）</p>
+                                    <p>Temple University（天普大学）</p>
+                                    <p>Tribeca Flashpoint College-UNDERGRAD ADMISSIONS（翠贝卡热点学院本科招生办公室）</p>
+                                    <p>Trinidad State Junior College（特立尼达州立初级学院）</p>
+                                    <p>The University of Akron（阿克伦大学）</p>
+                                    <p>Three Rivers Community College Undergraduate (CT)（三河社区大学本科）</p>
+                                    <p>Tunxis Community College（堂克西斯社区学院）</p>
+                                    <p>Trinity Christian College（三一基督教学院）</p>
+                                    <p>The King's College（国王学院）</p>
+                                    <p>The New School（新学院）</p>
+                                    <p>The University of Alabama（阿拉巴马大学）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>University of Waterloo（滑铁卢大学）</p>
+                                    <p>University of Pennsylvania（宾夕法尼亚大学）</p>
+                                    <p>University of Denver（丹佛大学）</p>
+                                    <p>University of Nebraska- Omaha Graduate Studies（内布拉斯加大学-奥马哈分校研究生院）</p>
+                                    <p>University of California - Merced（加利福尼亚大学-默塞德分校）</p>
+                                    <p>University of Minnesota - Twin Cities（明尼苏达大学-双子城分校）</p>
+                                    <p>University of Mary Washington（玛丽华盛顿大学）</p>
+                                    <p>University of Oklahoma - Undergraduate Admnission（俄克拉荷马大学-本科招生办）</p>
+                                    <p>Unitek College（优泰科学院）</p>
+                                    <p>University of Wisconsin - River Falls（威斯康星大学-河瀑分校）</p>
+                                    <p>University of Arizona（亚利桑那大学）</p>
+                                    <p>University of the Rockies（落基山大学）</p>
+                                    <p>University of Oklahoma - Graduate（俄克拉荷马大学-研究生院）</p>
+                                    <p>University of Wisconsin - Stout（威斯康星大学斯托特分校）</p>
+                                    <p>University of Wisconsin - Eau Claire（威斯康星大学奥克莱尔分校）</p>
+                                    <p>University of Oregon（俄勒冈大学）</p>
+                                    <p>University of Toronto - Undergraduate Only（多伦多大学本科校区）</p>
+                                    <p>University of Pikeville（派克维尔大学）</p>
+                                    <p>University of Phoenix - Student Admissions（凤凰城大学学生招生办公室）</p>
+                                    <p>University of South Carolina - Beaufort（南卡罗莱纳大学博福特分校）</p>
+                                    <p>University of South Carolina - Lancaster（南卡罗莱纳大学兰卡斯特分校）</p>
+                                    <p>University of South Carolina Upstate（南卡罗莱纳北部大学）</p>
+                                    <p>University of South Carolina - Columbia（南卡罗莱纳大学哥伦比亚分校）</p>
+                                    <p>University of South Carolina - Sumter（南卡罗莱纳大学萨姆特分校）</p>
+                                    <p>University of South Carolina - Salkehatchie（南卡罗莱纳大学索克亥奇分校）</p>
+                                    <p>University of South Carolina - Union（南卡罗莱纳大学尤尼恩分校）</p>
+                                    <p>University of Virginia - Wise（弗吉尼亚大学怀斯校区）</p>
+                                    <p>University of St. Thomas（圣托马斯大学）</p>
+                                    <p>University of Texas - Dallas（德克萨斯大学达拉斯分校）</p>
+                                    <p>University of Northern Colorado - UNDERGRADUATE ADMISSIONS（北科罗拉多大学本科招生办公室）</p>
+                                    <p>University of Wisconsin - Madison（威斯康星大学麦迪逊分校）</p>
+                                    <p>University of Southern Indiana（南印第安纳大学）</p>
+                                    <p>University of Pittsburgh（匹兹堡大学）</p>
+                                    <p>University of Texas at Arlington（德州大学阿灵顿校区）</p>
+                                    <p>University of California - Santa Cruz（加利福尼亚大学圣克鲁兹校区）</p>
+                                    <p>University of Alaska (UAS) - Juneau Campus（阿拉斯加大学朱诺校区）</p>
+                                    <p>University of Central Oklahoma（中央俄克拉荷马大学）</p>
+                                    <p>University of Florida（佛罗里达大学）</p>
+                                    <p>University of New Mexico - Admissions（新墨西哥大学招生办公室）</p>
+                                    <p>University of Detroit Mercy（底特律梅西大学）</p>
+                                    <p>University of Maryland - University College（马里兰大学大学学院分校）</p>
+                                    <p>University of Indianapolis（印第安纳波利斯大学）</p>
+                                    <p>University of Mississippi（密西西比大学）</p>
+                                    <p>University of Maryland - College Park（马里兰大学帕克学院）</p>
+                                    <p>University of Alaska (UAA) - Anchorage Campus（阿拉斯加大学安克雷奇校区）</p>
+                                    <p>University of Colorado - Colorado Springs（科罗拉多大学科泉分校）</p>
+                                    <p>University of Louisville（路易斯维尔大学）</p>
+                                    <p>University of North Carolina - Charlotte（北卡罗莱纳大学夏洛特分校）</p>
+                                    <p>University of Nebraska Omaha（内布拉斯加大学奥马哈分校）</p>
+                                    <p>University of Colorado Boulder（科罗拉多大学博尔德分校）</p>
+                                    <p>University of Findlay（芬德利大学）</p>
+                                    <p>University of California - San Diego (Undergraduate
+                                        Admissions)（加利福尼亚大学圣地亚哥校区本科招生办公室）</p>
+                                    <p>University of Alaska (UAF) - Fairbanks Campus（阿拉斯加大学费尔班克斯校区）</p>
+                                    <p>University of Georgia（乔治亚大学）</p>
+                                    <p>University of Hartford（哈特福德大学）</p>
+                                    <p>Umpqua Community College（乌姆普夸社区学院）</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Vaughn College of Aeronautics &amp;
+                                        Technology（沃恩航空科技学院）</p>
+                                    <p>Virginia State University（弗吉尼亚州立大学）</p>
+                                    <p>Virginia Wesleyan College（弗吉尼亚卫斯理学院）</p>
+                                    <p>Virginia Military Institute（弗吉尼亚军事学院）</p>
+                                    <p>Vincennes University (All Campus Locations)（文森尼斯大学（所有校区））</p>
+                                </div>
+                                <div class="parchment_item" >
+                                    <p>Western Kentucky University（西肯塔基大学）</p>
+                                    <p>Wayne State University（韦恩州立大学）</p>
+                                    <p>West Chester U of PA - Graduate Studies（宾州西彻斯特大学-研究生院）</p>
+                                    <p>Western Washington University（西华盛顿大学）</p>
+                                    <p>Wayne State College（韦恩州立大学）</p>
+                                    <p>William Paterson University of New Jersey（威廉帕特森大学）</p>
+                                    <p>Western Oregon University（西俄勒冈大学）</p>
+                                    <p>West Virginia University（西弗吉尼亚大学）</p>
+                                    <p>Winthrop University（温斯洛普大学）</p>
+                                    <p>Western Governors University（西部州长大学）</p>
+                                    <p>Western Carolina University（西卡罗莱纳大学）</p>
+                                    <p>West Chester U of PA - Undergrad Admissions（宾州西彻斯特大学）</p>
+                                    <p>Wofford College（沃佛德学院）</p>
+                                    <p>Wilberforce University（威尔伯佛斯大学）</p>
+                                </div>
+                                <div class="parchment_item" ></div>
+                                <div class="parchment_item" >
+                                    <p>York Technical College（约克技术学院）</p>
+                                </div>
+                                <div class="parchment_item" ></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="intro_item">
+                        <div class="apply_tit">
+                            <a href="" target="_blank">Introduction to Partner Institutions</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="" target="_blank">How to Apply</a>
+                        </div>
+                    </div>
+                    <div class="intro_item">
+                        <div class="apply_tit">
+                            <a href="" target="_blank">Introduction to Partner Institutions</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="" target="_blank">How to Apply</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-bg"></div>
+</section>
+
+
+<div class="infor-ft">
+    <a href="#">Home</a>&nbsp;|&nbsp;
+    <span>Copyright © Canada education data</span>
+</div>
+
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+
+</script>
+<script>
+    $(function () {
+
+        $('.intro_item:first-child').show();
+        $(".intro_tab li ").click(function () {
+            var index = $(this).index();
+            $(".intro_item").hide().eq(index).show();
+            $(this).addClass("intro_tab_active").siblings().removeClass("intro_tab_active");
+        });
+
+        $('.parchment_item:first-child').show();
+        $(".parchment_tab li ").click(function () {
+            var index = $(this).index();
+            $(".parchment_item").hide().eq(index).show();
+            $(this).addClass("parchment_tab_act").siblings().removeClass("parchment_tab_act");
+        });
+        $('.all').click(function () {
+            $('.parchment_item').show()
+        });
+
+    })
+
+</script>
+
+</body>
+</html>

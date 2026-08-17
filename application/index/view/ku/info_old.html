@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>CANADA.Auradata</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/canada/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+		<script src="/canada/js/jquery.min.js"></script>
+		<script type="text/javascript" src="/canada/js/mobile.js" ></script>
+		<script type="text/javascript" src="/static/js/layer/layer.js" ></script>
+	</head>
+	<body>
+	 <header>
+	  	<div class="hd-line"></div>
+	  	<div class='hd-sear'>
+	  		<a class="hd-logo" href="/">
+	  			<img src="/canada/images/logo.png"/>
+	  		</a>
+	  		<div class="infor-off">
+	  			<a href="/index/ku/logout">
+		  			<img src="/canada/images/off-icon.svg"/>
+		  			<span>Exit</span>
+	  			</a>
+	  		</div>
+	  	</div>
+	  </header>
+	  <div class="info-default">
+		<p style="text-align: center; margin-top: 20%; margin-bottom: 18%;font-size:20px;">
+			<img src="/static/js/layer/theme/default/loading-0.gif" alt=""><br>
+			Retrieving data. Please wait..
+		</p>
+	  </div>
+	  <div class="info-main" style="display: none">
+	  	<div class="infor-left">		
+		  {notempty name="edulist"}  
+			{foreach name="edulist" item="v"}
+				<h3>{$v.academic_level}</h3>
+				<ul>
+					<li><a class="{$v.id==$edu.id? 'infor-active':''}" href="/index/ku/info/edu_id/{$v.id}">Information</a></li>
+					<li><a href="/index/ku/transcript/edu_id/{$v.id}" >Transcript</a></li>
+				</ul>
+			{/foreach}
+			{else /}
+				<ul>
+					<li><a class="infor-active" href="/index/ku/info">Information</a></li>
+				</ul>
+			{/notempty}
+			<h3><a href="/index/ku/transfer">TRANSFER</a></h3>
+	  	</div>
+	  	<div class="infor-right">
+	  		<div class="info-tit">
+	  		<h3>{$edu.school}</h3>
+	  		<p>verified</p>
+	  	</div>
+	  	<div class="info-box">
+	  		<div class="in-hd">
+		  	 	<ul class="info-lista">
+		  	 		<li>Name :</li>
+					<li>sex :</li>
+					<li>Birthdate :</li>
+					<li>Date of Enrollment ：</li>
+		  	 	</ul>
+		  	 	<ul class="info-listb">
+		  	 		<li>{$info.name}</li>
+					<li>{$info.sex ? '女':'男'}</li>
+					<li>{$info.birthdate}</li>
+					<li>{$edu.enrollment_date}</li>
+		  	 	</ul>
+		  	 	<div class="info-listc">
+		  	 		<img  src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"'/>
+		  	 	</div>
+	  	 	</div>
+	  	 	<div class="in-hd">
+		  	 	<ul class="info-lista">
+		  	 		<li>Date of completion :</li>
+					<li>Name of School ：</li>
+					<li>major :</li>
+					<li>length of schooling :</li>
+					<li>academic level :</li>
+					<li>Study mode ：</li>
+					<li>graduate ：</li>
+					<li>Nationality ：</li>
+					<li>Pre Education ：</li>
+					<li>Name of Pre-education School ：</li>
+		  	 	</ul>
+		  	 	<ul class="info-listd">
+		  	 		<li>{$edu.completion_date}</li>
+					<li>{$edu.school}</li>
+					<li>{$edu.major}</li>
+					<li>{$edu.school_year}</li>
+					<li>{$edu.academic_level}</li>
+					<li>{$edu.study_mode}</li>
+					<li>{$edu.graduate}</li>
+					<li>{$edu.nationality}</li>
+					<li>{$edu.pre_education}</li>
+					<li>{$edu.pre_education_school}</li>
+		  	 	</ul>
+	  	 	</div>
+	  	 	<div class="info-dec">
+	  	 		<h3>Declaration :</h3>
+	  	 		<p>
+	  	 			1. This material shall not be used for purposes contrary to the wishes of the owner without the consent of the holder of the educational background information.The educational background information is marked with "*", indicating that the content is unknown.If the educational background information has been modified, please refer to the online query content of the website.
+	  	 		</p>
+	  	 		<p>
+	  	 			2. The result of academic qualification certificate inquiry is only used by the searcher and does not have the function of re-verification.
+	  	 		</p>
+	  	 	</div>
+	  	</div>
+	  
+	  	</div>
+	  	
+	  </div>
+	  <div class="infor-ft">
+			<a href="#">Home</a>&nbsp;|&nbsp;
+	  		<span>{$C['site_copyright']}</span>
+	  </div>
+	  <script>
+		  $(document).ready(function () {
+				setTimeout(() => {
+					$(".info-default").hide();
+					$(".info-main").show();					
+				}, 2500);			
+		
+		  });
+	  </script>
+	</body>
+</html>

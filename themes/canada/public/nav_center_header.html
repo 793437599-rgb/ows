@@ -1,0 +1,11 @@
+<div class="layui-row  user-avatar">
+    <h1>{:lang('Account Information')}</h1>
+    <div class="public-user-header">
+        <!-- <div class="public-user-h1"><a href="/profile"><img src="{$user.head_img}"></a></div> -->
+        <div class="public--u-content">
+            <div><h4>{:lang('Account Name')} : </h4><span class="pub-dx">{$user.username}</span></div>
+            <div><h4>{:lang('Account')} : </h4><span>{$user.email}</span> <a href="{:url('index/user/email_modification')}"><i class="iconfont icon-ediet"></i></a> </div>
+            <div><h4>{:lang('WSE ID')} : </h4><span class="pub-dx">{$user.search_id}</span></div>
+        </div>
+    </div>
+</div>

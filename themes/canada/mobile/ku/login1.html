@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$C['site_title']}</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	    <link rel="stylesheet" href="/canada/css/common.css" />
+	    <link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+	    <link rel="stylesheet" type="text/css" href="/canada/css/education.css" />
+	    <link rel="stylesheet" href="/static/css/flexslider.min.css">
+	    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+	    <meta name="description" content="{$C['seo_keyword']}">
+	    <meta name="keywords" content="{$C['seo_description']}">
+	    <script src="/canada/js/jquery.min.js"></script>
+	    <script src="/static/js/jquery.flexslider-min.js"></script>
+	    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+	    <script type="text/javascript" src="/canada/js/common.js"></script>
+	    <!-- share css & js -->
+	    <link rel="stylesheet" href="/static/share/css/share.min.css">
+	    <link rel="stylesheet" href="/static/share/css/share.more.css">
+	    <script src="/static/share/js/share.min.js"></script>
+	</head>
+	<body>
+		<div id="login" style="margin: auto;width: 40%;">
+			<form action="/index/ku/login" method="post">
+				<div class="log-list">
+					{:lang('Username')}:
+					<!--<img id="blur_img_1" class="log-icon" src="/canada/images/name-icon.svg"/>-->
+	  				<input id="username" type="text" value="" name="name" placeholder="{:lang('Username')}"/>
+	  			</div>
+	  			<div class="log-list">{:lang('Password No')}:
+					<!--<img id="blur_img_1" class="log-icon" src="/canada/images/pass-icon.svg"/>-->
+	  				<input id="password" type="text" value="" name="passport" placeholder="{:lang('Password No')}"/>
+	  			</div>
+	  			<div class="log-list">{:lang('Reference')} ID:
+	  				<input id="reference_id" type="text" value="" name="reference_id" placeholder="{:lang('Reference')} ID"/>
+	  			</div>
+	  			<div class="log-list">{:lang('login')}:
+	  				<script async defer crossorigin="anonymous" src="https://connect.facebook.net/zh_CN/sdk.js#xfbml=1&version=v3.3&appId=2228886647427463&autoLogAppEvents=1"></script>
+	  				<fb:login-button   scope="public_profile,email"  onlogin="checkLoginState();"></fb:login-button>
+	  			</div>
+				<input type="submit" class="log-btn" value="{:lang('login')}"/>
+			</form>
+		</div>				
+	</body>
+</html>

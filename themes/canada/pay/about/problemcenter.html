@@ -1,0 +1,96 @@
+<div class="problem-box">
+    <div class="problem-fail">
+        <h1 class="title">{:lang('problem center')}</h1>
+        <!--  一般问题 -->
+        {volist name="questionGroups" id="vo"}
+        <div class="help-box">
+            <h2>{:lang($vo.category_name)}</h2>
+            <div id="help-all" class="help-all">
+                <span href="" id="open" class="open-close">{:lang('Open All')}</span>
+                <div class="open-group">
+                    <ul class="sche-panel-group">
+                        {volist name="$vo->questions" id="question"}
+                        <li class="sche-panel-list">
+                            <h1><i class="fa  fa-angle-right"></i>{:lang($question.title)}</h1>
+                            <div class="sche-down-box">
+                                <div class="sche-down-p">{$question.content|htmlspecialchars_decode}</div>
+                            </div>
+                        </li>
+                        {/volist}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {/volist}
+        <div class="mess-board">
+            <h2>{:lang('Message Board')}</h2>
+            <div class="mess-content">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-xs6">
+                        <div>
+                            <p><b>{:lang('Name')}</b></p>
+                            <input type="text" class="mess-input-v1">
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div>
+                            <p><b>{:lang('E-Mail')}</b></p>
+                            <input type="text" class="mess-input-v1">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-xs6">
+                        <div>
+                            <p><b>{:lang('Phone')}</b></p>
+                            <input type="text" class="mess-input-v1">
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div>
+                            <p><b>{:lang('Your question is about')}</b></p>
+                            <select name="" id="" class="mess-input-v1 mess-select">
+                                <option value="">{:lang('Networking')}</option>
+                                <option value="">{:lang('Page')}</option>
+                                <option value="">{:lang('Problem')}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <p><b>{:lang('Information')}</b></p>
+                        <textarea name="" id=""  rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="mess-sub-box">
+                <button type="submit" class="mess-sub">{:lang('Submit')}</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+	$(function () {
+		$('.sche-down-box').hide();
+		$('.sche-panel-list>h1').click(function () {
+			$(this).toggleClass('sche-active').next().slideToggle()
+		})
+        $('.open-close').click(function () {
+            var li = $(this).siblings('.open-group')
+            if ($(this).text() == '{:lang("Open All")}') {
+                $(this).text('{:lang("Close All")}')
+                li.find('h1').addClass('sche-active')
+                li.find('.sche-down-box').fadeIn()
+            } else {
+                $(this).text('{:lang("Open All")}')
+                li.find('h1').removeClass('sche-active')
+                li.find('.sche-down-box').hide()
+            }
+        })
+    })
+    layer.photos({
+        photos: '.layer-photos-demo',
+        anim: 5
+    });
+</script>

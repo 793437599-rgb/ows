@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>UKED</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/swiper.min.css">
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <script type="text/javascript" src="/canada/js/swiper.min.js"></script>
+</head>
+
+<body>
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'><a class="hd-logo" href="/"> <img src="/canada/images/logo.png"/> </a>
+        <div class="infor-off"><a href="/index/ku/logout"> <img src="/canada/images/off-icon.svg"/> <span>Exit</span>
+        </a></div>
+    </div>
+</header>
+<section class="information-wrap">
+    <h2>PERSONAL DATA DISPLAY</h2>
+    <div class="information">
+        <div class="header">
+            <div class="img-box"><img src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"'/>
+            </div>
+            <div class="info">
+                <h3>{$info.name}</h3>
+                <p>
+                    <i class="icon iconfont icon-UK-address"></i>
+                    <b>{$edu.school}</b>
+                </p>
+            </div>
+            <ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down">
+                    <i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="{$v.id==$edu.id? 'infor-active':''}" href="/index/ku/info/edu_id/{$v.id}">Information</a>
+                        </li>
+                        <li><a href="/index/ku/transcript/edu_id/{$v.id}">Transcript</a></li>
+                    </ol>
+                </li>
+                {/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-UK-major"></i>major
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/index/ku/info">Information</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+                <li><a href="/index/ku/transfer">TRANSFER</a></li>
+            </ul>
+        </div>
+        <div class="table">
+            <table>
+                <tbody>
+                <tr>
+                    <td><i class="icon iconfont icon-UK-Personal"></i><b>Name:</b></td>
+                    <td colspan="3">{$info.name}</td>
+                </tr>
+                <tr>
+                    <td><i class="icon iconfont icon-UK-date"></i><b>Date of Birth:</b></td>
+                    <td>{$info.birthdate}</td>
+                    <td><i class="icon iconfont icon-UK-address"></i><b>Place of Birth:</b></td>
+                    <td>{$info.address}</td>
+                </tr>
+                <tr>
+                    <td><i class="icon iconfont icon-gender"></i><b>Sex:</b></td>
+                    <td>{$info.sex ? 'female':'male'}</td>
+                    <td><i class="icon iconfont icon-UK-passport"></i><b>Passport:</b></td>
+                    <td>{$info.passport}</td>
+                </tr>
+                <tr>
+                    <td><i class="icon iconfont icon-UK-university"></i><b>University:</b></td>
+                    <td>{$edu.school}</td>
+                    <td><i class="icon iconfont icon-UK-Website"></i><b>Official Website:</b></td>
+                    <td class="website"><a href="http://{$edu.web_site}">{$edu.web_site}</a></td>
+                </tr>
+                <tr>
+                    <td><i class="icon iconfont icon-degree"></i><b>Degree:</b></td>
+                    <td>{$edu.academic_level}</td>
+                    <td><i class="icon iconfont icon-UK-student"></i><b>Student ID:</b></td>
+                    <td>{$edu.student_id}</td>
+                </tr>
+                <tr>
+                    <td><i class="icon iconfont icon-UK-major"></i><b>Major:</b></td>
+                    <td>{$edu.major}</td>
+                    <td><i class="icon iconfont icon-Study_Mode"></i><b>Study Mode:</b></td>
+                    <td>{$edu.study_mode}</td>
+                </tr>
+                <tr>
+                    <td><i class="icon iconfont icon-Length_schooling"></i><b>Length of schooling:</b></td>
+                    <td>{$edu.school_year} years</td>
+                    <td><i class="icon iconfont icon-Language"></i><b>Language of Instruction:</b></td>
+                    <td>{$edu.instruction_language}</td>
+                </tr>
+                <tr>
+                    <td><i class="icon iconfont icon-UK-date"></i><b>Date of Enrollment:</b></td>
+                    <td>{$edu.enrollment_date}</td>
+                    <td><i class="icon iconfont icon-UK-date"></i><b>Date of Completion:</b></td>
+                    <td>{$edu.completion_date}</td>
+                </tr>
+                <tr>
+                    <td><i class="icon iconfont icon-Pre_Education"></i><b>Faculty:</b></td>
+                    <td colspan="3">{$edu.faculty}</td>
+                </tr>
+                <tr>
+                    <td><i class="icon iconfont icon-Faculty"></i><b>Pre Education:</b></td>
+                    <td>{$edu.pre_education}</td>
+                    <td><i class="icon iconfont icon-Pre_Education_name"></i><b>Name of Pre-education:</b></td>
+                    <td>{$edu.pre_education_school}</td>
+                </tr>
+                <tr class="remark">
+                    <td colspan="4">
+                        <p><i class="icon iconfont icon-uk-apply"></i><b>Remark:</b></p>
+                        <p>{$edu.remark}</p>
+                    </td>
+                </tr>
+                <tr class="declaration">
+                    <td colspan="4">
+                        <p><b>***Declaration :</b></p>
+                        <ol>
+                            <li>This material shall not be used for purposes contrary to the wishes of the
+                                owner without the consent of the holder of the educational background
+                                information.The educational background information is marked with "*",
+                                indicating that the content is unknown.If the educational background
+                                information has been modified, please refer to the online query content of the
+                                website.
+                            </li>
+                            <li>The result of academic qualification certificate inquiry is only used by the
+                                searcher and does not have the function of re-verification.
+                            </li>
+                        </ol>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<section class="information-bottom">
+    <div class="left">
+        <h3>DIPLOMA</h3>
+        <div>
+            <a>
+                {notempty name="edu.diploma"}
+                <img src="{$edu.diploma}" alt="" style="width: 300px;height: 230px;">
+                {/notempty}
+            </a>
+        </div>
+    </div>
+    <div class="right">
+        <h3>TRANSCRIPT</h3>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {foreach name="$edu['transcript']" item="vo"}
+                <div class="swiper-slide"><img src="{$vo}" alt=""></div>
+                {/foreach}
+            </div> <!-- 如果需要分页器 -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+</section>
+<div class="infor-ft"><a href="#">Home</a>&nbsp;|&nbsp; <span>Copyright © Canada education data</span></div>
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 2,
+        spaceBetween: 0,
+        loop: true,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        }
+    });
+</script>
+</body>
+
+</html>

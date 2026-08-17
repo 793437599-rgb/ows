@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.all.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <title>help-center</title>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div >
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                {include file="public/_nav_center_header" /}
+                <!-- <div class="layui-row mainContent-header">
+                    <div class="layui-row  mianContent-title">
+                        <div class="layui-col-sm10 layui-col-xs8"> 
+                            <h1>{:lang('Application Orders')}</h1>
+                        </div>
+                    </div>
+		        </div> -->
+                <!-- <div class="layui-row mainContent-header">
+                    <div class="layui-col-sm12 layui-col-xs8">
+                        <h1>{:lang('Application Orders')}</h1>
+                    </div>
+                </div> -->
+                <!-- <hr /> -->
+                <div class="layui-row">
+		            <div class="layui-col-sm12">
+                        <div class="layui-row step-come steps">
+                            <div class="pay-boxtent">
+                                <table border="1" class="layui-table">
+                                    <tr class="pay-title">
+                                        <td>{:lang('Order Number')}</td>
+                                        <td>{:lang('Payment Items')}</td>
+                                        <td>{:lang('Payment Amount')}</td>
+                                        <td>{:lang('Payment Time')}</td>
+                                        <td>{:lang('Payment Status')}</td>
+                                        <td>{:lang('Application Status')}</td>
+                                        <td>{:lang('Payment Method')}</td>
+                                        <td style="width: 12%;">{:lang('Operating')}</td>
+                                    </tr>
+                                    {foreach name="order" item="vo"}
+                                    <tr>
+                                        <td>{$vo.order_number}</td>
+                                        <td>{$vo.name_en} </td>
+                                        <td>${$vo.fee}</td>
+                                        <td>{$vo.create_time}</td>
+                                        <td class="unpaid">{if $vo.status < 3 } unpaid {else/} Paid  {/if}</td>
+                                        <td>
+                                            {if $vo.status == 4 }
+                                             {:lang('Examination Passed')}
+                                            {elseif $vo.status == 7}
+                                            {:lang('Evaluation Completed')}
+                                            {else /}
+                                            {:lang('Unreviewed')}
+                                            {/if}
+                                        </td>
+                                        <td>
+                                            <img src="/canada/images/pay-paypal.png" alt="" width="50">
+                                        </td>
+                                        <td>
+                                            {if $vo.status < 3 }
+                                            <a href="{:url('index/user/application_pay',['order_no'=>$vo['order_number']])}">{:lang('Pay')}</a>
+                                            {/if}
+                                            <a href="{:url('index/order/detail',['order_no'=>$vo.order_number])}" >{:lang('Details')}</a>
+                                        </td>
+                                    </tr>
+                                    {/foreach}
+                                    {volist name="apply_apis" id="vo"}
+                                    <tr>
+                                        <td>{$vo.order_no}</td>
+                                        <td>{:lang('Developer API application')}</td>
+                                        <td>$0</td>
+                                        <td>{$vo.create_time}</td>
+                                        <td>-</td>
+                                        <td>
+                                            {if $vo.status == 1}
+                                            <p>{:lang('Applying')}</p>
+                                            {else /}
+                                            <p>{:lang('Already applied')}</p>
+                                            {/if}
+                                        </td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                    {/volist}
+                                    {volist name="apply_ins" id="vo"}
+                                    <tr>
+                                        <td>{$vo.order_no}</td>
+                                        <td>{:lang('Data storage application')}</td>
+                                        <td>$0</td>
+                                        <td>{$vo.create_time}</td>
+                                        <td>-</td>
+                                        <td>
+                                            {if $vo.status == 1}
+                                            <p>{:lang('Applying')}</p>
+                                            {else /}
+                                            <p>{:lang('Already applied')}</p>
+                                            {/if}
+                                        </td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                    </tr>
+                                    {/volist}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+</section>
+<script>
+    layer.photos({  
+            photos: '.layer-photos-demo',
+            anim: 5 
+        });
+</script>
+</body>
+</html>

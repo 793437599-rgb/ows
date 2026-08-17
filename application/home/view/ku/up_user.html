@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+
+		<meta charset="utf-8" />
+
+		<title>Register</title>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+		<link rel="stylesheet" href="/canada/css/common.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css"/>
+
+		<link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css"/>
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+
+		<script src="/static/js/jquery.min.js"></script>
+
+		<script src="/static/js/jquery.flexslider-min.js"></script>
+
+		<script src="/static/js/viewer-jquery.min.js"></script>
+
+		<script src="/static/js/mobile.js"></script>
+
+		<script src="/static/js/layui/layui.js"></script>
+
+		<script src="/canada/js/html.js"></script>
+
+	</head>
+
+	<body>
+
+		<!--注册-->
+
+		<div class="T_full Tr_full">
+
+			<div class="T_main Tr_hd">
+
+				<div class="Tr_hdlt">
+
+					<h1>{:lang('EDU DATA EXCHANGE CERTIFICATE CENTER')}</h1>
+
+					<p>{:lang('Our professional evaluation system can analyze and evaluate your data')}.</p>
+
+					<div class="Tr_logo">
+
+						<img src="/static/images/logo_icon.png"/>
+
+						<h3>WSE</h3>
+
+						<P>{:lang('Professional assessment criteria (people with higher education can apply for registration)')}</P>
+
+					</div>
+
+				</div>
+
+				<div class="Tr_hdrt">
+
+					<div><img src="/static/images/privacy_icon.png"/><img src="/static/images/Update.png"/></div>
+
+					<p>
+
+						{:lang('The personal information you provide to EDIC is safe and must be completed in order to evaluate your materials. You can refer to our Privacy Policy for complete details')}.
+
+					</p>
+
+					<p>{:lang('This new version of the WSE evaluation form is still being improved and updated. If you encounter any technical problems while using this watch, please contact us by email')}.</p>
+
+				</div>
+
+			</div>
+
+			<div class="T_main Tr_hd">
+
+				<h1 class="Tr_TIT">{:lang('START REGISTRATION')}</h1>
+
+				<form class="layui-form" method="post"  lay-filter="example">
+
+					{:token()}
+
+					<!--个人信息-->
+
+					<div class="Tr_rebox ">
+
+						<h3>{:lang('Personal information')}</h3>
+
+					</div>
+
+					<div class="Tr_info">
+
+						<div class="Tr_info_list">
+
+							<h4><span>*</span>{:lang('First Name')}: <b>Must be capital letters up_user</b></h4>
+
+							<div class="Tr_formbox ">
+
+								<input type="text" name="firstname" value="{$user.firstname}" lay-verify="required" style="text-transform: uppercase;" lay-reqtext="Must be filled, not empty "  lay-verType="tips"/>
+
+							</div>
+
+						</div>
+
+						<div class="Tr_info_list">
+
+							<h4>{:lang('Middle Name')}: <b>Optional</b></h4>
+
+							<div class="Tr_formbox ">
+
+								<input type="text" name="middlename" value="{$user.middlename}" style="text-transform: uppercase;"    lay-verType="tips" />
+
+							</div>
+
+						</div>
+
+						<div class="Tr_info_list">
+
+							<h4><span>*</span>{:lang('Last Name')}: <b>Must be capital letters</b></h4>
+
+							<div class="Tr_formbox ">
+
+								<input type="text" name="lastname" value="{$user.lastname}" style="text-transform: uppercase;"  lay-verify="required" lay-reqtext="Must be filled, not empty " lay-verType="tips"/>
+
+							</div>
+
+						</div>
+
+						<div class="Tr_info_list Tr_info_row ">
+
+							<h4><span>*</span>{:lang('Gender')}:</h4>
+
+							<div class="Tr_formbox ">
+
+								<div class="TR_sex">
+
+									<input class="Tr_info_radio" type="radio" name="sex" {$user.sex=='Female'?'checked':''} value="Female"  />
+
+									<a href="javascript:;">{:lang('Female')}</a>
+
+								</div>
+
+								<div class="TR_sex">
+
+									<input class="Tr_info_radio" type="radio" name="sex" {$user.sex=='Male'?'checked':''} value="Male" />
+
+									<a href="javascript:;">{:lang('Male')}</a>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="Tr_info_list ">
+
+							<h4><span>*</span>{:lang('Country of Citizenship')}:</h4>
+
+							<div class="Tr_formbox ">
+
+								<div>
+
+									<select class="Tr_sele_box" name="nationality" lay-verify="required" lay-reqtext="Must be filled, not empty "  lay-search>
+
+										{foreach name="country" item="country"}
+
+										<option {$user.nationality==$country?'selected':''} value="{$country}">{$country}</option>
+
+										{/foreach}
+
+									</select>
+
+								</div>	
+
+							</div>
+
+						</div>
+
+						<div class="Tr_info_list ">
+
+							<h4><span>*</span>{:lang('Type of ID')}:</h4>
+
+							<div class="Tr_formbox ">
+
+								<div>
+
+									<select class="Tr_sele_box" name="id_type" lay-verify="required" lay-reqtext="Must be filled, not empty "  lay-search>
+
+										<option {$user.id_type=='Visa'?'selected':''}  value="Visa">{:lang('Visa')}</option>
+
+										<option {$user.id_type=='Passport'?'selected':''}  value="Passport">{:lang('Passport')}</option>
+
+										<option {$user.id_type=='Identity Card'?'selected':''}  value="Identity Card">{:lang('Identity Card')}</option>
+
+										<option {$user.id_type=='Green Card'?'selected':''}  value="Green Card">{:lang('Green Card')}</option>
+
+										<option {$user.id_type=='Credit Card'?'selected':''}  value="Credit Card">{:lang('Credit Card')}</option>
+
+									</select>
+
+								</div>	
+
+							</div>
+
+						</div>
+
+						<div class="Tr_info_list ">
+
+							<h4><span>*</span>{:lang('ID number')}:<b>The ID number cannot be modified once submitted.</b></h4>
+
+							<div class="Tr_formbox ">
+
+								<div>
+
+									<input  type="text" name="id_number" value="{$user.id_number}"  lay-verify="required|number" lay-reqtext="Must be filled, not empty "  lay-verType="tips"/>
+
+								</div>	
+
+							</div>
+
+						</div>
+
+						<div class="Tr_info_list ">
+
+							<h4><span>*</span>{:lang('Date of birth')}:</h4>
+
+							<div class="Tr_formbox ">
+
+								<div>
+
+									<input class="Tr_birth"  type="text" name="birth_time" value="{$user.birth_time}"  lay-verify="required" lay-reqtext="Must be filled, not empty " lay-verType="tips"/>
+
+								</div>	
+
+							</div>
+
+						</div>
+
+					</div>	
+
+					<!--注册-->
+
+					<div class="Tr_rebox">
+
+						<h3>{:lang('Register an account')}</h3>
+
+					</div>
+
+					<div class="Tr_info">
+
+						<div class="Tr_info_list ">
+
+							<h4><span>*</span>{:lang('Email')}:</h4>
+
+							<div class="Tr_formbox ">
+
+								<div>
+
+									<input  type="text" name="email" value="{$user.email}"  lay-verify="required|email"  lay-reqtext="Must be filled, not empty "  lay-verType="tips"/>
+
+								</div>	
+
+							</div>
+
+						</div>
+
+						<div class="Tr_info_list">
+
+							<h4><span>*</span> {:lang('Password')}:<b>6 Character minimum,At least one upper-case, lower-case, and number</b></h4>
+
+							<div class="Tr_formbox">
+
+								<input class="input_password" type="password" name="password"    lay-verify="pass|required" lay-reqtext="Must be filled, not empty " lay-verType="tips"/>
+
+								<i class="reg_ibtn fa fa-eye-slash"></i>
+
+							</div>
+
+						</div>
+
+					</div>	
+
+					
+
+					<!--注册类型-->
+
+					
+
+					<div class="Tr_protocol">
+
+						<div class="Tr_pro_btn">
+
+							<input type="checkbox" name="checkbox"  lay-verify="required" required="" />
+
+						</div>
+
+						<span>{:lang('Sign up and agree')} <a href="#">{:lang('Edu Data Exchange Certificate Center Agreement')} </a></span>
+
+					</div>
+
+					<div class="Tr_submit">
+
+						<button lay-submit type="button">{:lang('Registered')}</button>
+
+						<div class="Tr_zhu">
+
+							<img src="/static/images/privacy_icon.png"/>
+
+							<img src="/static/images/Update.png"/>
+
+							<h3>{:lang('Privacy Notice')}</h3>
+
+							<p>{:lang('The personal information you provide to EDIC is safe and must be completed in order to evaluate your materials. You can refer to our Privacy Policy for complete details')}.</p>
+
+						</div>
+
+					</div>
+
+				</form>
+
+				
+
+			</div>
+
+		</div>
+
+		<script>
+
+			// layui
+
+			layui.use(['form', 'layedit', 'laydate'], function(){
+
+				var form = layui.form
+
+				,layer = layui.layer
+
+				,layedit = layui.layedit
+
+				,laydate = layui.laydate;
+
+				 
+
+				 form.verify({
+
+					pass: [
+
+				      /^[\S]{6,12}$/
+
+				      ,'密码必须6到12位，且不能出现空格'
+
+				    ]
+
+				 });
+
+			    laydate.render({
+
+				  elem: '.Tr_birth' ,//指定元素
+
+				  lang: 'en',
+
+				
+
+			    });
+
+			    $(document).on('click','.Tr_pro_btn',function(){
+
+			    	$('.Tr_submit button').css('background-color','#C50F22');
+
+				});
+
+				$('.Tr_submit button').click(function(){
+
+				
+
+						if(!$('.Tr_pro_btn input[type="checkbox"]').prop('checked')){
+
+							layer.msg('必须同意')
+
+							return false
+
+						}
+
+						$.ajax({
+
+							type:"post",
+
+							url:"/update_create",
+
+							async:false,
+
+							data:$('.layui-form').serializeArray(),
+
+							success:function(result){
+
+								console.log(result);
+
+								
+
+								if (result.code==1) {
+
+									layer.open({
+
+									  title: 'success提示'
+
+									  ,content: result.msg
+
+									});
+
+									window.location.href="/register_verification";
+
+								} else{
+
+									layer.open({
+
+									  title: 'error提示'
+
+									  ,content: result.msg
+
+									});
+
+								}
+
+								
+
+									return false;
+
+							},
+
+							error:function(msg){
+
+								layer.open({
+
+									  title: 'error验证提示'
+
+									  ,content: msg
+
+									});
+
+							}
+
+						});
+
+					});
+
+			});
+
+			
+
+		</script>
+
+	</body>
+
+</html>
+

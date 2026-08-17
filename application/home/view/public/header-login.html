@@ -1,0 +1,48 @@
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="cookie-bar">
+                    {:lang('We use cookies to improve our website')}. {:lang('If you')} <span class="cookie-close">{:lang('continue')}</span>,
+                    {:lang("we'll assume that you agree to our")}
+                    <a href="/page/320">{:lang('cookie policy')}</a>.
+                    <i class="fa fa-times-circle-o cookie-close"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <img src="/canada/images/logo-white.png">
+                <a href="/page/272.html" class="post-job">{:lang('Work in Canada')} <i class="fa fa-angle-right"></i></a>
+            </div>
+        </div>
+    </div>
+    <hr/>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="nav-box">
+                    <ul class="nav-list">
+                        <li class=""><a href="/page/277.html">{:lang('Individual portal')} </a></li>
+                        <li class=""><a href="/page/239.html">{:lang('ASSESSOR PORTAL')}</a></li>
+                        <li class=""><a href="/page/301.html">{:lang('PROVINCES AND TERRITORIES OF CANADA')}</a></li>
+                        <li class=""><a href="/page/44">{:lang('MOBILITY PORTAL')}</a></li>
+                    </ul>
+                    <a href="add" class="register-link">{:lang('Register')} <i class="fa fa-angle-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    /*   header hide   */
+    $('.cookie-close').on('click', function () {
+        $('.header').slideUp();
+    });
+</script>

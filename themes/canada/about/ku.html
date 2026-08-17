@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Secure Site by WSE.ORG/</title>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <style>
+        p,
+        h1,
+        h2,
+        h3 {
+            margin: 0;  
+        }
+
+        .secure-popin {
+            width: 1308px;
+            height: 925px;
+            margin: auto;
+            background: #fff url("/canada/images/wse-bgverified-1.jpg") no-repeat;
+            position: relative;
+        }
+
+        .secure {
+            font-size: 14px;
+            padding-top: 125px;
+            position: relative;
+        }
+
+        .secure h1 {
+            text-align: center;
+            font-size: 24px;
+            font-weight: 800;
+            margin-top: 13px;
+            text-transform: uppercase;
+            color: #013763;
+        }
+
+        .secure-min {
+            padding: 0 165px 0 145px;
+        }
+
+        .logo-title {
+            text-align: center;
+            margin-top: 18px;
+        }
+
+
+
+        .q_conitem p {
+            margin: 0 auto;
+        }
+
+        .secure-min p {
+            color: #666;
+        }
+
+        .secure-min h3 {
+            font-size: 20px;
+            margin: 18px 0 5px;
+            font-weight: 600;
+        }
+
+        .q_block-over {
+            width: 65%;
+            margin: 15px auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .q_block-over>div {
+            cursor: pointer;
+            transition: all 0.2s linear;
+        }
+
+        .q_block-over>div {
+            width: 20%;
+            padding: 15px 18px 15px 20px;
+            background-color: #eff4f9;
+            display: -webkit-box;
+            -webkit-box-align: center;
+        }
+
+        .q_block-over i {
+            font-size: 23px;
+            color: #013763;
+            margin-right: 15px;
+        }
+
+        .q_block-over h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #D3101B;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .q_block-over p {
+            font-size: 12px;
+            color: #555;
+        }
+
+        .q_block-over .icon-gaodu {
+            font-size: 30px;
+        }
+
+        .q_block-over .icon-qukuaigaodu {
+            font-size: 33px;
+        }
+
+        .secure-flex {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .secure-flex h2 {
+            color: #4A609A;
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+
+        .secure-type {
+            display: inline-block;
+            color: #fff;
+            background-color: #6077AD;
+            font-size: 23px;
+            padding: 18px 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .website {
+            margin: 8px 0;
+        }
+
+        .safe {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            width: 90.5%;
+
+        }
+
+        .safe-dis {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+        }
+
+        .safe-dis_fl {
+            display: flex;
+        }
+
+        .safe-min {
+            display: flex;
+            line-height: 22px;
+            padding-top: 10px;
+            padding-left: 30px;
+        }
+
+        .safe-color {
+            display: flex;
+
+        }
+
+        .safe-color ul {
+            text-align: right;
+            margin: 0;
+            padding-left: 22px;
+        }
+
+        .safe-color ul li {
+            list-style-type: none;
+        }
+
+        .safe-color ul li:nth-of-type(1) {
+            padding-bottom: 10px;
+        }
+
+        .safe-color ul li span:nth-of-type(1) {
+            color: #3d5a89;
+            margin-right: 5px;
+            font-size: 12px;
+        }
+
+        .safe-tate {
+            width: 45px;
+            background-color: rgba(61, 90, 137, 50%);
+            color: #fff;
+            height: 60px;
+            display: inline-block;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .safe-block {
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+
+        }
+
+        .rose-red {
+            background-color: #dc5d57;
+        }
+
+        .yellow {
+            background-color: #ecbd49;
+        }
+
+        .green {
+            background-color: #56b769;
+        }
+
+        .blue {
+            background-color: #56a1d9;
+        }
+
+        .purple {
+            background-color: #5760aa;
+        }
+
+        .black {
+            background-color: #2a2b2c;
+        }
+
+        .dark-green {
+            background-color: #2b5d3a;
+        }
+
+        .navy-blue {
+            background-color: #1f4271;
+        }
+
+        .orange {
+            background-color: #e48e20;
+        }
+
+        .deep-blue {
+            background-color: #2caec5;
+        }
+
+        .brown {
+            background-color: #653125;
+        }
+
+        .apricot {
+            background-color: #d48a78;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="secure-popin">
+        <section class="secure">
+
+            <div class="logo-title"> 
+
+                {if $new.thumb == ''} 
+                <img class="logo-title" src="/canada/images/logo.png" width="170" />  
+                {else/} 
+                <img class="logo-title" src="{$new.thumb}" width="120" />   
+                {/if}
+
+            </div>
+            <h1>Blockchain Storage Technology Reference</h1>
+            <div class="q_block-over">
+
+                <div class="xnin">
+                    <div>
+                        <i class="iconfont icon-suanfacopy"></i>
+                    </div>
+                    <div>
+                        <h3>Ethash</h3>
+                        <p>Consensus Algorithm</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <i class="iconfont icon-gaodu"></i>
+                    </div>
+                    <div>
+                        <h3>9971609</h3>
+                        <p>Latest Height</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <i class="iconfont icon-qukuaigaodu"></i>
+                    </div>
+                    <div>
+                        <h3>7579681</h3>
+                        <p>Current Height</p>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <i class="iconfont icon-shangliantiaoyong"></i>
+                    </div>
+                    <div>
+                        <h3>6524</h3>
+                        <p>Information on the Chain</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="secure-min">
+                {$new.content} 
+                 
+            </div>
+
+        </section>
+        <section class="safe">
+
+            <div class="safe-dis">
+
+                <div class="safe-dis_fl">
+                    <img src="/canada/images/center-block.png" alt="" height="80">
+                    <div class="safe-min">
+                        <div class="safe-tate">In 2022</div>
+                        <div class="safe-color">
+                            <ul>
+                                <li>
+                                    <span>January</span>
+                                    <span class="safe-block rose-red"></span>
+                                </li>
+                                <li>
+                                    <span>February</span>
+                                    <span class="safe-block yellow"></span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <span>March</span>
+                                    <span class="safe-block green"></span>
+                                </li>
+                                <li>
+                                    <span>April</span>
+                                    <span class="safe-block blue"></span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <span>May</span>
+                                    <span class="safe-block purple"></span>
+                                </li>
+                                <li>
+                                    <span>June</span>
+                                    <span class="safe-block black"></span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <span>July</span>
+                                    <span class="safe-block dark-green"></span>
+                                </li>
+                                <li>
+                                    <span>August</span>
+                                    <span class="safe-block navy-blue"></span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <span>September</span>
+                                    <span class="safe-block orange"></span>
+                                </li>
+                                <li>
+                                    <span>October</span>
+                                    <span class="safe-block deep-blue"></span>
+                                </li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <span>November</span>
+                                    <span class="safe-block brown"></span>
+                                </li>
+                                <li>
+                                    <span>December</span>
+                                    <span class="safe-block apricot"></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <img src="/canada/images/wse-verbadge-1.png" alt="" height="150">
+            </div>
+
+
+
+        </section>
+    </main>
+
+</body>
+
+</html>

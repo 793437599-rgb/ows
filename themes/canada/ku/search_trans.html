@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+	<head>
+		<meta charset="utf-8" />
+		<title>Transcript</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/canada/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/jquery.flexslider-min.js"></script>
+		<script src="/static/js/viewer-jquery.min.js"></script>
+		<script src="/static/js/mobile.js"></script>
+		<script src="/static/js/layui/layui.js"></script>
+		<script src="/canada/js/html.js"></script>
+	</head>
+	<body>
+	<header class="User_hd_full">
+		<div class="T_main User_hd">
+			<a href="/"><img src="/static/images/logo.png" alt="logo" title="header-logo"/></a>
+			<div class="User_hd_bottom">
+				<ul class="layui-nav">
+					<li class="layui-nav-item">
+						<a href="javascript:;">{:lang('Bachelor')}</a>
+						<dl class="layui-nav-child">
+							<dd><a href="/search_edu">{:lang('School information')}</a></dd>
+							<dd><a href="/search_trans">{:lang('Transcript')}</a></dd>
+						</dl>
+					  </li>
+				</ul>
+			</div>
+		</div>
+	</header>
+<!-- info hd -->
+	<div class="T_main Q_main">
+		<div class="Q_rt_line">
+			<h3 class="Q_tit">{:lang('Bachelor')}PERSONAL DATA DISPLAYcal | {$edu.academic_level}</h3>
+		</div>
+		<div class="Q_lt_box">
+			<div class="Qi_hd">
+				<div class="Qi_Hpic">
+					<img src="{$user_upload.zj_img}">
+				</div>
+				<div class="Qi_Hbasci">
+					<h3 class="Qi_tit">
+						{:lang('Bachelor')}Abbi Whitaker
+						<i class="fa fa-print"></i>
+					</h3>
+					<div class="">
+						<table border="" cellspacing="" cellpadding="">
+							<tr>
+								<td>{:lang('Gender')}:</td><td>{$info.sex}</td>
+								<td>{:lang('Date of birth')}:</td><td>{$info.birth_time}</td>
+							</tr>
+							<tr>
+								<td>{:lang('Country of Citizenship')} :</td><td>{$info.nationality}</td>
+								<td>{:lang('Maple Leaf Card')}:</td><td>{$info.id_number}</td>
+							</tr>
+							<tr>
+								<td>{:lang('E-mail')}:</td><td rowspan="3">{$info.email}</td>
+</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			{foreach name="scoreList" id="scoreItem"} {foreach name="scoreItem" id="score"  key="k"}
+			<div class="Qi_bd">
+				<div class=" Q_sum">
+					<h3>{$score.years}- {$score.fallterm}</h3>
+					<table class="Q_transcript" border="" cellspacing="" cellpadding="">
+						<tr>
+							<th>{:lang('Course')}</th>
+							<th>{:lang('Description')}</th>
+							<th>{:lang('Repeated Units Attempted')}</th>
+							<th>{:lang('Units Completed')}</th>
+							<th>{:lang('Grade')}</th>
+							<th>{:lang('Grade Points')}</th>
+						</tr>
+						{foreach name="score['content']" id="content" key="k"}
+						<tr>
+							<td>{$content['class']}</td>
+							<td>{$content['description']}</td>
+							<td>{$content['units']}</td>
+							<td>{$content['units']}</td>
+							<td>{$content['grade']}</td>
+							<td>{$content['points'] ?? '-'}</td>
+						</tr>
+						{/foreach}
+						<tr>
+							<td>EBGL 115W</td>
+							<td>Literature and Culture</td>
+							<td>4.00</td>
+							<td>4.00</td>
+							<td>A+</td>
+							<td>12.00</td>
+						</tr>
+					</table>
+				</div>
+				{/foreach} {/foreach}
+				<!--<div class=" Q_sum">
+					<h3>SPRING 2018-</h3>
+					<table class="Q_transcript" border="" cellspacing="" cellpadding="">
+						<tr>
+							<th>Course</th>
+							<th>Description</th>
+							<th>Repeated Units Attempted</th>
+							<th>Units Completed</th>
+							<th>Grade</th>
+							<th>Grade Points</th>
+						</tr>
+						<tr>
+							<td>ECON 103</td>
+							<td>Princiption of Culture</td>
+							<td>4.00</td>
+							<td>4.00</td>
+							<td>B+</td>
+							<td>13.32</td>
+						</tr>
+						<tr>
+							<td>EBGL 115W</td>
+							<td>Literature and Culture</td>
+							<td>4.00</td>
+							<td>4.00</td>
+							<td>A+</td>
+							<td>12.00</td>
+						</tr>
+						<tr>
+							<td>MATH 151</td>
+							<td>Calculus 1</td>
+							<td>4.00</td>
+							<td>4.00</td>
+							<td>B</td>
+							<td>8.01</td>
+						</tr>
+						<tr>
+							<td>MATH 151</td>
+							<td>Calculus 1</td>
+							<td>4.00</td>
+							<td>4.00</td>
+							<td>B</td>
+							<td>8.01</td>
+						</tr>
+					</table>
+</div>-->
+				<div class="Q_Sign">
+					<img src="/static/images/logo.png" >
+					<p>EDU DATA EXCHANGE CERTIFICATE CENTER </p>
+				</div>			
+</div>
+		</div>
+	</div>
+	<!--主要内容-->
+	<footer class="User_ft">
+		<a href="/">{:lang('Home')}</a> | <span>© Copyright 2019 ca.university All Rights Reserved</span>
+	</footer>
+	</body>
+</html>

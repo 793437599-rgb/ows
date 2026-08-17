@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>Certificate query</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/header.css" />
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/canada/css/header-anim.css">
+    <link rel="stylesheet" href="/canada/css/header-new.css">
+    <link rel="stylesheet" href="/canada/css/VerificationServices.css">
+    <link rel="stylesheet" href="/canada/css/query.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="//aeis.alicdn.com/sd/ncpc/nc.js?t=2015052012"></script>
+    <!--page header & footer style-->
+    <link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="/canada/js/jquery.ckSlide.js"></script>
+    <script src="/canada/js/waypoints.min.js"></script>
+    <script src="/canada/js/header-main.js"></script>
+    <!-- share css & js -->
+    <link rel="stylesheet" href="/static/share/css/share.min.css">
+    <link rel="stylesheet" href="/static/share/css/share.more.css">
+    <script src="/static/share/js/share.min.js"></script>
+    <link rel="stylesheet" href="/canada/css/animate.css">
+    <link rel="stylesheet" href="/canada/css/codehim-dropdown.css">
+    <script src="/canada/js/codehim.dropdown.js"></script>
+    <script src="/static/js/gt.js"></script>
+</head>
+<body>
+    {include file="public/header-new" /}
+<div class="certifi-box"  >
+        <div class="certifi-content">
+            <div class="certifi-success-top">
+                <div class="certifi-flex">
+                    <div class="cer-flex-logo cer-logo-red">
+                        <i class="iconfont icon-existence"></i>
+                        <img src="/canada/images/verification-failure.png" alt="">
+                    </div>
+                    <div class="cer-flex-right">
+                        <div class="cer-right-title cer-title-red">
+                            <h1>{:lang('does not exist')}</h1>
+                            <p>{:lang('the certificate')}</p>
+                        </div>
+                        <div class="cer-right-text">
+                            <div><span>{:lang('This certificate is a certificate of academic evaluation issued by WSE')}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cer-btn">
+            <div class="">
+                <a href="{:url('index/ku/index')}">{:lang('Return to query page')}</a>
+            </div>
+        </div>
+    </div>
+{include file="public/footer-login" /}
+</body>
+<script>
+    $('#view-btn').click(function(){
+        $('#block-kk').show()
+    })
+    $('.cancel').click(function(){
+        $('#block-kk').hide()
+    })
+</script>
+</html>

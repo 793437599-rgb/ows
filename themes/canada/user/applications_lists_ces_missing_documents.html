@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>{:lang('WSE Missing Documents')} ({:lang('Complete only if requested')})</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div >
+<div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+<!--    user avatar    -->
+                <div class="layui-row user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="/static/images/person-icon.png"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{:lang('WSE Missing Documents')} ({:lang('Complete only if requested')})</h1>
+                        <p><b>Tom</b></p>
+                        <p>8788@qq.com — X361987</p>
+                    </div>
+                </div>
+                <hr/>
+<div class="layui-row profile">
+                    <div class="layui-col-sm12">
+                        <p>{:lang('Please <b>only use this form if you have already submitted an application</b> and you have received a notification from WSE regarding missing documents. This form may also be used if you wish to update any documents you have already uploaded, provide any missing documents to complete your application, or replace any submitted documents that are cut off, illegible, in black-and-white, or otherwise invalid.')}</p>
+                        <p>{:lang('All documents uploaded MUST be clear and legible coloured photocopies.  Please scan all sides of each document, including blank sides.')}</p>
+                    </div>
+                </div>
+<div class="layui-row">
+                    <div class="layui-col-sm12 ">
+                        <a class="layui-btn layui-btn-primary">{:lang('Cancel')}</a>
+                        <a href="/application_pay" class="layui-btn mazarine right">{:lang('Apply Now')}</a>
+                    </div>
+                </div>
+</div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

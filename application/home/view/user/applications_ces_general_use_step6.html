@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+{__NOLAYOUT__}
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{:lang('WSE-ECA for General Use')}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+
+    <script src="/static/js/jquery.min.js"></script>
+
+    <script src="/static/js/mobile.js"></script>
+
+    <script src="/static/js/layui/layui.js"></script>
+
+    <script src="/canada/js/html.js"></script>
+
+</head>
+
+<body>
+
+
+
+{include file="public/header-user" /}
+
+
+
+<section class="mainContent">
+
+    <div class="layui-container layui-form">
+
+
+
+        <div class="layui-row layui-col-space15">
+
+            <div class="layui-col-sm2">
+
+                <!--    nav-left    -->
+
+                {include file="public/nav-left" /}
+
+            </div>
+
+            <div class="layui-col-sm10">
+
+
+
+                <!--    user avatar    -->
+
+                <div class="layui-row user-avatar">
+
+                    <div class="layui-col-sm2 layui-col-xs4">
+
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+
+                    </div>
+
+                    <div class="layui-col-sm10 layui-col-xs8">
+
+                        <h1>{switch name="$Think.cookie.think_var"}
+
+                            {case value="en-us"}{$order.name_en}{/case}
+
+                            {case value="zh-cn"}{$order.app_name}{/case}
+
+                            {case value="ja-jp"}{$order.name_jp}{/case}
+
+                            {case value="de-de"}{$order.name_de}{/case}
+
+                            {case value="ko-kr"}{$order.name_kr}{/case}
+
+                            {case value="ru-ru"}{$order.name_ru}{/case}
+
+                            {case value="fr-fa"}{$order.name_fa}{/case}
+
+                            {/switch}</h1>
+
+                        <p><b>{$user.username}</b></p>
+
+                        <p>{$user.email}— {$user.search_id}</p>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <div class="steps-card">
+
+                            <h3>{:lang('Required Steps')}</h3>
+
+                            <ol>
+
+                                {foreach name="app_step" item="vo"}
+
+                                <li {$vo.sort==$sort?"class='active'":"" } >
+
+                                    <a href="{$vo.sort}">
+
+                                        {if condition="in_array($vo.id,$step_ok)"}
+
+                                        <i class="fa fa-check-circle"></i>
+
+                                        {$vo.sort}. {switch name="$Think.cookie.think_var"}
+
+                                        {case value="en-us"}{$vo.step_en}{/case}
+
+                                        {case value="zh-cn"}{$vo.step_name}{/case}
+
+                                        {case value="ja-jp"}{$vo.step_jp}{/case}
+
+                                        {case value="de-de"}{$vo.step_de}{/case}
+
+                                        {case value="ko-kr"}{$vo.step_kr}{/case}
+
+                                        {case value="ru-ru"}{$vo.step_ru}{/case}
+
+                                        {case value="fr-fa"}{$vo.step_fa}{/case}
+
+                                        {/switch} - {:lang('Complete')}
+
+                                        {else}
+
+                                        <i class="fa fa-arrow-circle-right"></i>
+
+                                        {$vo.sort}. {switch name="$Think.cookie.think_var"}
+
+                                        {case value="en-us"}{$vo.step_en}{/case}
+
+                                        {case value="zh-cn"}{$vo.step_name}{/case}
+
+                                        {case value="ja-jp"}{$vo.step_jp}{/case}
+
+                                        {case value="de-de"}{$vo.step_de}{/case}
+
+                                        {case value="ko-kr"}{$vo.step_kr}{/case}
+
+                                        {case value="ru-ru"}{$vo.step_ru}{/case}
+
+                                        {case value="fr-fa"}{$vo.step_fa}{/case}
+
+                                        {/switch} - {:lang('Incomplete')}
+
+                                        {/if}
+
+                                    </a>
+
+                                </li>
+
+                                {/foreach}
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr/>
+
+                <!--    steps    -->
+
+                <div class="layui-row steps">
+
+                    <div class="layui-col-sm12">
+
+                        <h3>{:lang('CONSENT')}</h3>
+
+                        <p>{:lang('Applicant Agreement and Consent - General Application')}</p>
+
+                        <hr/>
+
+                        <h5>{:lang('Agreement')}</h5>
+
+                        <p>{:lang('I hereby request an assessment of the enclosed credentials. I certify that all statements and materials filed in support are true and genuine. I understand that in some cases, the Degree Assessment Education (DAE) of the WSE of Continuing Studies may ask to review my original documents and ask for additional documents and/or information. In addition, I acknowledge that documents submitted will not be returned to me and that all fees are final and non-refundable. I will notify WSE in writing of any change to my personal information or to my decision to designate a third party to represent me during the WSE application process.')}</p>
+
+                        <p>{:lang('I hereby authorize WSE to contact the institution(s) that issued my academic documents for the purposes of')}:</p>
+
+                        <ul>
+
+                            <li>{:lang('Verifying document authenticity')}</li>
+
+                            <li>{:lang('Requesting information to assist in the assessment')}</li>
+
+                        </ul>
+
+                        <p>{:lang('I furthermore authorize and direct the said institution(s) to release to WSE any information contained in their respective files concerning my educational records and any other information that may be relevant to my application for an Degree Assessment Education. I agree that I will be responsible for any applicable fees or verification costs required by my former institution(s).')}</p>
+
+                        <p>{:lang('I authorize that my date of birth (DOB) be used for identification purposes on my Degree Assessment Education (DAE) Report. I understand that my personal information is being collected for the purpose of obtaining an ECA Report. I agree that WSE may retain my personal non-financial information for ten years from the date of my application, and that it may retain this information indefinitely if WSE determines that my documents are not authentic. I understand that measures will be taken in the event that my documents are determined to be false, including the nullification of any assessment reports already issued and notification to other credential assessment agencies and related government officials.')}</p>
+
+                        <p>{:lang('I hereby release the WSE, its agents, and any person or entity that provides information in accordance with this consent, from any and all actions, claims and demands for damages, loss, expense or injury, howsoever arising, which may hereafter be sustained by me as a result of the provision, collection, use or disclosure of information as set out above.')}</p>
+
+                        <p><i>{:lang('The WSE respects your privacy. Personal information you provide to the University is collected pursuant to section 2(14) of the WSE Act, 1971. The information you provide on this form will be used in assessing your request. At all times it will be protected in accordance with the Freedom of Information and Protection of Privacy Act. If you have any questions about WSE privacy measures, please contact WSE')}</i></p>
+
+                        <div class="form-group buttons">
+
+                            <b><input type="checkbox" id="privacy-policy" name="" lay-skin="primary" title="* {:lang('I have read and agree to the WSE conditions')}"></b>
+
+                        </div>
+
+
+
+                        <!--    jSignature    -->
+
+                        <h5>{:lang('I agree to upload my information to WSE')}</h5>
+
+                        <h5>{:lang('Sign here with your mouse or finger')}</h5>
+
+                        <div class="Us_box layui-row">
+
+                            <div class="Us_sign layui-col-sm12" id="signatureparent">
+
+                                {if condition="!empty($order['sign_img'])"}
+
+                                <div class="sign-img"><img src="{$order.sign_img}"></div>
+
+                                {else}
+
+                                <div id="signature"></div>
+
+                                {/if}
+
+                            </div>
+
+                            <button class="layui-btn layui-btn-primary Us_clear" type="button">
+
+                                {:lang('Clear signature')}
+
+                            </button>
+
+                        </div>
+
+                        <form class="layui-form" id="form-sign">
+
+                        <div class="form-group">
+
+                            <p><b>{:lang('Signature content')}</b><span>*</span></p>
+
+                            <input type="hidden" name="sort" value="{$sort}">
+
+                            <input type="hidden" name="user_order_id" value="{$order.id}"/>
+
+                            <input type="text" name="sign_name" value="{$order.sign_name}" class="form-input" lay-verify="required">
+
+                            <input type="hidden" name="sign_img" id="sign_img" value=""/>
+
+                        </div>
+
+                        </form>
+
+                        <div class="form-group">
+
+                            <input type="checkbox" id="privacy-policy2" name="" lay-skin="primary" title=" * {:lang('I am proof that I am the above individual in accordance with the law and I have the right to take this action.')}">
+
+                        </div>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <a class="layui-btn layui-btn-primary savevvv"  lay-submit lay-filter="save">{:lang('Save This Page')}</a>
+
+                        <a href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort-1])}" class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+
+                        <br/>
+
+                        <br/>
+
+                        <a class="layui-btn layui-btn-primary savevvv" lay-submit lay-filter="save">{:lang('Save and Finish Later')}</a>
+
+                        <a class="layui-btn mazarine right savevvv" lay-submit lay-filter="save2">{:lang('Submit Application')}</a>
+
+                        <hr/>
+
+                    </div>
+
+                </div>
+
+                {if condition="$or_input3==1"}
+
+                <script>
+
+                    $('input').attr('disabled',true);
+
+                    $('input[type=checkbox]').attr('disabled',false);
+
+                    $('select').attr('disabled',true);
+
+                    $('button').attr('disabled',true);
+
+                </script>
+
+                {/if}
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</section>
+
+
+
+{include file="public/footer-login" /}
+
+
+
+<script src="/static/js/jSignature.js"></script>
+
+<script src="/static/js/jSignature.CompressorBase30.js"></script>
+
+<script src="/static/js/jSignature.CompressorSVG.js" type="text/javascript" charset="utf-8"></script>
+
+<script src="/static/js/jSignature.UndoButton.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        var arguments = {
+
+            width: '100%',
+
+            height: '150px',
+
+            cssclass: 'zx11',
+
+            signatureLine: false,//去除默认画布上那条横线
+
+            lineWidth: '2'
+
+        };
+
+        $("#signature").jSignature(arguments);
+
+
+
+        $('.Us_clear').click(function () {
+
+            $("#signature").jSignature("reset");
+
+        });
+
+    });
+
+
+
+    layui.use(['form'], function(){
+
+        var form = layui.form;
+
+
+
+        form.verify({
+
+            required: function(value) {
+
+                if (value == '') {
+
+                    return 'Required can\'t be empty'
+
+                }
+
+            },
+
+        });
+
+
+
+        $('.savevvv').click(function () {
+
+            var chk = $("#privacy-policy").prop("checked");
+
+            var chk2 = $("#privacy-policy2").prop("checked");
+
+            var cavs = $('#signature').find('canvas')[0].toDataURL("image/png");
+
+            $('#sign_img').val(cavs);
+
+            if(chk&&chk2){
+
+                var h= $(this).attr('lay-filter');
+
+
+
+                $.ajax({
+
+                    type:"post",
+
+                    url:"/user_order_sign",
+
+                    async:false,
+
+                    data:$('.layui-form').serializeArray(),
+
+                    success:function (result) {
+
+                        if (result.code==1) {
+
+                            if(h=="save2"){
+
+                                //console.log(h)
+
+                                window.location.href=result.url;
+
+                            }else {
+
+                                window.location.href="/applications_info/id/{$order.app_id}";
+
+                            }
+
+                        } else{
+
+                            layer.open({
+
+                                title: 'error提示'
+
+                                ,content: result.msg
+
+                            });
+
+                        }
+
+                    },
+
+                    error:function (result) {
+
+                        layer.msg(result.msg)
+
+                    }
+
+                });
+
+                //window.location.href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort+1])}"
+
+            }else {
+
+                layer.msg("Need to agree terms")
+
+            }
+
+        });
+
+    });
+
+</script>
+
+
+
+</body>
+
+</html>

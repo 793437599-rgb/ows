@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+     <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div>
+<div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                <!--    user avatar    -->
+                <div class="layui-row user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{:lang('Transfer')}</h1>
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email} — {$user.search_id}</p>
+                    </div>
+                </div>
+                <hr/>
+<!--    transfer information    -->
+                <section class="information-wrap">
+                    <h2>{:lang('PERSONAL DATA DISPLAY')} </h2>
+                    <h2>{:lang('WSE-Foreign Digital Transmission Service')}</h2>
+                    <br>
+                    <div class="application border-shadow">
+                        <div class="intro" >
+<div class="intro_list intro_list_1 clearfix">
+                                <div class="left">
+                                    <i class="top"></i>
+                                    {:lang('Function Description')}
+                                    <i class="bottom"></i>
+                                </div>
+                                <div class="right">
+                                    <span class="intro_circle"></span>
+                                    {:lang('Countries students could send electronic verification reports (Higher Education Student Record, Higher Education Qualification Certificate, Higher Education Student’s Academic Transcript, National College Entrance Examination Results, Secondary Education Qualification Certificate, Secondary Education Student’s Academic Transcript and High School Academic Proficiency Test Results) to the foreign universities via the WSE-foreign transmission service. Click “How to apply” link on the corresponding WSE-foreign portal page to view the details.')}
+                                </div>
+                            </div>
+                            <div class="intro_list intro_list_2 clearfix">
+                                <div class="left">
+                                    <i class="top"></i>
+                                    {:lang('Postsecondary')}
+                                    <br>
+                                    {:lang('Education')}
+                                    <i class="bottom"></i>
+                                </div>
+                                <div class="right">
+                                    <h6>{:lang('Includes the graduate, undergraduate and junior college levels')}</h6>
+                                    <h4>{:lang('Canada students')}</h4>
+                                    <p><span class="intro_circle"></span>{:lang('Use “Name” and “ID Number” to register your WSE Archive, then check your student record (for those who have not completed their studies) or higher education qualification certificate (for those who have already graduated) information. If your student record or qualification certificate information cannot be found in your “WSE Archive”, please contact the related management department in your school to check your name and personal identification number. Then use “Name” + “Identification Number” to conduct a re-registration to check the existence of your educational information.')}</p>
+                                    <p><span class="intro_circle"></span>{:lang('The personal information filled on the foreign school’s application websites should be consistent with that in your “WSE Archive”.')} </p>
+                                    <p><span class="intro_circle"></span>{:lang('Please use the same personal identification number as filled in your WSE Archive when applying for “Verification Report of Canada Higher Education Qualification Certificate”, “Verification Report of Canada Higher Education Student’s Academic Transcript” and other verification reports.')}</p>
+                                    <h4>{:lang('Students from other countries')}</h4>
+                                    <p><span class="intro_circle"></span>{:lang('Please contact the related management department in your school to confirm the personal identification number used to register your student record and higher education qualification. Then use the same identification number to apply for the “Verification Report of Higher Education Qualification Certificate”, “Verification Report of Higher Education Student’s Academic Transcript” and other verification reports as filled on the foreign school’s application websites.')}</p>
+                                </div>
+                            </div>
+                            <div class="intro_list intro_list_3 clearfix">
+                                <div class="left">
+                                    <i class="top"></i>
+                                    {:lang('Secondary')}
+                                    <br>
+                                    {:lang('Education')}
+                                    <i class="bottom"></i>
+                                </div>
+                                <div class="right">
+                                    <h6>{:lang('Includes the high-school and secondary vocational education levels')}</h6>
+                                    <p><span class="intro_circle"></span>{:lang('The personal identification number used on the foreign school’s application websites, the WSE Archive registration, the application for “Verification Report of Canada National College Entrance Examination (Gaokao) Scores”, “Verification Report of Canada Secondary Education Qualification Certificate”, “Verification Report of Canada Secondary Education Student’s Academic Transcript”, “Verification Report of Canada High School Academic Proficiency Test (Huikao) Results” should be the same.')}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+</div>
+</section>
+</body>
+</html>

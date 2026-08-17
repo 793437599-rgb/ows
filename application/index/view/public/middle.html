@@ -1,0 +1,41 @@
+<div class="edu-gd">
+    <div class="edu-gdmian">
+        <div class=" cen-tit">
+            <h3><i class="fa fa-compass"></i> <span>{:lang('International Education Guides')}</span></h3>
+        </div>
+        <ul>
+        	
+            {volist name='topList2' id='data'}
+            <li class="edu-gd-list">
+                <a href="/news?id={$data.id}">
+                    <img src="{$data.thumb}" />
+                    <div class="edu-gdel">
+                        <h3>{$data.nation}</h3>
+                        <p>{$data.title}</p>
+                    </div>
+                </a>
+            </li>
+            {/volist}
+            
+            
+        </ul>
+    </div>
+</div>
+<div class="oth-adv">
+	<div class="main-with cen-tit">
+        <h3><i class="fa fa-mortar-board"></i> <span>GRADUATION CEREMONY</span></h3>
+    </div>
+    <ul>
+        {volist name="slide[0]" id="data"}
+            <li>
+                <a href="{$data.link}" target="{$data.target}">
+                    <img src="{$data.image}" />
+                    <div class="oth-mark">
+                    	<img src="/canada/images/2019-icon.png"/>
+                        <h3><p>{$data.name}</p> <span>{$data.description}</span> </h3>
+                    </div>
+                </a>
+            </li>
+        {/volist}
+    </ul>
+</div>

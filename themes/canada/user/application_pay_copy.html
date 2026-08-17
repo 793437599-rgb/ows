@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>{:lang('Application Lists')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/user.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/mobile.css"/>
+     <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <style >
+        .Uf_pay label img {
+            height: 60px;
+        }
+    </style>
+</head>
+<body>
+{include file="public/header-user" /}
+
+<style>
+    .Ua_box .layui-col-sm6:first-child {
+        background-color: #F1F1F1;
+    }
+    .Ua_box .layui-col-sm6:nth-child(2) {
+        background-color: #DEDEDE;
+    }
+    .Ua_box .layui-col-sm6 {
+        padding: 20px;
+        min-height: 350px;
+    }
+    .Ua_box h3 {
+        font-weight: bold;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+    .Ua_box h4 {
+        font-weight: bold;
+        font-size: 16px;
+    }
+    .Ua_box ul {
+        margin-bottom: 10px;
+        border-bottom: 1px solid #333;
+    }
+    .Ua_box li {
+        margin-bottom: 10px;
+    }
+    .Ua_box .layui-col-sm6:nth-child(2) span {
+        float: right;
+    }
+	.Uf_pay{
+		width: 100%;
+		margin: 30px 0;
+	}
+    .Up_pay {
+        width: 255px;
+        margin: 30px 0;
+    }
+
+</style>
+
+<section class="mainContent">
+    <div class="layui-container">
+
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-sm2">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                <!--    user avatar    -->
+                <div class="layui-row user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{:lang('Application Lists')}</h1>
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email}— {$user.search_id}</p>
+                    </div>
+                </div>
+                <hr/>
+                <!-- application order -->
+                <div class="layui-row layui-form Ua_box">
+                    <div class="layui-col-sm6">
+                        <h3>{:lang('Application Lists')}</h3>
+                        <label>{:lang('Selection Application')}</label>
+                        {foreach name="order" item="vo"}
+                        <div class="buttons">
+                            <input type="checkbox" lay-filter="ccccc" name="application[]"  value="{$vo.id}" lay-skin="primary" title='{switch name="$Think.cookie.think_var"}
+                            {case value="en-us"}{$vo.name_en}{/case}
+                            {case value="zh-cn"}{$vo.app_name}{/case}
+                            {case value="ja-jp"}{$vo.name_jp}{/case}
+                            {case value="de-de"}{$vo.name_de}{/case}
+                            {case value="ko-kr"}{$vo.name_kr}{/case}
+                            {case value="ru-ru"}{$vo.name_ru}{/case}
+                            {case value="fr-fa"}{$vo.name_fa}{/case}
+                            {/switch}'>
+                            <input type="hidden" class="order_id" value="{$vo.id}">
+                            <input type="hidden" class="basic_fee" value="{$vo.basic_fee}">
+                            <input type="hidden" class="copy_fee" value="{$vo.copy_fee}">
+                            <input type="hidden" class="copy_number" value="{$vo.copy_number}">
+                            <input type="hidden" class="send_for" value="{$vo.send_for}">
+                            {notempty name="$vo['third_send']"}
+                            <input type="hidden" class="third_send" value="{$vo.third_send}">
+                            {/notempty}
+                            {notempty name="$vo['other_third_fee']"}
+                            <input type="hidden" class="other_third_fee" value="{$vo.other_third_fee}">
+                            {/notempty}
+                        </div>
+                        {/foreach}
+                        <!--<div class="buttons">
+                            <input type="checkbox" name="application" lay-skin="primary" title="{:lang('application 5')}">
+                        </div>-->
+                    </div>
+                    <div class="layui-col-sm6">
+                        <h3>{:lang('Fee')}</h3>
+                        <ul class="Up_cost_list">
+
+                        </ul>
+                        <h4>{:lang('Total')}: <span class="ttt">0</span><span>$</span></h4>
+                    </div>
+                    <div class="Uf_pay">
+                        <label class="Uf_paylist" for="pay-1">
+                            <div class="Uf_check">
+                                <input type="radio" id="pay-1" name="pay" value=""/>
+
+                            </div>
+                            <img src="/static/images/pay_Google.png">
+                        </label>
+                        <label class="Uf_paylist" for="pay-2">
+                            <div class="Uf_check">
+                                <input type="radio" id="pay-2" name="pay" value=""/>
+                            </div>
+                            <img src="/static/images/pay_pal.png">
+                        </label>
+                        <label class="Uf_paylist" for="pay-3">
+                            <div class="Uf_check">
+                                <input type="radio" id="pay-3" name="pay" value=""/>
+                            </div>
+                            <img src="/static/images/pay_apple.png">
+                        </label>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="user_btn_box Up_pay" id="paypal-button-container">
+                        <button class="layui-btn" lay-submit lay-filter="pay"  type="button">{:lang('Pay')}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{include file="public/footer-login" /}
+<!--<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>-->
+<script>
+    layui.use(['form'], function () {
+        var form = layui.form;
+        form.on('checkbox(ccccc)', function(data){
+            //console.log(data.elem.checked); //是否被选中，true或者false
+            var order_id = $(this).siblings('.order_id').val();
+            if(data.elem.checked){
+                var basic_fee = $(this).siblings('.basic_fee').val()*1;
+                var copy_fee = $(this).siblings('.copy_fee').val()*1;
+                var copy_number = $(this).siblings('.copy_number').val()*1;
+                var send_for = $(this).siblings('.send_for').val()*1;
+                basic_fee=isNaN(basic_fee)?0:basic_fee;
+                copy_fee=isNaN(copy_fee)?0:copy_fee;
+                copy_number=isNaN(copy_number)?0:copy_number;
+                send_for=isNaN(send_for)?0:send_for;
+                $('.Up_cost_list').append('<li class="order_id'+order_id+'" id="basic_fee'+order_id+'">'+$(this).attr('title')+':<span>$'+basic_fee+'+13%HST</span></li>');
+                $('.Up_cost_list').append('<li class="order_id'+order_id+'" id="copy_fee'+order_id+'">Duplicate Copies Of Additional Fee:<span>$'+copy_fee+'*'+copy_number+'+13%HST</span></li>');
+                $('.Up_cost_list').append('<li class="order_id'+order_id+'" id="send_for'+order_id+'">Delivery Type Of Additional Fee:<span>$'+send_for+'+13%HST</span></li>');
+
+                if($(this).siblings('.third_send').length>0){
+                    var third_send = $(this).siblings('.third_send').val()*1;
+                    third_send=isNaN(third_send)?0:third_send;
+                    $('.Up_cost_list').append('<li class="order_id'+order_id+'" id="'+order_id+'">Third Party Delivery Type Of Additional Fee:<span>$'+third_send+'+13%HST</span></li>');
+                }else {
+                    var third_send = 0;
+                }
+                if($(this).siblings('.other_third_fee').length>0){
+                    var other_third_fee = $(this).siblings('.other_third_fee').val()*1;
+                    other_third_fee=isNaN(other_third_fee)?0:other_third_fee;
+                    $('.Up_cost_list').append('<li class="order_id'+order_id+'" id="'+order_id+'">Other Third Party Delivery Type Of Additional Fee:<span>$'+other_third_fee+'+13%HST</span></li>');
+                }else {
+                    var other_third_fee = 0;
+                }
+                var total_n = (basic_fee + send_for + third_send + other_third_fee + copy_fee * copy_number) * 1.13;
+                // total_n = Math.round(total_n*100);
+                // total_n = total_n/100;
+                $('.Up_cost_list').append('<input type="hidden" id="order_id'+order_id+'" value="'+total_n+'" >');
+                //console.log(total_n);
+
+                var total = $('.ttt').text()*1;
+                total=isNaN(total)?0:total;
+
+                var ted = total+total_n;
+                ted = Math.round(ted*100);
+                ted = ted/100;
+                //console.log(ted);
+                $('.ttt').text(ted);
+            }else {
+                var order_fee = $('#order_id'+order_id).val()*1;
+                order_fee=isNaN(order_fee)?0:order_fee;
+                var total = $('.ttt').text()*1;
+                total=isNaN(total)?0:total;
+                var ted = total-order_fee;
+                ted = Math.round(ted*100);
+                ted = ted/100;
+                $('.ttt').text(ted);
+                $('.order_id'+order_id+'').remove();
+            }
+        });
+            // paypal.Buttons({
+            //     createOrder: function() {
+            //         let create_url = '{:url("index/pay/createOrder")}';
+            //         // This function sets up the details of the transaction, including the amount and line item details.
+            //         // 67
+            //         return fetch(create_url).then(function (res) {
+            //             console.log(res.json());
+            //         }).then(function (data) {
+            //             console.log(data);
+            //         })
+            //     }
+            // }).render('#paypal-button-container');
+        form.on('submit(pay)', function(data){
+            let init = data.field['application[0]'];
+            if (init == null || init == ''){
+                layer.msg('Please select at least one application');
+                return;
+            }
+            $.ajax({
+                url:'{:url("index/pay/createOrder")}',
+                type:'post',
+                data:{order_no:'EI1446031591862118'},
+                dataType:'json',
+                success:function (res) {
+                    if (res.code == 1){
+                        location.href = res.paypal_url;
+                    }else {
+                        layer.msg(res.msg,{icon:0});
+                    }
+                },
+                error:function () {
+                    layer.msg('The system is busy, please try again later');
+                }
+            })
+
+        })
+    })
+    $('.Ua_box .layui-col-sm6:first-child').height($('.Ua_box .layui-col-sm6:nth-child(2)').height());
+</script>
+</body>
+
+</html>

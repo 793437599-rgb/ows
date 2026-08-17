@@ -1,0 +1,68 @@
+<div class="news-rt">
+                <div class="news-left">
+                    <h3><i class="fa fa-fire"></i>{:lang('24-hour Hot Paper')}</h3>
+                    <ul class="ns-box">
+                        {volist name="reading" id="data"}
+                            <li>
+                                <a href="/news?id={$data.id}">
+                                    <h4><span></span>{$data.title}</h4>
+                                </a>
+                            </li>
+                        {/volist}                        
+                    </ul>
+                </div>
+                <div class="news-left">
+                    <h3><i class="fa fa-compass"></i>{:lang('International Education Guides')}</h3>
+                    <ol>
+                        <li class="news-cur">
+                            <a href="/news?id=13">
+                                 <img src="/canada/images/country2.png" />
+                                <p>UK</p>
+                            </a>
+                        </li>
+                        <li class="news-cur">
+                            <a href="/news?id=14">
+                                <img src="/canada/images/country4.png" />
+                                <p>USA</p>
+                            </a>
+                        </li>
+                        <li class="news-cur">
+                            <a href="/news?id=15">
+                                <img src="/canada/images/country1.png" />
+                                <p>CHINA</p>
+                            </a>
+                        </li>
+                        <li class="news-cur">
+                            <a href="/news?id=16">
+                                <img src="/canada/images/australia.png" />
+                                <p>Australia</p>
+                            </a>
+                        </li>
+                        <li class="news-cur">
+                            <a href="/news?id=17">
+                                <img src="/canada/images/canada.png" />
+                                <p>Canada</p>
+                            </a>
+                        </li>
+                        <li class="news-cur">
+                            <a href="/news?id=18">
+                                <img src="/canada/images/japan.png" />
+                                <p>Japan</p>
+                            </a>
+                        </li>
+                        <li class="news-cur">
+                            <a href="/news?id=19">
+                                 <img src="/canada/images/country3.png" />
+                                <p>Korea</p>
+                            </a>
+                        </li>
+                        <li class="news-cur">
+                            <a href="/news?id=20">
+                                 <img src="/canada/images/france.png" />
+                                <p>France</p>
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+
+</div>

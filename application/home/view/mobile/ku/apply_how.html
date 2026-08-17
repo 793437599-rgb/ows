@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>CANADA.EDUCATION DATA</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Keywords" content=""/>
+    <meta name="Description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <script src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <link rel="stylesheet" type="text/css" href="/canada/css/mobile.css"/>
+</head>
+<body>
+
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'>
+        <a class="hd-logo" href="/">
+            <img src="/canada/images/logo.png"/>
+        </a>
+        <div class="infor-off">
+            <a href="/logout">
+                <img src="/canada/images/off-icon.svg"/>
+                <span>Exit</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<section class="information-wrap">
+    <h2>PERSONAL DATA DISPLAY</h2>
+    <div class="information transcript">
+        <div class="header">
+            <div class="img-box">
+                <img src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"'/>
+            </div>
+            <div class="info">
+                <h3>{$info.name}</h3>
+            </div>
+
+            <ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a href="/info/edu_id/{$v.id}">Information</a>
+                        </li>
+                        <li><a href="/transcript/edu_id/{$v.id}">Transcript</a></li>
+                    </ol>
+                </li>
+
+                {/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/info">Information</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+
+                <li><a href="/transfer">TRANSFER</a></li>
+
+
+            </ul>
+
+        </div>
+    </div>
+    <div class="infor-right">
+        <div class="application border-shadow">
+            <div class="apply clearfix">
+                <h3>Application and Electronic Delivery Instruction</h3>
+
+                <div class="apply_main clearfix">
+                    <div class="apply_main_left">
+                        <div class="left_top">
+                            <h4>Apply Online Verification Report</h4>
+                            <a>Sample</a>
+                        </div>
+                        <div class="left_bottom"></div>
+                        <div class="clearfix">
+                            <div class="left_l">
+                                <span class="one"></span>
+                                <span class="arrow_1"></span>
+                                <span class="two"></span>
+                                <span class="arrow_2"></span>
+                                <span class="three"></span>
+                            </div>
+                            <div class="left_r">
+                                <div class="one">
+                                    <h5>Log into "CA UNIVERSITY"</h5>
+                                    <p>If you can’t get an online verification report for your qualification here, please go to
+                                        Online Application Platform</p>
+                                </div>
+                                <div class="two">
+                                    <h5>Go to "International Cooperative Application" column</h5>
+                                    <p>Choose English Translation and make payment online</p>
+                                </div>
+                                <div class="three">
+                                    <h5>Verification completed</h5>
+                                    <p>View your verification report online</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="apply_main_right">
+                        <div class="left_top">
+                            <h4>Apply Verification Report</h4>
+                            <a>Sample</a>
+                        </div>
+                        <div class="left_bottom"></div>
+                        <div class="clearfix">
+                            <div class="left_l">
+                                <span class="one"></span>
+                                <span class="arrow_1"></span>
+                                <span class="two"></span>
+                                <span class="arrow_2"></span>
+                                <span class="three"></span>
+                            </div>
+                            <div class="left_r">
+                                <div class="one">
+                                    <h5>Go to "Online Application Platform"</h5>
+                                    <p>Click "Start an application"</p>
+                                </div>
+                                <div class="two">
+                                    <h5>Enter into "Start an application" column</h5>
+                                    <p>Make payment online</p>
+                                    <p>Wait for the verification result (About one month to complete the entire verification
+                                        process)</p>
+                                </div>
+                                <div class="three">
+                                    <h5>Verification completed</h5>
+                                    <p>View your verification report online
+                                        Relog into "CA UNIVERSITY"</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="apply_main_arrow_1">
+                        <span></span>
+                    </div>
+                    <div class="apply_main_arrow_2">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="apply_btm">
+                    Go to “International Cooperative Application” under “CA UNIVERSITY” to send reports to your applied university.
+                    <a class="send_report">Send Report</a>
+                </div>
+                <p class="apply_text">（Flowchart of Cooperative Application）</p>
+                <div class="note">
+                    <p>Firstly complete the online college application according to CollegeNET’s requirement. Then follow the instructions below to apply for verification report(s) and submit to U.S. universities through the CA UNIVERSITY—CollegeNET Portal Service.</p>
+                    <ol class="listOl">
+                        <li class="fontB">STEP 1: <a>REGISTER</a> a CA UNIVERSITY ACCOUNT</li>
+                        <li><span class="fontB">STEP 2: APPLY FOR YOUR REPORT(S)</span>
+                            <ol class="listOl2">
+                                <li><span class="fontB">1.Log in to the&nbsp;CA UNIVERSITY Website, choose&nbsp;“International Cooperative Application”;</span>
+                                </li>
+                                <li>
+                                    <span class="fontB">2.Select translation types: </span>
+                                    <ol class="listOl3">
+                                        <li>Online Verification Report for Higher Education Student Record;</li>
+                                        <li>Online Verification Report for Higher Education Qualification;</li>
+                                        <li>Verification Report of China Higher Education Qualification Certificate;</li>
+                                        <li>China Higher Education Degree Certificate Information (Translation).</li>
+                                    </ol>
+                                </li>
+                                <li>
+                                    <span class="fontB">Other Verification Reports</span>
+                                    <ol class="listOl3">
+                                        <li>Go to <a>Online Application Platform</a> to apply for required verification report(s);</li>
+                                        <li>For Chinese degree verification please go to CDGDC.</li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </li>
+                        <li><span class="fontB">STEP 3: DELIVER YOUR REPORT(S)</span>
+                            <ol class="listOl3">
+                                <li>Log in to&nbsp;<a>CA UNIVERSITY Archive</a>&nbsp;and choose "International Cooperative Application", click “Send Report(s)”;</li>
+                                <li>Select country and university from drop-down list, and enter the requested personal information;</li>
+                                <li>Select report(s) that you wish to send, confirm and send.</li>
+                            </ol>
+                        </li>
+                    </ol>
+                    <p><b>Note: Pricing of CA UNIVERSITY's Verification Reports</b></p>
+                    <br>
+                    <p>Contact: (+1) 902-806-6666</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="table-bg"></div>
+</section>
+
+
+<div class="infor-ft">
+    <a href="#">Home</a>&nbsp;|&nbsp;
+    <span>Copyright © Canada education data</span>
+</div>
+
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+
+</script>
+
+</body>
+</html>

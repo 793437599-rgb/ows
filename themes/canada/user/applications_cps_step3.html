@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('IPG: Canadian Pharmacy Skills (CPS) 1 Application')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+     <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class=" layui-form">
+<div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+<!--    user avatar    -->
+                <div class="layui-row user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{switch name="$Think.cookie.think_var"}
+                            {case value="en-us"}{$order.name_en}{/case}
+                            {case value="zh-cn"}{$order.app_name}{/case}
+                            {case value="ja-jp"}{$order.name_jp}{/case}
+                            {case value="de-de"}{$order.name_de}{/case}
+                            {case value="ko-kr"}{$order.name_kr}{/case}
+                            {case value="ru-ru"}{$order.name_ru}{/case}
+                            {case value="fr-fa"}{$order.name_fa}{/case}
+                            {/switch}</h1>
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email}— {$user.search_id}</p>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <div class="steps-card">
+                            <h3>{:lang('Required Steps')}</h3>
+                            <div class="step-arrow-box">
+                                {foreach name="app_step" item="vo"}
+                                <a href="{$vo.sort}">
+                                    {if condition="in_array($vo.id,$step_ok)"}
+                                    <div class="step-arrow-wrap step-arrow-complete">
+                                        {else}
+                                        <div class="step-arrow-wrap">
+                                            {/if}
+                                            <div class="step-arrow-left">
+                                                <div class="arrow-1"></div>
+                                                <div class="arrow-2"></div>
+                                            </div>
+                                            <div class="step-arrow-center">
+                                                <span class="layui-hide-xs">
+                                                {$vo.sort}. {switch name="$Think.cookie.think_var"}
+                                                {case value="en-us"}{$vo.step_en}{/case}
+                                                {case value="zh-cn"}{$vo.step_name}{/case}
+                                                {case value="ja-jp"}{$vo.step_jp}{/case}
+                                                {case value="de-de"}{$vo.step_de}{/case}
+                                                {case value="ko-kr"}{$vo.step_kr}{/case}
+                                                {case value="ru-ru"}{$vo.step_ru}{/case}
+                                                {case value="fr-fa"}{$vo.step_fa}{/case}
+                                                {/switch}
+                                            </span>
+                                                <span class="layui-hide-sm">{$vo.sort}</span>
+                                            </div>
+                                            <div class="step-arrow-right">
+                                                <div class="arrow-1"></div>
+                                                <div class="arrow-2"></div>
+                                            </div>
+                                        </div>
+                                </a>
+                                {/foreach}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+<!--    steps    -->
+                <div class="layui-row steps">
+                    <div class="layui-col-sm12">
+                        <h3>{:lang('PROVIDE CONSENT')}</h3>
+                        <p>{:lang('Applicant Agreement and Consent')}</p>
+                        <hr/>
+                        <h5>{:lang('Agreement Part')} 1</h5>
+                        <ol>
+                            <li>{:lang('I hereby certify that ALL information contained in this application is correct and complete.')}</li>
+                            <li>{:lang('I understand that by submitting this application and paying the fees I am confirming I meet all minimum admission requirements for the International Pharmacy Graduate (IPG) Program.')}</li>
+                            <li>{:lang('The name shown on the application is the complete name by which I am legally and correctly known.')}</li>
+                            <li>{:lang('Any misrepresentation of this data may result in cancellation of my application, admission or registration to the International Pharmacy Graduate Program.')}</li>
+                            <li>{:lang('I understand that it my responsibility to submit all admission required documents by their required date, failure to do so may result in my admission offer being revoked.')}</li>
+                            <li>{:lang('I understand that the IPG Program will provide my name and verify the admission requirements of identity, status, Fluency and PEBC Evaluating Examination results with, as well as provide course results to, the Ontario College of Pharmacists, or other relevant provincial regulatory College.')}</li>
+                            <li>{:lang('I understand that the information provided on this form, and throughout the application process, is necessary for WSE and Leslie Dan Faculty of Pharmacy for processing application, compiling general statistical information, and administering any and all programs and processes under the auspices of WSE and Leslie Dan Faculty of Pharmacy.')}</li>
+                        </ol>
+                        <div class="form-group">
+                            <p><b>{:lang('Do you consent to all of the items listed above?')}</b><span class="necessary">*</span></p>
+                            <input type="radio" name="consentAll" value="" title="{:lang('I Consent')}" >
+                        </div>
+                        <h5>{:lang('Agreement Part')} 2</h5>
+                        <h3>{:lang('Explanation of Confirmation of Registration and Acceptance')}</h3>
+                        <p>{:lang('The Confirmation of Registration and Acceptance document is issued for the purposes of obtaining a visa to study in Canada.   It is not confirmation that you have been admitted into the IPG program.  To be admitted into the program you must meet the minimum requirements.')}</p>
+                        <p>{:lang('Upon submission of this online application, your application will be reviewed to confirm that you meet minimum requirements. You will be contacted once your application is approved or denied. If you do not meet minimum requirements, your tuition fee will be refunded to you.')}</p>
+                        <ol>
+                            <li>{:lang('Please confirm that you understand the purpose of the Confirmation of Registration and Acceptance letter and that admission into the IPG Program is only confirmed once your application has been approved.')}</li>
+                        </ol>
+                        <div class="form-group">
+                            <p><b>{:lang('Do you confirm you understand the purpose of the Confirmation of Registration and Acceptance letter.')}</b><span class="necessary">*</span></p>
+                            <input type="radio" name="consentAll" value="" title="{:lang('I Confirm')}" >
+                        </div>
+<!--    jSignature    -->
+                        <h5>{:lang('I agree to upload my information to WSE')}</h5>
+                        <h5>{:lang('Sign here with your mouse or finger')}</h5>
+                        <div class="Us_box layui-row">
+                            <div class="Us_sign layui-col-sm12" id="signatureparent">
+                                {if condition="!empty($order['sign_img'])"}
+                                <div class="sign-img"><img src="{$order.sign_img}"></div>
+                                {else}
+                                <div id="signature"></div>
+                                {/if}
+                            </div>
+                            <button class="layui-btn layui-btn-primary Us_clear" type="button">
+                                {:lang('Clear signature')}
+                            </button>
+                        </div>
+                        <form class="layui-form" id="form-sign">
+                            <div class="form-group">
+                                <p><b>{:lang('Signature content')}</b><span>*</span></p>
+                                <input type="hidden" name="sort" value="{$sort}">
+                                <input type="hidden" name="user_order_id" value="{$order.id}"/>
+                                <input type="text" name="sign_name" value="{$order.sign_name}" class="form-input" lay-verify="required">
+                                <input type="hidden" name="sign_img" id="sign_img" value=""/>
+                            </div>
+                        </form>
+                        <div class="form-group">
+                            <input type="checkbox" name="" lay-skin="primary" title=" * {:lang('I am proof that I am the above individual in accordance with the law and I have the right to take this action.')}">
+                        </div>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <a class="layui-btn layui-btn-primary savevvv"  lay-submit lay-filter="save">{:lang('Save This Page')}</a>
+                        <a href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort-1])}" class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+                        <br/>
+                        <br/>
+                        <a class="layui-btn layui-btn-primary savevvv" lay-submit lay-filter="save">{:lang('Save and Finish Later')}</a>
+                        <a href="/application_pay" class="layui-btn mazarine right savevvv" lay-submit lay-filter="save2">{:lang('Submit Application')}</a>
+                        <hr/>
+                    </div>
+                </div>
+</div>
+        </div>
+</div>
+</section>
+<script src="/static/js/jSignature.js"></script>
+<script src="/static/js/jSignature.CompressorBase30.js"></script>
+<script src="/static/js/jSignature.CompressorSVG.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/jSignature.UndoButton.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(document).ready(function () {
+var arguments = {
+            width: '100%',
+            height: '150px',
+            cssclass: 'zx11',
+            signatureLine: false,//去除默认画布上那条横线
+            lineWidth: '2'
+        };
+        $("#signature").jSignature(arguments);
+$('.Us_clear').click(function () {
+            $("#signature").jSignature("reset");
+        });
+    });
+layui.use(['form'], function(){
+        var form = layui.form;
+form.verify({
+            required: function(value) {
+                if (value == '') {
+                    return '{:lang("Required cannot be empty")}'
+                }
+            },
+        });
+    });
+</script>
+</body>
+</html>

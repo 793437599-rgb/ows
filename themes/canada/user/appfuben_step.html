@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('WSE-DAE for General Use')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class=" layui-form">
+<div class="layui-row">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                {include file="public/_app_dae_steps"}
+                <div class="layui-row steps">
+                    <div class="layui-col-sm12">
+                        <h3>{:lang('Copy Application and Instructions for Use')}</h3>
+                        <p>{:lang('Please read and understand the description and related agreement content')}</p>
+                        <hr/>
+                        <ul>
+                            <li>{:lang('Once the copy application is submitted, it will be irrevocable;')}</li>
+                            <li>{:lang('Copies of documents must not be used for purposes that violate laws and regulations;')}</li>
+                            <li>{:lang('Copies of documents are subject to terms and conditions and privacy policy;')}</li>
+                            <li>{:lang('Authorize WSE to prepare and print a copy of your information;')}</li>
+                            <li>{:lang('Authorize WSE to mail a copy of our information to the following address:')}</li>
+                        </ul>
+                        <!--<p>{:lang('Student No')}:  {$order.student_id}</p>
+                        <p>{:lang('Degree Assessment Education')}</p>-->
+                        <p>&ensp;{$default_address.mail_nationality|default=''}  {$default_address.mail_province|default=''} {$default_address.mail_city|default=''}</p> 
+                        <p>&ensp;{$default_address.address}</p>
+                        <p>&ensp;{$default_address.zip}</p> 
+                        <p>&ensp;{$default_address.addressee}</p>
+                        <p>&ensp;{$order.area_code} - {$default_address.mobile}</p> 
+                        <div class="form-group buttons">
+                            <input type="hidden" name="user_order_id" value="{$order.id}">
+                            <b><input type="checkbox" name="agreement" value="1" {eq name="$order.agreement" value="1"} checked {/eq} id="privacy-policy" lay-skin="primary" title="* {:lang('I have confirmed that the above shipping address information is accurate and authorize WSE to mail the assessment documents to the above address.')}"></b>
+                        </div>
+                    </div>
+                    <div class="layui-col-sm12">
+<!--                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save This Page')}</a>-->
+                        <a href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort-1])}" class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+                        <button  class="layui-btn mazarine right"  lay-submit lay-filter="sub">{:lang('Next Page')}</button>
+                        <br/>
+                        <br/>
+<!--                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save and Finish Later')}</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>   
+</section>
+<script>
+     layui.use(['form','layer'], function () {
+        var form = layui.form;
+        var layer = layui.layer;
+        form.on('submit(sub)', function (data) {
+            let param = data.field;
+            if (param.agreement == undefined || param.agreement == null || param.agreement == '') {
+                layer.tips('{:lang("Need to agree terms")}', $("#privacy-policy").siblings('.layui-form-checkbox').find('.layui-icon-ok'), {tips: [3, '#FF5722']})
+                return false;
+            }
+      
+            //window.location.href="/application_pay/{$order.order_number}";
+            $.post("{:url('/index/user/save_next_pay')}", param, function (result) {
+                if (result.code == 20000){
+                    window.location.href="/application_pay/{$order.order_number}";
+                }else {
+                    layer.msg(result.msg,{icon:5,time:1000});
+                }
+            });
+        })
+    });
+</script>
+</body>
+</html>

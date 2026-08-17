@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="create">
+			<form action="/update_ku" method="post">
+				
+				<table border="0" cellspacing="10" cellpadding="10">
+					<tr>
+						<td colspan="2" align="center">
+							<a href="/info" style="font-size: 0.3rem;">{:lang('Basic personal information')}</a>
+							<a href="/add_edu" style="margin: 10px;float: right;font-size: 0.2rem;">
+								{:lang('Edit degree')}
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td class="log-list" style="width: 30%;">
+							<label>{:lang('Username')}:</label>
+						</td>
+						<td class="log-list" style="50%">
+	  						<input id="username" type="text" value="{$ku.name}" name="name" placeholder="{:lang('Username')}"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="log-list">
+							<label>{:lang('Passport No')}:</label>
+						</td>
+						<td class="log-list">
+	  						<input id="password" type="text" value="{$ku.passport}" name="passport" placeholder="{:lang('Passport No')}"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="log-list" >
+							<label>{:lang('Reference')} ID:</label>
+						</td>
+						<td class="log-list">
+	  						<input id="reference_id" type="text" value="" name="reference_id" placeholder="{:lang('Reference')} ID"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="log-list" >
+							<label>{:lang('Sex')}:</label>
+						</td>
+						<td class="log-list">
+	  						<input type="radio" style="width: 10%;height: 20px;" name="sex" id="sex" value="0" checked="checked" />
+	  						<label>{:lang('Mr')}</label>
+	  						<input type="radio" style="width: 10%;height: 20px;margin-left: 10%;" name="sex" id="sex" value="1" />
+	  						<label>{:lang('lady')}</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="log-list" >
+							<label>{:lang('Email')}:</label>
+						</td>
+						<td class="log-list">
+	  						<input id="email" type="text" value="" name="email" placeholder="{:lang('Email')}"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="log-list" >
+							<label>{:lang('Birthdate')}:</label>
+						</td>
+						<td class="log-list">
+	  						<input id="birthdate" type="date" value="" name="birthdate" placeholder="{:lang('Birthdate')}"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="log-list" >
+							<label>{:lang('Address')}:</label>
+						</td>
+						<td class="log-list">
+	  						<input id="address" type="text" value="" name="address" placeholder="{:lang('Address')}"/>
+						</td>
+					</tr>
+					<tr>
+						<td class="log-list" >
+							<label>{:lang('Username')}:</label>
+						</td>
+						<td class="log-list">
+	  						<input id="username" type="text" value="" name="name" placeholder="{:lang('Username')}"/>
+						</td>
+					</tr>
+					<tr><td colspan="2" align="center">
+						<input type="submit" class="log-btn" value="{:lang('Update')}"/>
+						<a href="/info" style="font-size: 0.2rem;margin: 10px;float: right;">{:lang('Return personal information')}</a>
+					</td></tr>
+				</table>
+				
+			</form>
+		</div>
+	</body>
+</html>

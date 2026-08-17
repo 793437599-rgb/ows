@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>UNITED KINGDOM EDUCATION DATA</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/application.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/mobile.css"/>
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+</head>
+
+<body>
+
+    <header>
+        <div class="hd-line"></div>
+        <div class='hd-sear'>
+            <a class="hd-logo" href="/">
+                <img src="/canada/images/logo.png" />
+            </a>
+            <div class="infor-off">
+                <a href="/logout">
+                    <img src="/canada/images/off-icon.svg" />
+                    <span>{:lang('Exit')}</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section class="information-wrap">
+        <h2>{:lang('PERSONAL DATA DISPLAY')}</h2>
+        <div class="information transcript">
+            <div class="header">
+                <div class="img-box">
+                    <img src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"'/>
+                </div>
+                <div class="info">
+                    <h3>{$info.name}</h3>
+                </div>
+
+                <ul class="tab">
+                    {notempty name="edulist"}
+                    {foreach name="edulist" item="v"}
+                    <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                        <ol class="menu">
+                            <li><a href="/info/edu_id/{$v.id}">{:lang('Information')}</a></li>
+	                        <li><a href="/edit_edu/edu_id/{$v.id}">{:lang('Edit degree')}</a></li>
+	                        <li><a href="/transcript/edu_id/{$v.id}">{:lang('Transcript')}</a></li>
+	                        <li><a href="/edit_grade/edu_id/{$v.id}">{:lang('Edit grades')}</a></li>
+                        </ol>
+                    </li>
+
+                    {/foreach}
+                    {else /}
+                    <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                        <ol class="menu">
+                            <li><a class="infor-active" href="/info">{:lang('Information')}</a></li>
+                        </ol>
+                    </li>
+                    {/notempty}
+
+                    <li><a href="/transfer">{:lang('TRANSFER')}</a></li>
+
+
+                </ul>
+
+            </div>
+        </div>
+        <div class="infor-right">
+            <div class="application border-shadow">
+                <!--  选择机构 -->
+                <h2>{:lang('Select Institutions')}</h2>
+                <div class="progress-bars">
+                    <ul class="clearfix">
+                        <li class="li_1 active">{:lang('Select Institutions')}<i class="i_1"><i></i></i></li>
+                        <li class="li_2 ">{:lang('Select Report')}<i class="i_1"><i></i></i></li>
+                        <li class="li_3 ">{:lang('Confirm Report')}</li>
+                    </ul>
+                </div>
+                <div class="college_msg">
+                    <div class="title">1、{:lang('Please select the international organization that needs to send the report.')}</div>
+                    <div class="select_con">
+                        <div class="college_select">
+                            <a class="chosen_default">
+                                <span>{:lang('Please choose an international agency')}</span>
+                                <b></b>
+                            </a>
+                            <div class="chosen_drop">
+
+                                <ol class="chosen_results">
+                                    <li class="active_result ">
+                                        <img src="/canada/images/country4.png" alt="">
+                                        <span>{:lang('Educational Credential Evaluators, Inc. (ECE)')}</span>
+                                    </li>
+                                    <li class="active_result chosen_results_li_1">
+                                        <img src="/canada/images/country4.png" alt="">
+                                        <span>{:lang('Educational Perspectives')}</span>
+                                    </li>
+                                    <li class="active_result ">
+                                        <img src="/canada/images/country5.png" alt="">
+                                        <span>{:lang('Swedish Council for Higher Education/Universitets - och hogskoleradet (UHR)')}</span>
+                                    </li>
+                                    <li class="active_result ">
+                                        <img src="/canada/images/country1.png" alt="">
+                                        <span>{:lang('Chinese Service Center for Scholarly Exchange(CSCSE)')}</span>
+                                    </li>
+                                    <li class="active_result ">
+                                        <img src="/canada/images/country1.png" alt="">
+                                        <span>{:lang('China Abroad Student Information Service Network(CSCSS)')}</span>
+                                    </li>
+                                    <li class="active_result ">
+                                        <img src="/canada/images/country4.png" alt="">
+                                        <span>{:lang('World Education Services (WES)')}</span>
+                                    </li>
+                                    <li class="active_result other">
+                                        <span>{:lang('Sent to the designated agency(business or institution)')}</span>
+                                    </li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="select_input">
+                        <p>{:lang('Or enter an email address')}</p>
+                        <input type="email">
+                    </div>
+                </div>
+                <div class="select_college_1">
+                    <div class="college_msg">
+                        <div class="title">2、{:lang('Payment transfer fee')}</div>
+                        <div class="select_con">
+                        	{:lang('You need to pay for the transmission fee using the Irish Digital cooperation channel!')}
+                        	<a class="normal-link">{:lang('Payment transfer fee')}</a>
+                        </div>
+                        <div class="college_btn">
+                            <a class="green_btn" id="next">{:lang('Next')}</a>
+                            <a href="/transfer" class="gray_btn">{:lang('Cancel')}</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 选择报告 -->
+                <div class="select_report">
+                    <ul>
+                        <li>
+                            <div class="report_name">{:lang('Higher Education Student Status Verification Report')}</div>
+                            <div class="report_sel">
+                                <select name="">
+                                    <option value="" selected>{:lang('Peking University_Pharmacy_Master')}</option>
+                                    <option value="">{:lang('Peking University_Pharmacy_Bachelor')}</option>
+                                    <option value="">{:lang('Peking University_Pharmacy_Specialist')}</option>
+                                </select>
+                            </div>
+                        </li>
+                    </ul>
+
+                    <div class="college_btn">
+                        <a class="green_btn" id="second">{:lang('Next')}</a>
+                        <a href="/transfer" class="gray_btn">{:lang('Cancel')}</a>
+                    </div>
+                </div>
+
+                <!-- 确认报告 -->
+                <div class="select_check">
+                    <ul>
+                        <li>
+                            <div class="report_name">{:lang('The international agency you need to send')}：</div>
+                            <div class="report_option">{:lang('Educational Credential Evaluators, Inc.')}</div>
+                        </li>
+                        <li>
+                            <div class="report_name">{:lang('Personal information you entered')}：</div>
+                            <div class="report_option">
+                                <p><b>{:lang('Name')}：</b><span>xiaoming</span></p>
+                                <p><b>{:lang('Education')}：</b><span>Peking University_Pharmacy_Bachelor</span></p>
+                                <p><b>{:lang('Email')}：</b><span>123456789@163.com</span></p>
+                                <p><b>{:lang('Phone')}：</b><span>12345678901</span></p>
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="college_btn">
+                        <a class="green_btn" id="check">{:lang('Send')}</a>
+                        <a href="/transfer" class="gray_btn">{:lang('Cancel')}</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 发送成功 -->
+            <div class="send_success">
+                <img src="/canada/images/check.png" alt="">
+                <h3>{:lang('Your report has started to send')}</h3>
+                <p>{:lang('It will usually be sent within half an hour. If it is sent for a long time, please contact us.')}</p>
+                <div class="college_btn">
+                    <a href="/transfer" class="green_btn">{:lang('Back')}</a>
+                </div>
+            </div>
+        </div>
+        <div class="table-bg"></div>
+    </section>
+
+
+    <div class="infor-ft">
+        <a href="#">{:lang('Home')}</a>&nbsp;|&nbsp;
+        <span>Copyright © Canada education data</span>
+    </div>
+
+
+    <script>
+        $('.menu-down').click(function (e) {
+            e.stopPropagation();
+            $(this).children('.menu').toggle();
+            $(this).siblings().children('.menu').hide()
+        });
+        $(document).click(function () {
+            $('.menu').hide()
+        });
+
+    </script>
+    <script>
+        $(function () {
+            $('.chosen_default').click(function (e) {
+                e.stopPropagation();
+                if ($('.chosen_default b').hasClass("rotate")) {
+                    $('.chosen_default b').removeClass("rotate").addClass("rotate_1");
+                } else {
+                    $('.chosen_default b').removeClass("rotate_1").addClass("rotate");
+                }
+                if ($(".chosen_drop").is(":hidden")) {
+                    $(".chosen_drop").show();
+                    $('.active_result').click(function (e) {
+                        e.stopPropagation();
+                        $('.chosen_drop').hide();
+                        $('.chosen_default span').html($(this).html());
+                    });
+                } else {
+                    $(".chosen_drop").hide();
+                }
+            });
+    
+            $(document).click(function () {
+                $('.chosen_drop').hide()
+            });
+
+            $('.active_result').click(function () {
+                $('.select_input').hide();
+                $('.chosen_default b').removeClass("rotate_1").addClass("rotate");
+            });
+    
+            $('.other').click(function () {
+                $('.select_input').show();
+            });
+    
+            $('#next').click(function () {
+                $('.li_2').addClass('active').siblings().removeClass('active');
+                $('.college_msg').hide();
+                $('.select_report').show();
+            });
+            $('#next_1').click(function () {
+                $('.li_2').addClass('active').siblings().removeClass('active');
+                $('.college_msg').hide();
+                $('.select_report').show();
+            });
+            $('#second').click(function () {
+                $('.li_3').addClass('active').siblings().removeClass('active');
+                $('.select_report').hide();
+                $('.select_check').show()
+            });
+            $('#check').click(function () {
+                $('.application').hide();
+                $('.send_success').show();
+            });
+        })
+    
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,613 @@
+{__NOLAYOUT__}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" href="/canada/css/blockchain.css">
+    <link rel="stylesheet" href="/canada/css/header-new.css">
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap" rel="stylesheet">
+<script src="/canada/js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="/canada/js/waypoints.min.js"></script>
+    <!-- Particle line -->
+    <script src="/canada/js/particleground/jquery.particleground.min.js"></script>
+    <script src="/canada/js/particleground/jquery.particleground.js"></script>
+<style>
+        body {
+            background: rgba(3, 21, 50, 1);
+            background: linear-gradient(to bottom, rgba(3, 21, 50, 1) 0%, rgba(19, 50, 80, 1) 100%);
+            width: 100%;
+            height: 100%;
+        }
+.top01 {
+            background: none !important;
+        }
+.top02 {
+            background: none !important;
+            box-shadow: none !important;
+            border-bottom: none;
+        }
+.nav a.mmm {
+            color: #fff !important;
+        }
+.logo img {
+            height: auto !important;
+        }
+.hd-topfixed .top01 {
+            background-color: rgba(3, 21, 50, 1) !important;
+        }
+.hd-topfixed .top02 {
+            background-color: rgba(3, 21, 50, 1) !important;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="headdiv">
+            <div class="top01">
+                <div class="gy2">
+                    <!-- <span class="l">Welcome XXX to WSE</span>  xxx  -->
+                    <div class="top01_center">
+                    {notempty name="Think.session.user_id")}
+                        <a href="{$urlss}/index/user/log"><i class="fa fa-user"
+                                                         aria-hidden="true"></i>{$Think.session.user_id|getusername}
+                    </a>
+                        {else /}
+                        <a href="{$urlss}/index/user/log"><i class="fa fa-user" aria-hidden="true"></i> LOG IN</a>
+                        {/notempty}
+                    </div>
+                    <div class="langBox">
+                        <div><span>{:lang('English')}</span> <i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                        <ul>
+                            <li class="en">English</li>
+                            <li class="fr">Français</li>
+                            <li class="ja">日本語</li>
+                            <li class="cn">中文</li>
+                            <li class="ko">한국어</li>
+                            <li class="ru">Русский</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="top02">
+                <div class="top02_center">
+                    <div class="logo">
+                        <a href="{$urlss}/"><img src="/canada/images/logo-white.png" width="120" height="50"></a>
+                    </div>
+                    <!-- 导航 -->
+                    <div class="nav">
+                        <ul>
+                            <li id="m1" class="m on">
+                            <a href="{$urlss}/" class="aa1 mmm" id="sel">{:lang('Home')}</a>
+                            </li>
+                            <li id="m3" class="m">
+                            <a href="#" class="aa3 mmm">{:lang('Query Verification')} <i class="fa fa-angle-down"
+                                        aria-hidden="true"></i></a>
+                                <div class="sub">
+                                    <div class="nav_xiao">
+                                        <div class="xiao_five">
+                                            <img src="/canada/images/header-images/block-one.svg" alt="">
+                                        </div>
+                                        <div class="xiao_one ver-twobox">
+                                            <ul>
+                                                <li>
+                                                <a href="{:url('index/ku/index')}"><i class="iconfont icon-trascript"></i>{:lang('Certificate verification')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{:url('index/about/blockchain')}"><i class="iconfont icon-Blockchain"></i>{:lang('Blockcerts Universal Verifier')}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="m4" class="m">
+                            <a href="#" class="aa4 mmm">{:lang('Assessment Storage')} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <div class="sub">
+                                    <div class="nav_xiao">
+                                        <div class="xiao_five">
+                                            <img src="/canada/images/header-images/cr_img1.png">
+                                        </div>
+                                        <div class="xiao_five2">
+                                            <p>
+                                            <a href="{$urlss}/index/about/assessment"><i class="iconfont icon-about"></i>- {:lang('About Evaluation Storage')}</a>
+                                            <a href="{$urlss}/index/about/servicefees"><i class="iconfont icon-fees"></i>- {:lang('Services and Fees')}</a>
+                                            </p>
+                                            <p>
+                                            <a href="{$urlss}/index/about/degree"><i class="iconfont icon-Assessment"></i>- {:lang('Degree Assessed-General Application')}</a>
+                                            <a href="{$urlss}/index/about/dae"><i class="iconfont icon-report"></i>- {:lang('Degree Assessed-For Immigration')}</a>
+                                            </p>
+                                            <p>
+                                            <a href="{$urlss}/index/about/requestadditional"><i class="iconfont icon-fuben"></i>- {:lang('Request Additional Copies')}</a>
+                                            <a href="#"><i class="iconfont icon-data-transmission"></i>- {:lang('Data Transmission')}</a>
+                                            </p>
+                                            <p>
+                                            <a href="#"><i class="iconfont icon-qukuailian-"></i>- {:lang('Blockchain Storage Education')}</a>
+                                            <a href="{$urlss}/index/about/problemcenter"><i class="iconfont icon-problem"></i>- {:lang('Common Problem')}</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="m">
+                            <a href="#" class="aa4 mmm">{:lang('Institutional Storage')}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <div class="sub">
+                                    <div class="nav_xiao">
+                                        <div class="xiao_one">
+                                            <ul>
+                                                <li>
+                                                <a href="{$urlss}/index/about/institutional"><i class="iconfont icon-institution"></i>{:lang('About Institutional Storage')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{$urlss}/index/application/institutional_apply"><i class="iconfont icon-Application"></i>{:lang('Data Storage Application')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{$urlss}/index/application/institutional_apply"><i class="iconfont icon-interface"></i>{:lang('Developer API application')}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="m8" class="m">
+                            <a href="#" class="aa8 mmm">{:lang('Study in Canada')} <i class="fa fa-angle-down"
+                                        aria-hidden="true"></i></a>
+                                <div class="sub">
+                                    <div class="nav_xiao">
+                                        <div class="xiao_four l">
+                                        <h2>{:lang('List of Canadian institutions/schools')}</h2>
+                                            <ul class="ul">
+                                                <li>
+                                                <a href="https://www.mcgill.ca/">{:lang('McGill University')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="https://www.utoronto.ca/">{:lang('University of Toronto')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="http://www.ubc.ca/">{:lang('The University of British Columbia')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="http://www.mcmaster.ca/">{:lang('McMaster University')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="http://www.uwo.ca/">{:lang('Western University')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="/page/321.html">{:lang('More')}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="xiao_four l">
+                                        <h2>{:lang('Study in Canada')}</h2>
+                                            <ul class="ul">
+                                                <li>
+                                                <a href="{$urlss}/page/52.html">{:lang('Apply to study in Canada')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{$urlss}/page/82.html">{:lang('Get financial assistance')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{$urlss}/page/77.html">{:lang('Choose Canada')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{$urlss}/page/102.html">{:lang('Student accommodation')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{$urlss}/page/103.html">{:lang('Canadian Education Department')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{$urlss}/page/105.html">{:lang('Canadas education system')}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="xiao_four r">
+                                            <h2>Living in canada</h2>
+                                            <ul class="ul">
+                                                <li>
+                                                <a href="{$urlss}/page/95.html">{:lang('Immigration to Canada')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{$urlss}/page/88.html">{:lang('Live in Canada')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{$urlss}/page/90.html">{:lang('Work in canada')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{$urlss}/page/322.html">{:lang('Canadian way of life')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{$urlss}/page/255.html">{:lang('Find a career profile')}</a>
+                                                </li>
+                                                <li>
+                                                <a href="{$urlss}/page/308.html">{:lang('Canadas education system')}</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="m2" class="m">
+                            <a href="{$urlss}/index/about/AboutWSE" class="aa2 mmm">{:lang('About WSE')}
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                                <div class="sub">
+                                    <div class="nav_xiao">
+                                        <div class="xiao_five">
+                                            <img src="/canada/images/header-images/hd-nav-pic2.svg" alt="">
+                                        </div>
+                                        <div class="xiao_five2">
+                                            <p>
+                                                <a href="{$urlss}/index/about/CredentialEvaluation"><i
+                                                    class="iconfont icon-expert"></i>- {:lang('Who are Credential Evaluation')}
+                                                    Expert?</a>
+                                                <a href="{$urlss}/index/about/StandardsProfession"><i
+                                                    class="iconfont icon-standard"></i>- {:lang('Standards for the
+                                                Profession')}</a>
+                                            </p>
+                                            <p>
+                                                <a href="{$urlss}/index/about/Plans"><i class="iconfont icon-plan"></i>-
+                                                {:lang('Strategic Plan and Committee Action Plans')}</a>
+                                                <a href="{$urlss}/index/about/BoardOfDirectors"><i
+                                                    class="iconfont icon-member"></i>- {:lang('Board of Directors')}</a>
+                                            </p>
+                                            <p>
+                                                <a href="{$urlss}/index/about/PastLeadership"><i
+                                                    class="iconfont icon-leadership"></i>- {:lang('Past Leadership')}</a>
+                                                <a href="{$urlss}/index/about/CharterMembers"><i
+                                                    class="iconfont icon-medal"></i>- {:lang('Charter Members')}</a>
+                                            </p>
+                                            <p>
+                                                <a href="{$urlss}/index/about/PressReleases"><i
+                                                    class="iconfont icon-news"></i>- {:lang('Press Releases')}</a>
+                                                <a href="{$urlss}/index/about/FAQ"><i
+                                                        class="iconfont icon-problem"></i>-
+                                                {:lang('FAQ')}</a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- 导航 end -->
+                </div>
+            </div>
+        </div>
+        <div class="hero-cover">
+            <div class="container cover__container--16 cover__content_box--16 hero-cover-img"
+                style="position: relative;">
+                <div class="verifier">
+                <h2 class="hero-title">{:lang('Blockcerts Universal Verifier')}</h2>
+                    <div class="buv-c-verifier-layout">
+                        <section class="buv-c-certificate-input">
+                            <div class="buv-c-certificate-input__input">
+                                <div style="display: flex;">
+                                    <input type="text" id="_key" placeholder="Certificate URL" class="buv-c-input ">
+                                    <button class="buv-c-verify-button  is-disabled " id="searchButton"
+                                        onclick="searchaa()">{:lang('Verify')}
+                                </button>
+                                </div>
+                            </div>
+                            <div class="ant-upload-list ant-upload-list-text"></div>
+                        </section>
+                        <div class="file-disbox">
+                            <div class="buv-c-footer  buv-c-footer--dark">
+                            <div>
+                                <button href="javascript:;" id="file-content"
+                                        style="text-decoration: underline;">{:lang('Choose JSON file')}
+                                </button>
+                                </div>
+                                <div><img src="/static/images/logo-white.png" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="feeddis-box" style="display: none;">
+                            <p class="alert"></p>
+                            <ul class="block_search_result clearfix">
+                            <li class="ing" id="i1"><span><i class="iconfont icon-chenggong1"></i> </span>{:lang('Querying
+                                users')}....
+                                </li>
+                            <li class="ing" id="i2"><span><i class="iconfont icon-chenggong1"></i> </span>{:lang('Processing encryption key')}....
+                            </li>
+                            <li class="ing" id="i3"><span><i class="iconfont icon-chenggong1"></i></span>{:lang('Checking the chain information')}....
+                            </li>
+                            <li class="ing" id="i4"><span><i class="iconfont icon-chenggong1"></i> </span>{:lang('Syncing node data')}....
+                            </li>
+                                <li class="ing" id="i5"><span><i class="iconfont icon-chenggong1"></i></span>
+                                <font id="result">{:lang('The verification is successful and the data has been recorded on the blockchain')}</font>
+                                </li>
+                            </ul>
+                            <br>
+                        <div class="block_search_result_box" id="serarchDiv">
+                            <div class="">
+                                    <div class="block-certificate-box">
+                                        <div class="block-certi-itembox">
+                                            <div class="block-certi-table">
+                                            <table>
+                                                    <tr>
+                                                    <td>{:lang('Deposit hash')}:</td>
+                                                    <td>
+                                                        6beeb178b5868ea51b8bf38ac0e2b398ac112122b8f24b2c021f1185de02451dsdc454fsda
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>{:lang('Deposit time')}:</td>
+                                                        <td>2020-07-20 10:20:56</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>{:lang('Deposit subject')}:</td>
+                                                        <td>Meili Zhang</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>{:lang('Deposit account')}:</td>
+                                                        <td>15467885</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>{:lang('type of Certificate')}:</td>
+                                                    <td>{:lang('Driver License')}</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>{:lang('ID number')}:</td>
+                                                        <td>20011654</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>{:lang('Deposit size')}:</td>
+                                                        <td>62B</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>{:lang('Deposit')}:</td>
+                                                        <td>2562245</td>
+                                                    </tr>
+                                                    <tr>
+                                                    <td>{:lang('Content hash')}:</td>
+                                                    <td>
+                                                        6beeb178b5868ea51b8bf38ac0e2b398ac112122b8f24b2c021f1185de02451dsdc454fsda
+                                                    </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <!-- <img src="/canada/images/blockchain/block-c1.jpg" alt=""> -->
+                                </div>
+                            </div>
+                            <div class="blockchainMainNew blockchainMainNewAgain" style="display: none"
+                                id="blockchainDiv"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="footer-social">
+                    <div class="legal-footer">
+                        <div class="legal-box">
+                            <div>
+                                <ul>
+                                <li><a href="{$urlss}/index/Application/pact/id/13">{:lang('Legal Terms of Use')}</a>
+                                </li>
+                                |
+                                <li><a href="{$urlss}/index/Application/pact/id/14">{:lang('Legal Notices')}</a></li>
+                                |
+                                <li><a href="{$urlss}/index/Application/pact/id/15">{:lang('Privacy Policy')}</a></li>
+                                |
+                                    <li><a href="{$urlss}/index/Application/pact/id/16">{:lang('Registration Agreement')}</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <p class="footer-copyright">©{$C['site_copyright']}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <div id="particles" style="position:fixed; width: 100%; height:100%;; z-index: 10;"></div>
+    </main>
+</body>
+<script>
+    /*   language   */
+    $('.langBox div span').text(window.sessionStorage.text);
+    $('.langBox div').on('click', function (e) {
+        e.stopPropagation();
+        $(this).siblings().slideToggle()
+        if ($(this).find('.fa').hasClass('fa-angle-down')) {
+            $(this).find('.fa').removeClass('fa-angle-down').addClass('fa-angle-right')
+        } else {
+            $(this).find('.fa').removeClass('fa-angle-right').addClass('fa-angle-down')
+        }
+    })
+    $('.langBox li').on('click', function (e) {
+        e.stopPropagation();
+        $('.langBox div .fa').removeClass('fa-angle-down').addClass('fa-angle-right')
+        window.sessionStorage.text = $(this).text();
+        var lang = $(this).attr('class');
+        var domain = document.domain;
+        $('.langBox div span').text($(this).text());
+        $.get("{:url('/lang')}", "lang=" + lang, function () {
+            location.reload();
+        });
+    });
+    
+    $('body').on('click', function () {
+        $('.langBox ul').slideUp()
+    });
+
+    $('#file-content').mouseenter(function () {
+		layer.tips('{:lang("Please upload the file to be verified")}', this, {
+			tips: [3, '#D0DF00'],
+            time:4000
+		}); 
+	}).mouseleave(function () {
+		layer.closeAll('tips');
+	})
+
+    //nav
+    jQuery(".nav").slide({
+type: "menu",
+titCell: ".m",
+targetCell: ".sub",
+effect: "slideDown",
+delayTime: 300,
+triggerTime: 100,
+returnDefault: true
+});
+// Appearance animation
+    var anim = $(".anim");
+    setTimeout(function () { 
+$(window).scroll(function () {
+roll();
+})
+$(window).resize(function () {
+roll();
+})
+roll();
+}, 6)
+//Scrolling execution animation
+    function roll() {
+var oHeight = $(window).height();
+var ScrVal = $(window).scrollTop();
+anim.each(function (i) {
+if (ScrVal + oHeight > anim.eq(i).offset().top + 100) {
+anim.eq(i).addClass("anim-show");
+}
+})
+    }
+layui.use(['upload', 'form', 'element'], function () {
+        let upload = layui.upload;
+        let form = layui.form;
+        let element = layui.element;
+        upload.render({
+            elem: '#file-content',
+            accept: "file",
+            url: 'https://httpbin.org/post',
+            before: function (obj) {
+                obj.preview(function (index, file, result) {
+                    let content = "<div class=\"Icon_hint\">\n" +
+                        " <span class=\"upload-loading\"><i class=\"fa fa-spinner xz\" aria-hidden=\"true\"></i></span>\n" +
+                        " <span ><i class=\"fa fa-paperclip\"></i><span>&nbsp;&nbsp;<span class=\"file_name\" title='download file' >" +
+                        file.name +
+                        "</span></span></span><i class=\"fa fa-trash-o file-del\" title='Delete Files'></i>\n" +
+                        " <div class=\"layui-progress\" style=\"height: 2px\" lay-filter=\"demo\">\n" +
+                        "<div class=\"layui-progress-bar\" lay-percent=\"0%\"></div>\n" +
+                        " </div>\n" +
+                        "</div>";
+                    $('.ant-upload-list').empty().append(content);
+                })
+            },
+            done: function (res) {
+                layer.msg('Upload successfully');
+                // layui.$('#uploadDemoView').removeClass('layui-hide').find('img').attr('src', res
+                //     .files.file);
+                // console.log(res)
+            }
+        });
+        $(document).on('click', '.file-del', function () {
+            $(this).parents('.Icon_hint').remove();
+            $('[name="file_src"]').val('');
+        })
+    });
+// Canvas initialization
+    $(function () {
+        $('#particles').particleground({
+            dotColor: '#143652',
+            lineColor: '#143652'
+        });
+    })
+$(function () {
+        $(window).scroll(function () {
+            var scollht = $(document).scrollTop();
+            if (scollht > 100) {
+                $('#headdiv').addClass('hd-topfixed')
+            } else(
+                $('#headdiv').removeClass('hd-topfixed')
+            )
+        })
+    })
+    // Query process
+    var type = 2;
+    var resultType = 0;
+    var isFind = 0;
+    let timer = null;
+    var status = 0;
+    // $.ajax({
+    //     type:"post",
+    //     dataType:"json",
+    //     url:"",
+    //     data:{},
+    //     success:
+// })
+    function searchaa() {
+        // $(".file-disbox").hide();
+        $(".feeddis-box").show();
+        $("#serarchDiv").hide();
+        $("#blockchainDiv").hide();
+        $(".block_search_result").children("li").removeAttr("class")
+        if (timer) {
+            window.clearInterval(timer);
+            timer = null;
+        }
+        $(".alert").html('');
+        if ($("#_key").val() == null || $("#_key").val() == '') {
+            $(".alert").html('<i class="iconfont icon-tanhao"></i>&nbsp;&nbsp;{:lang("Please enter query content!")}');
+            return false;
+        }
+        // $("#searchButton").attr("disabled", "disabled");
+        showTime();
+        var key = $("#_key").val();
+        var timer;
+        var liNum = $(".block_search_result").children("li").length;
+    }
+function showTime() {
+        $(".block_search_result").children("li").eq(0).addClass("on ing")
+        show_single()
+    }
+
+    function show_single(i){
+        var ds = $('.block_search_result li').length
+        i=i*1
+        i=i&&!isNaN(i)?i:0
+        if(i>=ds){
+            return ''
+        }
+        var radomNum = parseInt(Math.random() * 5) + 1
+        timer = setTimeout(function () {
+                var aaNum = $(".block_search_result>.ing").length;
+                if (aaNum == 4 && status == 1) {
+                    let last_step = $('.block_search_result').children("li:last-child");
+                    last_step.find('i').css('color', '#D3101B').removeClass("icon-chenggong1").addClass("icon-shibai");
+                    last_step.children('font').text("Verification failed, the data you checked does not exist");
+                    last_step.find('span').css('border', '1px solid #D3101B');
+                }
+                $(".block_search_result .on").next().addClass("on ing");
+                $(".block_search_result .on").eq(0).removeClass("on");
+                // console.log(aaNum);
+                if (aaNum == 5) {
+                    isFind = 1;
+                    resultType = 1;
+                    setTimeout(function () {
+                        if (isFind == 1) {
+                            if (resultType == 1) {
+                                $("#serarchDiv").show();
+                            } else {
+                                $("#blockchainDiv").show();
+                            }
+                        }
+                        show_single(i+1)
+                    }, 100)
+                    $("#searchButton").removeAttr("disabled");
+                    if (timer) {
+                        window.clearTimeout(timer);
+                        timer = null;
+                    }
+                }else{
+                    show_single(i+1)
+                }
+            }, radomNum*1000);
+    }
+</script>
+</html>

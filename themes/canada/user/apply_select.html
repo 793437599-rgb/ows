@@ -1,0 +1,903 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css" />
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/application.css" />
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <!-- <script src="/static/js/layui/layui.all.js"></script> -->
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <script src="/canada/js/common.js"></script>
+
+    <style type="text/css">
+        .layui-form select {
+            display: inherit;
+        }
+
+        .layui-form-select {
+            display: none;
+        }
+
+        #send_thirdpic {
+            width: 200px;
+        }
+        .T-data-table tr {
+            border-bottom: 1px solid #E6E6E6;
+        }
+    </style>
+    <!-- <style>
+    .Uf_pay{height: 100px;}
+    .Uf_pay label{float: left;}
+    </style> -->
+</head>
+
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div>
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                {include file="public/_nav_center_header" /}
+                <!-- <div class="layui-row layui-col-space20 user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{:lang('Transfer')}</h1>
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email} — {$user.search_id}</p>
+                    </div>
+                </div> -->
+                <hr />
+                <!--    transfer    -->
+                <div class="layui-row">
+                    <div class="application border-shadow">
+                        <!--  slelct 1 -->
+                        <h2>{:lang('Select Institutions')}</h2>
+                        <div class="progress-bars">
+                            <ul class="clearfix"> 
+                                <li class="li_1 active">{:lang('Select Institutions')}<i class="i_1"><i></i></i>
+                                </li>
+                                <li class="li_2 ">{:lang('Select Report')}<i class="i_1"><i></i></i></li>
+                                <li class="li_3 ">{:lang('Confirm Report')}</li>
+                            </ul>
+                        </div>
+                        {if !empty($user) }
+                        <div class="college_msg hidexs">
+                            <div class="title">{:lang('Please select the international organization that needs to send the report.')}
+                            </div>
+                            <div class="select-institutions">
+                                <div class="layui-input-inline">
+                                    <select name="business" id="business" lay-filter="business">
+                                    <!--  <option value="5">{:lang('Canada')}</option>
+                                    <option value="1">{:lang('USA')}</option>
+                                    <option value="4">{:lang('CHINA')}</option>
+                                    <option value="6">{:lang('AUSTRALIA')}</option>
+                                    <option value="3">{:lang('UK')}</option>
+                                    <option value="141">{:lang('Netherlands')}</option>
+                                    <option value="144">{:lang('Ireland')}</option>
+                                    <option value="182">{:lang('New Zealand')}</option>
+                                    <option value="2">{:lang('France')}</option>
+                                    <option value="9">{:lang('Japan')}</option>
+                                    <option value="7">{:lang('Russia')}</option>
+                                    <option value="155">{:lang('Spain')}</option>
+                                    <option value="151">{:lang('Italy')}</option> -->
+                                        {foreach name="$guojias" item="vo"}
+                                        <option value="{$vo.id}"    {if condition="$vo.id==4"} selected {/if}>{switch name="$Think.cookie.think_var"}
+                                            {case value="en-us"}{$vo.name}{/case}
+                                            {case value="zh-cn"}{$vo.cname}{/case}
+                                            {case value="ja-jp"}{$vo.name_jp}{/case}
+                                            {case value="de-de"}{$vo.name_de}{/case}
+                                            {case value="ko-kr"}{$vo.name_kr}{/case}
+                                            {case value="ru-ru"}{$vo.name_ru}{/case}
+                                            {case value="fr-fa"}{$vo.name_fa}{/case}
+                                            {/switch}
+                                        </option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                                <div class="layui-input-inline">
+                                    <select name="zhuanye2" id="zhuanye2" style="width: 240px;"
+                                            lay-filter="getinfo">
+                                        <option value="">Choose...</option>
+                                        {foreach name="$third" item="vo"}
+                                        <option value="{$vo.id}" {if condition="$vo.id==14"} selected {/if}>{switch name="$Think.cookie.think_var"}
+                                            {case value="en-us"}{$vo.third_ename}{/case}
+                                            {case value="zh-cn"}{$vo.third_cname}{/case}
+                                            {case value="ja-jp"}{$vo.third_jname}{/case}
+                                            {case value="de-de"}{$vo.third_dname}{/case}
+                                            {case value="ko-kr"}{$vo.third_kname}{/case}
+                                            {case value="ru-ru"}{$vo.third_rname}{/case}
+                                            {case value="fr-fa"}{$vo.third_fname}{/case}
+                                            {/switch}
+                                        </option>
+                                        {/foreach}
+                                    </select>
+                                </div>
+                                <br>
+                                <img src="/uploads/20200624/7f6fccebed71ec0600eea54602e296d9.png" id="pic" style="height: 80px;margin-top: 10px;margin-bottom: 10px;">
+                                <br>
+                                <p id="wenben">https:/www.cscss.com.cn</p>
+                            </div>
+                        </div>
+                        <div class="select_college_1  hidexs">
+                            <div class="college_msg">
+                                <div class="college_btn">
+                                    <a class="layui-btn mazarine" id="next">{:lang('Next')}</a>
+                                    <!-- <a href="" class="gray_btn">{:lang('Cancel')}</a> -->
+                                </div>
+                            </div>
+                        </div>
+                        {else/}  
+                        <div class="college_msg apply-info-tips"> 
+                            <p><i class="iconfont icon-waitting"></i></p>
+                            <h1>{:lang('Validation error')}</h1>
+                        </div>
+                        {/if}
+
+                        <div class="college_msg apply-info-tips"  id="bringt" style="display: none;">
+                            <p><i class="iconfont icon-waitting"></i></p>
+                            <h1>{:lang('You have successfully applied, please try again in 7 days')}</h1>
+                            <div class="college_btn">
+                                <a class="layui-btn mazarine" href="/apply_order">{:lang('View transmission records')}</a>
+                            </div>
+                        </div>
+
+                        <!-- slelct 2 -->
+                        <div class="select_report">
+                            <ul>
+                            <li>
+                                <!-- 学校  艺术学 学士 -->
+                            <div class="report_name">{:lang('Please select the report to transfer')}</div>
+                            <div class="report_sel" style="text-align: center;">
+                                <!-- <form class="layui-form" action="">
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like" value="1" title="{:lang('Assessment')}">
+                                            <input type="checkbox" name="like" value="2" title="{:lang('Performance report')}">
+                                            <input type="checkbox" name="like" value="3" title="{:lang('third-party certification')}">
+                                        </div>
+                                    </div>
+                                </form>
+                                <select id="edu-select" name="" style="width: auto;min-width: 320px">
+                                    {notempty name="edu"}
+                                    {foreach name="edu" item="vo"}
+                                    <option value="{$vo.school}_{$vo.degree_program}_{$vo.degree}">{$vo.school}_{$vo.degree_program}_{$vo.degree}</option>
+                                    {/foreach}
+                                    {/notempty}
+                                </select>  -->
+                                <div class="layui-col-sm12 ">
+                                    <div class="pay-boxtent">
+                                        <table border="1" class="layui-table">
+                                            <tbody>
+                                            <tr class="pay-title">
+                                            <td>{:lang('Select')}</td>
+                                            <td>{:lang('School')}</td>
+                                            <td>{:lang('Degree')}</td>
+                                            <td>{:lang('Countries of study')}</td>
+                                            <td>{:lang('Application Time')}</td> 
+                                            <td>{:lang('Graduation Time')}</td> 
+                                            </tr>
+                                            {volist name="orders" id="vo" key="k"}
+                                            <tr>
+                                                <td><input type="radio" name="orid" value="{$vo.order_id}" {if condition="$k == 1" } checked {/if}> </td>
+                                                <td>{$vo.university} </td>
+                                                <td>{$vo.degree}  </td>
+                                                <td>{$vo.edu_nationality}    </td>
+                                                <td>{$vo.create_time|strtotime|date="Y-m-d",###}</td>
+                                                <td>{$vo.completion_date}</td>
+                                            </tr>
+                                            {/volist}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            </li>
+                            </ul>
+                            <div class="college_btn">
+                                <a href="" class="layui-btn layui-btn-primary save-upload">{:lang('Cancel')}</a>
+                                <a class="layui-btn mazarine" id="second">{:lang('Next')}</a>
+                            </div>
+                        </div>
+                        <!-- select 3 -->
+                        <div class="select_check">
+                            <ul class="T-data">
+                                <li  id="picclass"> 
+                                    <div class="report_name">{:lang('Send Certificate Report Template')}</div>
+                                    <div id="layer-photos-demo" class="report_option layer-photos-demo">
+                                        <img layer-pid layer-src="/canada/images/T.jpg" src="/canada/images/T.jpg">
+                                        <img layer-pid layer-src="/canada/images/D.jpg" src="/canada/images/D.jpg">
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="report_name">{:lang('The Institution Agency You Need to Transfer')}
+                                    </div>
+                                    <div class="report_option"><img id="third_img" src="/uploads/20200624/7f6fccebed71ec0600eea54602e296d9.png"></div>
+                                    <div class="report_option" id="jigou-show">{:lang('Educational Credential Evaluators, Inc.')}</div>
+                                    <input type="hidden" id="jigou-show2" name="third" value="">
+                                </li>
+                                <li>
+                                    <div class="report_name">{:lang('Personal Information You Entered')}</div>
+                                    <table class="T-data-table" id="user_info" border="" cellspacing="" cellpadding="">
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Name')}：</td> 
+                                            <td>  {$user.chinaname2==''? $user.username:$user.chinaname2 }</td>
+                                            <td>{:lang('Education')}：</td>
+                                            <td>Peking University_Pharmacy_Bachelor</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Email')}：</td>
+                                            <td>{$user.email}</td>
+                                            <td>{:lang('Phone')}：</td>
+                                            <td>{$user.mobile}</td>
+                                        </tr>
+                                    </table>
+
+                                {notempty name="order"}
+                                    <table class="T-data-table"  id="order_info" style="display: none;" border="" cellspacing="" cellpadding="">
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Name')}：</td> 
+                                            <td>{$user.chinaname2==''? $user.username:$user.chinaname2 }</td>
+                                            <td>{:lang('Gender')}：</td>
+                                            <td>{$user.sex}</td>                                        
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('WSE Num')}：</td>
+                                            <td>{$user.search_id}</td>
+                                            <td>{:lang('Email')}：</td>
+                                            <td>{$user.email}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Document Type')}：</td>
+                                            <td>{$user.document_type}</td>
+                                            <td>{$user.document_type}：</td>
+                                            <td>{$user.id_number}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Educational location')}</td>
+                                            <td >{$order.edu_city} </td>
+                                            <td>{$order.edu_province}</td>
+                                            <td>{$order.edu_nationality}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Name of academic institution')}</td>
+                                            <td> {$order.university}</td>
+                                            <td>{:lang('Certificate/Diploma/degree')}</td>
+                                            <td>{$order.degree} of {$order.degree_program}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Research areas')}</td>
+                                            <td> {$order.faculty} </td>
+                                            <td>{:lang('Profession')}</td>
+                                            <td> {$order.major} </td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Whether to graduate')}</td>
+                                            <td>
+                                            {if strtotime($order.completion_date) < time()}
+                                            {:lang('Already graduated')}
+                                            {else /}
+                                            {:lang('Did not graduate')}
+                                            {/if}
+                                            </td>
+                                            <td>{:lang('Admission time')} ~ {:lang('Graduation time')}</td>
+                                            <td> {$order.start_date}  ~  {$order.completion_date} </td>
+                                        </tr>
+                                    </table>
+                                {/notempty}
+
+                                    <!-- <div class="report_option">
+                                    <p><b>{:lang('Name')}：</b><span>{$user.username}</span></p>
+                                    <p><b>{:lang('Education')}：</b><span id="edu-show">Peking University_Pharmacy_Bachelor</span></p>
+                                    <p><b>{:lang('Email')}：</b><span>{$user.email}</span></p>
+                                    <p><b>{:lang('Phone')}：</b><span>{$user.mobile}</span></p>
+                                </div> -->
+
+
+                                 
+
+                            </li>
+                          
+                            <li>
+                                
+                            </li> 
+                            </ul>
+                            <div class="college_btn">
+                                <a href="" class="layui-btn layui-btn-primary save-upload">{:lang('Cancel')}</a>
+                                <a class="layui-btn mazarine T-data-sending" id="checks" >{:lang('Send')}</a>
+                            </div><!-- onclick="searchaa()" -->
+                        </div>
+                        <!-- send_success -->
+
+
+                        <div class="send_success">
+                            <img src="/canada/images/check.png" alt="">
+                            <h3>{:lang('Your report has started to send')}</h3>
+                            <p>{:lang('It will usually be sent within half an hour. If it is sent for a long time, please contact us.')}</p>
+                            <div class="college_btn">
+                                <a href="/apply_all" class="layui-btn mazarine">{:lang('Back')}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="apply-tips" id="apply-test" style="display: none;">
+    <div class="apply-tips-boxmask"></div>
+    <div class="apply-tips-top">
+        <div class="apply-tips-model" style="width: 750px;">
+            <div class="apply-tips-content">
+                <div class="teiem">
+                    <div class="tips-cont-top">
+                        <div class="tips-contop-item">
+                            <div>
+                                <h1>{:lang('Data Transmission')}</h1>
+                            </div>
+                        <!-- <div><i class="iconfont icon-cross apply-cancel" id="tips-cross"></i></div>-->
+                        </div>
+                    </div>
+                    <div class="tipsimg degree-img"><img src="/canada/images/t-world.png" alt=""></div>
+                    <div class="apply-degree-text">
+                        <ul class="block_search_result">
+                            <li class="">
+                                    <span>
+                                        <i class="fa fa-spinner fa-pulse"></i>
+                                        <b class="t-line"></b>
+                                    </span>
+                                <p class="apply-p-1">{:lang('Get file information')}</p>
+                                <p class="apply-p-2">{:lang('Getting file information')}</p>
+                            </li>
+                            <li class="">
+                                    <span>
+                                        <i class="iconfont icon-chenggong1"></i>
+                                        <b class="t-line"></b>
+                                    </span>
+                                <p class="apply-p-1">{:lang('Check on chain information')}</p>
+                                <p class="apply-p-2">{:lang('Checking uplink information')}</p>
+                            </li>
+                            <li class="">
+                                    <span>
+                                        <i class="iconfont icon-chenggong1"></i>
+                                        <b class="t-line"></b>
+                                    </span>
+                                <p class="apply-p-1">{:lang('File trusted verification')}</p>
+                                <p class="apply-p-2">{:lang('File trusted validation in progress')}</p>
+                            </li>
+                            <li class="">
+                                <span><i class="iconfont icon-chenggong1"></i></span>
+                                <p class="apply-p-1">{:lang('Data transfer successful')}</p>
+                                <p class="apply-p-2">{:lang('Data transfer in progress')}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<aside class="cs-mask" id="csMask">
+    <div class="logo-wse">
+        <img src="/static/images/logo.png" alt="logo">
+    </div>
+
+    <div class="authorization">
+        <h3>{:lang('Please get the CSCSS account and WSE account for binding authorization')}</h3>
+        <div class="cs-header">
+            <div><img src="/canada/images/logo-cscss.png" alt="logo"></div>
+            <div>{:lang('cscss.com.cn')}（CSCSS）
+                <p>cscss.com.cn</p>
+            </div>
+        </div>
+        <div class="cs-login">
+            <p>{:lang('Please enter your account number of China left letter network (cscss)')}</p>
+            <div class="cs-login-item">
+                <select name="csArea" class="csArea">
+                    {foreach name="mobiles" item="vo"}  
+                    <option value="{$vo.qujian}" {if condition="$user.qujian==$vo.qujian"}selected {/if}>+{$vo.qujian} </option>
+                    {/foreach}
+                </select>
+                <input type="text" name="csName" value="{$user.mobile}"  onkeyup="this.value=this.value.replace(/[^\d]/g,'')" placeholder="{:lang('Please enter your account number of China left letter network (cscss)')}" autocomplete="off" >
+            </div>
+            <div class="cs-login-item">
+                <span>
+                    {:lang('I have carefully read and accept the')}<a class="color-blue" href="{$urlss}/index/Application/pact/id/17" target="_blank">WSE{:lang('Data transmission instructions')}</a> .
+                </span>
+            </div>
+            <div class="cs-login-item">
+                <button class="cs-btn-primary" id="csCheck" type="button">{:lang('Send Authorization Request')}</button>
+                <button class="cs-btn-cancel" id="csCancel" type="button">{:lang('Cancel')}</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unauthorized -->
+    <div class="authorization-send">
+        <p>{:lang('The authorization application has been successfully sent to CSCSS, please log in to the CSCSS account and authorize WSE to bind the account')}</p>
+        <div class="authorization-link">
+            <a href="http://cscss.com.cn/">{:lang('Go to CSCSS')}</a>
+            <p>{:lang('Reauthorize')}</p>
+        </div>
+        <div class="cs-login-item">
+            <button class="cs-btn-primary" type="button">{:lang('I have Authorized')}</button>
+        </div>
+    </div>
+
+    <!-- Authorized -->
+    <div class="authorization-success">
+        <p>{:lang('This account has been successfully bound with CSCSS account, please authorize WSE for data transmission')}</p>
+        <div class="cs-login-item">
+            <label class="cs-terms" for="csTerms">
+                <input type="checkbox" id="csTerms">
+                <span>{:lang('I read it carefully and understand and agree')}<a href="/canada/file/WSE_Data_Transfer_Instructions.pdf" target="_blank">{:lang('《WSE Description of data transmission authorization and data transmission protectionWSE》')}</a>{:lang('All statements of')}</span>
+            </label>
+        </div>
+        <div class="cs-login-item">
+            <button class="cs-btn-primary" type="button">{:lang('Authorize and Transfer')}</button>
+        </div>
+    </div>
+
+</aside>
+
+
+<aside class="cs-mask" id="Mask_mail">
+    <div class="logo-wse">
+        <img src="/static/images/logo.png" alt="logo">
+    </div>
+
+    <div class="authorization">
+        <h3>{:lang('Please confirm data transfer')}</h3>
+        <div class="cs-header">
+            <div><img src="/canada/images/logo-cscss.png" alt="logo" id="send_thirdpic"  ></div>
+            <!-- <div>{:lang('cscss.com.cn')}（CSCSS）
+                <p>cscss.com.cn</p>
+            </div> -->
+        </div>
+        <div class="cs-login">
+            <p>{:lang('Please enter your email account number')}</p>
+            <div class="cs-login-item">
+                <input type="text" style="padding-left: 10px;" name="temail" value="{$user.email}" placeholder="{:lang('Please enter your email')}" autocomplete="off" >
+            </div>
+           
+            <p>{:lang('Please enter the transfer purpose')}</p>
+            <div class="cs-login-item">
+                <input type="text" style="padding-left: 10px;" name="aim" placeholder="{:lang('Transmission purpose')}" autocomplete="off" >
+            </div>
+
+             <div class="cs-login-item">
+                <span>
+                    <input type="checkbox"  id="privacy-policy">
+                    {:lang('I have carefully read and accept the')}<a class="color-blue" href="{$urlss}/index/Application/pact/id/17" target="_blank">WSE{:lang('Data transmission instructions')}</a> .
+                </span>
+            </div>
+             
+            <div class="college_btn">
+                <a href="" class="layui-btn layui-btn-primary save-upload">{:lang('Cancel')}</a>
+                <a class="layui-btn mazarine T-data-sending" id="checks_send" >{:lang('Send')}</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unauthorized -->
+    <div class="authorization-send">
+        <p>{:lang('The authorization application has been successfully sent to CSCSS, please log in to the CSCSS account and authorize WSE to bind the account')}</p>
+        <div class="authorization-link">
+            <a href="http://cscss.com.cn/">{:lang('Go to CSCSS')}</a>
+            <p>{:lang('Reauthorize')}</p>
+        </div>
+        <div class="cs-login-item">
+            <button class="cs-btn-primary" type="button">{:lang('I have Authorized')}</button>
+        </div>
+    </div>
+
+    <!-- Authorized -->
+    <div class="authorization-success">
+        <p>{:lang('This account has been successfully bound with CSCSS account, please authorize WSE for data transmission')}</p>
+        <div class="cs-login-item">
+            <label class="cs-terms" for="csTerms">
+                <input type="checkbox" id="csTerms">
+                <span>{:lang('I read it carefully and understand and agree')}<a href="/canada/file/WSE_Data_Transfer_Instructions.pdf" target="_blank">{:lang('《WSE Description of data transmission authorization and data transmission protectionWSE》')}</a>{:lang('All statements of')}</span>
+            </label>
+        </div>
+        <div class="cs-login-item">
+            <button class="cs-btn-primary" type="button">{:lang('Authorize and Transfer')}</button>
+        </div>
+    </div>
+
+</aside>
+<script>
+    $(document).ready(function () {
+        $("#business").change(function () {
+            var national = $(this).children('option:selected').val();
+            $.ajax({
+                type: "post",
+                url: "{:url('index/user/getthird')}",
+                data: {
+                    pro_id: national
+                },
+                dataType: "json",
+                success: function (data) {
+                    $('#zhuanye2').html(data);
+                    $('#pic').attr('src', '');
+                    $('#wenben').empty();
+                    //form.render('select');
+                    getinfo($('#zhuanye2').val())
+                }
+            });
+        });
+        $("#zhuanye2").change(function () {
+            var get_id = $('#zhuanye2').val();
+            getinfo(get_id)
+        });
+
+        function getinfo(id) {
+            $.ajax({
+                type: "post",
+                url: "{:url('index/user/getthirdinfo')}",
+                data: {
+                    id: id
+                },
+                dataType: "json",
+                success: function (data) {
+                    $('#pic').attr('src', data.icon_img);
+                    $('#third_img').attr('src', data.icon_img);
+                    $('#send_thirdpic').attr('src', data.icon_img);
+                    $('#wenben').empty();
+                    $('#wenben').append(data.url)
+                    $('#jigou-show').html(data.namess)   
+                    // $('#zhuanye2').html(data);
+                    // form.render('select');
+                }
+            });
+        }
+    });
+</script>
+<script>
+    var isSend = false
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        // 证书报告弹框
+        layer.photos({
+            photos: '.layer-photos-demo',
+            anim: 5
+        });
+        // 传输中
+        $('#checks').click(function () {
+            $('#apply-test').show()
+            if (!isSend) {
+                $(".block_search_result").children("li").eq(0).addClass("on ing")
+                show_single()
+            }
+        })
+        $('.apply-cancel').click(function () {
+            window.clearTimeout(timer);
+            timer = null;
+            $(".block_search_result").children("li").removeClass('on ing');
+            $('#apply-test').hide()
+            isSend = false
+        })
+
+        $(document).on('click', '.pay-boxtent tr', function () {
+            $(this).find('input[type="radio"]').prop('checked', true)
+        })
+
+        $(function () {
+            var ed ='{$exists}';
+            ed=JSON.parse(ed)
+            console.log('ed',ed)
+            $('#next').click(function () {
+                var namse =$('#zhuanye2').val();
+                if (namse == '') {
+                    layer.msg('{:lang("Please select an accepted institution")}', {
+                        time: 1500
+                    });
+                    return false;
+                }
+                 namse = parseInt(namse)
+                if(ed.indexOf(namse) > -1){
+                    $('.hidexs').hide();
+                    $('#bringt').show();
+                    return false;
+                }
+                if (namse == 14) {
+                    $('#user_info').hide();
+                    $('#order_info').show();
+                    $('#picclass').hide();
+                }
+                if ($('.chosen_default span').text() != 'Please choose an international agency') {
+                    $('.li_2').addClass('active').siblings().removeClass('active');
+                    $('.college_msg').hide();
+                    $('.select_report').show();
+                } else {
+                    $('#jigou-err').text('Please choose an international agency');
+                }
+            });
+
+            $('#second').click(function () {
+                var oid = '';
+                oid =  $('input:radio[name="orid"]:checked').val()
+                //var standardsName = '';
+                // $("input:checkbox[name='like']:checked").each(function () { // 遍历name=standard的多选框
+                //     edu += ',' + $(this).val();
+                //     standardsName += ',' + $(this).attr('title');
+                // });
+                // var pattern = /\d/ig;
+                // if (pattern.test(edu) == false) {
+                //     layer.msg('{:lang("Please select a report to send")}', {
+                //         time: 1500
+                //     });
+                //     return false;
+                // }
+                if (oid==''  || oid==undefined  || oid==null)  {
+                    layer.msg('{:lang("Please select a report to send")}', {
+                        time: 1500
+                    });
+                    return false;
+                }
+                console.log(oid)
+                $('.li_3').addClass('active').siblings().removeClass('active');
+                $('.select_report').hide();
+                $('.select_check').show();
+                $('#edu-show').text($('#edu-select').val());
+            });
+        })
+
+        $('#csCancel').on('click', function () {
+            window.location.reload();
+        })
+
+        $('#csCheck').on('click', function () {
+            var csName = $('input[name="csName"]').val()
+            //var csPsd = $('input[name="csPsd"]').val()
+            var csArea = $('.csArea option:selected').val()
+            if (csName == '') {
+                layer.msg('{:lang("Please enter user name")}')
+                return
+            }
+            // if (csPsd == '') {
+            //     layer.msg('{:lang("Please enter password")}')
+            //     return
+            // } 
+            // if (csPsd.length <6) {
+            //     layer.msg('{:lang("The password is too short")}')
+            //     return
+            // } 
+            var regNumber = /\d+/; // 0-9 must
+            var regString = /[a-zA-Z]+/; //must
+            // if (regNumber.test(csPsd) && regString.test(csPsd)) {
+            // }else{
+            //     layer.msg('{:lang("Passwords need to contain letters and numbers")}')
+            //     return
+            // }
+            // if (!$('#csTerms').is(':checked')) {
+            //     layer.msg('{:lang("Please check and agree")}')
+            //     return
+            // }
+            var namse = $('#zhuanye2').val();
+            var third_re =  $("#zhuanye2 option:selected").text();
+            var load= layer.load();
+            var o_id=  $('input:radio[name="orid"]:checked').val()
+            $.post('/index/order/third_save',{third_id:namse,third_re:third_re,call:csName, quhao:csArea,order_id:o_id },function (result) {
+                if (result == 1){
+                    layer.closeAll()
+                    layer.msg('{:lang("Successfully send")}')
+                    $(".block_search_result").children("li").eq(0).addClass("on ing")
+                    setTimeout(function(){
+                        $('.authorization').hide()
+                        $('.authorization-send').show() //  Unauthorized
+                        window.location.reload();
+                        // $('.authorization-success').show()  //  Authorized
+                    }, 1800)
+                } else {
+                    layer.closeAll()
+                    layer.msg('{:lang("Send Failed")}', {time: 1000, icon: 2},function () {
+                        //window.location.reload();
+                        $('#apply-test').hide()
+                        $('#csMask').hide()
+                    });
+                }
+            })
+        })
+    })
+
+
+    $('.apply-p-2, .apply-p-3').hide()
+    let num = 0;
+    function show_single(i) {
+        var ds = $('.block_search_result li').length
+        i = i * 1
+        i = i && !isNaN(i) ? i : 0
+        if (i + 1 == ds) {
+            isSend = true
+        }
+        if (i >= ds) {
+            return;
+        }
+        $(".block_search_result li:first-child").find('.apply-p-1').hide()
+        $(".block_search_result li:first-child").find('.apply-p-2').show()
+        if (i > 0) {
+            $(".block_search_result li:first-child").find('.apply-p-1').show()
+            $(".block_search_result li:first-child").find('.apply-p-2').hide()
+        }
+        var radomNum = parseInt(Math.random() * 1) + 1
+        radomNum = 1
+        timer = setTimeout(function () {
+            var aaNum = $(".block_search_result>li").length;
+            $(".block_search_result .on").eq(0).removeClass("on").next().addClass("on ing")
+            $(".block_search_result li").find('i').removeClass('fa fa-spinner fa-pulse').addClass('iconfont icon-chenggong1')
+            $(".block_search_result li").find('.apply-p-1').hide()
+            $(".block_search_result li").find('.apply-p-2').show()
+            $(".block_search_result .on").find('i').removeClass('iconfont icon-chenggong1').addClass('fa fa-spinner fa-pulse')
+            $(".block_search_result .on").find('.apply-p-1').hide()
+            $(".block_search_result .on").find('.apply-p-2').show()
+
+            num++;
+            if (aaNum == num) {
+                if (timer) {
+                    window.clearTimeout(timer);
+                    timer = null;
+                    // window.location.href = '';
+                }
+            } else {
+                show_single(i + 1)
+            }
+            if (i == 2) {
+                var namse = $('#zhuanye2').val();
+                if (namse == 14) {
+                    var o_id=  $('input:radio[name="orid"]:checked').val()
+                    $.ajax({
+                        url:"{:url('/index/user/get_user_oauth_arguments')}",
+                        type:'post',
+                        data:{oid:o_id},
+                        success:function(res){
+                            console.log('res',res)
+                            if(res.code==1){
+                                // var features='toolbar=yes, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=no, copyhistory=yes, width=660, height=560'
+                                // console.log('features',features)
+                                var features={
+                                    toolbar:'yes',
+                                    location:'yes',
+                                    directories:'no',
+                                    status:'no',
+                                    menubar:'yes',
+                                    scrollbars:'yes',
+                                    resizable:'no',
+                                    copyhistory:'yes',
+                                    width:770,
+                                    height:600,
+                                }
+                                open_window(res.url,res.data,'get',"_blank",features)
+                                search_authorization_notify_status(o_id,14)
+                            }else{
+                                layer.msg(res.msg)
+                            }
+                        }
+                    })
+                    /*layer.open({
+                        type: 1,
+                        title: '',
+                        content: $('#csMask'),
+                        area: ['600px'],
+                        closeBtn: 0,
+                    })*/
+                } else {
+                    layer.open({
+                        type: 1,
+                        title: '',
+                        content: $('#Mask_mail'),
+                        area: ['600px'],
+                        closeBtn: 0,
+                    })
+                }
+            }
+        }, radomNum * 1000);
+    }
+
+    function search_authorization_notify_status(order_id,third_id){
+        setTimeout(function(){
+            $.ajax({
+                url: "{:url('/index/user/search_authorization_notify_status')}",
+                type: 'post',
+                data: {oid: order_id,third_id:third_id},
+                success: function (res) {
+                    //layer.msg(res.msg)
+                    if(res.code==1){
+                        window.location.href=window.location.href
+                    }else{
+                        search_authorization_notify_status(order_id,third_id)
+                    }
+                },
+                error: function(error){
+                    console.log('error',error)
+                }
+            })
+        },10000)
+    }
+    $("#checks_send").click(function () {   //！14 send
+        var namse = $('#zhuanye2').val();
+        var aim = $('input[name="aim"]').val()
+        var email = $('input[name="temail"]').val()
+        var third_re =  $("#zhuanye2 option:selected").text();
+        if (aim == '') {
+            layer.msg('{:lang("Please enter the transfer purpose")}',{icon:2,time:1000})
+            return
+        } 
+        if (email == '') {
+            layer.msg('{:lang("Please enter your email")}',{icon:2,time:1000})
+            return
+        } 
+        if (!$('#privacy-policy').is(':checked')) {
+            layer.msg('{:lang("Please check and agree")}',{icon:2,time:1000})
+            return
+        }
+        var o_id=  $('input:radio[name="orid"]:checked').val()
+        $.post('/index/user/third_save',{third_id:namse,aim:aim,third_re:third_re,email:email,order_id:o_id   },function (result) {
+            if (result == 1){
+                layer.msg('{:lang("Data transfer successful")}', {time: 1000, icon: 1} );
+                $(".block_search_result").children("li").eq(0).addClass("on ing")
+                setTimeout(function(){
+                    window.location.reload();
+                }, 1800)
+            } else {
+                layer.msg('{:lang("Send Failed")}', {time: 1000, icon: 2},function () {
+                    $('#apply-test').hide()
+                });
+            }
+        })
+        //   success: function (data) {
+        //         $('#zhuanye2').html(data);
+        //         $('#pic').attr('src', '');
+        //         $('#wenben').empty();
+        //         //form.render('select');
+        //     }
+    });
+</script>
+<script type="text/javascript">
+    layui.use(['form', 'laydate'], function () {
+        var form = layui.form;
+        // select  
+        form.on('select(business)', function (data) {
+            var pro_id = data.value;
+            $.ajax({
+                type: "post",
+                url: "{:url('index/user/getthird')}",
+                data: {
+                    pro_id: pro_id
+                },
+                dataType: "json",
+                success: function (data) {
+                    $('#zhuanye2').html(data);
+                    $('#pic').attr('src', '');
+                    $('#wenben').empty();
+                    form.render('select');
+                    getinfo($('#zhuanye2').val())
+                }
+            });
+        });
+        form.on('select(getinfo)', function (data) {
+            var get_id = data.value;
+            getinfo(get_id)
+        });
+    });
+
+</script>
+
+</body>
+</html>

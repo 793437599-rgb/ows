@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+
+<body>
+    {include file="public/header-user" /}
+    <section class="mainContent">
+        <div>
+            <div class="layui-row ">
+                <div class="layui-col-sm2 nav-fixed">
+                    <!--    nav-left    -->
+                    {include file="public/nav-left" /}
+                </div>
+                <div class="layui-col-sm10">
+                    <!--    user avatar    -->
+                    {include file="public/_nav_center_header" /}
+                    <!-- <div class="layui-row layui-col-space20 user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{:lang('Transfer')}</h1>
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email} — {$user.search_id}</p>
+                    </div>
+                </div> -->
+                    <hr />
+                    <!--    transfer    -->
+                    <div class="layui-row transfer">
+                        <!--    send report    -->
+                        <div class="layui-col-sm12 send-report-box">
+
+                            <div class="send-report-backdeco">
+                                <h3>{:lang('Send certification/verification reports to international institution through WSE')}</h3>
+                                <div class="send-report-border">
+                                    <img src="/canada/images/application_2.png" alt="" class="transfer-img">
+                                    
+                                    <div class="send-btn-ka">
+                                        <button  class="layui-btn theme-btn">{:lang('Send Report')}</button>
+                                        <!-- <a href="/apply_select" class="layui-btn theme-btn">{:lang('Send Report')}</a> -->
+                                    </div>
+                                    <div class="apply-introduction-link">
+                                        <a href="/apply_introduction">{:lang('Function Introduction')}</a>
+                                        <a href="/apply_how">{:lang('How to Apply')}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--    college    -->
+                        <div class="layui-col-sm12 T-mechanism">
+                            {foreach name="third" item="vo"}
+                            {if condition="($key+1)%3==1"}
+                            <div class="T-mechanism-wrap">
+                                {/if}
+                                <div class="apply-Institutions-item ">
+                                    <a href="{$vo.url}" target="_blank">
+                                        <img src="{$vo.icon_img}" alt="">
+                                        <p>
+                                            {switch name="$Think.cookie.think_var"}
+                                            {case value="en-us"}{$vo.third_ename}{/case}
+                                            {case value="zh-cn"}{$vo.third_cname}{/case}
+                                            {case value="ja-jp"}{$vo.third_jname}{/case}
+                                            {case value="de-de"}{$vo.third_dname}{/case}
+                                            {case value="ko-kr"}{$vo.third_rname}{/case}
+                                            {case value="ru-ru"}{$vo.third_kname}{/case}
+                                            {case value="fr-fa"}{$vo.third_fname}{/case}
+                                            {/switch}
+                                        </p>
+                                    </a>
+                                </div>
+                                {if condition="($key+1)%3==0"}
+                            </div>
+                            {/if}
+                            {/foreach}
+                            <!--  <div class="layui-col-sm4">
+                            <img src="/canada/images/college_2.jpg" alt="">
+                            <p>Parchment {:lang('Inc.')}</p>
+                            <a href="http://www.parchment.com/" target="_blank">{:lang('Introduction to Institutions')}</a>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <img src="/canada/images/college_3.jpg" alt="">
+                            <p>{:lang('National Student Clearinghouse')}</p>
+                            <a href="https://www.studentclearinghouse.org/" target="_blank">{:lang('Introduction to Institutions')}</a>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <img src="/canada/images/college_4.png" alt="">
+                            <p>{:lang('Digitary')}</p>
+                            <a href="https://www.digitary.net/" target="_blank">{:lang('Introduction to Institutions')}</a>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <img src="/canada/images/college_5.png" alt="">
+                            <p>{:lang('Dienst Uitvoering Onderwijs')}</p>
+                            <a href="https://www.duo.nl/particulier/" target="_blank">{:lang('Introduction to Institutions')}</a>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <img src="/canada/images/college_6.png" alt="">
+                            <p>{:lang('My eQuals')}</p>
+                            <a href="https://www.myequals.edu.au/" target="_blank">{:lang('Introduction to Institutions')}</a>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <img src="/canada/images/college_7.png" alt="">
+                            <p>{:lang('World Education Services (WES)')}</p>
+                            <a href="https://www.wes.org/" target="_blank">{:lang('Introduction to Institutions')}</a>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <img src="/canada/images/college_8.png" alt="">
+                            <p>{:lang('China Study Abroad Network')}</p>
+                            <a href="http://www.cscse.edu.cn" target="_blank">{:lang('Introduction to Institutions')}</a>
+                        </div>
+                        <div class="layui-col-sm4">
+                            <img src="/canada/images/college_9.png" alt="">
+                            <p>{:lang('China Abroad Student Information Service Network')}</p>
+                            <a href="https://www.cscss.com.cn/" target="_blank">{:lang('Introduction to Institutions')}</a>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+<link rel="stylesheet" href="/static/js/zeroModal/css/zeroModal.css">
+<script src="/static/js/zeroModal/js/zeroModal.min.js"></script>
+<script type="text/javascript">
+    $('.theme-btn ').on('click', function () {
+        $.post("/index/user/apply_all_verify",[],function (res) {
+            console.log(res)
+            if(res.code == 20000){
+                window.location.href =  res.msg;
+            }else { 
+                zeroModal.alert({
+                    content:  '{:lang("Please apply for WSE Degree Assessed Education Storage service before applying for this project.")}', 
+                    cancelTitle:'{:lang("Cancel")}',
+                    okTitle: '{:lang("Apply")}!',  
+                    okFn: function() {
+                        location.href="{:url('/applications_lists')}";
+                    }  ,
+                    cancel:true,
+                });
+            }
+        });
+    })
+</script>
+</html>

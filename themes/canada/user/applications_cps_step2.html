@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('IPG: Canadian Pharmacy Skills (CPS) 1 Application')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+     <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class=" layui-form">
+<div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+<!--    user avatar    -->
+                <div class="layui-row user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{switch name="$Think.cookie.think_var"}
+                            {case value="en-us"}{$order.name_en}{/case}
+                            {case value="zh-cn"}{$order.app_name}{/case}
+                            {case value="ja-jp"}{$order.name_jp}{/case}
+                            {case value="de-de"}{$order.name_de}{/case}
+                            {case value="ko-kr"}{$order.name_kr}{/case}
+                            {case value="ru-ru"}{$order.name_ru}{/case}
+                            {case value="fr-fa"}{$order.name_fa}{/case}
+                            {/switch}</h1>
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email}— {$user.search_id}</p>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <div class="steps-card">
+                            <h3>{:lang('Required Steps')}</h3>
+                            <div class="step-arrow-box">
+                                {foreach name="app_step" item="vo"}
+                                <a href="{$vo.sort}">
+                                    {if condition="in_array($vo.id,$step_ok)"}
+                                    <div class="step-arrow-wrap step-arrow-complete">
+                                        {else}
+                                        <div class="step-arrow-wrap">
+                                            {/if}
+                                            <div class="step-arrow-left">
+                                                <div class="arrow-1"></div>
+                                                <div class="arrow-2"></div>
+                                            </div>
+                                            <div class="step-arrow-center">
+                                                <span class="layui-hide-xs">
+                                                    {$vo.sort}. {switch name="$Think.cookie.think_var"}
+                                                    {case value="en-us"}{$vo.step_en}{/case}
+                                                    {case value="zh-cn"}{$vo.step_name}{/case}
+                                                    {case value="ja-jp"}{$vo.step_jp}{/case}
+                                                    {case value="de-de"}{$vo.step_de}{/case}
+                                                    {case value="ko-kr"}{$vo.step_kr}{/case}
+                                                    {case value="ru-ru"}{$vo.step_ru}{/case}
+                                                    {case value="fr-fa"}{$vo.step_fa}{/case}
+                                                    {/switch}
+                                                </span>
+                                                <span class="layui-hide-sm">{$vo.sort}</span>
+                                            </div>
+                                            <div class="step-arrow-right">
+                                                <div class="arrow-1"></div>
+                                                <div class="arrow-2"></div>
+                                            </div>
+                                        </div>
+                                </a>
+                                {/foreach}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+<!--    steps    -->
+                <div class="layui-row steps">
+                    <div class="layui-col-sm12">
+                        <h3>{:lang('PERSONAL AND EDUCATIONAL INFORMATION')}</h3>
+                        <p>{:lang('Personal Information')}</p>
+                        <hr/>
+                        <div class="form-group">
+                            <p><b>{:lang('Legal User Name')}: </b><span class="necessary">*</span></p>
+                            <input type="text" value="{$user.username}" disabled class="form-input"  lay-verify="required">
+                        </div>
+<div class="form-group date">
+                            <p><b>{:lang('Date of Birth')}: </b><span class="necessary">*</span></p>
+                            <input type="text" value="{$user.birth_time}" disabled class="form-input" id="birthDate" placeholder="{:lang('Click to select date')}" autocomplete="off"  autocomplete="off">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('Email Address')}: </b><span class="necessary">*</span></p>
+                            <input type="text" value="{$user.email}" disabled class="form-input" lay-verify="required">
+                        </div>
+                        <p>{:lang('Student Visa')}</p>
+                        <hr/>
+<p>{:lang('Education')}</p>
+                        <hr/>
+                        <div class="form-group">
+                            <p><b>{:lang('Did you graduate from a High School in Canada?')}</b><span class="necessary">*</span></p>
+                            <input type="radio" name="hschool_canada" {$edu.hschool_canada=="Yes"?"checked":""} value="" title="{:lang('Yes')}" >
+                            <br/>
+                            <input type="radio" name="hschool_canada" {$edu.hschool_canada=="No"?"checked":""} value="" title="{:lang('No')}" >
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('If yes - Please indicate the province/territory:')}</b></p>
+                            <select name="hschool_province" class="form-input">
+                                <option {$edu.hschool_province=="Alberta"?"selected":""}  value="Alberta">{:lang('Alberta')}</option>
+                                <option {$edu.hschool_province=="British Columbia"?"selected":""}  value="British Columbia">{:lang('British Columbia')}</option>
+                                <option {$edu.hschool_province=="Manitoba"?"selected":""}  value="Manitoba">{:lang('Manitoba')}</option>
+                                <option {$edu.hschool_province=="New Brunswick"?"selected":""}  value="New Brunswick">{:lang('New Brunswick')}</option>
+                                <option  {$edu.hschool_province=="Newfoundland and Labrador"?"selected":""} value="Newfoundland and Labrador">{:lang('Newfoundland and Labrador')}</option>
+                                <option  {$edu.hschool_province=="Northwest Territories"?"selected":""} value="Northwest Territories">{:lang('Northwest Territories')}</option>
+                                <option  {$edu.hschool_province=="Nova Scotia"?"selected":""} value="Nova Scotia">{:lang('Nova Scotia')}</option>
+                                <option  {$edu.hschool_province=="Nunavut"?"selected":""} value="Nunavut">{:lang('Nunavut')}</option>
+                                <option  {$edu.hschool_province=="Ontario"?"selected":""} value="Ontario">{:lang('Ontario')}</option>
+                                <option  {$edu.hschool_province=="Prince Edward Island"?"selected":""} value="Prince Edward Island">{:lang('Prince Edward Island')}</option>
+                                <option {$edu.hschool_province=="Quebec"?"selected":""}  value="Quebec">{:lang('Quebec')}</option>
+                                <option  {$edu.hschool_province=="Saskatchewan"?"selected":""} value="Saskatchewan">{:lang('Saskatchewan')}</option>
+                                <option  {$edu.hschool_province=="Yukon"?"selected":""} value="Yukon">{:lang('Yukon')}</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('Did you graduate with a Canadian University degree?')}</b><span class="necessary">*</span></p>
+                            <input type="radio" name="university_canada" {$edu.university_canada=="Yes"?"checked":""} value="" title="{:lang('Yes')}" >
+                            <br/>
+                            <input type="radio" name="university_canada" {$edu.university_canada=="No"?"checked":""} value="" title="{:lang('No')}" >
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('If yes - Please indicate the degree obtained')}</b></p>
+                            <input type="text" name="university_degree" value="{$edu.university_degree}" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('Academic Institution attended for Pharmacy Degree')}</b><span class="necessary">*</span></p>
+                            <input type="text" name="pharmacy_degree" value="{$edu.pharmacy_degree}" class="form-input" lay-verify="required">
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('Country')}</b><span class="necessary">*</span></p>
+                            <select name="nationality" class="form-input">
+                                {foreach name="country" item="vo"}
+                                <option {$edu.nationality==$vo.id?"selected":""} value="{$vo.id}">{$vo.name}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('Year of Graduation')}</b><span class="necessary">*</span></p>
+                            <input type="text" name="finish_date" value="{$edu.finish_date}" class="form-input" lay-verify="required">
+                        </div>
+                        <p>{:lang('English Fluency')}</p>
+                        <hr/>
+                        <div class="form-group">
+                            <p><b>{:lang('Do you have a current fluency test taken in the last two years?')}</b><span class="necessary">*</span></p>
+                            <input type="radio" {notempty name="$passport['en_lv']" }checked{/notempty} name="currentFluency" value="Yes" title="{:lang('Yes')}" >
+                            <br/>
+                            <input type="radio" name="currentFluency" value="No" title="{:lang('No')}" >
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('If yes – Which test have you completed?')}</b></p>
+                            <input type="text" name="which_test" value="{$passport.which_test}" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('What were your scores in Speaking/Oral:')}</b></p>
+                            <input type="text" name="speak_score" value="{$passport.speak_score}" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('What were your scores in Written Composition:')}</b></p>
+                            <input type="text" name="write_score" value="{$passport.write_score}" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('What were your scores in Reading:')}</b></p>
+                            <input type="text" name="read_score" value="{$passport.read_score}" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('What were your scores in Listening Comprehension:')}</b></p>
+                            <input type="text" name="listen_score" value="{$passport.listen_score}" class="form-input">
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('What were your Overall Score:')}</b></p>
+                            <input type="text" name="overall_score" value="{$passport.overall_score}" class="form-input">
+                        </div>
+                        <h5>{:lang('Note:')}</h5>
+                        <p>{:lang('Please scan and upload a copy of your English Fluency exam or an OCP exemption letter. You can find a summary of minimum requirements on the')} <a href="http://www.ocpinfo.com/registration/training-exams/language-proficiency/language-pharmacists/" target="_blank">{:lang('OCP website')}</a>. {:lang('Save file as')} <b>{:lang('firstname_lastname-LanguageProficiency')}*</b>&nbsp;</p>
+                        <p>{:lang('If you are a native English speaker you may request a Non-Objective Evidence of Language Proficiency from the Ontario College of Pharmacists (OCP). You can find additional information on their website,')} <a href="http://www.ocpinfo.com/registration/res-policies/non-objective-lp-july1-2015/" target="_blank">{:lang('here')}.</a></p>
+                        <p><b>{:lang('English Fluency Exam or OCP exemption letter')}</b><span class="necessary">*</span></p>
+                        <p class="file"><b>{:lang('File Name')}</b> <input type="file"> <a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+                        <div class="variable-content">
+                            <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                        </div>
+                        <p>{:lang('PEBC Evaluating Exam')}</p>
+                        <hr/>
+                        <div class="form-group">
+                            <p><b>{:lang('Have you completed the Pharmacy Examining Board of Canada (PEBC) Evaluating Exam?')}</b><span class="necessary">*</span></p>
+                            <input type="radio" name="is_pebc" {$edu.is_pebc=="Yes"?"checked":""} value="Yes" title="{:lang('Yes')}" >
+                            <br/>
+                            <input type="radio" name="is_pebc" {$edu.is_pebc=="No"?"checked":""} value="No" title="{:lang('No')}" >
+                        </div>
+                        <div class="form-group date">
+                            <p><b>{:lang('If yes – Which month and year did you complete the exam?')}</b></p>
+                            <input type="text" name="finish_pebc" value="{$edu.finish_pebc}" class="form-input" id="completeDate" placeholder="{:lang('Click to select date')}" autocomplete="off"  autocomplete="off">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="form-group date">
+                            <p><b>{:lang('If no – Which month and year do you intend to complete the exam?')}</b></p>
+                            <input type="text" class="form-input" id="intendCompleteDate" placeholder="{:lang('Click to select date')}" autocomplete="off"  autocomplete="off">
+                            <i class="fa fa-calendar"></i>
+                        </div>
+<h5>{:lang('Note')}</h5>
+                        <p>{:lang('Please scan and upload a copy of your PEBC Evaluation Exam letter. Save file as firstname_lastname-PEBC results')}</p>
+                        <p><b>{:lang('PEBC Evaluation Exam letter')} </b><span class="necessary">*</span></p>
+                        <p class="file"><b>{:lang('File Name')}</b> <input type="file"> <a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+                        <div class="variable-content">
+                            <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                        </div>
+                        <h5>{:lang('Résumé')}</h5>
+                        <hr/>
+                        <h5>{:lang('Note')}</h5>
+                        <p>{:lang('Scan and save resume file as firstname_lastname-Resume')}</p>
+                        <p><b>{:lang('Upload your Résumé:')} </b><span class="necessary">*</span></p>
+                        <p class="file"><b>{:lang('File Name')}</b> <input type="file"> <a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+                        <div class="variable-content">
+                            <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                        </div>
+</div>
+                    <div class="layui-col-sm12">
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save This Page')}</a>
+                        <a class="layui-btn mazarine right">{:lang('Next Page')}</a>
+                        <br/>
+                        <br/>
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save and Finish Later')}</a>
+                        <hr/>
+                    </div>
+                </div>
+</div>
+        </div>
+</div>
+</section>
+<script>
+    layui.use(['form', 'laydate'], function(){
+        var form = layui.form,
+            laydate  = layui.laydate;
+laydate.render({
+            elem: '#birthDate',
+            lang: 'en'
+        });
+laydate.render({
+            elem: '#completeDate',
+            lang: 'en'
+        });
+laydate.render({
+            elem: '#intendCompleteDate',
+            lang: 'en'
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>Login</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
+    <link rel="stylesheet" href="/canada/css/header-footer.css">
+    <link rel="stylesheet" href="/canada/css/login-new.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+</head>
+<body>
+{include file="public/header-login" /}
+
+<section class="main">
+    <div class="row">
+        <div class="col-sm-6 login">
+            <div class="row-login">
+                <h2>{:lang('Log In')}</h2>
+
+                <!--有报错显示，无报错隐藏-->
+                <div class="alert-danger hide">
+                    <i class="fa fa-exclamation-triangle"></i>
+                    <span>{:lang('Invalid username or password')}</span>
+                </div>
+
+                <form class="" id="log_form">
+                    <div class="form-group">
+                        <label for="username" id="username-label" class="form-label">{:lang('Email address')}</label>
+                        <input type="email" name="email" id="username" class="form-input" value="{php} echo @$_COOKIE['useremail'];{/php}">
+                        <p id="email-error"></p>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" id="password-label" class="form-label">{:lang('Password')}</label>
+                        <input type="password" name="password" id="password" class="form-input" value="{php} echo @$_COOKIE['userpwd'];{/php}">
+                        <p id="pwd-error"></p>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block">
+                        <div><span class="btn-text">{:lang('Log in')}</span><span class="fa fa-angle-right"></span></div>
+                    </button>
+                    <div class="row login-actions">
+                        <div class="col-sm-6">
+                            <label for="keep">
+                                <input type="checkbox" name="rem" id="keep">{:lang('Keep me logged in')}
+                            </label>
+                        </div>
+                        <div class="col-sm-6">
+                            <a href="/forget_pass" class="forgotten">{:lang('Forgotten password')}</a>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="col-sm-6 register">
+            <div class="row-register">
+                <h2>{:lang('New to Prospects')}?</h2>
+                <p>{:lang('Register to receive career advice relevant to you')}.</p>
+                <a  class="btn btn-block add-register">
+                    <div><span class="btn-text">{:lang('Sign in')}</span><span class="fa fa-angle-right"></span></div>
+                </a>
+                <div class="why-register">
+                    <h2>{:lang('Why register')}?</h2>
+                    <ul>
+                        <li>
+                            <i class="fa fa-envelope-open-o"></i>
+                            <p>{:lang('Personalised job and course email alerts')}</p>
+                        </li>
+                        <li>
+                            <i class="fa fa-heart-o"></i>
+                            <p>{:lang('Save your favourite jobs and courses')}</p>
+                        </li>
+                        <li>
+                            <i class="fa fa-check-square-o"></i>
+                            <p>{:lang('Exclusive access to Career Planner')}</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+
+    $('.btn-primary').click(function () {
+        var eml = $('#username').val();
+        var res = /^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/;
+        if (!res.test(eml)){
+            $('.alert-danger').removeClass('hide');
+            $('.alert-danger span').text('Incorrect email format');
+            return false;
+        }
+        $.post("/home/user/login", $("#log_form").serialize(),
+        function(result){
+            if(result.code==1){
+                window.location.href=result.url;
+
+                /*layer.msg('login success',{time:500},function(){
+                    window.location.href=data.url;
+                })*/
+            }else{
+                //提交错误，请刷新后重试
+                if (result.msg=='invalid token') {
+                    $('.alert-danger').removeClass('hide');
+                    $('.alert-danger span').text('Error submitted. Please refresh and try again');
+                } else{
+                    $('.alert-danger').removeClass('hide');
+
+                    var password = $("#password").val().trim();
+                    var len =password.length;
+
+                    if (result.msg=='password requre' ){
+
+                        $('#password').siblings('#pwd-error').text('The password cannot be empty');
+                    }else if (6 > len || len>= 30){
+
+                        $('#password').siblings('#pwd-error').text('The password length should be greater than 6 and less than 30');
+                    }else if (result.msg=='email requre'){
+                        $('#username').siblings('#email-error').text('The Email cannot be empty');
+                    }else if (result.msg=='email not a valid email address'){
+                        $('#username').siblings('#email-error').text('Incorrect email format');
+                    }
+                    $('.alert-danger span').text(result.msg);
+                }
+            }
+        });
+    });
+    $('.add-register').click(function () {
+        window.location.href='/home/user/add';
+    });
+</script>
+{include file="public/footer-login" /}
+</body>
+
+</html>

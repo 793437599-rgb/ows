@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('Request Duplicate Copies of WSE-DAE Report or Official Transcript V2')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+     <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div >
+<div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+<!--    user avatar    -->
+                <div class="layui-row user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{switch name="$Think.cookie.think_var"}
+                            {case value="en-us"}{$order.name_en}{/case}
+                            {case value="zh-cn"}{$order.app_name}{/case}
+                            {case value="ja-jp"}{$order.name_jp}{/case}
+                            {case value="de-de"}{$order.name_de}{/case}
+                            {case value="ko-kr"}{$order.name_kr}{/case}
+                            {case value="ru-ru"}{$order.name_ru}{/case}
+                            {case value="fr-fa"}{$order.name_fa}{/case}
+                            {/switch}</h1>
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email}— {$user.search_id}</p>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <div class="steps-card">
+                            <h3>{:lang('Required Steps')}</h3>
+                            <div class="step-arrow-box">
+                                {foreach name="app_step" item="vo"}
+                                <a href="{$vo.sort}">
+                                    {if condition="in_array($vo.id,$step_ok)"}
+                                    <div class="step-arrow-wrap step-arrow-complete">
+                                        {else}
+                                        <div class="step-arrow-wrap">
+                                            {/if}
+                                            <div class="step-arrow-left">
+                                                <div class="arrow-1"></div>
+                                                <div class="arrow-2"></div>
+                                            </div>
+                                            <div class="step-arrow-center">
+                                                <span class="layui-hide-xs">
+                                                    {$vo.sort}. {switch name="$Think.cookie.think_var"}
+                                                    {case value="en-us"}{$vo.step_en}{/case}
+                                                    {case value="zh-cn"}{$vo.step_name}{/case}
+                                                    {case value="ja-jp"}{$vo.step_jp}{/case}
+                                                    {case value="de-de"}{$vo.step_de}{/case}
+                                                    {case value="ko-kr"}{$vo.step_kr}{/case}
+                                                    {case value="ru-ru"}{$vo.step_ru}{/case}
+                                                    {case value="fr-fa"}{$vo.step_fa}{/case}
+                                                    {/switch}
+                                                </span>
+                                                <span class="layui-hide-sm">{$vo.sort}</span>
+                                            </div>
+                                            <div class="step-arrow-right">
+                                                <div class="arrow-1"></div>
+                                                <div class="arrow-2"></div>
+                                            </div>
+                                        </div>
+                                </a>
+                                {/foreach}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+<!--    steps    -->
+                <div class="layui-row steps">
+                    <div class="layui-col-sm12">
+                        <h3>{:lang('READ INSTRUCTIONS')}</h3>
+                        <hr/>
+                        <p>{:lang('Please read and follow carefully to avoid delays')}</p>
+                        <hr/>
+                        <h5>{:lang('Application to Request Duplicate Copies')}</h5>
+                        <p>{:lang('Complete this online application to have duplicate copies of your Degree Assessment Education (DAE) report or your Degree Assessment Education (DAE) assessment letter sent either to yourself or directly to a third party. CES assessment reports/letters issued after 1997 are available in most cases. Those issued prior to 1997 are no longer available.')}</p>
+                        <p>{:lang('You may also request for duplicate copies of your Official Transcript sent to an institutional third party along with WSE-DAE Report. This service is <b>conditional</b> upon WSE having received the Official Transcript directly from the issuing institution within 10 years prior to the submission of this application form, and only after your WSE-DAEReport has been issued. This service is available only if the issuing institution has not expressly forbidden WSE from forwarding the documents to a third party. Please note that it is your responsibility to ensure that duplicate copies of your Official Transcripts comply with the document requirements of the receiving organization / institution.')}</p>
+                        <p>{:lang('The processing time is approximately five (5) business days upon receipt of your request and payment.  Please note that processing times <b>do not </b>include delivery.')}</p>
+                        <h5>{:lang('Required Documents')}:</h5>
+                        <ol>
+                            <li>{:lang('A completed online application')}</li>
+                            <li>{:lang('A colour copy of both sides of your government-issued photo identification showing your date of birth')}</li>
+                            <li>{:lang('If your name has changed since the issuance of your report, please provide a copy of your marriage certificate or a proof of name change document showing both your former name and current name.')}</li>
+                            <li>{:lang('Full payment of applicable WSE service fees')}</li>
+                        </ol>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save This Page')}</a>
+                        <a class="layui-btn mazarine right">{:lang('Next Page')}</a>
+                        <br/>
+                        <br/>
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save and Finish Later')}</a>
+                        <hr/>
+                    </div>
+                </div>
+</div>
+        </div>
+</div>
+</section>
+</body>
+</html>

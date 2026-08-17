@@ -1,0 +1,103 @@
+<div class="layui-row user-avatar">
+    <h1>{:lang('Basic Information')}</h1>
+    <div class="public-user-header center-header-new2">
+        {include file="public/_user_basic_information"}
+        <div class="layui-col-sm12">
+            <div class="steps-card">
+                <h3>{:lang('Required Steps')}</h3>
+                <div class="step-arrow-box">
+                    {foreach name="steps" item="vo"}
+                    <a href="{:url('index/user/app_step_info',['app_id'=>$app.id,'sort'=>$vo.sort])}">
+                        <div class="step-arrow-wrap {if condition='in_array($vo.id,$step_ok) || in_array($vo.id,$step_error)'} step-arrow-complete {/if}">
+                            <div class="step-arrow-left">
+                                <div class="arrow-1"></div>
+                                <div class="arrow-2"></div>
+                            </div>
+                            <div class="step-arrow-center">
+                                <span class="layui-hide-xs">{if in_array($vo.id,$step_error)}<i class="fa fa-exclamation-circle">{/if}</i>{$vo.sort}. {:lang($vo.step_en)}</span>
+                                <span class="layui-hide-sm">{if in_array($vo.id,$step_error)}<i class="fa fa-exclamation-circle">{/if}</i>{$vo.sort}</span>
+                            </div>
+                            <div class="step-arrow-right">
+                                <div class="arrow-1"></div>
+                                <div class="arrow-2"></div>
+                            </div>
+                        </div>
+                    </a>
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div class="layui-row  user-avatar">
+    <h1>{:lang('Basic Information')}</h1>
+    <div class="public-user-header center-header-new2">
+        <div class="public-user-h1"><a href="/profile"><img src="{$user.head_img}"></a></div>
+        <div class="public-user-h2">
+            <p class="p-user-name"><b>{$user.username}</b><span class="stored-id">{$user.search_id}</span><span class="p-ediet"><i class="iconfont icon-ediet"></i></span></p>
+            <div class="public-imfor-three">
+                <div>{$user.sex}</div>
+                <div>24 years old</div>
+                <div>{$user.nationality}</div>
+            </div>
+            <div class="public-imfor-two">
+                <div><span><i class="iconfont icon-phone"></i>{$user.mobile}</span></div>
+                <div><span><i class="iconfont icon-youxiang1"></i>{$user.email}</span></div>
+            </div>
+        </div>
+        <div class="public-user-h3">
+       
+            <div class="p-h3-right">
+                <div class="p-h3-state h3-state-green">
+                    <span><i class="iconfont icon-assessment-state"></i>Not Assessed</span>
+                    <span style="display: none;"><i class="iconfont"></i>Assessed</span>
+                </div>
+                <div class="p-h3-applybtn">
+                    <a href="javascript:;">APPLY ASSESSMENT</a>
+                    <a href="javascript:;"style="display: none;">My Storage</a>
+                 </div>
+            </div>
+        </div>
+    </div>
+    <!--<script>-->
+    <!--    $(function () {-->
+    <!--        let forms = $('#infodata input,#infodata select');-->
+    <!--        let falg = true;-->
+    <!--        $.each(forms, function (index, item) {-->
+    <!--            let val = $(item).val().replace(/^\s*|\s*$/g, "");-->
+    <!--            let verify = $(item).attr('lay-verify');-->
+    <!--            if (verify == null || verify == undefined) {-->
+    <!--                verify = ''-->
+    <!--            }-->
+    <!--            let msg = '';-->
+    <!--            verify = verify.split('|');-->
+    <!--            if (verify.indexOf('required') > -1 && (val == null || val == undefined || val == '')) {-->
+    <!--                if (falg) {-->
+    <!--                    $(item).focus();-->
+    <!--                    falg = false;-->
+    <!--                }-->
+    <!--                $(item).addClass('error_border');-->
+    <!--            }-->
+    <!--        })-->
+    <!--        $('#infodata input').on('input',function () {-->
+    <!--            let val = $(this).val();-->
+    <!--            if (val != '' && val != undefined && val != null) {-->
+    <!--                $(this).removeClass('error_border');-->
+    <!--            }-->
+    <!--        });-->
+    <!--        $('#infodata select').change(function(){-->
+    <!--             $(this).removeClass('error_border');-->
+    <!--        });-->
+    <!--          -->
+    <!--    })-->
+    <!--</script>-->
+<script>
+    $(function () {
+        $(document).on('click', '.upload-pdf>img', function () {
+            let pdf_src = $(this).siblings('input').val();
+            window.open(pdf_src, 'PDF', 'width:50%;height:50%;top:200;left:200;');
+        })
+        $(document).on('click', '.preview>img', function () {
+        })
+    })
+</script>

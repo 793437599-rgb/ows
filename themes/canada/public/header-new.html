@@ -1,0 +1,682 @@
+<div class="holer"></div>
+<div id="headdiv">
+    <div class="top01">
+        <div class="gy2">
+            <span class="l country-switch clang">
+                <!-- <a href="javascript:;" data-country="canada"><img src="/canada/images/country5.png" alt="" >{:lang('Canada')}</a>
+                <a href="javascript:;" class="country" data-country="usa"><img src="/canada/images/country4.png" alt="">{:lang('USA')} </a> -->
+                <a href="javascript:;" data-clang="en" class="switchlist"><img src="/imgs/England.png">English</a>
+                <a href="javascript:;" data-clang="fr" class="switchlist"><img src="/imgs/France.png">Français</a>
+                <a href="javascript:;" data-clang="ja" class="switchlist"><img src="/imgs/Japan.png">日本語</a>
+                <a href="javascript:;" data-clang="cn" class="switchlist"><img src="/imgs/China.png">中文</a>
+                <a href="javascript:;" data-clang="ko" class="switchlist"><img src="/imgs/han.jpg">한국어</a>
+                <a href="javascript:;" data-clang="ru" class="switchlist"><img src="/imgs/e.jpg">Русский</a>
+                
+            </span>
+            <div class="top01_center">
+                {notempty name="Think.session.user_id"}
+                <a href="{$urlss}/index/user/log"><i class="fa fa-user" aria-hidden="true"></i>{$Think.session.user_id|getusername} </a>
+                {else /} 
+                <a href="{$urlss}/index/user/log"><i class="fa fa-user" aria-hidden="true"></i> {:lang('LOG IN')}</a>
+                {/notempty}
+            </div>
+            <div class="langBox">
+                <div><span class="placeholder">{:lang('English')}</span> <i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                <ul>
+                    <li class="en">English</li>
+                    <li class="fr">Français</li>
+                    <li class="ja">日本語</li>
+                    <li class="cn">中文</li>
+                    <li class="ko">한국어</li>
+                    <li class="ru">Русский</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="top02">
+        <div class="top02_center">
+            <div class="logo">
+                <a href="{$urlss}/"><img src="{$C['site_logo']}"></a>
+            </div>
+            <!-- nav -->
+            <div class="nav">
+                <ul>
+                    <li id="m1" class="m on">
+                        <a href="{$urlss}/" class="aa1 mmm" id="sel">{:lang('Home')}</a>
+                    </li>
+                    <li id="m3" class="m">
+                        <a href="javascript:void(0);" class="aa3 mmm">{:lang('Query Verification')} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <div class="sub">
+                            <div class="nav_xiao">
+                                <div class="xiao_five block-one">
+                                    <img src="/canada/images/header-images/block-one.svg" alt="">
+                                </div>
+                                <div class="ver-twobox">
+                                    <ul>
+                                        <li><a href="{:url('index/ku/index')}"><i class="iconfont icon-trascript"></i>{:lang('Certificate Verification')}</a></li>
+                                        <li><a href="{:url('index/ku/index')}"><i class="iconfont icon-certificate"></i>{:lang('Certificate Query')}</a></li>
+                                        <li><a href="{$urlss}/index/about/blockchain"><i class="iconfont icon-Blockchain"></i>{:lang('Blockcerts Universal Verifier')}</a></li>
+                                        <li><a href="{$urlss}/index/application/cooperative_agency"><i class="iconfont icon-Cooperation"></i>{:lang('Cooperative Agency Inquiry')}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="m4" class="m">
+                        <a href="javascript:void(0);" class="aa4 mmm">{:lang('Assessment Storage')} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <div class="sub">
+                            <div class="nav_xiao">
+                                <div class="xiao_five">
+                                    <img src="/canada/images/header-images/cr_img1.png">
+                                </div>
+                                <div class="xiao_five2">
+                                    <p>
+                                        <a href="{$urlss}/index/about/assessment"><i class="iconfont icon-about"></i>- {:lang('About Evaluation Storage')}</a>
+                                        <a href="{$urlss}/index/about/servicefees"><i class="iconfont icon-fees"></i>- {:lang('Services and Fees')}</a>
+                                    </p>
+                                    <p>
+                                        <a href="{$urlss}/index/about/degree"><i class="iconfont icon-Assessment"></i>- {:lang('Degree Assessed-General Application')}</a>
+                                        <a href="{$urlss}/index/about/dae"><i class="iconfont icon-report"></i>- {:lang('Degree Assessed-For Immigration')}</a>
+                                    </p>
+                                    <p>
+                                        <a href="{$urlss}/index/about/requestadditional"><i class="iconfont icon-fuben"></i>- {:lang('Request Additional Copies')}</a>
+                                        <a href="javascript:void(0);"><i class="iconfont icon-data-transmission"></i>- {:lang('Data Transmission')}</a>
+                                    </p>
+                                    <p>
+                                        <a href="{$urlss}/index/about/blockchainstorage"><i class="iconfont icon-qukuailian-"></i>- {:lang('Blockchain Storage Education')}</a>
+                                        <a href="{$urlss}/index/about/problemcenter"><i class="iconfont icon-problem"></i>- {:lang('Common Problem')}</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="m">
+                        <a href="javascript:void(0);" class="aa4 mmm">{:lang('Institutional Storage')} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <div class="sub">
+                            <div class="nav_xiao">
+                                <div class="xiao_one">
+                                    <ul>
+                                        <li><a href="{$urlss}/index/about/institutional"><i class="iconfont icon-institution"></i>{:lang('About Institutional Storage')}</a></li>
+                                        <li><a href="{$urlss}/index/application/institutional_apply"><i class="iconfont icon-Application"></i>{:lang('Data Storage Application')}</a></li>
+                                        <li><a href="{$urlss}/index/application/institutional_apply"><i class="iconfont icon-interface"></i>{:lang('Developer API Application')}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="m8" class="m about-m">
+                        <a href="javascript:void(0);" class="aa8 mmm">{:lang('Study in Canada')} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <div class="sub">
+                            <div class="nav_xiao">
+                                <div class="xiao_four l">
+                                    <h2>{:lang('List of Canadian Institutions/Schools')}</h2>
+                                    <ul class="ul">
+                                        <li><a href="https://www.mcgill.ca/" target="_blank">{:lang('McGill University')}</a></li>
+                                        <li><a href="https://www.utoronto.ca/" target="_blank">{:lang('University of Toronto')}</a></li>
+                                        <li><a href="http://www.ubc.ca/" target="_blank">{:lang('The University of British Columbia')}</a></li>
+                                        <li><a href="http://www.mcmaster.ca/" target="_blank">{:lang('McMaster University')}</a></li>
+                                        <li><a href="http://www.uwo.ca/" target="_blank">{:lang('Western University')}</a></li>
+                                        <li><a href="/page/321.html">{:lang('More')}</a></li>
+                                    </ul>
+                                </div>
+                                <div class="xiao_four l">  
+                                    <h2>{:lang('Study in Canada')}</h2>
+                                    <ul class="ul">
+                                        <li><a href="{$urlss}/page/52.html">{:lang('Apply to Study in Canada')}</a></li>
+                                        <li><a href="{$urlss}/page/82.html">{:lang('Get Financial Assistance')}</a></li>
+                                        <li><a href="{$urlss}/page/77.html">{:lang('Choose Canada')}</a></li>
+                                        <li><a href="{$urlss}/page/102.html">{:lang('Student Accommodation')}</a></li>
+                                        <li><a href="{$urlss}/page/103.html">{:lang('Canadian Education Department')}</a></li>
+                                        <li><a href="{$urlss}/page/105.html">{:lang("Canada's Education System")}</a></li>
+                                    </ul>
+                                </div>
+                                <div class="xiao_four r">
+                                    <h2>{:lang("Living in Canada")}</h2>
+                                    <ul class="ul">
+                                        <li><a href="{$urlss}/page/95.html">{:lang('Immigration to Canada')}</a></li>
+                                        <li><a href="{$urlss}/page/88.html">{:lang('Live in Canada')}</a></li>
+                                        <li><a href="{$urlss}/page/90.html">{:lang('Work in Canada')}</a></li>
+                                        <li><a href="{$urlss}/page/322.html">{:lang('Canadian Way of Life')}</a></li>
+                                        <li><a href="{$urlss}/page/255.html">{:lang('Find a Career Profile')}</a></li>
+                                        <li><a href="{$urlss}/page/308.html">{:lang("Canada's Education System")}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="m8" class="m about-m" style="display: none;">
+                        <a href="javascript:void(0);" class="aa8 mmm">{:lang('Study in USA')} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <div class="sub">
+                            <div class="nav_xiao">
+                                <div class="xiao_four l">
+                                    <h2>{:lang('List of American institutions/schools')}</h2>
+                                    <ul class="ul">
+                                        <li><a href="https://www.una.edu/" target="_blank">{:lang('University of North Alabama')}</a></li>
+                                        <li><a href="http://www.oakwood.edu" target="_blank">{:lang('Oakwood University')}</a></li> 
+                                        <li><a href="https://www.troy.edu/" target="_blank">{:lang('Troy University')}</a></li>
+                                        <li><a href="http://www.jsu.edu/" target="_blank">{:lang('Jacksonville State University')}</a></li>
+                                        <li><a href="http://www.aum.edu/" target="_blank">{:lang('Auburn University at Montgomery')}</a></li>
+                                        <li><a href="/page/321.html">{:lang('More')}</a></li>
+                                    </ul>
+                                </div>
+                                <div class="xiao_four l">  
+                                    <h2>{:lang('Study in USA')}</h2>
+                                    <ul class="ul">
+                                        <li><a href="{$urlss}/page/326.html">{:lang('Choosing the USA')}</a></li>
+                                        <li><a href="{$urlss}/page/348.html">{:lang('USA State Guides')}</a></li>
+                                        <li><a href="{$urlss}/page/354.html">{:lang('Application Process')}</a></li>
+                                        <li><a href="{$urlss}/page/380.html">{:lang('Financial Aid for the USA')}</a></li>
+                                        <li><a href="{$urlss}/page/386.html">{:lang('Preparation for Your Stay')}</a></li>
+                                        <li><a href="{$urlss}/page/331.html">{:lang('The USA "Way of Life"')}</a></li>
+                                    </ul>
+                                </div>
+                                <div class="xiao_four r">
+                                    <h2>{:lang('Living in USA')}</h2>
+                                    <ul class="ul">
+                                        <li><a href="{$urlss}/page/363.html">{:lang('After Graduation')}</a></li>
+                                        <li><a href="{$urlss}/page/372.html">{:lang('Religious Schools in the US')}</a></li>
+                                        <li><a href="{$urlss}/page/391.html">{:lang('Online Degree Programs')}</a></li>
+                                        <li><a href="{$urlss}/page/392.html">{:lang('Guide to Getting into a US College or University')}</a></li>
+                                        <li><a href="{$urlss}/page/395.html">{:lang('Community Colleges in the US')}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li id="m2" class="m">
+                        <a href="{$urlss}/index/about/AboutWSE" class="aa2 mmm">{:lang('About WSE')}
+                        <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+                        <div class="sub">
+                            <div class="nav_xiao">
+                                <div class="xiao_five">
+                                    <img src="/canada/images/header-images/hd-nav-pic2.svg" alt="">
+                                </div>
+                                <div class="xiao_five2">
+                                    <p> 
+                                        <a href="{$urlss}/index/about/CredentialEvaluation"><i class="iconfont icon-expert"></i>- {:lang('Who are Credential Evaluation Expert?')}</a>
+                                        <a href="{$urlss}/index/about/StandardsProfession"><i class="iconfont icon-standard"></i>- {:lang('Standards for the Profession')}</a>
+                                    </p>
+                                    <p>
+                                        <a href="{$urlss}/index/about/Plans"><i class="iconfont icon-plan"></i>- {:lang('Strategic Plan and Committee Action Plans')}</a>
+                                        <a href="{$urlss}/index/about/BoardOfDirectors"><i class="iconfont icon-member"></i>- {:lang('Board of Directors')}</a>
+                                    </p>
+                                    <p>
+                                        <a href="{$urlss}/index/about/PastLeadership"><i class="iconfont icon-leadership"></i>- {:lang('Past Leadership')}</a>
+                                        <a href="{$urlss}/index/about/CharterMembers"><i class="iconfont icon-medal"></i>- {:lang('Charter Members')}</a>
+                                    </p>
+                                    <p>
+                                        <a href="{$urlss}/index/about/PressReleases"><i class="iconfont icon-news"></i>- {:lang('Press Releases')}</a>
+                                        <a href="{$urlss}/index/about/FAQ"><i class="iconfont icon-problem"></i>- {:lang('FAQ')}</a>
+                                    </p>
+                                </div>
+                                <!-- <div class="xiao_two">
+                                    <ul>
+                                        <li><a href="javascript:void(0);"><i class="bgs1"></i>WSE Introduction</a></li>
+                                        <li><a href="javascript:void(0);"><i class="bgs2"></i>Why Choose WSE</a></li>
+                                        <li><a href="javascript:void(0);"><i class="bgs3"></i>WSE-News</a></li>
+                                        <li><a href="javascript:void(0);"><i class="bgs4"></i>Contact WSE</a></li>
+                                    </ul>
+                                </div> -->
+                            </div>
+                        </div>
+                    </li>
+                    <li id="m2" class="m">
+                        <a href="{$urlss}/index/about/report" class="aa2 mmm">{:lang('Report Center')}  </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- nav end -->
+        </div>
+    </div>
+</div>
+<div class="v-navbox-top"></div>
+
+<!--    mobile nav    -->
+<nav class="codehim-dropdown">
+    <a href="{$urlss}/"><img class="logo-mobile" src="/canada/images/logo.png"></a>
+    <span class="country-switch">
+        <a href="javascript:;" data-country="canada"><img src="/canada/images/country5.png" alt="" ></a>
+        <a href="javascript:;" class="country" data-country="usa"><img src="/canada/images/country4.png" alt=""></a>
+    </span>
+    <div class="log-box">
+        {notempty name="Think.session.user_id"}
+        <a href="{$urlss}/index/user/log"><i class="fa fa-user" aria-hidden="true"></i>{$Think.session.user_id|getusername} </a>
+        {else /}
+        <a href="{$urlss}/index/user/log"><i class="fa fa-user" aria-hidden="true"></i> {:lang('LOG IN')}</a>
+        {/notempty}
+    </div>
+    <div class="langBox">
+        <div><span class="placeholder">{:lang('English')}</span> <i class="fa fa-angle-down" aria-hidden="true"></i></div>
+        <ul>
+            <li class="en">English</li>
+            <li class="fr">Français</li>
+            <li class="ja">日本語</li>
+            <li class="cn">中文</li>
+            <li class="ko">한국어</li>
+            <li class="ru">Русский</li>
+        </ul>
+    </div>
+    <ul class="dropdown-items">
+        <!--<li class="home-link">
+            <a class="home-link-btn"><i class="fa fa-home"></i></a>
+            <img src="/canada/images/logo.png">
+        </li>-->
+        <li>
+            <span class="dropdown-heading">{:lang('Query Verification')}</span>
+            <ul class="menu-items">
+                <li><b><a href="{:url('index/ku/index')}"><i class="iconfont icon-trascript"></i> {:lang('Certificate Verification')}</a></b></li>
+                <li><b><a href="{:url('index/about/blockchain')}"><i class="iconfont icon-Blockchain"></i> {:lang('Blockcerts Universal Verifier')}</a></b></li>
+            </ul>
+        </li>
+        <li>
+            <span class="dropdown-heading">{:lang('Assessment Storage')}</span>
+            <ul class="menu-items">
+                <li><b><a href="{$urlss}/index/about/assessment"><i class="iconfont icon-about"></i> {:lang('About Evaluation Storage')}</a></b></li>
+                <li><b><a href="{$urlss}/index/about/servicefees"><i class="iconfont icon-fees"></i> {:lang('Services and Fees')}</a></b></li>
+                <li><b><a href="{$urlss}/index/about/degree"><i class="iconfont icon-Assessment"></i> {:lang('Degree Assessed-General Application')}</a></b></li>
+                <li><b><a href="{$urlss}/index/about/dae"><i class="iconfont icon-report"></i> {:lang('Degree Assessed-For Immigration')}</a></b></li>
+                <li><b><a href="{$urlss}/index/about/requestadditional"><i class="iconfont icon-fuben"></i> {:lang('Request Additional Copies')}</a></b></li>
+                <li><b><a href="javascript:void(0);"><i class="iconfont icon-data-transmission"></i> {:lang('Data Transmission')}</a></b></li>
+                <li><b><a href="javascript:void(0);"><i class="iconfont icon-qukuailian-"></i> {:lang('Blockchain Storage Education')}</a></b></li>
+                <li><b><a href="{$urlss}/index/about/problemcenter"><i class="iconfont icon-problem"></i> {:lang('Common Problem')}</a></b></li>
+            </ul>
+        </li>
+        <li>
+            <span class="dropdown-heading">{:lang('Institutional Storage')}</i></span>
+            <ul class="menu-items">
+                <li><b><a href="{$urlss}/index/about/institutional"><i class="iconfont icon-institution"></i> {:lang('About Institutional Storage')}</a></b></li>
+                <li><b><a href="{$urlss}/index/application/institutional_apply"><i class="iconfont icon-Application"></i> {:lang('Data Storage Application')}</a></b></li>
+                <li><b><a href="{$urlss}/index/application/institutional_apply"><i class="iconfont icon-interface"></i> {:lang('Developer API application')}</a></b></li>
+            </ul>
+        </li>
+        <li class="switch-item-canada">
+            <span class="dropdown-heading">{:lang('Study in Canada')}</span>
+            <ul class="menu-items">
+                <li class="has-child">
+                    <span class="parent">{:lang('List of Canadian Institutions/Schools')}</span>
+                    <ul>
+                        <li><a href="https://www.mcgill.ca/" target="_blank">{:lang('McGill University')}</a></li>
+                        <li><a href="https://www.utoronto.ca/" target="_blank">{:lang('University of Toronto')}</a></li>
+                        <li><a href="http://www.ubc.ca/" target="_blank">{:lang('The University of British Columbia')}</a></li>
+                        <li><a href="http://www.mcmaster.ca/" target="_blank">{:lang('McMaster University')}</a></li>
+                        <li><a href="http://www.uwo.ca/" target="_blank">{:lang('Western University')}</a></li>
+                        <li><a href="/page/321.html">{:lang('More')}</a></li>
+                    </ul>
+                </li>
+                <li class="has-child">
+                    <span class="parent">{:lang('Study in Canada')}</span>
+                    <ul>
+                        <li><a href="{$urlss}/page/52.html">{:lang('Apply to Study in Canada')}</a></li>
+                        <li><a href="{$urlss}/page/82.html">{:lang('Get Financial Assistance')}</a></li>
+                        <li><a href="{$urlss}/page/77.html">{:lang('Choose Canada')}</a></li>
+                        <li><a href="{$urlss}/page/102.html">{:lang('Student Accommodation')}</a></li>
+                        <li><a href="{$urlss}/page/103.html">{:lang('Canadian Education Department')}</a></li>
+                        <li><a href="{$urlss}/page/105.html">{:lang("Canada's Education System")}</a></li>
+                    </ul>
+                </li>
+                <li class="has-child">
+                    <span class="parent">{:lang('Living in Canada')}</span>
+                    <ul>
+                        <li><a href="{$urlss}/page/95.html">{:lang('Immigration to Canada')}</a></li>
+                        <li><a href="{$urlss}/page/88.html">{:lang('Live in Canada')}</a></li>
+                        <li><a href="{$urlss}/page/90.html">{:lang('Work in Canada')}</a></li>
+                        <li><a href="{$urlss}/page/322.html">{:lang('Canadian Way of Life')}</a></li>
+                        <li><a href="{$urlss}/page/255.html">{:lang('Find a Career Profile')}</a></li>
+                        <li><a href="{$urlss}/page/308.html">{:lang("Canada's Education System")}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li class="switch-item-usa">
+            <span class="dropdown-heading">{:lang('Study in USA')}</span>
+            <ul class="menu-items">
+                <li class="has-child">
+                    <span class="parent">{:lang('List of American institutions/schools')}</span>
+                    <ul>
+                        <li><a href="https://www.una.edu/" target="_blank">{:lang('University of North Alabama')}</a></li>
+                        <li><a href="http://www.oakwood.edu" target="_blank">{:lang('Oakwood University')}</a></li>
+                        <li><a href="https://www.troy.edu/" target="_blank">{:lang('Troy University')}</a></li>
+                        <li><a href="http://www.jsu.edu/" target="_blank">{:lang('Jacksonville State University')}</a></li>
+                        <li><a href="http://www.aum.edu/" target="_blank">{:lang('Auburn University at Montgomery')}</a></li>
+                        <li><a href="/page/321.html">{:lang('More')}</a></li>
+                    </ul>
+                </li>
+                <li class="has-child">
+                    <span class="parent">{:lang('Study in USA')}</span>
+                    <ul>
+                        <li><a href="{$urlss}/page/326.html">{:lang('Choosing the USA')}</a></li>
+                        <li><a href="{$urlss}/page/348.html">{:lang('USA State Guides')}</a></li>
+                        <li><a href="{$urlss}/page/354.html">{:lang('Application Process')}</a></li>
+                        <li><a href="{$urlss}/page/380.html">{:lang('Financial Aid for the USA')}</a></li>
+                        <li><a href="{$urlss}/page/386.html">{:lang('Preparation for Your Stay')}</a></li>
+                        <li><a href="{$urlss}/page/331.html">{:lang('The USA "Way of Life"')}</a></li>
+                    </ul>
+                </li>
+                <li class="has-child">
+                    <span class="parent">{:lang('Living in USA')}</span>
+                    <ul>
+                        <li><a href="{$urlss}/page/363.html">{:lang('After Graduation')}</a></li>
+                        <li><a href="{$urlss}/page/372.html">{:lang('Religious Schools in the US')}</a></li>
+                        <li><a href="{$urlss}/page/391.html">{:lang('Online Degree Programs')}</a></li>
+                        <li><a href="{$urlss}/page/392.html">{:lang('Guide to Getting into a US College or University')}</a></li>
+                        <li><a href="{$urlss}/page/395.html">{:lang('Community Colleges in the US')}</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <span class="dropdown-heading">{:lang('About WSE')}</i></span>
+            <ul class="menu-items">
+                <li><b><a href="{$urlss}/index/about/CredentialEvaluation"><i class="iconfont icon-expert"></i> {:lang('Who are Credential Evaluation Expert?')}</a></b></li>
+                <li><b><a href="{$urlss}/index/about/StandardsProfession"><i class="iconfont icon-standard"></i> {:lang('Standards for the Profession')}</a></b></li>
+                <li><b><a href="{$urlss}/index/about/Plans"><i class="iconfont icon-plan"></i> {:lang('Strategic Plan and Committee Action Plans')}</a></b></li>
+                <li><b><a href="{$urlss}/index/about/BoardOfDirectors"><i class="iconfont icon-member"></i> {:lang('Board of Directors')}</a></b></li>
+                <li><b><a href="{$urlss}/index/about/PastLeadership"><i class="iconfont icon-leadership"></i> {:lang('Past Leadership')}</a></b></li>
+                <li><b><a href="{$urlss}/index/about/CharterMembers"><i class="iconfont icon-medal"></i> {:lang('Charter Members')}</a></b></li>
+                <li><b><a href="{$urlss}/index/about/PressReleases"><i class="iconfont icon-news"></i> {:lang('Press Releases')}</a></b></li>
+                <li><b><a href="{$urlss}/index/about/FAQ"><i class="iconfont icon-problem"></i> {:lang('FAQ')}</a></b></li>
+            </ul>
+        </li>
+    </ul>
+</nav>
+
+<aside class="aside-message">
+    <div class="aside-message-send">{:lang('Send Us Your Question')} <i class="fa fa-commenting-o" aria-hidden="true"></i></div>
+    <div class="aside-message-box">
+        <div class="aside-message-box-header">
+            <div><i class="fa fa-ellipsis-h" aria-hidden="true"></i></div>
+            <div>{:lang('Send Us Your Question')}</div>
+            <div><i class="fa fa-window-minimize" aria-hidden="true"></i></div>
+        </div>
+        <div class="aside-message-box-content">
+            <form method="post" id="asideMessage">
+                <p>{:lang("Thank you for contacting WSE! Please send us your question below and we'll send you an answer via email as quickly as possible.")}</p>
+                <div class="input-box">
+                    <div>{:lang('Your name')}: <span class="required">*</span></div>
+                    <input name="userName" type="text">
+                    <p>{:lang('Please fill in required fields.')}</p>
+                </div>
+                <div class="input-box">
+                    <div>{:lang('WSE Reference Number (if applicable):')}</div>
+                    <input name="referenceNumber" type="text">
+                </div>
+                <div class="input-box">
+                    <div>{:lang('E-mail')}: <span class="required">*</span></div>
+                    <input name="mail" type="text">
+                    <p>{:lang('Please fill in required fields.')}</p>
+                </div>
+                <div class="input-box">
+                    <div>{:lang('Subject')}:</div>
+                    <input name="subject" type="text">
+                </div>
+                <div class="input-box">
+                    <div>{:lang('Message')}: <span class="required">*</span></div>
+                    <textarea name="message" rows="3"></textarea>
+                    <p>{:lang('Please fill in required fields.')}</p>
+                </div>
+                <p>{:lang('I understand/acknowledge that my personal data shall be processed and transmitted in accordance with the General Data Protection Regulation (GDPR), whenever applicable.')} <span class="required">*</span></p>
+                <div class="input-box">
+                    <input type="checkbox" id="agreeInput">
+                    <label for="agreeInput">{:lang('I agree')}</label>
+                    <p>{:lang('Please fill in required fields.')}</p>
+                </div>
+                <div class="input-box">
+                    <button class="leaveBtn" type="button">{:lang('Leave a Message')}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</aside>
+<aside class="aside-policy">
+    <div class="aside-policy-header">
+        <img src="{$C['site_logo']}" alt="">
+        <b>{:lang('Our website uses cookies.')}</b>
+    </div>
+       {:getcookiecontent()}
+    <div class="aside-policy-buttons">
+        <button class="decline" type="button">{:lang('Decline Cookies')}</button>
+        <button class="allow" type="button">{:lang('Allow Cookies')}</button>
+    </div>
+</aside>
+<script>
+    /*   select language   */
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++)
+        {
+            var c = ca[i].trim();
+            if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
+    var langText = getCookie('think_var')
+    switch (langText) {
+        case 'en-us':
+            langText = 'English'
+            $('.clang a').eq(0).addClass('country') 
+            break;
+        case 'zh-cn':
+            langText = '中文'
+            $('.clang a').eq(3).addClass('country') 
+            break;
+        case 'ja-jp':
+            langText = '日本語'
+            $('.clang a').eq(2).addClass('country') 
+            break;
+        case 'ko-kr':
+            langText = '한국어'
+            $('.clang a').eq(4).addClass('country') 
+            break;
+        case 'ru-ru':
+            langText = 'Русский'
+            $('.clang a').eq(5).addClass('country') 
+            break;
+        case 'fr-fa':
+            langText = 'Français'
+            $('.clang a').eq(1).addClass('country') 
+            break;
+        default:
+            langText = 'English'
+            $('.clang a').eq(0).addClass('country') 
+    }
+     console.log('langText new', langText)
+    $('.langBox .placeholder').text(langText);
+    $('.langBox .placeholder').on('click', function (e) {
+        e.stopPropagation();
+        $('.langBox ul').slideToggle()
+        if ($(this).siblings('.fa').hasClass('fa-angle-down')) {
+            $(this).siblings('.fa').removeClass('fa-angle-down').addClass('fa-angle-right')
+        } else {
+            $(this).siblings('.fa').removeClass('fa-angle-right').addClass('fa-angle-down')
+        }
+    })
+    $('.langBox li').on('click', function (e) {
+        e.stopPropagation();
+        $('.langBox div .fa').removeClass('fa-angle-down').addClass('fa-angle-right')
+        var langText = $(this).text()
+        localStorage.setItem('langText', langText)
+        var lang = $(this).attr('class');
+        var domain = document.domain;
+        $('.langBox .placeholder').text($(this).text());
+        $.get("{:url('index/index/lang')}", "lang=" + lang, function () {
+            location.reload();
+        });
+    });
+    $('body').on('click', function () {
+        $('.langBox ul').slideUp()
+    });
+
+    /* aside-message */
+    if ($('.aside-policy').is(':visible')) {
+        var height = $('.aside-policy').outerHeight() + 'px'
+        $('.aside-message').css({'bottom': height})
+    } else {
+        $('.aside-message').css({'bottom': '0'})
+    }
+    $('.aside-message-send').click(function () {
+        $(this).hide()
+        $('.aside-message-box').fadeIn()
+    })
+    $('.aside-message-box .fa-window-minimize').click(function () {
+        $('.aside-message-box').hide()
+        $('.aside-message-send').fadeIn()
+    })
+    $('.input-box input[type="text"], .input-box textarea').blur(function () {
+        var val = $(this).val()
+        if (val == '') {
+            $(this).siblings('p').fadeIn()
+        } else {
+            $(this).siblings('p').fadeOut()
+        }
+    })
+    $('#agreeInput').click(function () {
+        if ($(this).is(':checked')) {
+            $(this).siblings('p').fadeOut()
+        } else {
+            $(this).siblings('p').fadeIn()
+        }
+    })
+    $('.leaveBtn').click(function () {
+
+        // var d = {};
+        // var isCheck = false
+        var t = $('#asideMessage').serializeArray();
+        let consulname=$("input[name='userName']").val();
+        let consulmail= $("input[name='mail']").val();
+        let consulmsg= $("textarea[name='message']").val();
+        if (consulname  == ''  ) {
+            layer.msg('Please fill in your name' );
+            $("input[name='userName']").css({'border-color': 'red'}); 
+            return false
+        }
+        if (consulmail  == ''  ) {
+            layer.msg('Please fill in your mail' );
+            $("input[name='mail']").css({'border-color': 'red'}); 
+            return false
+        }
+        if (consulmsg  == ''  ) {
+            layer.msg('Please fill in your message' );
+            $("textarea[name='message']").css({'border-color': 'red'}); 
+            return false
+        }
+
+        // $.each(t, function () {
+        //     // d[this.name] = this.value;
+        //     if (this.value == '') {
+        //         var className = '.input-box input[name="' + this.name + '"]'
+        //         if ($(className).siblings('p').is(':visible')) {
+        //             $(className).siblings('p').fadeIn()
+        //             return false
+        //         } else {
+        //             isCheck = true
+        //         }
+        //     }
+        // });
+        if ( $('#agreeInput').is(':checked')) {
+             
+            $.post('{:url("/index/upload/agreesave")}', t ,function (res) {
+                console.log(res)
+                if(res == 1){
+                    layer.msg('Success',{icon:1})
+                    $('.aside-message-box').hide()
+                    $('.aside-message-send').fadeIn()
+                }else {
+                    layer.msg('Failed, please try again',{icon:0})
+                }
+            });
+              
+        }else{
+            layer.msg('Please select "I agree"' );
+            return false
+        }
+  
+        // if (isCheck && $('#agreeInput').is(':checked')) {
+            // layer.msg('Success', {icon: 1});
+            // $('.aside-message-box').hide()
+            // $('.aside-message-send').fadeIn()
+        // }
+    })
+
+    /* aside-policy */
+    var agreePolicy = window.localStorage.getItem('agreePolicy')
+    if (agreePolicy) {
+        $('.aside-policy').fadeOut()
+        $('.aside-message').css({'bottom': '0'})
+    }
+    $('.decline').click(function () {
+        $('.aside-policy').fadeOut()
+        $('.aside-message').css({'bottom': '0'})
+    })
+    $('.allow').click(function () {
+        $('.aside-policy').fadeOut()
+        $('.aside-message').css({'bottom': '0'})
+        window.localStorage.setItem('agreePolicy', true)
+    })
+
+    /*   mobile nav   */
+    $(function () {
+        $(".codehim-dropdown").CodehimDropdown();
+        $(".nav-downbox").find(".down-list").hide();
+        $(".nav-bg a ").click("mouseover", function () {
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
+            var index = $(this).index();
+            if ($(this).hasClass("nav-active")) {
+                $(this).parent().parent().next().find(".down-list").slideUp();
+                $(this).removeClass("nav-active");
+            } else {
+                $(this).parent().parent().next().find(".down-list").hide().eq(index).slideDown();
+                $(this).addClass("nav-active").siblings().removeClass("nav-active");
+            }
+        });
+    })
+
+    $('.country-switch').find("a").click(function () {
+        let vswitch = $(this).parent( );
+        if ( vswitch.hasClass('clang')) {
+            return false
+        }
+        $(this).addClass('country').siblings().removeClass('country')
+        let fd = $(this).index()
+        $('.j_content').hide().eq(fd).show();
+        $('.u_chooseBox').hide().eq(fd).show();
+        $('.nav ul').find(".about-m").hide().eq(fd).show();
+        let country = $(this).data('country');
+        localStorage.setItem('country',country)
+        if (country == 'canada') {
+            $('.switch-item-canada').show()
+            $('.switch-item-usa').hide()
+        } else {
+            $('.switch-item-canada').hide()
+            $('.switch-item-usa').show()
+        }
+    })
+
+    $('.switchlist')  .click(function (e) {
+        let marking = $(this).data('clang');
+        if(marking == '' || marking == null || marking == undefined){
+            return false
+        }else{
+            $(this).addClass('country').siblings().removeClass('country')
+            $.get("{:url('index/index/lang')}", "lang=" + marking, function () {
+                location.reload();
+            });
+        }
+    })
+
+    $(function(){
+        let country = localStorage.getItem('country');
+        if(country == '' || country == null || country == undefined){
+            country = 'canada';
+        }
+        if (country == 'canada') {
+            $('.switch-item-canada').show()
+            $('.switch-item-usa').hide()
+        } else {
+            $('.switch-item-canada').hide()
+            $('.switch-item-usa').show()
+        }
+        $('[data-country="'+ country +'"]').click();
+    })
+
+</script>

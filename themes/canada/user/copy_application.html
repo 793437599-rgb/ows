@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('WSE-DAE for General Use')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="edu-form" id="infodata">
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm12">
+                <div class="layui-row user-avatar">
+                    <h1>{:lang('Basic Information')}</h1>
+                    <div class="public-user-header center-header-new2">
+                        {include file="public/_user_basic_information"}
+                    </div>
+                </div>
+                <div class="layui-row steps">
+                    <div class="layui-col-sm12 cave">
+                        <div class="bg-top"></div>
+                        <div class="table-slse">
+                            <h3>{:lang('Copy Application and Instructions for Use')}</h3>
+                            <p>{:lang('Please read and understand the description and related agreement content')}</p>
+                            <hr>
+                            <ul>
+                                <li>{:lang('Once the copy application is submitted, it will be irrevocable;')}</li>
+                                <li>{:lang('Copies of documents must not be used for purposes that violate laws and regulations;')}</li>
+                                <li>{:lang('Copies of documents are subject to terms and conditions and privacy policy;')}</li>
+                                <li>{:lang('Authorize WSE to prepare and print a copy of your information;')}</li>
+                                <li>{:lang('Authorize WSE to mail a copy of our information to the following address:')}</li>
+                            </ul>
+                            <address>
+                                China Henan Zhengzhou <br/>
+                                金水区 <br/>
+                                465200 <br/>
+                                dsdds <br/>
+                                86 - 17796701097
+                            </address>
+                            <div class="protocol">
+                                <label for="protocol">
+                                    <input type="checkbox" id="protocol">
+                                    {:lang('I have carefully read, understood and agreed to the following descriptions and related agreements.')}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-sm12 buttons">
+                        <a href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort-1])}" class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+                        <a class="layui-btn mazarine right" lay-submit lay-filter="save">{:lang('Submit')}</a>
+                        <br/>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

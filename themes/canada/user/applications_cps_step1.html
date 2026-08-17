@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('IPG: Canadian Pharmacy Skills (CPS) 1 Application')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+     <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div >
+<div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+<!--    user avatar    -->
+                <div class="layui-row user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{switch name="$Think.cookie.think_var"}
+                            {case value="en-us"}{$order.name_en}{/case}
+                            {case value="zh-cn"}{$order.app_name}{/case}
+                            {case value="ja-jp"}{$order.name_jp}{/case}
+                            {case value="de-de"}{$order.name_de}{/case}
+                            {case value="ko-kr"}{$order.name_kr}{/case}
+                            {case value="ru-ru"}{$order.name_ru}{/case}
+                            {case value="fr-fa"}{$order.name_fa}{/case}
+                            {/switch}</h1>
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email}— {$user.search_id}</p>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <div class="steps-card">
+                            <h3>{:lang('Required Steps')}</h3>
+                            <div class="step-arrow-box">
+                                {foreach name="app_step" item="vo"}
+                                <a href="{$vo.sort}">
+                                    {if condition="in_array($vo.id,$step_ok)"}
+                                    <div class="step-arrow-wrap step-arrow-complete">
+                                        {else}
+                                        <div class="step-arrow-wrap">
+                                            {/if}
+                                            <div class="step-arrow-left">
+                                                <div class="arrow-1"></div>
+                                                <div class="arrow-2"></div>
+                                            </div>
+                                            <div class="step-arrow-center">
+                                                <span class="layui-hide-xs">
+                                                    {$vo.sort}. {switch name="$Think.cookie.think_var"}
+                                                    {case value="en-us"}{$vo.step_en}{/case}
+                                                    {case value="zh-cn"}{$vo.step_name}{/case}
+                                                    {case value="ja-jp"}{$vo.step_jp}{/case}
+                                                    {case value="de-de"}{$vo.step_de}{/case}
+                                                    {case value="ko-kr"}{$vo.step_kr}{/case}
+                                                    {case value="ru-ru"}{$vo.step_ru}{/case}
+                                                    {case value="fr-fa"}{$vo.step_fa}{/case}
+                                                    {/switch}
+                                                </span>
+                                                <span class="layui-hide-sm">{$vo.sort}</span>
+                                            </div>
+                                            <div class="step-arrow-right">
+                                                <div class="arrow-1"></div>
+                                                <div class="arrow-2"></div>
+                                            </div>
+                                        </div>
+                                </a>
+                                {/foreach}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+<!--    steps    -->
+                <div class="layui-row steps">
+                    <div class="layui-col-sm12">
+                        <h3>{:lang('READ INSTRUCTIONS')}</h3>
+                        <hr/>
+                        <p>{:lang('Application Process')}</p>
+                        <hr/>
+                        <h5>{:lang('Steps')}:</h5>
+                        <ol>
+                            <li>{:lang('Meet the program’s minimum requirements')}</li>
+                            <li>{:lang('Complete the online IPG Application')}</li>
+                            <li>{:lang('Prepare and upload all required documents to the online IPG Application')}</li>
+                            <li>{:lang('Pay the full tuition through the online IPG Application. Payment is accepted by Visa, Mastercard, and AMEX only. We do not accept cash, debit, or personal cheques. If you need to pay by Canadian Bank Draft/money order (payable to the WSE) please complete and save your online application and then bring or mail the Canadian Bank Draft/money order to the following address:')}</li>
+                        </ol>
+                        <p class="address">
+                            WSE – {:lang('IPG Program')}<br/>
+                            No.2613, Kingston Road<br/>
+                            {:lang('Toronto, Ontario')}
+                        </p>
+                        <hr/>
+                        <p>{:lang('Application Approval Process')}</p>
+                        <hr/>
+                        <h5>{:lang('Steps')}:</h5>
+                        <ol>
+                            <li>{:lang('A receipt and Confirmation of Registration and Acceptance letter will be emailed once the online IPG Application is complete and the tuition is paid in full.')}</li>
+                            <li>{:lang('The fees associated with the application are as follows, and will be charged following completion of this application:')}</li>
+                            <li>{:lang('Learners who require a letter to apply for a student visa can use the emailed Confirmation of Registration and Acceptance.')}
+                                <ol class="ol-letter">
+                                    <li>{:lang('Application fee, non-refundable')}: $250 + HST CAD</li>
+                                    <li>{:lang('CPS1 Semester 1 tuition fee')}: $6825 + HST CAD</li>
+                                </ol>
+                            </li>
+                            <li>{:lang('Your application will be reviewed to ensure that the minimum requirements have been met. If they have not been met, a team member will reach out to you.')}</li>
+                            <li>{:lang('Once your application has been approved or denied you will be contacted by email.')}</li>
+                        </ol>
+                        <hr/>
+                        <p>{:lang('IPG Program Document Requirements')}</p>
+                        <hr/>
+                        <h5>{:lang('Requirements:')}</h5>
+                        <ol>
+                            <li>{:lang('A copy of the letter stating that you have successfully completed the Pharmacy Examining Board of Canada (PEBC) Evaluating Examination.')}
+                                <ul>
+                                    <li>{:lang('Scan and save file as firstname_lastname-PEBC results')}</li>
+                                </ul>
+                            </li>
+                            <li>{:lang('A copy of your valid Objective English Language Proficiency test score that meets the minimum requirement. You can find a summary of minimum requirements on the')}
+                                <a href="http://www.ocpinfo.com/registration/training-exams/language-proficiency/language-pharmacists/" target="_blank"> {:lang('OCP website')}</a>. {:lang('If you are a native English speaker you may request a Non-Objective Evidence of Language Proficiency from the Ontario College of Pharmacists (OCP). In order to do so, you must have a file open with OCP in order for them to review your documents. You can find additional information on their website,')}<a href="http://www.ocpinfo.com/registration/res-policies/non-objective-lp-july1-2015/" target="_blank">{:lang('here')}.</a>.
+                                <ul>
+                                    <li>{:lang('Scan and save file as firstname_lastname-Language Proficiency')}</li>
+                                </ul>
+                            </li>
+                            <li>{:lang('A recent résumé with your current contact information; including address, email, phone number, and a summary of your education and career history in PDF format.')}
+                                <ul>
+                                    <li>{:lang('Scan and save resume file as firstname_lastname-Resume')}</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <hr/>
+                        <p>{:lang('Visas and Study Permits')}</p>
+                        <hr/>
+                        <h5>{:lang('Visa Requirements:')}</h5>
+                        <p>{:lang('Most foreign nationals require a Study Permit for the duration of the IPG Program. For more information on a Study Permit application, please visit')} <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada.html" target="_blank">{:lang('Immigration, Refugees and Citizenship Canada (IRCC)')}</a>. <b>{:lang('Please note:')}</b> {:lang('It is your responsibility to arrange the correct visas and permits in order to study in Canada by following the application procedures set by')} <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada.html" target="_blank">{:lang('IRCC')} </a>{:lang('in your country.')}</p>
+                        <ul>
+                            <li>{:lang('In order to acquire a Study Permit you will need to submit your Confirmation of Registration and Acceptance letter. This will automatically be emailed to you once you complete the online IPG Application and the tuition is paid in full.')}</li>
+                            <li>{:lang('We advise you apply well in advance of the admission deadline date to allow for sufficient processing time. Immigration, Refugees and Citizenship Canada (IRCC) provides information about')} <u><a href="http://www.cic.gc.ca/english/information/times/temp.asp" target="_blank">{:lang('estimated processing times')}</a></u>.</li>
+                            <li>{:lang('The visa must be valid for the entire length of the IPG program.')}</li>
+                        </ul>
+                        <p>{:lang('To view our most frequently asked questions, please visit our Help Centre.')}</p>
+                    </div>
+                    <div class="layui-col-sm12 buttons">
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save This Page')}</a>
+                        <a href="{:url('/save_next',['app_id'=>$fee.id,'sort'=>$sort+1])}" class="layui-btn mazarine right">{:lang('Next Page')}</a>
+                        <br/>
+                        <br/>
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save and Finish Later')}</a>
+                        <hr/>
+                    </div>
+                </div>
+</div>
+        </div>
+</div>
+</section>
+<script>
+    layui.use(['form'], function(){
+        var form = layui.form;
+    });
+</script>
+</body>
+</html>

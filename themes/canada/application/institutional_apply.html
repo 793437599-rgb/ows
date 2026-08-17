@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('Renew WSE-DAE Application V1')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<style>
+	/* 2020-07-28 */
+    .app-lists {
+        display:-webkit-flex;
+        display: flex;
+        align-items: center;
+    }
+    .app-lists i {
+        font-size: 26px;
+        margin-left: 10px;
+        margin-right: 30px;
+        color: #D3101B;
+    }
+
+    @media screen and (max-width: 768px) {
+        .app-lists i {
+            margin-right: 5px;
+        }
+    }
+</style>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="">
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                {include file="public/_nav_center_header" /}
+                <!-- <div class="layui-row mainContent-header">
+                    <div class="layui-row mianContent-title">
+                        <div class="layui-col-sm10 layui-col-xs8"> 
+                            <h1>{:lang('Application Project')}</h1>
+                        </div>
+                    </div>
+		        </div> -->
+                <!--    applications    -->
+                <div class="layui-row">
+                    <div class="layui-col-sm12">
+                        <div class="layui-row steps">
+                            <div class="variable-content application-lists">
+                                <p>{:lang('Please read the instructions below the project carefully, and select the corresponding application project according to your needs to apply.')}</p>
+                                <table class="layui-table">
+                                    <tbody>
+                                    <tr style="text-align: center;height: 60px;background-color:#f2f2f2;">
+                                        <td>{:lang('Application Project')}</td>
+                                        <td>{:lang('Application Status')}</td>
+                                        <td>{:lang('Apply')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 16px;">
+                                            <div class="app-lists">
+                                                <i class="iconfont icon-report"></i>
+                                                <div class="app-lists-detial" >
+                                                    <b>{:lang('Developer API application')} </b>
+                                                    <p class="layui-hide-xs" style="font-size: 12px;color:rgb(166,166,166);">{:lang('If your university has a corresponding student management system or network system, you can apply for this service to apply automatically')}.</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status-info">
+                                            <div> 
+                                                {if $api_status == 1}
+                                                <p>{:lang('Applying')}</p>
+                                                {elseif $api_status == 2 /}
+                                                <p>{:lang('Already applied')}</p>
+                                                {else /}
+                                                <p>{:lang('Not applied')}</p>
+                                                {/if}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div>   
+                                                <a href="javascript:;" class="layui-btn mazarine apply-pay" data-src="{:url('index/application/api')}" data-type="api">{:lang('Apply')}</a>
+                                            </div>
+                                            <div style="display: none;">
+                                                 <a href="javascript:;" class="layui-btn mazarine">{:lang('Details')}</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="font-size: 16px;">
+                                            <div class="app-lists">
+                                                <i class="iconfont icon-iconapplications"></i>
+                                                <div class="app-lists-detial" >
+                                                    <b>{:lang('Data storage application')}</b>
+                                                    <p class="layui-hide-xs" style="font-size: 12px;color:rgb(166,166,166);">{:lang('If your university or institution does not have a student management system  or similar network system, please apply directly for this project')}.</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status-info">
+                                            <div>
+                                                {if $ins_status == 1}
+                                                <p>{:lang('Applying')}</p>
+                                                {elseif $ins_status == 2 /}
+                                                <p>{:lang('Already applied')}</p>
+                                                {else /}
+                                                <p>{:lang('Not applied')}</p>
+                                                {/if}
+                                            </div>  
+                                        </td>
+                                        <td>
+                                            <div>
+                                                <a href="javascript:;" class="layui-btn mazarine apply-pay" data-src="{:url('index/application/institutional_application')}" data-type="ins">{:lang('apply')}</a>
+                                            </div>
+                                            <div style="display: none;">
+                                                <a href="javascript:;" class="layui-btn mazarine" >Details</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 57px;height: 90px;">
+                                        <td style="font-size: 16px;">
+                                            <div class="app-lists">
+                                                <i class="iconfont icon-Blockchain"></i>
+                                                <div class="app-lists-detial" >
+                                                    <b>{:lang('WSE--Blockchain Storage')}</b>
+                                                    <p class="layui-hide-xs" style="font-size: 12px;width: 450px;color:rgb(166,166,166);">{:lang('Store your application information on the blockchain and permanently deposit the certificate')}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td colspan="2">{:lang('Apply for this service item automatically after applying for DAE service, no need to apply separately')}
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="load_root" id="load">
+    <div class="load_boxmask">
+        <div class="load_model-top">
+            <div class="load_model" style="width:520px">
+                <div tabindex="0" aria-hidden="true" style="width: 0px;height: 0px;overflow: hidden;outline: none;">
+                </div>
+                <div class="load-modal-content">
+                    <div class="remi-ta">
+                        <div class="tipimg"><img src="/canada/images/tips.png" alt=""></div>
+                        <div>
+                            <h2>{:lang('WSE reminder')}:</h2>
+                            <p>{:lang('University/institution storage service is mainly used for data storage of universities, colleges and related institutions. If you are not the person in charge of the organization, please do not apply for this project.')}</p>
+                            <br/>
+                            <!-- <p>If you are a student, please consult your teacher or log in to your account to check whether your university has helped you with your assessment.</p> -->
+                            <!-- <br/> -->
+                            <p>{:lang('Are you the head of the agency')}?</p>
+                        </div>
+                        <div class="w-worker">
+                            <a href="javascript:;" onclick="javascript:$('#load').hide();" id="stu">NO</a>
+                            <a href="{:url('index/application/institutional_application')}" class="go-url">YES</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ins-box" style="display: none">  <!-- alyED -->
+    <div class="ins-overlay"></div>
+    <div class="ins-container">
+       <div class="ins-header">
+           <div class="ins-close" onclick="javascript:$('.ins-box').hide();"><i class="iconfont icon-cross"></i></div>
+       </div>
+       <div class="ins-body">
+           <div class="ins-icon show-zero2 ins-icon-question">?</div>
+           <div class="zeromodal-title1">
+               <p>{:lang('You have applied for the current application. Do you want to apply again?')}</p>
+           </div>
+       </div>
+       <div class="ins-footer">
+          <div class="ins-btn-container">
+              <button class="ins-btn ins-btn-primary" onclick="javascript:$('.ins-box').hide();">{:lang('Cancel')}</button>
+              <button class="ins-btn ins-btn-default" onclick='javascript:location.href="{:url('index/application/api')}";'>{:lang('Check')}</button>
+          </div>
+          <div class="ins-btn-container" style="margin-right: 0px;">
+              <a href='{:url("index/application/app_complete")}'>{:lang('Confirm')}</a>
+          </div>
+       </div>
+    </div>
+</div>
+
+
+<div class="ins-box-baplying" style="display: none"> <!-- alying -->
+    <div class="ins-overlay"></div>
+    <div class="ins-container">
+       <div class="ins-header">
+           <div class="ins-close" onclick="javascript:$('.ins-box-baplying').hide();"><i class="iconfont icon-cross"></i></div>
+       </div>
+       <div class="ins-body">
+           <div class="ins-icon show-zero2 ins-icon-question">?</div>
+           <div class="zeromodal-title1">
+               <p>{:lang("We have successfully received your application. We will process it within five to seven working days. Please be patient.")}</p>
+           </div>
+       </div>
+       <div class="ins-footer">
+          <div class="ins-btn-container">
+              <button class="ins-btn ins-btn-primary" onclick="javascript:$('.ins-box-baplying').hide();">{:lang('Cancel')}</button>
+              <button class="ins-btn ins-btn-default" onclick='javascript:location.href="{:url('index/application/app_complete')}";'>{:lang('Check')}</button>
+          </div>
+       </div>
+    </div>
+</div>
+
+<script>
+    // $('.icon-cross').click(function(){
+    //     $('.ins-box').hide()
+    // })
+    // $('.apply-pay').click(function(){
+    //     $('.ins-box').show();
+    // })
+    /*	 to top	*/
+    $("a[href='#top']").on('click', function () {
+        $("html, body").animate({
+            scrollTop: 0
+        }, "slow");
+        return false;
+    });
+    $('.apply-pay').on('click', function () {
+        let type = $(this).data('type');
+        let api_status = '{$api_status}';
+        let ins_status  = '{$ins_status}';
+        let src = $(this).attr('data-src');
+        if (type == 'api'){
+            if (api_status == 1){
+                // return  zeroModal.alert({
+                //     content: '{:lang("The application is currently being processed, please be patient.")}',
+                //     cancel:true,
+                //     cancelTitle:'Confirm',
+                //     okTitle: 'Check',
+                //      okFn: function() {
+                //         location.href="{:url('index/application/app_complete')}";
+                //     },
+                // });
+                return  $('.ins-box-baplying').show(); //baplying是外层新增dispaly
+            } else if(api_status == 2) {
+                return  $('.ins-box').show();
+            }
+        } else if (type == 'ins'){
+            if (ins_status == 1){
+                return zeroModal.alert({
+                    content: "{:lang("The application is currently being processed, please be patient.")}",
+                    okTitle: 'Confirm',
+                });
+            } else if(ins_status == 2) {
+                return zeroModal.alert({
+                    content: '{:lang("You have applied for the current application. Do you want to apply again?")}',
+                    okTitle: 'Confirm',
+                    okFn: function() {
+                        location.href="{:url('index/application/institutional_application')}";
+                    },
+                    cancel:true,
+                });
+            }
+        }
+        $('.go-url').attr('href',src);
+        $('#load').show() 
+    })
+    $('#stu').on('click', function () {
+        $('#load').hide()
+    })
+</script>
+<script type="text/javascript">
+    var sort = '100 ';
+    if (sort > 0 && sort < 10) {
+        $('.step-arrow-box a').eq(sort - 1).children('.step-arrow-wrap').removeClass('step-arrow-complete').addClass('step-arrow-current');
+    }
+</script>
+</body>
+</html>

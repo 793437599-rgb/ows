@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+        <div>
+            <!-- <div class="layui-row mainContent-header">
+			<div class="layui-col-sm10 layui-col-xs8">
+				<h1> {:lang('Data Transfer Order')}</h1>
+			</div>
+		</div>
+		<hr /> -->
+            <div class="layui-row ">
+                <div class="layui-col-sm2 nav-fixed">
+                    <!--    nav-left    -->
+                    {include file="public/nav-left" /}
+                </div>
+                <div class="layui-col-sm10">
+                    <!--    user avatar    -->
+                    {include file="public/_nav_center_header" /}
+                    <!-- <div class="layui-row user-avatar">
+                        <div class="layui-col-sm2 layui-col-xs4">
+                            <a href="/profile"><img src="{$user.head_img}"></a>
+                        </div>
+                        <div class="layui-col-sm10 layui-col-xs8">
+                            <h1>{:lang('Data Transfer Order')}</h1>
+                            <p><b>{$user.username}</b></p>
+                            <p>{$user.email}— {$user.search_id}</p>
+                        </div>
+                    </div> -->
+                    <!--    transfer order    -->
+                    <div class="layui-row">
+                        <div class="layui-col-sm12">
+                            <div class="layui-row steps">
+                                <table class="layui-table">
+                                    <!--                            <thead>
+                                                            <tr>
+                                                                <th colspan="5" style="text-align: center;background-color: #88c34d;color: #fff;">
+                                                                    {:lang('Data Transfer Order')}
+                                                                </th>
+                                                            </tr>
+                                                            </thead> -->
+                                    <tbody>
+                                        {notempty name="$user.refusal"}
+                                        <tr>
+                                            <td colspan="5" style="color: red;text-align: center">{:lang('Reasons for failure of audit')} : {$user.refusal}</td>
+                                        </tr>
+                                        {/notempty}
+                                        <tr>
+                                            <td>{:lang('SCHOOL')}</td>
+                                            
+                                            <td>{:lang('Academic credentials')}</td>
+                                            <td>{:lang('Professional title')}</td>
+                                             <td>{:lang('transfer method')}</td>
+                                            <td>{:lang('Certification Body')}</td>
+                                            <td>{:lang('Transmission time')}</td>
+                                            <td>{:lang('Transmission status')}</td>
+                                            <td>{:lang('Completion time')}</td>
+                                           
+                                           
+                                        </tr>
+                                        {foreach name="tlist" item="vo"}
+                                        <tr>
+                                            <td>{$order.orderDetail.university}</td>
+                                            <td>{$order.orderDetail.degree}</td>
+                                            <td>{$order.orderDetail.major}</td>
+                                            <!-- <td>{:lang('Mechanism transmission')}</td> -->
+                                            <td> {if  ($vo.third_id) ==14}
+                                            {:lang('Data transmission')}
+                                            {else /}
+                                            {:lang('Email sending')}
+                                            {/if}
+                                            </td>
+                                            <!-- <td>{switch name="$Think.cookie.think_var"}
+                                                                    {case value="en-us"}{name_en}{/case}
+                                                                    {case value="zh-cn"}{app_name}{/case}
+                                                                    {case value="ja-jp"}{name_jp}{/case}
+                                                                    {case value="de-de"}{name_de}{/case}
+                                                                    {case value="ko-kr"}{name_kr}{/case}
+                                                                    {case value="ru-ru"}{name_ru}{/case}
+                                                                    {case value="fr-fa"}{name_fa}{/case}
+                                                                    {/switch}</td> -->
+                                            <td>{$vo.third_re}</td>
+                                            <td>{$vo.create_time}</td>
+                                            <td> 
+                                            {if  ($vo.third_id) ==14}
+                                                {if  ($vo.lxw_send) ==1}
+                                                <font color="blue">{:lang('Not uploaded')}</font>
+                                                {elseif condition="($vo.lxw_send == 6) OR ($vo.lxw_send == 8) "/}  
+                                                <font color="green">{:lang('Successfully uploaded')}</font>
+                                                {else /}
+                                                <font color="red">{$vo.remake}</font>
+                                                {/if}
+                                            {else /}
+                                                {if  ($vo.send_mail) ==0}
+                                                <font color="blue">{:lang('Unreviewed')}</font>
+                                                {elseif ($vo.send_mail) ==1}
+                                                <font color="green">{:lang('Successfully uploaded')}</font>
+                                                {else /}
+                                                <font color="red">{:lang('Uploading')}</font>
+                                                {/if}
+                                            {/if}</td>
+                                            <td><!-- {$vo.create_time} --></td>
+                                        </tr>
+                                        {/foreach}
+</tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

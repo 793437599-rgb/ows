@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+{__NOLAYOUT__}
+
+<head>
+
+    <meta charset="utf-8"/>
+
+    <title></title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css"/>
+
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+
+    <script src="/static/js/jquery.min.js"></script>
+
+    <script src="/static/js/viewer-jquery.min.js"></script>
+
+    <script src="/static/js/mobile.js"></script>
+
+    <script src="/static/js/layui/layui.js"></script>
+
+    <script src="/canada/js/html.js"></script>
+
+    <script src="/static/js/langCookie.js"></script>
+
+</head>
+
+<body>
+
+
+
+{include file="public/header-user" /}
+
+
+
+<section class="mainContent">
+
+    <div class="layui-container layui-form">
+
+
+
+        <div class="layui-row layui-col-space15">
+
+            <div class="layui-col-sm2">
+
+                <!--    nav-left    -->
+
+                {include file="public/nav-left" /}
+
+            </div>
+
+
+
+            <!--用户中心首页面-->
+
+
+
+            <div class="layui-col-sm10">
+
+                <!--    user avatar    -->
+
+                <div class="layui-row user-avatar">
+
+                    <div class="layui-col-sm2 layui-col-xs4">
+
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+
+                    </div>
+
+                    <div class="layui-col-sm10 layui-col-xs8">
+
+                        <h1>{:lang('Welcome to WSE')}</h1>
+
+                        <p><b>{$user.username}</b></p>
+
+                        <p>{$user.email} — {$user.search_id}</p>
+
+                    </div>
+
+                </div>
+
+                <hr/>
+
+
+
+                <div class="layui-row">
+
+                    <div class="layui-col-sm12">
+
+                        <table class="layui-table">
+
+                            <tbody>
+
+                            <tr>
+
+                                <!--姓名-->
+
+                                <td><b>{:lang('Name')}:</b></td>
+
+                                <td>{$user.username}</td>
+
+
+
+                                <!--性别-->
+
+                                <td><b>{:lang('Gender')}:</b></td>
+
+                                <td>{$user.sex}</td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <!--出生日期-->
+
+                                <td><b>{:lang('Date of Birth')}:</b></td>
+
+                                <td>{$user.birth_time}</td>
+
+
+
+                                <!--学号-->
+
+                                <td><b>{:lang('Student ID')}:</b></td>
+
+                                <td>{$edu.student_id}</td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td><b>{:lang('Country of Birth')}:</b></td>
+
+                                <td>
+
+                                    {switch name="$Think.cookie.think_var"}
+
+                                    {case value="en-us"}{$country.name}{/case}
+
+                                    {case value="zh-cn"}{$country.cname}{/case}
+
+                                    {case value="ja-jp"}{$country.name_jp}{/case}
+
+                                    {case value="de-de"}{$country.name_de}{/case}
+
+                                    {case value="ko-kr"}{$country.name_kr}{/case}
+
+                                    {case value="ru-ru"}{$country.name_ru}{/case}
+
+                                    {case value="fr-fa"}{$country.name_fa}{/case}
+
+                                    {/switch}
+
+                                </td>
+
+                                <td><b>{:lang('City of Birth')}:</b></td>
+
+                                <td>{$user.birth_city}</td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <td><b>{:lang('Country of Citizenship')}:</b></td>
+
+                                <td>
+
+                                    {switch name="$Think.cookie.think_var"}
+
+                                    {case value="en-us"}{$country.national}{/case}
+
+                                    {case value="zh-cn"}{$country.national_cn}{/case}
+
+                                    {case value="ja-jp"}{$country.national_jp}{/case}
+
+                                    {case value="de-de"}{$country.national_de}{/case}
+
+                                    {case value="ko-kr"}{$country.national_kr}{/case}
+
+                                    {case value="ru-ru"}{$country.national_ru}{/case}
+
+                                    {case value="fr-fa"}{$country.national_fa}{/case}
+
+                                    {/switch}
+
+                                </td>
+
+                                <td><b>{:lang('Email Address')}:</b></td>
+
+                                <td>{$user.email}</td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <!--电话-->
+
+                                <td><b>{:lang('Daytime Telephone')}:</b></td>
+
+                                <td>{$user.mobile}</td>
+
+
+
+                                <!--地址-->
+
+                                <td><b>{:lang('Address')}:</b></td>
+
+                                <td>{$address_names}--{$national.address_name} </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <!--签证类型-->
+
+                                <td><b>{:lang('Visa Type')}:</b></td>
+
+                                <td>{$passport.visa_type}</td>
+
+                                <!--签证号-->
+
+                                <td><b>{:lang('Visa Number')}:</b></td>
+
+                                <td>{$passport.visa_number}</td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <!--签证有效期-->
+
+                                <td><b>{:lang('Visa Expiry')}:</b></td>
+
+                                <td>{$passport.visa_expiry}</td>
+
+                                <!--发行国家-->
+
+                                <td><b>{:lang('Issuing Country')}:</b></td>
+
+                                <td>
+
+                                    {switch name="$Think.cookie.think_var"}
+
+                                    {case value="en-us"}{$passport.name}{/case}
+
+                                    {case value="zh-cn"}{$passport.cname}{/case}
+
+                                    {case value="ja-jp"}{$passport.name_jp}{/case}
+
+                                    {case value="de-de"}{$passport.name_de}{/case}
+
+                                    {case value="ko-kr"}{$passport.name_kr}{/case}
+
+                                    {case value="ru-ru"}{$passport.name_ru}{/case}
+
+                                    {case value="fr-fa"}{$passport.name_fa}{/case}
+
+                                    {/switch}
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <!--护照号码-->
+
+                                <td><b>{:lang('Passport Number')}:</b></td>
+
+                                <td>{$passport.passport}</td>
+
+                                <!--护照有效期-->
+
+                                <td><b>{:lang('Passport Expiry')}:</b></td>
+
+                                <td>{$passport.passport_expiry}</td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <!--大学名称-->
+
+                                <td><b>{:lang('University Name')}:</b></td>
+
+                                <td>
+
+                                    {switch name="$Think.cookie.think_var"}
+
+                                    {case value="en-us"}{$major.name_en}{/case}
+
+                                    {case value="zh-cn"}{$major.name_cn}{/case}
+
+                                    {case value="ja-jp"}{$major.name_jp}{/case}
+
+                                    {case value="de-de"}{$major.name_de}{/case}
+
+                                    {case value="ko-kr"}{$major.name_kr}{/case}
+
+                                    {case value="ru-ru"}{$major.name_ru}{/case}
+
+                                    {case value="fr-fa"}{$major.name_fa}{/case}
+
+                                    {/switch}
+
+                                </td>
+
+                                <!--学位-->
+
+                                <td><b>{:lang('Academic Degree')}:</b></td>
+
+                                <td>{$edu.academic_level}</td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <!--专业-->
+
+                                <td><b>{:lang('Major')}: </b></td>
+
+                                <td>
+
+                                    {switch name="$Think.cookie.think_var"}
+
+                                    {case value="en-us"}{$major.title_en}{/case}
+
+                                    {case value="zh-cn"}{$major.title}{/case}
+
+                                    {case value="ja-jp"}{$major.title_jp}{/case}
+
+                                    {case value="de-de"}{$major.title_de}{/case}
+
+                                    {case value="ko-kr"}{$major.title_kr}{/case}
+
+                                    {case value="ru-ru"}{$major.title_ru}{/case}
+
+                                    {case value="fr-fa"}{$major.title_fa}{/case}
+
+                                    {/switch}
+
+                                </td>
+
+                                <!--学术论文-->
+
+                                <td><b>{:lang('Dissertation')}:</b></td>
+
+                                <td>{$edu.paper_name}</td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <!--开学日期-->
+
+                                <td><b>{:lang('Start Date')}: </b></td>
+
+                                <td>{$edu.enrollment_date}</td>
+
+                                <!--毕业日期-->
+
+                                <td><b>{:lang('Graduation Date')}: </b></td>
+
+                                <td>{$edu.completion_date}</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <!--文件照片-->
+
+                                <td><b>{:lang('Document photo')}:</b></td>
+
+                                <td>{notempty name="upload['zj_img']"}<img class="D_tableimg" src="{$upload.zj_img}">{/notempty}</td>
+
+                                <!--身份证扫描照片-->
+
+                                <td><b>{:lang('ID card scan')}:</b></td>
+
+                                <td>
+
+                                    {notempty name="upload['sfz_img']"}
+
+                                    {foreach name="upload['sfz_img']" item="vo"}
+
+                                    <img class="D_tableimg" src="{$vo}">
+
+                                    {/foreach}
+
+                                    {/notempty}
+
+                                </td>
+
+                            </tr>
+
+
+
+                            <tr>
+
+                                <!--学位证书照片-->
+
+                                <td><b>{:lang('Diploma')}:</b></td>
+
+                                <td>
+
+                                    <img class="D_tableimg" src="{$edu.diploma}">
+
+                                </td>
+
+                                <!--成绩单照片-->
+
+                                <td><b>{:lang('Transcript')}:</b></td>
+
+                                <td>
+
+                                    {notempty name="edu['cj_img']"}
+
+                                    {foreach name="edu['cj_img']" item="vo"}
+
+                                    <img class="D_tableimg" src="{$vo}">
+
+                                    {/foreach}
+
+                                    {/notempty}
+
+                                </td>
+
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</section>
+
+
+
+{include file="public/footer-login" /}
+
+
+
+<script>
+
+    $(function () {
+
+        $('.D_tableimg').viewer({
+
+            url: 'data-original',
+
+        });
+
+    });
+
+    layui.use(['form'], function() {
+
+        var form = layui.form;
+
+    })
+
+</script>
+
+
+
+</body>
+
+
+
+</html>

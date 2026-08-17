@@ -1,0 +1,45 @@
+<div class="crumbs">
+    <ul>
+        <li><a href="/">{:lang('Home)}</a></li>/
+        <li><a class="ca-active" href="/lists?cid={$cid}">{$category['name']}</a></li>
+    </ul>
+</div>
+<div class="news-main">
+    <div class="news-ct">
+        <ul class="news-tabtit">        
+            {volist name="category_list" id="data"}  
+                <li class='{eq name="data.id" value="$cid"}tab-active{/eq}''><a href="/lists?cid={$data.id}">{$data.name}</a></li>
+            {/volist}         
+        </ul>
+        <div class="news-mbox">
+            <div class="news-lt">
+                <ol>
+                    {volist name="lists" id="data"}          
+                        <li class="news-row">
+                            <a href="/news?id={$data.id}">
+                                {if condition="$data.thumb"}
+                                    <img src="{$data['thumb']? $data['thumb'] : '/canada/images/news-pic1.jpg'}" onerror="src='/canada/images/news-pic1.jpg'"/>
+                                {/if}
+                                <div class="newsrow-del {$data['thumb']? '' : 'noThumb'}">
+                                    <h3>{$data.title}</h3>
+                                    <h4> 
+                                        <span>{$data.author}</span>
+                                        <span>{$data.publish_time}</span>
+                                    </h4>
+                                    <p>{$data.introduction}</p>
+                                </div>
+                            </a>
+                        </li>
+                    {/volist}      
+                </ol>
+                {$lists->render()}         
+            </div>
+            {include file="public/right" /}
+        </div>
+    </div>
+</div>
+<style>
+.noThumb{
+    padding-left: 0 !important;
+}
+</style>

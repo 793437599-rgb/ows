@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+{__NOLAYOUT__}
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{:lang('Renew WSE-ECA Application V1')}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+
+    <script src="/static/js/jquery.min.js"></script>
+
+    <script src="/static/js/mobile.js"></script>
+
+    <script src="/static/js/layui/layui.js"></script>
+
+    <script src="/canada/js/html.js"></script>
+
+</head>
+
+<body>
+
+
+
+{include file="public/header-user" /}
+
+
+
+<section class="mainContent">
+
+    <div class="layui-container layui-form">
+
+
+
+        <div class="layui-row layui-col-space15">
+
+            <div class="layui-col-sm2">
+
+                <!--    nav-left    -->
+
+                {include file="public/nav-left" /}
+
+            </div>
+
+            <div class="layui-col-sm10">
+
+
+
+                <!--    user avatar    -->
+
+                <div class="layui-row user-avatar">
+
+                    <div class="layui-col-sm2 layui-col-xs4">
+
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+
+                    </div>
+
+                    <div class="layui-col-sm10 layui-col-xs8">
+
+                        <h1>{$order.name_en}</h1>
+
+                        <p><b>{$user.username}</b></p>
+
+                        <p>{$user.email}— {$user.search_id}</p>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <div class="steps-card">
+
+                            <h3>Required Steps</h3>
+
+                            <ol>
+
+                                {foreach name="app_step" item="vo"}
+
+                                <li {$vo.sort==$sort?"class='active'":"" } >
+
+                                    <a href="{$vo.sort}">
+
+                                        {if condition="in_array($vo.id,$step_ok)"}
+
+                                        <i class="fa fa-check-circle"></i>
+
+                                        {$vo.sort}. {$vo.step_en} - {:lang('Complete')}
+
+                                        {else}
+
+                                        <i class="fa fa-arrow-circle-right"></i>
+
+                                        {$vo.sort}. {$vo.step_en} - {:lang('Incomplete')}
+
+                                        {/if}
+
+                                    </a>
+
+                                </li>
+
+                                {/foreach}
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr/>
+
+
+
+                <!--    steps    -->
+
+                <div class="layui-row steps">
+
+                    <div class="layui-col-sm12">
+
+                        <h3>{:lang('ADDITIONAL SERVICES')}</h3>
+
+                        <p>{:lang('Service Options')}</p>
+
+                        <hr/>
+
+                        <h5>{:lang('Request Duplicate Copies')}</h5>
+
+                        <table class="layui-table">
+
+                            <thead>
+
+                            <tr>
+
+                                <th>{:lang('Number of Duplicate Copies')}</th>
+
+                                <th>{:lang('Additional Fee')}</th>
+
+                            </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                            <tr>
+
+                                <td>{:lang('One')}</td>
+
+                                <td>$29 + 13% {:lang('HST')}</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>{:lang('Two')}</td>
+
+                                <td>$58 + 13% {:lang('HST')}</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>{:lang('Three')}</td>
+
+                                <td>$87 + 13% {:lang('HST')}</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>{:lang('Four')}</td>
+
+                                <td>$116 + 13% {:lang('HST')}</td>
+
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                        <p>{:lang('Select Number of Duplicate Copies')}</p>
+
+                        <div class="form-group">
+
+                            <input type="hidden" name="user_order_id" value="{$order.id}">
+
+                            <input type="radio" name="copy_number" {$order.copy_number==0?"checked":""} value="0" title="None" ><br/>
+
+                            <input type="radio" name="copy_number" {$order.copy_number==1?"checked":""} value="1" title="One Duplicate Copy" ><br/>
+
+                            <input type="radio" name="copy_number" {$order.copy_number==2?"checked":""} value="2" title="Two Duplicate Copies" ><br/>
+
+                            <input type="radio" name="copy_number" {$order.copy_number==3?"checked":""} value="3" title="Three Duplicate Copies" ><br/>
+
+                            <input type="radio" name="copy_number" {$order.copy_number==4?"checked":""} value="4" title="Four Duplicate Copies" >
+
+                        </div>
+
+                        <h5>{:lang('Delivery Options')}</h5>
+
+                        <table class="layui-table">
+
+                            <thead>
+
+                            <tr>
+
+                                <th>{:lang('Delivery Type')}</th>
+
+                                <th>{:lang('Additional Fee')}</th>
+
+                            </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                            <tr>
+
+                                <td>{:lang('Pick Up')}</td>
+
+                                <td>$0</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>{:lang('Regular Mail Service within Canada')} -  {:lang('tracking <strong>not</strong> available')}</td>
+
+                                <td>$0</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>{:lang('Regular Mail Service International')} -  {:lang('tracking <strong>not</strong> available')}</td>
+
+                                <td>$10 + 13% {:lang('HST')}</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>{:lang('Courier Service within Canada')} - {:lang('tracking available')}</td>
+
+                                <td>$25 + 13% {:lang('HST')}</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>{:lang('Courier Service International')} - {:lang('tracking available')}</td>
+
+                                <td>$90 + 13% {:lang('HST')}</td>
+
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                        <p>{:lang('Select Delivery Service')}<span class="necessary">*</span></p>
+
+                        <div class="form-group">
+
+                            <input type="radio" name="send_for" lay-verify="required" {$order.send_for=="Pick Up"?"checked":""} value="Pick Up" title="Pick Up" ><br/>
+
+                            <input type="radio" name="send_for" lay-verify="required" {$order.send_for=="Regular Mail Service within Canada"?"checked":""} value="Regular Mail Service within Canada" value="" title="{:lang('Regular Mail Service within Canada')}" ><br/>
+
+                            <input type="radio" name="send_for" lay-verify="required" {$order.send_for=="Regular Mail Service International"?"checked":""} value="Regular Mail Service International" value="" title="{:lang('Regular Mail Service International')}" ><br/>
+
+                            <input type="radio" name="send_for" lay-verify="required" {$order.send_for=="Courier Service within Canada"?"checked":""} value="Courier Service within Canada" value="" title="{:lang('Courier Service within Canada')}" ><br/>
+
+                            <input type="radio" name="send_for" lay-verify="required" {$order.send_for=="Courier Service International"?"checked":""} value="Courier Service International" value="" title="{:lang('Courier Service International')}" >
+
+                        </div>
+
+                        <p>{:lang('Send to Third Party')}</p>
+
+                        <hr/>
+
+                        <div class="form-group buttons">
+
+                            <b><input type="checkbox" lay-filter="sendThirdParty" name="status_third" {$order.status_third==1?"checked":""} value="1" lay-skin="primary" title="{:lang('Send an additional copy of your WSE-ECA to a Third Party')}"></b>
+
+                        </div>
+
+                        <div class="sendThirdParty-box hide">
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Name of Organization')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" lay-verify="required">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Apt/Unit, Street Number, and Street')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" lay-verify="required">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('City')}</b></p>
+
+                                <select name="" class="form-input">
+
+                                    <option value="">1</option>
+
+                                    <option value="">1</option>
+
+                                    <option value="">1</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Province/State')}</b></p>
+
+                                <input type="text" class="form-input">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Country')}</b></p>
+
+                                <select class="form-input">
+
+                                    <option value="">country</option>
+
+                                    <option value="">1</option>
+
+                                    <option value="">2</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Postal Code')}</b></p>
+
+                                <input type="text" class="form-input">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Email')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" lay-verify="email">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Phone')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" lay-verify="phone">
+
+                            </div>
+
+                            <h5>{:lang('Third Party Delivery Option')}</h5>
+
+                            <table class="layui-table">
+
+                                <thead>
+
+                                <tr>
+
+                                    <th>{:lang('Delivery Type')}</th>
+
+                                    <th>{:lang('WSE-ECACopy Fee')} </th>
+
+                                    <th>{:lang('Delivery Fee')}</th>
+
+                                    <th>{:lang('Total Additional Fee')}</th>
+
+                                </tr>
+
+                                </thead>
+
+                                <tbody>
+
+                                <tr>
+
+                                    <td>{:lang('Pick Up')}</td>
+
+                                    <td>$29 + 13% {:lang('HST')}</td>
+
+                                    <td>$0</td>
+
+                                    <td>$29 + 13% {:lang('HST')}</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>{:lang('Regular Mail Service within Canada')} - {:lang('tracking <strong>not</strong> available')}</td>
+
+                                    <td>$29 + 13% {:lang('HST')}</td>
+
+                                    <td>$0</td>
+
+                                    <td>$29 + 13% {:lang('HST')}</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>{:lang('Regular Mail Service International')} - {:lang('tracking <strong>not</strong> available')}</td>
+
+                                    <td>$29 + 13% {:lang('HST')}</td>
+
+                                    <td>$10 + 13% {:lang('HST')}</td>
+
+                                    <td>$39 + 13% {:lang('HST')}</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>{:lang('Courier Service within Canada')} - {:lang('tracking available')}</td>
+
+                                    <td>$29 + 13% {:lang('HST')}</td>
+
+                                    <td>$25 + 13% {:lang('HST')}</td>
+
+                                    <td>$54 + 13% {:lang('HST')}</td>
+
+                                </tr>
+
+                                <tr>
+
+                                    <td>{:lang('Courier Service International')} - {:lang('tracking available')}</td>
+
+                                    <td>$29 + 13% {:lang('HST')}</td>
+
+                                    <td>$90 + 13% {:lang('HST')}</td>
+
+                                    <td>$119 + 13% {:lang('HST')}</td>
+
+                                </tr>
+
+                                </tbody>
+
+                            </table>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Select Delivery Service')}</b><span class="necessary">*</span></p>
+
+                                <input type="radio" name="DeliveryService3" value="" title="{:lang('Pick Up')}" ><br/>
+
+                                <input type="radio" name="DeliveryService3" value="" title="{:lang('Regular Mail Service within Canada')}" ><br/>
+
+                                <input type="radio" name="DeliveryService3" value="" title="{:lang('Regular Mail Service International')}" ><br/>
+
+                                <input type="radio" name="DeliveryService3" value="" title="{:lang('Courier Service within Canada')}" ><br/>
+
+                                <input type="radio" name="DeliveryService3" value="" title="{:lang('Courier Service International')}" >
+
+                            </div>
+
+                        </div>
+
+                        <p>{:lang('Release Information')}</p>
+
+                        <hr/>
+
+                        <h5>{:lang('Use this form if you would like to')}:</h5>
+
+                        <ul>
+
+                            <li>{:lang('Authorize the release of information regarding your WSE Degree Assessment Education to a third party')}</li>
+
+                            <li>{:lang('Designate an individual or organization as your representative to WSE')}</li>
+
+                        </ul>
+
+                        <p>{:lang('AUTHORIZATION TO RELEASE INFORMATION ABOUT MY Degree Assessment Education')}</p>
+
+                        <p>{:lang('Complete this section if you would like to authorize WSE to release information regarding your Degree Assessment Education to a third party. The individual or organization you authorize will be able to obtain information about the status of your application and the outcome of your assessment.')}</p>
+
+                        <div class="form-group buttons">
+
+                            <b><input type="checkbox" lay-filter="ReleaseInformation" name="" lay-skin="primary" title="{:lang('I authorize WSE to release information to the following')}:"></b>
+
+                        </div>
+
+                        <div class="ReleaseInformation-box hide">
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Salutation')}</b><span class="necessary">*</span></p>
+
+                                <select name="" class="form-input">
+
+                                    <option value="Mr.">{:lang('Mr.')}</option>
+
+                                    <option value="Mrs.">{:lang('Mrs.')}</option>
+
+                                    <option value="Ms.">{:lang('Ms.')}</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Family Name/Surname')}</b></p>
+
+                                <input type="text" class="form-input" lay-verify="username">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('First/Given Name')}</b></p>
+
+                                <input type="text" class="form-input">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Name of Organization')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" lay-verify="required">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Apt/Unit, Street Number, and Street')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" lay-verify="required">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('City')}</b></p>
+
+                                <select name="" class="form-input">
+
+                                    <option value="">1</option>
+
+                                    <option value="">1</option>
+
+                                    <option value="">1</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Province/State')}</b></p>
+
+                                <input type="text" class="form-input">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Country')}</b></p>
+
+                                <select class="form-input">
+
+                                    <option value="">country</option>
+
+                                    <option value="">1</option>
+
+                                    <option value="">2</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Postal Code')}</b></p>
+
+                                <input type="text" class="form-input">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Email')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" lay-verify="email">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Phone')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" lay-verify="phone">
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save This Page')}</a><a class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+
+                        <a class="layui-btn mazarine right">{:lang('Next Page')}</a>
+
+                        <br/>
+
+                        <br/>
+
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save and Finish Later')}</a>
+
+                        <hr/>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</section>
+
+
+
+{include file="public/footer-login" /}
+
+
+
+<script>
+
+    layui.use(['form'], function(){
+
+        var form = layui.form;
+
+
+
+        form.on('checkbox(sendThirdParty)', function(data){
+
+            if (data.elem.checked == true) {
+
+                $('.sendThirdParty-box').fadeIn(200)
+
+            } else (
+
+                $('.sendThirdParty-box').fadeOut(300)
+
+            )
+
+        });
+
+        form.on('checkbox(ReleaseInformation)', function(data){
+
+            if (data.elem.checked == true) {
+
+                $('.ReleaseInformation-box').fadeIn(200)
+
+            } else (
+
+                $('.ReleaseInformation-box').fadeOut(300)
+
+            )
+
+        });
+
+
+
+        form.verify({
+
+            required: function(value) {
+
+                if (value == '') {
+
+                    return 'Required can\'t be empty'
+
+                }
+
+            },
+
+
+
+            email: function(value) {
+
+                if (value == '') {
+
+                    return 'Email can\'t be empty'
+
+                }
+
+            },
+
+
+
+            phone: function(value) {
+
+                if (value == '') {
+
+                    return 'Phone can\'t be empty'
+
+                }
+
+            },
+
+
+
+            username: function(value){
+
+                if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+
+                    return 'User name must not have special characters';
+
+                }
+
+                if(/(^\_)|(\__)|(\_+$)/.test(value)){
+
+                    return 'User name cannot be underlined at the beginning and end\'_\'';
+
+                }
+
+                if(/^\d+\d+\d$/.test(value)){
+
+                    return 'User names cannot be all numbers';
+
+                }
+
+                if (value == '') {
+
+                    return 'Name can\'t be empty'
+
+                }
+
+            }
+
+        });
+
+    });
+
+</script>
+
+
+
+</body>
+
+</html>

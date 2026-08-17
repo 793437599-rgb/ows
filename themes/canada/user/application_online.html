@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>{:lang('Application Lists')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/user.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <style>
+        .layui-table tbody td {
+            cursor: pointer;
+        }
+
+        .Ua_of_list .list-content span{
+            font-size: 16px;
+        } 
+    </style>
+    {if $deduction || bccomp($order.fee,0,2) == 0}
+    <style>
+        .Ua_of_list .list-content {
+            color: #888888;
+        }
+        .list-content .list-content-right {
+            color: #888888;
+        }
+        .Ua_of_list .list-content a {
+            background: #888888;
+        }
+        .Ua_of_list .list-content p {
+            color: #888888;
+        }
+        .Ua_of_small .Ua_pay_method  {
+            opacity: 0.2;
+        }
+    </style>
+    {/if}
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div>
+        <div class="layui-row">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                <!--    user avatar    -->
+                {include file="public/_nav_center_header" /}
+                <hr/>
+                <!-- application order -->
+                <div class="layui-row layui-form Ua_box">
+                    <div class="layui-col-sm12">
+                        <div class="ua_xl_top">
+                            <h3>{:lang('Additional Services')}</h3>
+                            <p>{:lang('Service List')}</p>
+                        </div>
+                        <div class="ua_table_box">
+                            <div class="Ua_of_list">
+                                <div class="list-content">
+                                    <div>
+                                        <h4>{$app.name}</h4>
+                                        <!--   <span>One Duplicate Copy</span>-->
+                                    </div>
+                                    <div class="list-content-right">
+                                        <a href="{:url('index/about/servicefees')}">{:lang('View')}</a>
+                                        <p>C${$data.app.fee} + {$data.app.tax * 100}% {:lang('HST')}</p>
+                                    </div>
+                                </div>
+                                {notempty name="$order.copy_number"}
+                                <div class="list-content">
+                                    <div>
+                                        <h4>{:lang('Duplicate Copies Of Additional Fee')}</h4>
+                                        <span>{$order.copy_number|simpleNumber2Words|ucfirst} {:lang('Duplicate Copy')}</span>
+                                    </div>
+                                    <div class="list-content-right">
+                                        <a href="{:url('index/about/servicefees')}">{:lang('View')}</a>
+                                        <p>C${$data.copy.fee} + {$data.copy.tax * 100}% {:lang('HST')}</p>
+                                    </div>
+                                </div>
+                                {/notempty}
+                                {notempty name="$order.embassy_id"}
+                                <div class="list-content">
+                                    <div>
+                                        <h4>{:lang('Embassy certification Fee')}</h4>
+                                        <!--                                        <span>One Duplicate Copy</span>-->
+                                    </div>
+                                    <div class="list-content-right">
+                                        <a href="{:url('index/about/servicefees')}">{:lang('View')}</a>
+                                        <p>C${$data.embassy.fee} + {$data.embassy.tax * 100}% {:lang('HST')}</p>
+                                    </div>
+                                </div>
+                                {/notempty}
+                                {notempty name="$order.express_id"}
+                                <div class="list-content">
+                                    <div>
+                                        <h4>{:lang('Evaluation report mailing fee')}</h4>
+                                    </div>
+                                    <div class="list-content-right">
+                                        <a href="{:url('index/about/servicefees')}">{:lang('View')}</a>
+                                        <p>C${$data.express.fee} + {$data.express.tax * 100}% {:lang('HST')}</p>
+                                    </div>
+                                </div>
+                                {/notempty}
+                                <div class="list-content " id="ceextends">
+                                    <div  >
+                                       <h4><!-- {:lang('Traceability of online education')}  --> {:lang($C.eduonline)}</h4>
+                                    </div>
+                                    <div class="list-content-right">
+                                        <a href="{:url('index/about/servicefees')}">{:lang('View')}</a>
+                                        <p>C${$C.eduonlinefee} + 13% {:lang('HST')}</p>
+                                    </div>
+                                </div>          
+                            </div>
+                            <div class="Ua_of_small">
+                                <div>
+                                    <b>{:lang('Total Amount')}</b>
+                                    <b class="u-right money">C${$data.total.fee}</b>
+                                </div>
+                                <div class="fetch-small">
+                                    {:lang('Service Amount')}
+                                    <span class="u-right money2">C${$data.total.order_fee}</span>
+                                </div>
+                                <div class="fetch-small">
+                                    {:lang('Harmonized sales tax (HST)')} <i class="fa fa-question-circle hst-tips" aria-hidden="true"></i>
+                                    <span class="u-right money3">C${$data.total.tax_fee}</span>
+                                </div>
+                                <div class="hst">
+                                    <div class="hst_text">
+                                        {:lang('Harmonized sales tax (HST) is a mandatory tax in Canada that is a combination of the federal goods and services tax and provincial sales tax.')}
+                                    </div>
+                                    <i class="fa fa-times-circle hst_icon" aria-hidden="true"></i>
+                                </div>
+                                 
+                                {if !$deduction && bccomp($order.fee,0,2) == 1}
+                                <div>
+                                    <b>{:lang('Payment Method')}</b>
+                                </div>
+                                <input type="hidden" name="payt" value="1">
+                                <div id="pay-treaty-4" class="pay-img-box">
+                                    <div>
+                                        <label for="pay-img-1">
+                                            <input type="radio" value="1" lay-ignore name="pay" id="pay-img-1">
+                                            <img src="/imgs/americanexpress.svg">
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label for="pay-img-2">
+                                            <input type="radio" value="2" lay-ignore name="pay" id="pay-img-2">
+                                            <img src="/imgs/discover0.svg">
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label for="pay-img-3">
+                                            <input type="radio" value="3" lay-ignore name="pay" id="pay-img-3">
+                                            <img src="/imgs/jcb.svg">
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label for="pay-img-4">
+                                            <input type="radio" value="4" lay-ignore name="pay" id="pay-img-4">
+                                            <img src="/imgs/master-card.svg">
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label for="pay-img-6">
+                                            <input type="radio" value="6" lay-ignore name="pay" id="pay-img-6">
+                                            <img src="/imgs/visa.svg">
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label for="pay-img-7">
+                                            <input type="radio" value="7" lay-ignore name="pay" id="pay-img-7">
+                                            <img src="/imgs/weixinzhifu.svg">
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label for="pay-img-8">
+                                            <input type="radio" value="8" lay-ignore name="pay" id="pay-img-8">
+                                            <img src="/imgs/zhifubaobangding.svg">
+                                        </label>
+                                    </div>
+                                </div>
+                                {/if}
+
+                                <div class="pay-treaty">
+                                    <div>
+                                        <label for="pay-treaty-1">
+                                            <input type="checkbox" id="pay-treaty-1" name="treaty" title="" lay-ignore>
+                                            <span>{:lang('I have agreed and signed')} <a class="color-blue" href="{$protocol}" target="_blank">{:lang('the application agreement consent')}</a>.</span>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label for="pay-treaty-2">
+                                            <input type="checkbox" id="pay-treaty-2" name="treaty" title="" lay-ignore>
+                                            <span>
+                                                {:lang('I have carefully read and accept the')}<a class="color-blue" href="{$urlss}/index/Application/pact/id/13" target="_blank">{:lang('Terms and Conditions')}</a> {:lang('and')} <a class="color-blue" href="{$urlss}/index/Application/pact/id/15" target="_blank">{:lang('privacy policy')}</a> {:lang('of World Storage Education')}.
+                                            </span>
+                                        </label>
+                                    </div>
+                                    <div>
+                                        <label for="pay-treaty-3">
+                                            <input type="checkbox" id="pay-treaty-3" name="treaty" title="" lay-ignore>
+                                            <span>{:lang('I guarantee that the information I submit is accurate and true.')}</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="Ua_pay">
+                                    <a class="change-btn" href="{:url('index/user/app_step_info',['app_id'=>$order.app_id,'sort'=>1])}">{:lang('Change Information')} </a>
+                                    {if $deduction || bccomp($order.fee,0,2) == 0}
+                                    <a href="javascript:;" lay-submit lay-filter="pay" id="pay">{:lang('Submit Application')}</a>
+                                    {else /} 
+                                    <a href="javascript:;" lay-submit lay-filter="pay" id="pay">{:lang('To Pay')} </a>
+                                    {/if}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="load_root" id="load">
+    <div class="load_content">
+        <div class="load_boxmask">
+            <div class="load_model-top">
+                <div class="load_model" style="width:520px">
+                    <div class="load-modal-content">
+                        <div class="container">
+                            <div class="circle1"></div>
+                            <div class="circle2"></div>
+                            <p>{:lang('Loading')}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<aside id="payCodeBox" style="display: none;text-align: center;">
+    <h1>{:lang('Payment is in progress, please do not close this page')}</h1>
+    <h1 id="paynot" style="display: none;color: #f00;">{:lang('Payment failed. Please try to pay again or choose another payment method')}</h1>
+    <div class="pay-status-box">
+        <div class="pay-status-1">
+            <div>
+                <i class="fa fa-spinner fa-pulse"></i>
+                <i class="iconfont icon-chenggong1"></i>
+            </div>
+            <p class="pay-before">{:lang('Production of payment orders in progress')}</p>
+            <p class="pay-after">{:lang('Payment order generated')}</p>
+            <span class="pay-border-right"></span>
+        </div>
+        <div class="pay-status-2">
+            <span class="pay-border-left"></span>
+            <div>
+                <i class="fa fa-spinner fa-pulse"></i>
+                <i class="iconfont icon-chenggong1"></i>
+            </div>
+            <p class="pay-before">{:lang('Requesting payment')}</p>
+            <p class="pay-after">{:lang('Payment request successful')}</p>
+            <span class="pay-border-right"></span>
+        </div>
+        <div class="pay-status-3">
+            <span class="pay-border-left"></span>
+            <div>
+                <i class="fa fa-spinner fa-pulse"></i>
+                <i class="iconfont icon-chenggong1"></i>
+            </div>
+            <p class="pay-before">{:lang('Payment in progress')}</p>
+            <p class="pay-after">{:lang('Payment failed')}</p>
+        </div>
+    </div>
+    <div class="pay-code-box" style="display: none;">
+        <h1 id="coopay">{:lang('Please use Alipay scan code to pay.')}</h1>
+        <div id="pay_code" ><img src="" alt=""></div>
+        <p>{:lang('Please pay by scanning code!')}</p>
+    </div>
+</aside>
+<!--<script src="https://www.paypal.com/sdk/js?client-id=sb"></script>-->
+<script src="/static/js/layui/layui.js"></script>
+<script src="/static/js/layui/layui.all.js"></script>
+<script type="text/javascript" src="__JS__/qrcode.min.js"></script>
+<script>
+    $('#pay').click(function () {
+        if (!$('#pay-treaty-1').is(':checked')) {
+            layer.tips('<?php echo lang("Please agree and choose the agreement"); ?>', '#pay-treaty-1', {
+                tips: [1, '#013763']
+            });
+            return
+        }
+        if (!$('#pay-treaty-2').is(':checked')) {
+            layer.tips('<?php echo lang("Please agree and choose the agreement"); ?>', '#pay-treaty-2', {
+                tips: [1, '#013763']
+            });
+            return
+        }
+        if (!$('#pay-treaty-3').is(':checked')) {
+            layer.tips('<?php echo lang("Please agree and choose the agreement"); ?>', '#pay-treaty-3', {
+                tips: [1, '#013763']
+            });
+            return
+        }
+   
+        let payt =  $("input[name='payt']").val();
+        let order_no = '{$order.order_number}';
+        let tpyes = '';
+
+         let order_id = '{$order.id}';
+        $.ajax({
+            url: '{:url("index/ottpay/pay_fee_onlien")}',
+            type: 'post',
+            data: {order_id: order_id  },
+            dataType: 'json',
+            success: function (res) {
+            }
+        })
+
+        if (payt>'0') {
+            tpyes =  $("input[name='pay']:checked").val();
+            if (tpyes== undefined) {
+                layer.tips('<?php echo lang("Please select payment method"); ?>', '#pay-treaty-4', {
+                    tips: [1, '#013763']
+                });
+                return
+            }
+            layer.open({
+                type: 1,
+                title: '',
+                //closeBtn : 0,
+                area: ['700px', '600px'],
+                content: $('#payCodeBox'),
+                cancel: function(index, layero){ 
+                    layer.close(index)
+                    $('#pay_code').attr('title', '').empty().append('<img src="" alt="">')
+                    $('#paynot').hide()
+                    $('.pay-status-1 .fa-spinner, .pay-status-1 .pay-before').show()
+                    $('.pay-status-1 .icon-chenggong1, .pay-status-1 .pay-after').hide()
+                    $('.pay-status-1 .icon-chenggong1').hide()
+                    $('.pay-status-2 .pay-before').show()
+                    $('.pay-status-2 .pay-after').hide()
+                    $('.pay-status-2 .icon-chenggong1').css('color', '#999')
+                    $('.pay-status-3 .fa-spinner').hide()
+                    $('.pay-status-3 .icon-chenggong1').show()
+                    $('.pay-status-3 .pay-before').show()
+                    $('.pay-status-3 .pay-after').hide()
+                    $('.pay-code-box').hide()
+                    return false; 
+                }    
+      
+            });
+            if (tpyes== '7') {
+                tpyes = 'WECHATPAY'
+                $("#coopay").text('<?php echo lang("Please use WeChat scan code to pay."); ?>')
+                animation_payok();
+            } else if (tpyes== '8') {
+                tpyes = 'ALIPAY'
+                $("#coopay").text('<?php echo lang("Please use Alipay scan code to pay."); ?>')
+                 animation_payok();
+            } else if (tpyes== '9') {
+                tpyes = 'UNIONPAY'
+                $("#coopay").text('<?php echo lang("Please use UNIONPAY scan code to pay."); ?>')
+                animation_payok();
+            } else{
+                animation_pay();
+                return
+            }
+        }else{
+            tpyes = '0';
+        }
+ 
+        $.ajax({
+            url: '{:url("index/ottpay/createOrder")}',
+            type: 'post',
+            data: {order_no: order_no,type: tpyes},
+            dataType: 'json',
+            success: function (res) {
+                if (res.code == 20000) {
+                    var qrcode = new QRCode(document.getElementById("pay_code"), {
+                        width : 100,
+                        height : 100
+                    });
+                    qrcode.makeCode(res.data);
+                    setTimeout(function () {
+                        var int = self.setInterval(function(){pay_status()},3000);
+                    }, 8000);
+                } else if (res.code == 20001) {
+                    location.href = res.data;
+                }  else {
+                    //layer.msg(res.msg, {icon: 5});
+                    animation_pay();
+                    return
+                }
+            },
+        })
+    });
+
+    function pay_status() {
+        let order_id = '{$order.id}';
+        if (order_id > 0) {
+            $.ajax({
+                url: '{:url("index/ottpay/pay_status")}',
+                type: 'post',
+                data: {order_id: order_id},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 20000) {
+                        //window.clearInterval(int);
+                        location.href = res.data;
+                    }   else {
+                        //layer.msg(res.msg, {icon: 5});
+                    }
+                },
+            })
+        }
+    }
+
+    function animation_pay() {
+        setTimeout(() => {
+            $('.pay-status-1 .fa-spinner, .pay-status-1 .pay-before').hide()
+            $('.pay-status-1 .icon-chenggong1, .pay-status-1 .pay-after').show()
+            $('.pay-status-1 .icon-chenggong1').css('color', '#5FB878')
+            $('.pay-status-2 .icon-chenggong1').hide()
+            $('.pay-status-2 .fa-spinner').show().css('display', 'block')
+            // Payment request success
+            setTimeout(() => {
+                $('.pay-status-2 .fa-spinner, .pay-status-2 .pay-before').hide()
+                $('.pay-status-2 .icon-chenggong1, .pay-status-2 .pay-after').show()
+                $('.pay-status-2 .icon-chenggong1').css('color', '#5FB878')
+                $('.pay-status-3 .icon-chenggong1').hide()
+                $('.pay-status-3 .fa-spinner').show().css('display', 'block')
+                //$('.pay-code-box').show()  // 选择不对时 显示出来 pay fail
+                //  pay fail
+                setTimeout(() => {
+                    $('.pay-status-3 .pay-before').hide()
+                    $('#paynot').show() 
+                    $('.pay-status-3 .pay-after').show().css({'display': 'block', 'color': '#f00'})
+                }, 1200)
+            }, 1200)
+        }, 1200)
+    }
+
+    function animation_payok() {
+        setTimeout(() => {
+            $('.pay-status-1 .fa-spinner, .pay-status-1 .pay-before').hide()
+            $('.pay-status-1 .icon-chenggong1, .pay-status-1 .pay-after').show()
+            $('.pay-status-1 .icon-chenggong1').css('color', '#5FB878')
+            $('.pay-status-2 .icon-chenggong1').hide()
+            $('.pay-status-2 .fa-spinner').show().css('display', 'block')
+            setTimeout(() => {
+                $('.pay-status-2 .fa-spinner, .pay-status-2 .pay-before').hide()
+                $('.pay-status-2 .icon-chenggong1, .pay-status-2 .pay-after').show()
+                $('.pay-status-2 .icon-chenggong1').css('color', '#5FB878')
+                $('.pay-status-3 .icon-chenggong1').hide()
+                $('.pay-status-3 .fa-spinner').show().css('display', 'block')
+                $('.pay-code-box').show()  
+            }, 1200)
+        }, 1200)
+    }
+
+    $('.Ua_box .layui-col-sm6:first-child').height($('.Ua_box .layui-col-sm6:nth-child(2)').height());
+    $('.hst-tips').click(function () {
+        $('.hst').slideToggle();
+    });
+    $('.hst_icon').click(function () {
+        $('.hst-tips').click();
+    })
+</script>
+</body>
+</html>

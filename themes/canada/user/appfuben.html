@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('WSE-DAE for General Use')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <link rel="stylesheet" href="/static/js/zeroModal/css/zeroModal.css">
+    <script src="/static/js/zeroModal/js/zeroModal.min.js"></script>
+    <style>
+        .layui-table tbody td {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    {include file="public/header-user" /}
+    <section class="mainContent">
+        <div class="edu-form" id="infodata">
+            <div class="layui-row">
+                <div class="layui-col-sm2 nav-fixed">
+                    <!--    nav-left    -->
+                    {include file="public/nav-left" /}
+                </div>
+                <div class="layui-col-sm12">
+                    {include file="public/_app_dae_steps"}
+                    <div class="layui-row steps">
+                        <form class="edu-form">
+                            <div class="layui-col-sm12">
+                                <h3>{:lang('ADDITIONAL SERVICES')}</h3>
+                                <p>{:lang('Service Options')}</p>
+                                <hr />
+                                <h5>{:lang('Request additional copies of your Degree Assessment Education (DAE) report:')}</h5>
+                                <div class="layui-form">
+                                    <input type="hidden" name="user_order_id" value="{$order.id}">
+                                    <table class="layui-table copy_table">
+                                        <thead>
+                                            <tr>
+                                                <th>{:lang('Number of Duplicate Copies')}</th>
+                                                <th>{:lang('Additional Fee')}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <input type="radio" class="layui-input" lay-verify="required" name="copy_number" {$order.copy_number==1||$order.copy_number=="" ?"checked":""} value="1" title="{:lang('One Duplicate Copy')}" lay-filter="copy_number">
+                                                </td>
+                                                <td>${$app.copy_fee} + 13% {:lang('HST')} <i class="fa fa-question-circle question first-name-question"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="radio" class="layui-input" lay-verify="required" name="copy_number" {$order.copy_number==2?"checked":""} value="2" title="{:lang('Two Duplicate Copies')}" lay-filter="copy_number">
+                                                </td>
+                                                <td>${$app.copy_fee*2} + 13% {:lang('HST')} <i class="fa fa-question-circle question first-name-question"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="radio" class="layui-input" lay-verify="required" name="copy_number" {$order.copy_number==3?"checked":""} value="3" title="{:lang('Three Duplicate Copies')}" lay-filter="copy_number">
+                                                </td>
+                                                <td>${$app.copy_fee*3} + 13% {:lang('HST')} <i class="fa fa-question-circle question first-name-question"></i></td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input type="radio" class="layui-input" lay-verify="required" name="copy_number" {$order.copy_number==4?"checked":""} value="4" title="{:lang('Four Duplicate Copies')}" lay-filter="copy_number">
+                                                </td>
+                                                <td>${$app.copy_fee*4} + 13% {:lang('HST')} <i class="fa fa-question-circle question first-name-question"></i></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <h5>{:lang('Delivery Options')}</h5>
+                                    <table class="layui-table express_table">
+                                        <thead>
+                                            <tr>
+                                                <th>{:lang('Delivery Type')}</th>
+                                                <th>{:lang('Additional Fee')}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {volist name='express' id='vo'}
+                                            <tr>
+                                                <td><input type="radio" name="express_id" class="layui-input" lay-verify="required"  
+                                                {$order.express_id==$vo.id ? 'checked' : '' } value="{$vo.id}" title="{:lang($vo.express_name)}"></td>
+                                                <td>${$vo.base_price} + {$vo.tax * 100}% {:lang('HST')} <i class="fa fa-question-circle question first-name-question"></i></td>
+                                            </tr>
+                                            {/volist}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <h5>{:lang('Shipping Address')}</h5>
+                                <div class="releaseInformation-box  card-style">
+                                    <div class="layui-row layui-col-space15 form-group">
+                                        <div class="layui-col-sm4">
+                                            <p><b>{:lang('Country')}</b></p>
+                                            <input lay-verify="required" list="country_list" type="text" class="layui-input " name="national" id="country" value="{$default_address.mail_nationality|default=''}" placeholder="{:lang('Please fill in your nationality')}" list="country_list" autocomplete="off" lay-verify=" ">
+                                            <datalist id="country_list">
+                                                {foreach name="country" item="vo"}
+                                                <option value="{$vo.name_en}">{$vo.name_en}</option>
+                                                {/foreach}
+                                            </datalist>
+                                        </div>
+                                        <div class="layui-col-sm4" {if empty($default_address.mail_province) && !empty($default_address.mail_city)} style="display: none" {/if}>
+                                            <p><b>{:lang('State/Province')}</b></p>
+                                            <input lay-verify="required" list="province_list" type="text" class="layui-input " name="province" id="province" value="{$default_address.mail_province|default=''}" placeholder="{:lang('Please fill in your nationality')}" list="province_list" autocomplete="off" lay-verify=" ">
+                                            <datalist id="province_list">
+                                                {foreach name="provices" item="vo"}
+                                                <option value="{$vo.name_en}">{$vo.name_en}</option>
+                                                {/foreach}
+                                            </datalist>
+                                        </div>
+                                        <!--city-->
+                                        <div class="layui-col-sm4">
+                                            <p><b>{:lang('City')}:</b></p>
+                                            <input lay-verify="required" list="city_list" type="text" class="layui-input " name="city" id="city" value="{$default_address.mail_city|default=''}" placeholder="{:lang('Please fill in your nationality')}" list="city_list" autocomplete="off" lay-verify=" ">
+                                            <datalist id="city_list">
+                                                {foreach name="cities" item="vo"}
+                                                <option value="{$vo.name_en}">{$vo.name_en}</option>
+                                                {/foreach}
+                                            </datalist>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <p><b>{:lang('Apt/Unit, Street Number, and Street')}</b><span class="necessary">*</span></p>
+                                        <input type="text" value="{$default_address.address}" name="detailed" class="form-input" lay-verify="required" placeholder="{:lang('Please enter your Apt/Unit, Street Number, and Street')}">
+                                    </div>
+                                    <div class="form-group layui-row layui-col-space15">
+                                        <div class="layui-col-sm3">
+                                            <p><b>{:lang('Postal Code')}</b><span class="necessary">*</span></p>
+                                            <input type="text" value="{$default_address.zip}" name="zip" class="form-input" lay-verify="required|number" placeholder="{:lang('Please enter your Postal Code')}">
+                                        </div>
+                                        <div class="layui-col-sm3">
+                                            <p><b>{:lang('Addressee')}</b><span class="necessary">*</span></p>
+                                            <input type="text" value="{$default_address.addressee}" name="addressee" class="form-input" lay-verify="required" placeholder="{:lang('Please enter your addressee')}">
+                                        </div>
+                                        <div class="layui-col-sm6">
+                                            <p><b>{:lang('Phone')}</b><span class="necessary">*</span></p>
+                                            <div class="layui-col-sm4 layui-col-xs4">
+                                                <div class="areaBox">
+                                                    <div style="height: 40px;">
+                                                        <img src="/imgs/{$order.qujianimg|default='Canada.png'} " alt="">
+                                                        <span>+{$order.area_code|default='1'}</span>
+                                                    </div>
+                                                    <ul>
+                                                        {foreach name="mobiles" item="vo"}
+                                                        <li data-area="{$vo.qujian}" data-src="/imgs/{$vo.imgs}">
+                                                            <img src="/imgs/{$vo.imgs}" alt="">
+                                                            <span>{:lang($vo.name)} {$vo.qujian} </span>
+                                                        </li>
+                                                        {/foreach}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <div class="layui-col-sm8 layui-col-xs8">
+                                                <input type="text" value="{$default_address.mobile}" name="mobile" class="form-input" lay-verify="required|number" placeholder="{:lang('Please enter your Phone')}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br>
+                                <br>
+                            </div>
+                            <div class="layui-col-sm12 buttons">
+                                <!--<a class="layui-btn layui-btn-primary save" lay-submit lay-filter="save">{:lang('Save This Page')}</a>
+                     <a href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort-1])}"  class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a> -->
+                                <a class="layui-btn mazarine right" lay-submit lay-filter="save2">{:lang('Submit Application')}</a>
+                                <br />
+                                <br />
+                                <!-- <a class="layui-btn layui-btn-primary save" lay-submit lay-filter="save">{:lang('Save and Finish Later')}</a> -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        var pageHref = window.location.href;
+        var pageHrefIndex = pageHref.indexOf("lang=")
+        var lang = 'english'
+        if (pageHrefIndex > -1) {
+            lang = pageHref.substring(pageHrefIndex + 5, pageHref.length)
+        }
+        let copy_number = 0;
+        layui.use(['form', 'layer'], function () {
+            let initData = [];
+            let raw_address = ["{$order.mail_nationality}", "{$order.mail_province}", "{$order.mail_city}", "{$order.zip}", "{$order.area_code}", "{$order.mobile}", "{$order.address}"];
+            let user_address = ["{$user_address.national}", "{$user_address.province}", "{$user_address.city}", "{$user_address.zip}", "{$user.qujian}", "{$user.mobile}", "{$user_address.detailed}"];
+            var form = layui.form;
+            let layer = layui.layer;
+            form.on('submit(save2)', function (data) {
+                let formData = {};
+                let flag = true;
+                $.ajax({
+                    url: "{:url('index/order/precondition')}", 
+                    type: 'get',
+                    data: {
+                        app_id: '{$app.id}'
+                    },
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.code != 20000) {  //none order
+                            zeroModal.alert({
+                                content: '{:lang("Please apply for WSE Degree Assessed Education Storage service before applying for this project.")}',
+                                okTitle: '{:lang("Apply Now!")}',
+                                okFn: function () {
+                                    location.href = "{:url('/applications_info',['id'=>3])}";
+                                },
+                                cancel: true,
+                            });
+                        } else {
+                            let forms = $('#infodata input,#infodata select');
+                            $.each(forms, function (index, item) {
+                                let val = $(item).val().replace(/^\s*|\s*$/g, "");
+                                let verify = $(item).attr('lay-verify');
+                                if (verify == null || verify == undefined) {
+                                    verify = ''
+                                }
+                                let msg = '';
+                                verify = verify.split('|');
+                                if (verify.indexOf('required') > -1 && (val == null || val == undefined || val == '')) {
+                                    if ($(item).is(':hidden')) {
+                                        return true;
+                                    }
+                                    $(item).focus();
+                                    $(item).addClass('layui-form-danger');
+                                    // layer.msg('Require can\'t be empty', {icon: 5});
+                                    layer.tips('{:lang("Require can not be empty")}', $(item), {
+                                        tips: [3, '#FF5722']
+                                    })
+                                    flag = false;
+                                    return false;
+
+                                }
+                                if (verify.indexOf('number') > -1) {
+                                    let reg = /^[0-9]*$/;
+                                    if (!reg.test(val)) {
+                                        $(item).focus();
+                                        $(item).addClass('layui-form-danger');
+                                        layer.tips('{:lang("The current field can only be composed of Numbers")}', $(item), {
+                                            tips: [3, '#FF5722']
+                                        })
+                                        flag = false;
+                                        return false;
+                                    }
+                                }
+                                formData[$(item).attr('name')] = val;
+                            })
+                            if (!flag) {
+                                return;
+                            }
+                            let copy_number = $('.copy_table .layui-form-radioed').siblings('input').val();
+                            let express_id = $('.express_table .layui-form-radioed').siblings('input').val();
+                            formData['copy_number'] = copy_number == undefined ? 0 : copy_number;
+                            formData['express_id'] = express_id == undefined || express_id < 0 ? 0 : express_id;
+                            formData['qujian'] = $('.areaBox div span').text().substr(1);
+                            if (formData['express_id'] == 0) {
+                                $('.express_table').addClass('radio-error');
+                                layer.tips('{:lang("Delivery method can not be empty")}', $('.express_table '), {
+                                    tips: [3, '#FF5722']
+                                })
+                                return;
+                            }
+                            formData['sort'] = '{$sort}';
+                            formData['app_id'] = '{$app.id}';
+                            formData['user_order_id'] = $('[name="user_order_id"]').val();
+                            formData['fubenlang'] = lang;
+                            $.post("{:url('index/user/save_next_apply')}", formData, function (result) {
+                                if (result.code == 20000) {
+                                    //window.location.href = result.data;
+location.href ="{:url('index/user/app_step_info',['app_id'=>$app.id,'sort'=>5])}"
+
+                                } else {
+                                    layer.msg(result.msg, {icon: 2, time: 2000});
+                                    // zeroModal.alert({
+                                    //     title: 'error',
+                                    //     content: result.msg,
+                                    //     cancel: true,
+                                    // });
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+
+
+            $('.layui-table tbody td').click(function () {
+                let flag = $(this).find('input').attr('disabled');
+                if (flag) {
+                    return
+                }
+                $(this).parents('table').removeClass('radio-error');
+                $(this).parents('tbody').children('tr').children('td').children('input').prop('checked', false);
+                let num = $(this).parents('tbody').find('.layui-form-radioed').siblings('input').val();
+                console.log(num);
+                $(this).parent('tr').children('td').children('input').prop('checked', true);
+                form.render('radio');
+            });
+            $('#country').on('input', function () {
+                let national = $(this).val();
+                let nationals = $('#country_list option');
+                if (national != '{$address.national|default=""}') {
+                    $('#province').val('').parents('.layui-col-sm4').show();
+                    $('#city').val('').parents('.layui-col-sm4').show();
+                    $('#province_list').empty();
+                    $('#city_list').empty();
+                    $.each(nationals, function (index, item) {
+                        let val = $(item).val();
+                        if (national == val) {
+                            falg = false;
+                            $.ajax({
+                                type: "POST",
+                                url: "{:url('/index/common/getProvince')}",
+                                dataType: "json",
+                                data: {
+                                    national: national,
+                                    type: 'NAME'
+                                },
+                                success: function (res) {
+                                    let option = '';
+                                    console.log(res);
+                                    if (res.city != undefined && res.city.length > 0) {
+                                        $.each(res.city, function (index, item) {
+                                            option += '<option value="' + item.name_en + '">' + item.name_en + '</option>';
+                                        });
+                                        $('#province_list').parents('.layui-col-sm4').hide();
+                                        $('#city_list').empty().append(option);
+                                    } else if ((res.province != undefined && res.province.length > 0)) {
+                                        $.each(res.province, function (index, item) {
+                                            option += '<option value="' + item.name_en + '">' + item.name_en + '</option>';
+                                        });
+                                        $('#province_list').parents('.layui-col-sm4').show();
+                                        $('#province_list').empty().append(option);
+                                    }
+                                }
+                            })
+                            return false;
+                        }
+                    })
+                }
+            })
+            $('#province').on('input', function () {
+                let province = $(this).val();
+                let provinces = $('#province_list option');
+                if (province != '{$address.province|default=""}') {
+                    $('#city').val('').parents('.layui-col-sm4').show();
+                    $('#city_list').empty();
+                    $.each(provinces, function (index, item) {
+                        let val = $(item).val();
+                        if (province == val) {
+                            $.ajax({
+                                type: "POST",
+                                url: "{:url('/index/common/getCity')}",
+                                dataType: "json",
+                                data: {
+                                    province: province,
+                                    type: 'NAME'
+                                },
+                                success: function (res) {
+                                    console.log(res);
+                                    let option = '';
+                                    $.each(res, function (index, item) {
+                                        option += '<option value="' + item.name_en + '">' + item.name_en + '</option>';
+                                    });
+                                    $('#city_list').empty().append(option);
+                                }
+                            })
+                            return false;
+                        }
+                    })
+                }
+            })
+        });
+    </script>
+    <script>
+        $('.areaBox div').on('click', function () {
+            if (!$(this).hasClass('areaDisabled')) {
+                $(this).siblings().fadeIn()
+            }
+        })
+        $('.areaBox li').on('click', function (e) {
+            e.stopPropagation();
+            $('.areaBox ul').fadeOut()
+            var src = $(this).attr('data-src'),
+                areaNum = $(this).attr('data-area');
+            console.log(areaNum)
+            $('.areaBox div img').attr('src', src)
+            $('.areaBox div span').text(areaNum)
+        })
+        $(document).click(function (event) {
+            var _con = $('.areaBox'); // 设置目标区域
+            if (!_con.is(event.target) && _con.has(event.target).length === 0) { // Mark 1
+                $('.areaBox ul').fadeOut(); //淡出消失
+            }
+        });
+
+
+        $('.first-name-question').on('click', function () {
+            let tips =
+                '<tr class="tips-box active"><td colspan="2" style="padding:0px;"><div class="green-tips" style="display:none"><div class="col-sm-12"><p>Harmonized sales tax (HST) is a mandatory tax in Canada that is a combination of the federal goods and services tax and provincial sales tax.</p></div><span class="closeBtn first-name-btn">×</span></div></td></tr>';
+            let next_item = $(this).parents('tr').next('tr').hasClass('tips-box');
+            if (!next_item) {
+                $(this).parents('tr').after(tips);
+            }
+            let that = $(this).parents('tr').next('.tips-box');
+            $('.tips-box').not(that).find('.green-tips').slideUp(500, function () {
+                $('.tips-box').not(that).remove();
+            })
+            that.find('.green-tips').slideToggle(500);
+        })
+
+        $(document).on('click', '.first-name-btn', function () {
+            $('.tips-box').remove();
+        })
+    </script>
+</body>
+
+</html>

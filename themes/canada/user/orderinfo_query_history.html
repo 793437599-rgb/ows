@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+        <div class="">
+            <div class="layui-row ">
+                <div class="layui-col-sm2 nav-fixed">
+                    <!--    nav-left    -->
+                    {include file="public/nav-left" /}
+                </div>
+                <div class="layui-row">
+                    <div class="layui-col-sm12">
+                        <div class="query-tips">
+                            <div class="query-tips-content"> 
+                                {notempty name="$list"}
+                                <table class="layui-table">
+                                    <tbody>
+                                        <tr>
+                                            <td>{:lang('Query time')}</td> 
+                                            <td>{:lang('Query ip')}</td> 
+                                            <td>{:lang('Inquiry method')}</td>
+                                            <td>{:lang('Certificate code')}</td>
+                                            <td>{:lang('Verify Email')}</td>
+                                        </tr>
+                                        {foreach name="list" item="vo"}
+                                        <tr>
+                                            <td>{$vo.create_time}</td>
+                                            <td>{$vo.create_ip}</td>
+                                            <td>
+                                                {if $vo.search_type == 1}
+                                                {:lang('Web Query Certificate view')}
+                                                {elseif $vo.search_type == 2}
+                                                {:lang('Share Query')}
+                                                {elseif $vo.search_type == 3}
+                                                {:lang('App Query')}
+                                                {elseif $vo.search_type == 4}
+                                                {:lang('Visitor inquiry')}
+                                                {else /}
+                                                {:lang('Other Query')}
+                                                {/if}
+                                            </td>
+                                            <td>{$vo.serial_number ? $vo.serial_number : '/'}</td>
+                                            <td>{$vo.verify_email ? $vo.verify_email : '/'}</td>
+                                        </tr>
+                                        {/foreach}
+                                    </tbody>
+                                </table>
+                                {else /}
+                                <img src="/canada/images/my-Inquire.svg" alt="">
+                                <p>{:lang('No one has checked your certificate information.')}</p>
+                                {/notempty}
+                            </div>                       
+                        </div>
+                    </div>
+                </div>  
+            </div>
+        </div>
+    </section>
+</body>
+</html>

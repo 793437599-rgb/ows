@@ -1,0 +1,137 @@
+<link rel="stylesheet" href="/canada/css/General-news.css">
+<div class="news-general">
+    <div class="news-boxcont">
+        <div>
+            <h1>{:lang(' International Association for Quality Assurance in Higher Education (QAHE)')}</h1>
+            <div class="news-status">
+                <div class="news-status-items praise">
+                    <span>2022-05-25 18:24</span>
+                    <span><i class="iconfont icon-chakan"></i><span>11</span></span>
+                    <!-- <span id="praise"><i class="iconfont icon-dianzan" id="praise-img"></i><span id="praise-txt">365</span></span> -->
+                     <span id="praise"><img src="/canada/images/blockchain/zan.png" id="praise-img" /></span><span id="praise-txt">11</span>
+                </div>
+                <div>
+                    <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fa fa-linkedin-square"></i></a>
+                    <a href="https://www.facebook.com/"><i class="fa fa-facebook-official"></i></a>
+                </div>
+            </div>
+            <div class="news-text-box">
+               <p>{:lang('World Storage Education (WSE) and the International Association for Quality Assurance in Higher Education (QAHE) https://www.qahe.org/reached a memorandum of mutual recognition;
+Information sharing and data sharing of mutual recognition units;
+May 25, 2022 - Mutual recognition from May 25, 2027.')}</p>
+                
+            </div>
+            <div class="news-label-block">
+                <span>{:lang('Education')}</span>
+                <span>{:lang('Blockchain')}</span>
+                <span>{:lang('Technology')}</span>
+                <span>{:lang('Bitcoin')}</span>
+                <span>{:lang('Social Infrastructure')}</span>
+            </div>
+            <div class="news-block">
+                <div>
+                    <a class="chakan-left"><i class="iconfont icon-chakan"></i><span>1154</span></a>
+                    <span id="last-zan"><img src="/canada/images/blockchain/zan.png" id="last-zan-img" /></span><span id="last-zan-txt">357</span>
+                </div>
+                <div>
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-linkedin-square"></i></a>
+                    <a href=""><i class="fa fa-facebook-official"></i></a>
+                </div>
+            </div>
+            <p class="split-line"></p>
+            <div>
+                <h1>{:lang('More From WSE')}</h1>
+                <div class="news-more">
+                    <div class="more-one">
+                        <div class="more-one-item">
+                            <a href="/index/about/newsDetails" class="news-link">
+                                <div><img src="/canada/images/blockchain/little-1.jpg" alt=""></div>
+                                <div>
+                                    <h4>{:lang('COVID-19 Emergency Responses in Education')}</h4>
+                                    <p>{:lang('In the history of global education, 2020 will go down as the year the coronavirus pandemic savaged education systems...')}</p>
+                                    <p><i class="iconfont icon-ziyuan"></i> 2020-05-26</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="more-one-item">
+                            <a href="/index/about/newsDetails2" class="news-link">
+                                <div><img src="/canada/images/blockchain/little-2.jpg" alt=""></div>
+                                <div>
+                                    <h4>{:lang('Perfect Storm:')}</h4>
+                                    <p>{:lang('The fallout from the COVID-19 pandemic for higher education institutions (HEIs) in the United States will likely be pronounced...')}</p>
+                                    <p><i class="iconfont icon-ziyuan"></i> 2020-05-26</p>
+                                </div>
+                            </a>
+                        </div>   
+                    </div>
+                    <div class="more-one">
+                        <div class="more-one-item">
+                            <a href="/index/about/newsDetails3" class="news-link">
+                                <div><img src="/canada/images/blockchain/little-3.jpg" alt=""></div>
+                                <div>
+                                    <h4>{:lang('COVID-19 notice:')}</h4>
+                                    <p>{:lang('As of April 27th, 2020, the International Credential Evaluation Service (ICES) has made the online application available again and will be open to receiving...')}</p>
+                                    <p><i class="iconfont icon-ziyuan"></i> 2020-04-27</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="more-one-item">
+                            <a href="/index/about/newsDetails4" class="news-link">
+                                <div><img src="/canada/images/blockchain/little-4.jpg" alt=""></div>
+                                <div>
+                                    <h4>{:lang('Why the Blockchain will Revolutionize Academic Credentialing')}</h4>
+                                    <p>{:lang('This is a transcript of the presentation given during Educause at the Anaheim Convention Center on October 28, 2016...')}</p>
+                                    <p><i class="iconfont icon-ziyuan"></i> 2020-02-01</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#praise").click(function () {
+            var praise_img = $("#praise-img");
+            var praise_txt = $("#praise-txt");
+            var num = parseInt(praise_txt.text());
+            if (praise_img.attr("src") == ("/canada/images/blockchain/yizan.png")) {
+                // $(this).html("<img src='/canada/images/blockchain/zan.png' id='praise-img' class='animation' />");
+                // praise_txt.removeClass("hover");
+                // $(".add-animation").removeClass("hover");
+                // num -= 1;
+                // praise_txt.text(num)
+            } else {
+                $(this).html("<img src='/canada/images/blockchain/yizan.png' id='praise-img' class='animation' />");
+                praise_txt.addClass("hover");
+                $(".add-animation").addClass("hover");
+                num += 1;
+                praise_txt.text(num)
+            }
+        });
+    })
+$(function () {
+        $("#last-zan").click(function () {
+            var last_zan_img = $("#last-zan-img");
+            var last_zan_txt = $("#last-zan-txt");
+            var full = parseInt(last_zan_txt.text());
+            if (last_zan_img.attr("src") == ("/canada/images/blockchain/yizan.png")) {
+                // $(this).html("<img src='/canada/images/blockchain/zan.png' id='praise-img' class='animation' />");
+                // praise_txt.removeClass("hover");
+                // $(".add-animation").removeClass("hover");
+                // num -= 1;
+                // praise_txt.text(num)
+            } else {
+                $(this).html("<img src='/canada/images/blockchain/yizan.png' id='last-zan-img' class='animation' />");
+                last_zan_txt.addClass("hover");
+                $(".add-animation").addClass("hover");
+                full += 1;
+                last_zan_txt.text(full)
+            }
+        });
+    })
+</script>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>CANADA.EDUCATION DATA</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Keywords" content=""/>
+    <meta name="Description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/education.css"/>
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <script src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <link rel="stylesheet" type="text/css" href="/canada/css/mobile.css"/>
+</head>
+<body>
+
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'>
+        <a class="hd-logo" href="/">
+            <img src="/canada/images/logo.png"/>
+        </a>
+        <div class="infor-off">
+            <a href="/logout">
+                <img src="/canada/images/off-icon.svg"/>
+                <span>Exit</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<section class="information-wrap">
+    <h2>PERSONAL DATA DISPLAY</h2>
+    <div class="information transcript">
+        <div class="header">
+            <div class="img-box">
+                <img src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"'/>
+            </div>
+            <div class="info">
+                <h3>{$info.name}</h3>
+            </div>
+
+            <ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a href="/info/edu_id/{$v.id}">Information</a>
+                        </li>
+                        <li><a href="/transcript/edu_id/{$v.id}">Transcript</a></li>
+                    </ol>
+                </li>
+
+                {/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/info">Information</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+
+                <li><a href="/transfer">TRANSFER</a></li>
+
+
+            </ul>
+
+        </div>
+    </div>
+    <div class="infor-right">
+        <div class="application border-shadow">
+            <div class="introduction"><h4>CollegeNET</h4>
+                <div style="text-align: justify;"><p><a href="http://www.collegenet.com" target="_blank">CollegeNET,
+                    Inc</a>. is a leading developer of web-based systems for higher education and nonprofit
+                    organizations, serving more than 1300 clients worldwide. The company helps improve efficiencies,
+                    reduce paper consumption and cut costs by providing advanced tools for managing resources,
+                    streamlining information, and better serving students and applicants.</p>
+                    <p>CollegeNET began serving the administrative automation needs of higher education in 1979 with the
+                        creation of the first automated classroom scheduling program. It was the first company to
+                        provide administrative Software as a Service (SaaS) to higher education, with the introduction
+                        of its ApplyWeb online admissions system.</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="table-bg"></div>
+</section>
+
+<div class="infor-ft"><a href="#">Home</a>&nbsp;|&nbsp; <span>Copyright © Canada education data</span></div>
+
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+
+</script>
+</body>
+</html>

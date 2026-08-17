@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('Verification Services')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+	<link rel="stylesheet" type="text/css" href="/canada/css/header.css"/>
+    <link rel="stylesheet" href="/canada/css/VerificationServices.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js" ></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <!-- share css & js -->
+    <link rel="stylesheet" href="/static/share/css/share.min.css">
+    <link rel="stylesheet" href="/static/share/css/share.more.css">
+    <script src="/static/share/js/share.min.js"></script>
+</head>
+<body>
+{include file="public/header" /} 
+<section class="verify">
+    <div class="verify-left">
+        <div class="header">
+            <a href="/">{:lang('Home')}</a><i class="fa fa-angle-right"></i><b>{:lang('Verification Services')}</b>
+        </div>
+        <h1>{:lang('Request a Verification')}</h1>
+        <p>{:lang('Select the type(s) of verification that you would like to perform and provide the requested information for the subject. Required fields are marked with an asterisk(*).')}</p>
+        <h2>{:lang('What would you like to verify?')}</h2>
+        <div class="form-box">
+            <div class="form-box-item">
+                <input type="checkbox" class="form-box-input" id="form-box-item-1">
+                <label for="form-box-item-1">{:lang('Degree or School Certificate')}</label>
+                <i>({:lang('undergraduate or graduate')})</i>
+                <div class="form-box-table">
+                    <p>{:lang('Providing the degree title, degree level, major and year will help the school research your request, if we are unable to find an immediate match for your request.')}</p>
+                    <table class="form-box-item-tab1">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>*{:lang('School')}:</label>
+                                <span><input type="text" class="drop"><b class="fa fa-pencil"></b></span>
+                                <i class="fa fa-plus add-1"></i>
+                                <a class="mask-search">{:lang('School Keyword Search')}</a>
+                                <i class="fa fa-question-circle mask-help"></i>
+</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Degree Title')}:</label>
+                                <span><input type="text" class="drop"><b class="fa fa-pencil"></b></span>
+                                <i class="fa fa-question-circle mask-help"></i>
+</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Degree Level')}:</label>
+                                <select name="">
+                                    <option value="Associates">{:lang('Associates')}</option>
+                                    <option value="Bachelors">{:lang('Bachelors')}</option>
+                                    <option value="Masters">{:lang('Masters')}</option>
+                                    <option value="PH.D.">{:lang('PH.D.')}</option>
+                                    <option value="Professional">{:lang('Professional')}</option>
+                                    <option value="Honors">{:lang('Honors')}</option>
+                                    <option value="Diploma">{:lang('Diploma')}</option>
+                                    <option value="Certificate">{:lang('Certificate')}</option>
+                                    <option value="Other">{:lang('Other')}</option>
+                                </select>
+                                <i class="fa fa-question-circle mask-help"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Major')}:</label>
+                                <input type="text" class="">
+                                <i class="fa fa-question-circle mask-help"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Year')}:</label>
+                                <select name="">
+                                    {for start="0" end="119"}
+                                        <option value="{$i|getAnyYear}">{$i|getAnyYear}</option>
+                                    {/for}
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="form-box-item-tab2">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>*{:lang('School')}:</label>
+                                <span><input type="text" class="drop"><b class="fa fa-pencil"></b></span>
+                                <i class="fa fa-plus add-2"></i>
+                                <i class="fa fa-times-circle close-2"></i>
+                                <a class="mask-search">{:lang('School Keyword Search')}</a>
+                                <i class="fa fa-question-circle mask-help"></i>
+</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Degree Title')}:</label>
+                                <span><input type="text" class="drop"><b class="fa fa-pencil"></b></span>
+                                <i class="fa fa-question-circle mask-help"></i>
+</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Degree Level')}:</label>
+                                <select name="">
+                                    <option value="Associates">{:lang('Associates')}</option>
+                                    <option value="Bachelors">{:lang('Bachelors')}</option>
+                                    <option value="Masters">{:lang('Masters')}</option>
+                                    <option value="PH.D.">{:lang('PH.D.')}</option>
+                                    <option value="Professional">{:lang('Professional')}</option>
+                                    <option value="Honors">{:lang('Honors')}</option>
+                                    <option value="Diploma">{:lang('Diploma')}</option>
+                                    <option value="Certificate">{:lang('Certificate')}</option>
+                                    <option value="Other">{:lang('Other')}</option>
+                                </select>
+                                <i class="fa fa-question-circle mask-help"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Major')}:</label>
+                                <input type="text" class="">
+                                <i class="fa fa-question-circle mask-help"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Year')}:</label>
+                                <select name="">
+                                    {for start="0" end="119"}
+                                        <option value="{$i|getAnyYear}">{$i|getAnyYear}</option>
+                                    {/for}
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="form-box-item-tab3">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>*{:lang('School')}:</label>
+                                <span><input type="text" class="drop"><b class="fa fa-pencil"></b></span>
+                                <i class="fa fa-times-circle close-3"></i>
+                                <a class="mask-search">{:lang('School Keyword Search')}</a>
+                                <i class="fa fa-question-circle mask-help"></i>
+</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Degree Title')}:</label>
+                                <span><input type="text" class="drop"><b class="fa fa-pencil"></b></span>
+                                <i class="fa fa-question-circle mask-help"></i>
+</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Degree Level')}:</label>
+                                <select name="">
+                                    <option value="Associates">{:lang('Associates')}</option>
+                                    <option value="Bachelors">{:lang('Bachelors')}</option>
+                                    <option value="Masters">{:lang('Masters')}</option>
+                                    <option value="PH.D.">{:lang('PH.D.')}</option>
+                                    <option value="Professional">{:lang('Professional')}</option>
+                                    <option value="Honors">{:lang('Honors')}</option>
+                                    <option value="Diploma">{:lang('Diploma')}</option>
+                                    <option value="Certificate">{:lang('Certificate')}</option>
+                                    <option value="Other">{:lang('Other')}</option>
+                                </select>
+                                <i class="fa fa-question-circle mask-help"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Major')}:</label>
+                                <input type="text" class="">
+                                <i class="fa fa-question-circle mask-help"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Year')}:</label>
+                                <select name="">
+                                    {for start="0" end="119"}
+                                        <option value="{$i|getAnyYear}">{$i|getAnyYear}</option>
+                                    {/for}
+                                </select>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-box-item">
+                <input type="checkbox" class="form-box-input" id="form-box-item-2">
+                <label for="form-box-item-2">{:lang('Current Enrollment')}</label>
+                <i>({:lang('within the past 6 months')})</i>
+                <div class="form-box-table">
+                    <table class="form-box-item-tab1">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>*{:lang('School')}:</label>
+                                <span><input type="text" class="drop"><b class="fa fa-pencil"></b></span>
+                                <i class="fa fa-plus add-1"></i>
+                                <a class="mask-search">{:lang('School Keyword Search')}</a>
+                                <i class="fa fa-question-circle mask-help"></i>
+</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="form-box-item-tab2">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>*{:lang('School')}:</label>
+                                <span><input type="text" class="drop"><b class="fa fa-pencil"></b></span>
+                                <i class="fa fa-plus add-2"></i>
+                                <i class="fa fa-times-circle close-2"></i>
+                                <a class="mask-search">{:lang('School Keyword Search')}</a>
+                                <i class="fa fa-question-circle mask-help"></i>
+</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="form-box-item-tab3">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>*{:lang('School')}:</label>
+                                <span><input type="text" class="drop"><b class="fa fa-pencil"></b></span>
+                                <i class="fa fa-times-circle close-3"></i>
+                                <a class="mask-search">{:lang('School Keyword Search')}</a>
+                                <i class="fa fa-question-circle mask-help"></i>
+</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-box-item">
+                <input type="checkbox" class="form-box-input" id="form-box-item-3">
+                <label for="form-box-item-3">{:lang('Dates of Attendance')}</label>
+                <i>({:lang('for someone who has NOT received a degree')})</i>
+                <div class="form-box-table">
+                    <table class="form-box-item-tab1">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>*{:lang('School')}:</label>
+                                <span><input type="text" class="drop"><b class="fa fa-pencil"></b></span>
+                                <i class="fa fa-plus add-1"></i>
+                                <a class="mask-search">{:lang('School Keyword Search')}</a>
+                                <i class="fa fa-question-circle mask-help"></i>
+</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="form-box-item-tab2">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>*{:lang('School')}:</label>
+                                <span><input type="text" class="drop"><b class="fa fa-pencil"></b></span>
+                                <i class="fa fa-plus add-2"></i>
+                                <i class="fa fa-times-circle close-2"></i>
+                                <a class="mask-search">{:lang('School Keyword Search')}</a>
+                                <i class="fa fa-question-circle mask-help"></i>
+</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="form-box-item-tab3">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>*{:lang('School')}:</label>
+                                <span><input type="text" class="drop"><b class="fa fa-pencil"></b></span>
+                                <i class="fa fa-times-circle close-3"></i>
+                                <a class="mask-search">{:lang('School Keyword Search')}</a>
+                                <i class="fa fa-question-circle mask-help"></i>
+</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="form-box-item">
+                <input type="checkbox" class="form-box-input" id="form-box-item-4">
+                <label for="form-box-item-4">{:lang('Professional Certificate')}</label>
+                <i>({:lang('business or technical')})</i>
+                <div class="form-box-table">
+                    <table class="form-box-item-tab1">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>{:lang('Sponsor')}:</label>
+                                <select name="">
+                                    <option value="Select a sponsor">{:lang('Select a sponsor')}</option>
+                                    <option value="ASBO">ASBO</option>
+                                    <option value="ASTD">ASTD</option>
+                                    <option value="Adobe">Adobe</option>
+                                    <option value="Apple">Apple</option>
+                                    <option value="BOC">BOC</option>
+                                    <option value="CIW">CIW</option>
+                                    <option value="CTP">CTP</option>
+                                    <option value="Cisco">Cisco</option>
+                                    <option value="Citrix">Citrix</option>
+                                    <option value="HP">HP</option>
+                                    <option value="IBM">IBM</option>
+                                    <option value="Juniper">Juniper</option>
+                                    <option value="LPI">LPI</option>
+                                    <option value="NSCP">NSCP</option>
+                                    <option value="Novell">Novell</option>
+                                    <option value="RIM">RIM</option>
+                                    <option value="SAS">SAS</option>
+                                    <option value="Symantec">Symantec</option>
+                                </select>
+                                <i class="fa fa-plus add-1"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Certification')}:</label>
+                                <span><input type="text"><b class="fa fa-pencil"></b></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Certification ID')}:</label>
+                                <input type="text" class="">
+                                <i class="fa fa-question-circle mask-help"></i>
+                                <div class="text-i">Enter the candidate's ID issued by the certification sponsor.
+                                    Certain sponsors (IBM, HP, LPI, etc.) require the candidate to have previously
+                                    affiliated with the ITCC Clearinghouse in order for their credentials to be
+                                    verified.
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="form-box-item-tab2">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>{:lang('Sponsor')}:</label>
+                                <select name="">
+                                    <option value="Select a sponsor">{:lang('Select a sponsor')}</option>
+                                    <option value="ASBO">ASBO</option>
+                                    <option value="ASTD">ASTD</option>
+                                    <option value="Adobe">Adobe</option>
+                                    <option value="Apple">Apple</option>
+                                    <option value="BOC">BOC</option>
+                                    <option value="CIW">CIW</option>
+                                    <option value="CTP">CTP</option>
+                                    <option value="Cisco">Cisco</option>
+                                    <option value="Citrix">Citrix</option>
+                                    <option value="HP">HP</option>
+                                    <option value="IBM">IBM</option>
+                                    <option value="Juniper">Juniper</option>
+                                    <option value="LPI">LPI</option>
+                                    <option value="NSCP">NSCP</option>
+                                    <option value="Novell">Novell</option>
+                                    <option value="RIM">RIM</option>
+                                    <option value="SAS">SAS</option>
+                                    <option value="Symantec">Symantec</option>
+                                </select>
+                                <i class="fa fa-plus add-2"></i>
+                                <i class="fa fa-times-circle close-2"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Certification')}:</label>
+                                <span><input type="text"><b class="fa fa-pencil"></b></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Certification ID')}:</label>
+                                <input type="text" class="">
+                                <i class="fa fa-question-circle mask-help"></i>
+                                <div class="text-i">Enter the candidate's ID issued by the certification sponsor.
+                                    Certain sponsors (IBM, HP, LPI, etc.) require the candidate to have previously
+                                    affiliated with the ITCC Clearinghouse in order for their credentials to be
+                                    verified.
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <table class="form-box-item-tab3">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>{:lang('Sponsor')}:</label>
+                                <select name="">
+                                    <option value="Select a sponsor">{:lang('Select a sponsor')}</option>
+                                    <option value="ASBO">ASBO</option>
+                                    <option value="ASTD">ASTD</option>
+                                    <option value="Adobe">Adobe</option>
+                                    <option value="Apple">Apple</option>
+                                    <option value="BOC">BOC</option>
+                                    <option value="CIW">CIW</option>
+                                    <option value="CTP">CTP</option>
+                                    <option value="Cisco">Cisco</option>
+                                    <option value="Citrix">Citrix</option>
+                                    <option value="HP">HP</option>
+                                    <option value="IBM">IBM</option>
+                                    <option value="Juniper">Juniper</option>
+                                    <option value="LPI">LPI</option>
+                                    <option value="NSCP">NSCP</option>
+                                    <option value="Novell">Novell</option>
+                                    <option value="RIM">RIM</option>
+                                    <option value="SAS">SAS</option>
+                                    <option value="Symantec">Symantec</option>
+                                </select>
+                                <i class="fa fa-times-circle close-3"></i>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Certification')}:</label>
+                                <span><input type="text"><b class="fa fa-pencil"></b></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>{:lang('Certification ID')}:</label>
+                                <input type="text" class="">
+                                <i class="fa fa-question-circle mask-help"></i>
+                                <div class="text-i">
+                                	{:lang("Enter the candidate's ID issued by the certification sponsor. Certain sponsors (IBM, HP, LPI, etc.) require the candidate to have previously affiliated with the ITCC Clearinghouse in order for their credentials to be verified.")}
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <h2>{:lang('WHO would you like to verify?')}</h2>
+        <form id="login">
+            <div class="form-box-table form-box-table-1">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label>*{:lang('Student Name')}:</label>
+                            <span><input type="text"><label>*{:lang('FIRST')}</label></span>
+                            <span><input type="text"><label>{:lang('MIDDLE')}</label></span>
+                            <span><input type="text"><label>*{:lang('LAST')}</label></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="form-box-item-tab1">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label style="color: #999;">{:lang('also known as')}:</label>
+                            <span><input type="text"><label>*{:lang('FIRST')}</label></span>
+                            <span><input type="text"><label>{:lang('MIDDLE')}</label></span>
+                            <span><input type="text"><label>*{:lang('LAST')}</label></span>
+                            <i class="fa fa-plus add-1"></i>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="form-box-item-tab2">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label style="color: #999;">{:lang('also known as')}:</label>
+                            <span><input type="text"><label>*{:lang('FIRST')}</label></span>
+                            <span><input type="text"><label>{:lang('MIDDLE')}</label></span>
+                            <span><input type="text"><label>*{:lang('LAST')}</label></span>
+                            <i class="fa fa-plus add-2"></i>
+                            <i class="fa fa-times-circle close-2"></i>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="form-box-item-tab3">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label style="color: #999;">{:lang('also known as')}:</label>
+                            <span><input type="text"><label>*{:lang('FIRST')}</label></span>
+                            <span><input type="text"><label>{:lang('MIDDLE')}</label></span>
+                            <span><input type="text"><label>*{:lang('LAST')}</label></span>
+                            <i class="fa fa-times-circle close-3"></i>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <tboady>
+                        <tr>
+                            <td>
+                                <label>{:lang('date of Birth')}:</label>
+                                <span>
+                                    <select name="month">
+                                        {for start="1" end="13"}
+                                            <option value="{$i}">{$i}</option>
+                                        {/for}
+                                    </select>
+                                    <label>{:lang('MONTH')}</label>
+                                </span>
+                                <span>
+                                    <select name="day">
+                                        {for start="1" end="32"}
+                                            <option value="{$i}">{$i}</option>
+                                        {/for}
+                                    </select>
+                                    <label>{:lang('DAY')}</label>
+                                </span>
+                                <span>
+                                    <select name="year">
+                                        {for start="0" end="100"}
+                                            <option value="{$i|getAnyYear}">{$i|getAnyYear}</option>
+                                        {/for}
+                                    </select>
+                                    <label>{:lang('YEAR')}</label>
+                                </span>
+                            </td>
+                        </tr>
+                    </tboady>
+                </table>
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label>{:lang('Your Reference')} ID:</label>
+                            <input type="text" name="reference_id">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="verify-bottom">
+                <a class="btn submit" href="javascript:;">{:lang('Submit')}</a>
+            </div>
+        </form>
+    </div>
+    <div class="verify-right">
+        <div class="verify-right-top">{:lang('Verification Services')}</div>
+        <div class="verify-right-box">
+            <ul>
+                <li><a href=""><i class="fa fa-file-text"></i><span>{:lang('Request a Verification')}</span></a></li>
+                <li><a href=""><i class="fa fa-search"></i><span>{:lang('Find Past Verifications')}</span></a></li>
+                <li><a href="/add"><i class="fa fa-user"></i><span>{:lang('Create an Account')}</span></a></li>
+                <li><a href="/log"><i class="fa fa-key"></i><span>{:lang('Log in to Your Account')}</span></a></li>
+                <li><a href="/page/318.html"><i class="fa fa-pencil-square-o"></i><span>{:lang('Terms and Conditions')}</span></a></li>
+                <li><a href=""><i class="fa fa-question-circle"></i><span>{:lang('Frequently Asked Questions')}</span></a></li>
+                <li><a href=""><i class="fa fa-envelope"></i></a><span>{:lang('Contact Us')}</span></li>
+            </ul>
+        </div>
+        <div class="verify-right-img">
+            <a href=""><img src="images/1.png" alt=""></a>
+            <a href=""><img src="images/2.png" alt=""></a>
+            <a href=""><img src="images/3.png" alt=""></a>
+        </div>
+    </div>
+</section>
+<!-- {:lang('School Keyword Search')} 弹窗 -->
+<div class="mask-search-pop">
+    <div>
+        <div class="header">Schools<i class="fa fa-close mask-search-pop-close"></i></div>
+        <div class="content">
+            <p>You may use this option to search participating schools by <b>partial school name</b>. For example, you
+                may enter the word "home" to find "Hometown University" or "small" to find "Smalltown Community
+                College".
+            </p>
+            <div class="content-input">
+                <div>
+                    <span>Type in at least 3 characters of the school name</span>
+                    <input type="text">
+                </div>
+                <a class="btn">Search <i class="fa fa-angle-right"></i></a>
+            </div>
+            <p>The following is the list of schools that match your search criteria. You can click on School Name
+                to sort the list. <b>To select a school, click on the link of the school name you want.</b>
+            </p>
+            <table>
+                <thead>
+                <tr>
+                    <th>School Name</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>No records found.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- mask-help pop -->
+<div class="mask-help-pop">
+    <div>
+        <div class="header">{:lang('School Keyword Search')} Help<i class="fa fa-close mask-help-pop-close"></i></div>
+        <div class="content">
+            <p>You may use this option to search participating schools by <strong>partial school name</strong>. For
+                example, you may enter the word "home" to find "Hometown University" or "small" to find "Smalltown
+                Community College".</p>
+        </div>
+    </div>
+</div>
+<script>
+// 点击checkbox显示form-box-table
+    $('.form-box-input').click(function () {
+        if ($(this).prop("checked")) {
+            $(this).siblings('.form-box-table').find('p').show();
+            $(this).siblings('.form-box-table').find('.form-box-item-tab1').show();
+        } else {
+            // $('.form-box-table').hide();
+            $(this).siblings('.form-box-table').find('p').hide();
+            $(this).siblings('.form-box-table').find('.form-box-item-tab1').hide();
+        }
+    });
+//模拟添加删除
+    $('.add-1').click(function () {
+        $(this).parent().parent().parent().parent().siblings('.form-box-item-tab2').show();
+        $(this).hide()
+    });
+    $('.add-2').click(function () {
+        $(this).parent().parent().parent().parent().siblings('.form-box-item-tab3').show();
+        $(this).hide()
+    });
+    $('.close-2').click(function () {
+        $(this).parent().parent().parent().parent().hide();
+        $(this).parent().parent().parent().parent().siblings('.form-box-item-tab1').find('.add-1').show();
+    });
+    $('.close-3').click(function () {
+        $(this).parent().parent().parent().parent().hide();
+        $(this).parent().parent().parent().parent().siblings('.form-box-item-tab2').show();
+        $(this).parent().parent().parent().parent().siblings('.form-box-item-tab2').find('.add-2').show();
+    });
+// 模拟select
+    $('.drop').click(function () {
+        $(this).parent().parent().find('.drop-list').show()
+    });
+    $('.drop-list li').click(function () {
+        $(this).parent().parent().find('.drop').val($(this).html());
+        $('.drop-list').hide()
+    });
+// 弹窗
+    $('.mask-search').click(function () {
+        $('.mask-search-pop').show()
+    });
+    $('.mask-search-pop-close').click(function () {
+        $('.mask-search-pop').hide()
+    });
+    $('.mask-help').click(function () {
+        $('.mask-help-pop').show()
+    });
+    $('.mask-help-pop-close').click(function () {
+        $('.mask-help-pop').hide()
+    });
+$(document).ready(function () {
+$(".submit").click(function(){
+            submit();
+        })
+        $(document).keyup(function(event){  
+            if(event.keyCode ==13){  
+                submit();
+            } 
+        });
+function submit(){
+            $.post("/query", $("#login").serialize(),
+                function (data) {
+                    if(data.code==1){
+                        layer.msg('query success',{time:500},function(){
+                            // layer.load(2, {time: 5000});
+							window.location.href=data.url;
+						})
+                    }else{
+                        layer.msg(data.msg)
+                    }
+                },
+                "json"
+            );
+        }
+});
+</script>
+{include file="public/footer" /}
+</body>
+</html>

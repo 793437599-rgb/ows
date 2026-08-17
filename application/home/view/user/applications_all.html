@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>My Applications</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+
+{include file="public/header-user" /}
+
+<section class="mainContent">
+    <div class="layui-container">
+
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-sm2">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+
+                <!--    user header    -->
+                <div class="layui-row mainContent-header">
+                    <div class="layui-col-sm8">
+                        <h1>{:lang('My Applications')}</h1>
+                    </div>
+                    <div class="layui-col-sm4">
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email}— {$user.search_id}</p>
+                    </div>
+                </div>
+
+                <!--    applications    -->
+                <div class="layui-row">
+                    <div class="layui-col-sm12">
+
+                        <p>{:lang('You have not started any applications.')} <a href="">{:lang('View available applications.')}</a> </p>
+
+                        <p>{:lang('Here are the applications that you have started or submitted. Click the buttons to finish in progress applications or review your application status.')}</p>
+                        <div class="status">
+                            <span><i class="fa fa-arrow-circle-right"></i>{:lang('Need to do')}</span>
+                            <span><i class="fa fa-exclamation-circle"></i>{:lang('Incomplete')}</span>
+                            <span><i class="fa fa-check-circle"></i>{:lang('Complete')}</span>
+                        </div>
+                        {foreach name='app_order' item='user_order'}
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="layui-row">
+                                    <div class="layui-col-sm9">
+                                        <h2>AP000{$user_order.app_id}—{switch name="$Think.cookie.think_var"}
+                                            {case value="en-us"}{$user_order.name_en}{/case}
+                                            {case value="zh-cn"}{$user_order.app_name}{/case}
+                                            {case value="ja-jp"}{$user_order.name_jp}{/case}
+                                            {case value="de-de"}{$user_order.name_de}{/case}
+                                            {case value="ko-kr"}{$user_order.name_kr}{/case}
+                                            {case value="ru-ru"}{$user_order.name_ru}{/case}
+                                            {case value="fr-fa"}{$user_order.name_fa}{/case}
+                                            {/switch}</h2>
+                                    </div>
+                                    <div class="layui-col-sm3">
+                                        <a href="{:url('/applications_info',['id'=>$user_order.app_id])}" class="layui-btn mazarine">{:lang('DETAILS')}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="layui-row">
+                                    <div class="layui-col-sm5">
+                                        <h3>{:lang('DATE')}</h3>
+                                        <ul>
+                                            <li>{$user_order.create_time}</li>
+                                            <li>{$user_order.status==1?"already submitted":"Not Yet Submitted"}</li>
+                                        </ul>
+                                    </div>
+                                    <div class="layui-col-sm7">
+                                        <h3>{:lang('Follow Your Application Status')}</h3>
+                                        <ol>
+                                            <li style="color: crimson">{$user_order.admin_error}</li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {/foreach}
+
+                        <div class="buttons">
+                            <a href="applications_lists" class="layui-btn layui-btn-primary">{:lang('View more available applications')}</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{include file="public/footer-login" /}
+
+</body>
+
+</html>

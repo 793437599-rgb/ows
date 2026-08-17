@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>application status</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/user.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery.flexslider-min.js"></script>
+    <script src="/static/js/viewer-jquery.min.js"></script>
+    <script src="/static/js/selectFilter.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+<header class="User_hd_full">
+    <div class="T_main User_hd">
+        <a href="/"><img src="/static/images/logo.png" alt="logo" title="header-logo"/></a>
+        <div class="User_hd_bottom">
+            <ul class="layui-nav">
+                <li class="layui-nav-item"><a href="">Application review</a></li>
+                <li class="layui-nav-item"><a href="">Data exchange</a></li>
+                <li class="layui-nav-item"><a href="">Order</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">{:lang('Profile')}</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/user_basic">{:lang('Account Settings')}</a></dd>
+                        <dd><a href="/logout">{:lang('Sign Out')}</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+<!-- info hd -->
+<div class="T_main User_info">
+    <div class=" User_Avatar">
+        <a class="User_logo" href="/user_index">
+            {if condition="!empty($user_upload['zj_img'])"}
+            <img src="{$user_upload.zj_img}">
+            {else/}
+            <img src="/static/images/person-icon.png">
+            {/if}
+        </a>
+        <div class="User_Avatar_down">
+            <form action="" method="">
+                <div class="User_Ava_tit">
+                    {:lang('Edit Profile Picture')}
+                    <i class="fa fa-close"></i>
+                </div>
+                <label for="profile" class="User_per">
+                    <input name="profileImage" id="profile" type="file">
+                    <i class="fa fa-long-arrow-right "></i>
+                    <span>{:lang('Add Your Profile Photo')}</span>
+                </label>
+                <p>{:lang('Max File Size')}: 5 MB</p>
+                <p>{:lang('File Formats')}: PNG, JPEG, GIF</p>
+                <a href="javascript:;" class="User_per">
+                    <i class="fa fa-long-arrow-right "></i>
+                    <span>{:lang('Remove Photo')}</span>
+                </a>
+            </form>
+            <div class="User_direction_icon fa fa-play"></div>
+        </div>
+    </div>
+    <div class="User_Avart">
+        <div class="User_Ava_nav"><a class="User_edit" href="#">{:lang('Edit')}</a></div>
+        <h2>{$user.username}</h2>
+    </div>
+</div>
+<!--主要内容-->
+<div class=" User_mian_full">
+    <div class="T_main  ">
+        <ul class="User_step">
+            <li class="User_list_step">
+                <h3>1</h3>
+                <p>{:lang('Education Information')}</p>
+                <span class="User_step_dot"></span>
+            </li>
+            <li class="User_list_step">
+                <h3>2</h3>
+                <p>{:lang('Data upload')}</p>
+                <span class="User_step_dot"></span>
+            </li>
+            <li class="User_list_step">
+                <h3>3</h3>
+                <p>{:lang('Agree')}</p>
+                <span class="User_step_dot"></span>
+            </li>
+            <li class="User_list_step">
+                <h3>4</h3>
+                <p>{:lang('Carry out')}</p>
+                <span class="User_step_dot"></span>
+            </li>
+        </ul>
+        <div class="Ua_box">
+            {if condition = "$edu['status']==0"}
+            <div class="U_apply">
+                <img src="/static/images/review_under.png">
+                <h3>The data is under review....</h3>
+            </div>
+            {elseif condition = "$edu['status']==2"}
+            <div class="U_apply">
+                <img src="/static/images/review_no.png"/>
+                <h3>not approved</h3>
+                <p>{$edu.status_cause}.</p>
+                <a class="U_apply_btn" href="/apply_info">To modify</a>
+            </div>
+            {elseif condition = "$edu['status']==1"}
+            <div class="U_apply">
+                <img src="/static/images/review_pass.png"/>
+                <h3>examination passed</h3>
+                <a class="U_apply_btn" href="/verification_agency">Subscribe to my digital assessment agency</a>
+            </div>
+            {/if}
+        </div>
+    </div>
+</div>
+<footer class="User_ft">
+    <a href="/">Home</a> | <span>© Copyright 2019 ca.university All Rights Reserved</span>
+</footer>
+</body>
+</html>

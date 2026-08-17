@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+    {__NOLAYOUT__}
+    <head>
+        <meta charset="UTF-8">
+        <title>{:lang('Renew WSE-DAE Application V1')}</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" href="/canada/css/common.css"/>
+        <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+        <link rel="stylesheet" href="/canada/css/user-new.css"/>
+        <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/mobile.js"></script>
+        <script src="/static/js/layui/layui.all.js"></script>
+        <script src="/canada/js/html.js"></script>
+        <style type="text/css">
+            .picture .layer-photos-demo img {
+                height: 180px;
+                padding: 10px;
+                border: 1px solid #EEEEEE;
+            }
+        </style>
+    </head>
+    <body>
+
+        {include file="public/header-user" /}
+
+        <section class="mainContent">
+            <div class="">
+                <div class="layui-row ">
+                    <div class="layui-col-sm2 nav-fixed">
+                        <!--    nav-left    -->
+                        {include file="public/nav-left" /}
+                    </div>
+                    <div class="layui-col-sm10">
+                        <!--    user avatar    -->
+                        <div class="layui-row user-avatar">
+                            <div class="layui-col-sm2 layui-col-xs4">
+                                <a href="/profile"><img src="{$user.head_img}"></a>
+                            </div>
+                            <div class="layui-col-sm10 layui-col-xs8">
+                                <h1>{:lang('Order Detail')}</h1>
+                                <p><b>{$user.username}</b></p>
+                                <p class="layui-hide-xs">{$user.email}— {$user.search_id}</p>
+                                <p class="layui-hide-sm">{$user.email}</p>
+                                <p class="layui-hide-sm">{$user.search_id}</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="layui-row transfer">
+                            <div class="layui-col-sm12 cave">
+                                <div class="bg-top"></div>
+                                <div class="table-slse">
+                                    <h3>Order Number：<span>{$order.order_number}</span></h3>
+                                    <hr>
+                                    {if in_array($order.app_id,[3,5,7,18])}
+                                    <table border="1">
+                                        <tr class="layui-hide-xs">
+                                            <td colspan="4" class="table-title">{:lang('Basic Information')}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Username')}</td>
+                                            <td>{$order.username}</td>
+                                            <td>{:lang('Gender')}</td>
+                                            <td>{$user.sex}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('WSE Num')}</td>
+                                            <td>{$user.search_id}</td>
+                                            <td>{:lang('Email')}</td>
+                                            <td>{$order.email}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Document Group')}</td>
+                                            <td>{$order.document_group} </td>
+                                            <td>{:lang('Document Type')}</td>
+                                            <td>{$order.document_type}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{$order.document_type}</td>
+                                            <td>{$order.id_no}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td colspan="4" class="table-title">{:lang('Educational Information')}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Educational location')}</td>
+                                            <td colspan="3">
+
+                                                {if  $order.edu_city!=''}
+                                                    {$order.edu_city},
+                                                {/if}
+                                                {if  $order.edu_province!=''}
+                                                    {$order.edu_province},
+                                                {/if}
+                                                {if  $order.edu_nationality!=''}
+                                                    {$order.edu_nationality}
+                                                {/if}
+                                            </td>
+
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Name of academic institution')}</td>
+                                            <td>{$order.university}</td>
+                                            <td>{:lang('Certificate/Diploma/degree')}</td>
+                                            <td>{$order.degree} of {$order.degree_program}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Research areas')}</td>
+                                            <td>{$order.faculty} </td>
+                                            <td>{:lang('Profession')}</td>
+                                            <td>{$order.major} </td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Whether to graduate')}</td>
+                                            <td>
+                                                {if strtotime($order.completion_date) < time()}
+                                                {:lang('Already graduated')}
+                                                {else /}
+                                                {:lang('Did not graduate')}
+                                                {/if}
+                                            </td>
+                                            <td>{:lang('Admission time')} ~ {:lang('Graduation time')}</td>
+                                            <td>{$order.start_date}  ~  {$order.completion_date} </td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td colspan="4" class="table-title">{:lang('Additional Services')}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Number of copies')}</td>
+                                            <td>{$order.copy_number} copies</td>
+                                            <td>{:lang('Delivery Options')}</td>
+                                            <td>
+                                                {if $order.send_for == 25}
+                                                {:lang('Courier Service within Canada and Continental USA')}
+                                                {else /}
+                                                {:lang('Courier Service International')}
+                                                {/if}
+                                            </td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Addressee')}</td>
+                                            <td>{$order.addressee} </td>
+                                            <td>{:lang('Phone')}</td>
+                                            <td>{$user.qujian} - {$order.mobile}</td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Shipping Address')}</td>
+                                            <td colspan="3">{$order.mail_nationality}, {$order.mail_province}, {$order.mail_city} {$order.address} </td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Postcode')}</td>
+                                            <td colspan="3">{$order.zip} </td>
+                                        </tr>
+                                        <tr class="layui-hide-xs">
+                                            <td colspan="4" class="table-title">{:lang('Image Information')} </td>
+                                        </tr>
+                                        {notempty name="$order.certificate_img"}
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('ID picture')}</td>
+                                            <!--                                    <td>{:lang('Upload Degree Certificate')}</td>-->
+                                            <!--                                    <td>{:lang('Upload Transcript')}</td>-->
+                                            <!--                                    <td>{:lang('Handheld Diploma')}</td>-->
+                                            <!--                                    <td>{:lang('Handheld Transcript')}</td>-->
+                                            <td colspan="3">
+                                                <div class="picture">
+                                                    <div class="layer-photos-demo">
+                                                        {volist name="$order.certificate_img" id="vo"}
+                                                        <img src="{$vo}" alt="">
+                                                        {/volist}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {/notempty}
+                                        {notempty name="$order.diploma"}
+                                        <tr class="layui-hide-xs">
+                                            <!--                                    <td>{:lang('ID picture')}</td>-->
+                                            <td>{:lang('Upload Degree Certificate')}</td>
+                                            <!--                                    <td>{:lang('Upload Transcript')}</td>-->
+                                            <!--                                    <td>{:lang('Handheld Diploma')}</td>-->
+                                            <!--                                    <td>{:lang('Handheld Transcript')}</td>-->
+                                            <td colspan="3">
+                                                <div class="picture">
+                                                    <div class="layer-photos-demo">
+                                                        {volist name="$order.diploma" id="vo"}
+                                                        <img src="{$vo}" alt="">
+                                                        {/volist}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {/notempty}
+                                        {notempty name="$order.transcript"}
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Upload Transcript')}</td>
+                                            <td colspan="3">
+                                                <div class="picture">
+                                                    <div class="layer-photos-demo">
+                                                        {volist name="$order.transcript" id="vo"}
+                                                        <img src="{$vo}" alt="">
+                                                        {/volist}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {/notempty}
+                                        {notempty name="$order.hand_diploma"}
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Handheld Diploma')}
+                                            <td colspan="3">
+                                                <div class="picture">
+                                                    <div class="layer-photos-demo">
+                                                        {volist name="$order.hand_diploma" id="vo"}
+                                                        <img src="{$vo}" alt="">
+                                                        {/volist}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {/notempty}
+                                        {notempty name="$order.hand_transcript"}
+                                        <tr class="layui-hide-xs">
+                                            <td>{:lang('Handheld Diploma')}
+                                            <td colspan="3">
+                                                <div class="picture">
+                                                    <div class="layer-photos-demo">
+                                                        {volist name="$order.hand_transcript" id="vo"}
+                                                        <img src="{$vo}" alt="">
+                                                        {/volist}
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        {/notempty}
+                                        <!--mobile-->
+                                        <tr class="layui-hide-sm">
+                                            <td colspan="2" class="table-title">{:lang('Basic Information')}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Name')}</td>
+                                            <td>{$order.username}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Gender')}</td>
+                                            <td>{$user.sex}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('WSE Num')}</td>
+                                            <td>1010</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Email')}</td>
+                                            <td>{$order.email}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Document Group')}</td>
+                                            <td>{$order.document_group} </td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Document Type')}</td>
+                                            <td>{$order.document_type}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{$order.document_type}</td>
+                                            <td>{$order.id_no}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td colspan="2" class="table-title">{:lang('Educational Information')}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Educational location')}</td>
+                                            <td>{$order.edu_nationality}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Name of academic institution')}</td>
+                                            <td>{$order.university}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Certificate/Diploma/degree')}</td>
+                                            <td>{$order.degree} of {$order.degree_program}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Research areas')}</td>
+                                            <td>{$order.faculty} </td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Profession')}</td>
+                                            <td>{$order.major} </td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Whether to graduate')}</td>
+                                            <td>
+                                                {if strtotime($order.completion_date) < time()}
+                                                    {:lang('Already graduated')}
+                                                {else /}
+                                                    {:lang('Did not graduate')}
+                                                {/if}
+                                            </td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Dates Attended - To')}</td>
+                                            <td>{$order.start_date} - {$order.completion_date} </td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td colspan="2" class="table-title">{:lang('Additional Services')}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Number of copies')}</td>
+                                            <td>{$order.copy_number}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Delivery Options')}</td>
+                                            <td>
+                                                {if $order.send_for == 25}
+                                                    {:lang('Courier Service within Canada and Continental USA')}
+                                                {else /}
+                                                    {:lang('Courier Service International')}
+                                                {/if}
+                                            </td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Addressee')}</td>
+                                            <td>{$order.addressee} </td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Phone')}</td>
+                                            <td>{$user.qujian} - {$order.mobile}</td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Shipping Address')}</td>
+                                            <td>{$order.address} {$order.mail_city|get_world_area='city',###} {$order.mail_province|get_world_area='province',###} {$order.mail_nationality|get_world_area='country',###} </td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td>{:lang('Postcode')}</td>
+                                            <td>{$order.zip} </td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td colspan="2" class="table-title">{:lang('Image Information')}1 </td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td colspan="2">{:lang('Upload ID')}</td>
+                                        </tr>
+                                        <tr class="img-infor layui-hide-sm">
+                                            <td colspan="2">
+                                                <div class="layer-photos-demo">
+                                                    {volist name="$order.certificate_img" id="vo"}
+                                                        <img src="{$vo}" alt="">
+                                                    {/volist}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td colspan="2">{:lang('Upload Degree Certificate')}</td>
+                                        </tr>
+                                        <tr class="img-infor layui-hide-sm">
+                                            <td colspan="2">
+                                                <div class="layer-photos-demo">
+                                                    {volist name="$order.diploma" id="vo"}
+                                                        <img src="{$vo}" alt="">
+                                                    {/volist}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="layui-hide-sm">
+                                            <td colspan="2">{:lang('Upload Transcript')}</td>
+                                        </tr>
+                                        <tr class="img-infor layui-hide-sm">
+                                            <td colspan="2">
+                                                <div class="layer-photos-demo">
+                                                    {volist name="$order.transcript" id="vo"}
+                                                        <img src="{$vo}" alt="">
+                                                    {/volist}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    {/if}
+                                    {if in_array($order.app_id,[7])}
+                                    <table class="new-content">
+                                        <tbody>
+                                            <tr class="layui-hide-xs">
+                                                <td colspan="4" class="table-title">{:lang('Update description')}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="new-td">
+                                                    <textarea cols="30" rows="11" class="new-textarea" readonly>{$order.update_desc|default=''}</textarea>
+                                                </td>
+                                            </tr>
+                                            <tr class="layui-hide-xs">
+                                                <td colspan="4" class="table-title">{:lang('Submit data replacement certificate')}</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="new-td">
+                                                    <div class="imgbox">
+                                                        {volist name="$order.prove_file" id="vo"}
+                                                        <img src="{$vo}"  alt="">
+                                                        {/volist}
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    {/if}
+                                    <div style="margin-top: 15px;">
+                                        <a class="layui-btn layui-btn-normal" href="{:url('index/user/modification_of_education_order_data')}">{:lang('Data Update')}</a>
+                                        <a class="layui-btn " href="{:url('index/user/orderinfo')}">{:lang('View My Storage')}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <script>
+            layer.photos({
+                photos: '.layer-photos-demo',
+                closeBtn: 2,
+                tab: function (pic, layero) {
+                    console.log(pic) //当前图片的一些信息
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>UKED</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/mobile.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
+    <script src="/static/js/layui/layui.js"></script>
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <style type="text/css">
+    	.info-edit .info-edit-item>div {
+    		width: 90%;
+    	}
+    </style>
+</head>
+
+<body>
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'><a class="hd-logo" href="/"> <img src="/canada/images/logo.png"/> </a>
+        <div class="infor-off"><a href="/logout"> <img src="/canada/images/off-icon.svg"/> <span>{:lang('Exit')}</span>
+        </a></div>
+    </div>
+</header>
+
+<section class="information-wrap">
+    <h2><span>{:lang('PERSONAL DATA DISPLAY')}</span></h2>
+    <div class="information">
+        <div class="header">
+            <div class="img-box"><img src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"' /></div>
+            <div class="info">
+                <h3>{$info.name}</h3>
+                <p>
+                    <i class="icon iconfont icon-UK-address"></i>
+                    <b>{$edu.school}</b>
+                </p>
+            </div>
+            <ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down">
+                    <i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="{$v.id==$edu.id? 'infor-active':''}" href="/info/edu_id/{$v.id}">{:lang('Information')}</a>
+                        </li>
+                        <li><a class="{$v.id==$edu.id? 'infor-active':''}" href="/edit_edu/edu_id/{$v.id}">{:lang('Edit degree')}</a>
+                        </li>
+                        <li><a href="/transcript/edu_id/{$v.id}">{:lang('Transcript')}</a></li>
+                        <li><a href="/edit_grade/edu_id/{$v.id}">{:lang('Edit grades')}</a></li>
+                    </ol>
+                </li>
+               
+                {/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-UK-major"></i>{:lang('major')}
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/info">{:lang('Information')}</a></li>
+                        <li><a  href="/edit_edu">{:lang('Edit degree')}</a>
+                    </ol>
+                </li>
+                {/notempty}
+                <li><a href="/transfer">{:lang('TRANSFER')}</a></li>
+            </ul>
+        </div>
+        <div class="table">
+        	<form class="info-edit layui-form" style="width: 50%;" action="/edit_ku" method="post">
+        		
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-Personal"></i><b>{:lang('Name')}:</b></label>
+                        <input type="text" name="name" value="{$info.name}">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                	<div>
+                        <label><i class="icon iconfont icon-UK-date"></i><b>{:lang('Date of Birth')}:</b></label>
+                        <input type="text" id="dataBirth" placeholder="年/月/日" name="birthdate" value="{$info.birthdate}">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                	<div>
+                        <label><i class="icon iconfont icon-UK-address"></i><b>{:lang('Place of Birth')}:</b></label>
+                        <input type="text" name="address"  value="{$info.address}">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                	<div>
+                        <label><i class="icon iconfont icon-UK-Website"></i><b>{:lang('Email')}:</b></label>
+                        <input type="email" name="email"  value="{$info.email}">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                	<div>
+                        <label><i class="icon iconfont icon-gender"></i><b>{:lang('Sex')}:</b></label>
+                        <input type="radio" name="sex" {if condition="$info.sex==0"}checked="checked"{/if}  value="男" >{:lang('male')}
+                        <input type="radio" name="sex" {if condition="$info.sex==1"}checked="checked"{/if} value="女" >{:lang('lady')}
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                	<div>
+                        <label><i class="icon iconfont icon-UK-passport"></i><b>{:lang('Passport')}:</b></label>
+                        <input type="text"  name="passport" value="{$info.passport}">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                	<div>
+                        <label><i class="icon iconfont icon-UK-student"></i><b>{:lang('Reference')} ID:</b></label>
+                        <input type="text" name="reference_id"  value="{$info.reference_id}">
+                    </div>
+                </div>
+                <div class="info-edit-item" style="height: 100px;">
+                	<div>
+                        <label><i class="icon iconfont icon-UK-passport"></i><b>{:lang('Head portrait')}:</b></label>
+                        <input type="hidden" name="headimg" id="headimg"  value="{$info.headimg}" >
+                        <img id="headimage"  src="{$info.headimg}" height="100%" />
+                       
+                    </div>
+                </div>
+                <div class="info-edit-item" >
+                	<div class="layui-upload">
+                		
+							<button type="button" style="margin-left: 40%;" class="layui-btn" id="test1">
+								<i class="layui-icon">&#xe67c;</i>上传图片
+							</button>
+						</div>
+                </div>
+                
+                <div class="info-edit-item remark">
+                	
+                    <div>
+                        <input type="submit" value="{:lang('Save')}">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="infor-ft"><a href="#">Home</a>&nbsp;|&nbsp; <span>Copyright © Canada education data</span></div>
+<script>
+	
+	layui.use(['upload','form'],function(){
+	  		var upload = layui.upload;
+	  		var form = layui.form;
+	  	
+			  //执行实例
+			  var uploadInst = upload.render({
+			    elem: '#test1' //绑定元素
+			    ,url: '/upload' //上传接口
+			    ,done: function(res){
+			      //上传完毕回调
+			    $('#headimg').val(res.msg);
+			//      document.getElementById('img').value=res.msg
+			//    form.val("image", {
+			//		  "image": res.msg, // "name": "value"
+			//		})
+			//    form.render()
+				//展示上传图片
+			$("#headimage").attr('src',res.msg);
+			
+			//console.log($('#img').val());
+			    }
+			    ,error: function(res){
+			      //请求异常回调
+			      console.log('error',res);
+			    }
+			     
+			  });
+			});
+	
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+    layui.use(['form','laydate'], function(){
+        var form = layui.form
+            ,laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#dataBirth'
+        });
+        laydate.render({
+            elem: '#dataEnrollment'
+        });
+        laydate.render({
+            elem: '#dataCompletion'
+        });
+    });
+</script>
+</body>
+
+</html>

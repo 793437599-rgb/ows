@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('Renew WSE-DAE Application V1')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+     <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div >
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left"}
+            </div>
+            <div class="layui-col-sm10">
+                <!--    user avatar    -->
+                {include file="public/_nav_center_header" /}
+                <div class="layui-row application-card">
+                    <div class="layui-col-sm4 layui-col-xs12">
+                        <div class="application-card-item">
+                            <h4>{:lang('Application Status')}</h4>
+                            {if($app.id == 8)}
+                                <ul>
+                                    {if $order.status == 3 || $order.status == 5}
+                                        <li>{:lang('We are reviewing the information you submitted.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{:lang('We have received your application, we will process the information you submitted within 5 working days, please be patient.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{if condition="empty($order['create_time'])"} {:lang('Not Started')} {else} {$order.create_time}{/if}</li>
+                                        <li>{:lang('already submitted')}</li>
+                                        <li>
+                                            <div class="buttons">
+                                                <a href="{:url('index/order/detail',['order_no'=>$order.order_number])}" class="layui-btn mazarine" style="text-transform: none;margin-left: -5px;">{:lang('View Order')}</a>
+                                            </div>
+                                        </li>
+                                    {elseif $order.status == 7/}
+                                        <li>{:lang('Your copy request has been successfully passed.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{:lang('Your application has been passed, we will send a copy to you by designated courier within 7 working days.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{$order.create_time}</li>
+                                        <li>{:lang('Passed')}</li>
+                                        <li>
+                                            <div class="buttons">
+                                                <a href="{:url('index/order/detail',['order_no'=>$order.order_number])}" class="layui-btn mazarine" style="text-transform: none;margin-left: -5px;">{:lang('View Order')}</a>
+                                            </div>
+                                        </li>
+                                    {else /}
+                                        <li>{:lang('Your application has been saved as a draft.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{:lang('You can click the steps on the right to continue or click the "Change
+                                            Information" at the bottom to start from scratch.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{if condition="empty($order['create_time'])"}{:lang('Not Started')}{else}{$order.create_time}{/if}
+                                        </li>
+                                        <li>{$order.status == 3 ? lang("already submitted") : lang("Not Yet Submitted")}</li>
+                                        <li>
+                                            <div class="buttons">
+                                                <a href="{:url('/app_step_info',['app_id'=>$app.id,'sort'=>1])}" class="layui-btn mazarine" style="text-transform: none;margin-left: -5px;">{:lang('Change Information')}</a>
+                                            </div>
+                                        </li>
+                                    {/if}
+                                </ul>
+                            {elseif($app.id == 19)}
+                                <ul>
+                                    {if $order.status == 3 || $order.status == 5}
+                                        <li>{:lang('We are reviewing the information you submitted.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{:lang('We have received your application, we will process the information you submitted within 5 working days, please be patient.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{if condition="empty($order['create_time'])"} {:lang('Not Started')} {else} {$order.create_time}{/if}</li>
+                                        <li>already submitted</li>
+                                        <li>
+                                            <div class="buttons">
+                                                <a href="{:url('index/order/detail',['order_no'=>$order.order_number])}" class="layui-btn mazarine" style="text-transform: none;margin-left: -5px;">{:lang('View Order')}</a>
+                                            </div>
+                                        </li>
+                                        {elseif $order.status == 7/}
+                                        <li>{:lang('Your data update request has been approved')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{:lang('We will revise the information you submit within 3 jobs.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{$order.create_time}</li>
+                                        <li>{:lang('Passed')}</li>
+                                        <li>
+                                            <div class="buttons">
+                                                <a href="{:url('index/order/detail',['order_no'=>$order.order_number])}" class="layui-btn mazarine" style="text-transform: none;margin-left: -5px;">{:lang('View Order')}</a>
+                                            </div>
+                                        </li>
+                                        {else /}
+                                        <li>{:lang('Your application has been saved as a draft.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{:lang('You can click the steps on the right to continue or click the "Change
+                                            Information" at the bottom to start from scratch.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{if condition="empty($order['create_time'])"}{:lang('Not Started')}{else}{$order.create_time}{/if}
+                                        </li>
+                                        <li>{$order.status == 3 ? lang("already submitted") : lang("Not Yet Submitted")}</li>
+                                        <li>
+                                            <div class="buttons">
+                                                <a href="{:url('/app_step_info',['app_id'=>$app.id,'sort'=>1])}" class="layui-btn mazarine" style="text-transform: none;margin-left: -5px;">{:lang('Change Information')}</a>
+                                            </div>
+                                        </li>
+                                    {/if}
+                                </ul>
+                            {else }
+                                <ul>
+                                    {if condition="$order.status < 3"}
+                                        <li>{:lang('Your application has been saved as a draft.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{:lang('You can click the steps on the right to continue or click the "Change Information" at the bottom to start from scratch.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{if condition="empty($order['create_time'])"}{:lang('Not Started')}{else}{$order.create_time}{/if}
+                                        </li>
+                                        <li>{$order.status == 3 ? lang("already submitted") : lang("Not Yet Submitted")}</li>
+                                        <li>
+                                            <div class="buttons">
+                                                <a href="{:url('/app_step_info',['app_id'=>$app.id,'sort'=>1])}"
+                                                   class="layui-btn mazarine" style="text-transform: none;margin-left: -5px;">{:lang('Change Information')}</a>
+                                            </div>
+                                        </li>
+                                    {elseif $order.status == 3 || $order.status == 5 /}
+                                        <li>{:lang('We are reviewing the information you submitted.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{:lang('We have received your application, we will process the information you submitted within 5 working days, please be patient.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{if condition="empty($order['create_time'])"} {:lang('Not Started')} {else} {$order.create_time}{/if}</li>
+                                        <li>{:lang("already submitted")}</li>
+                                        <li>
+                                            <div class="buttons">
+                                                <a href="{:url('index/order/detail',['order_no'=>$order.order_number])}" class="layui-btn mazarine" style="text-transform: none;margin-left: -5px;">{:lang('View Order')}</a>
+                                            </div>
+                                        </li>
+                                    {elseif $order.status == 4/}
+                                        <li>{:lang('You have successfully applied.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{:lang('We are evaluating the information you submitted, please be patient.')}<br/>
+                                        </li>
+                                        <li><br/></li>
+                                        <li>{$order.create_time}</li>
+                                        <li>{:lang("Under evaluation")}</li>
+                                        <li>
+                                            <div class="buttons">
+                                                <a href="{:url('index/order/detail',['order_no'=>$order.order_number])}"
+                                                   class="layui-btn mazarine" style="text-transform: none;margin-left: -5px;">{:lang('View Order')}</a>
+                                            </div>
+                                        </li>
+                                    {elseif $order.status == 7/}
+                                        <li>{:lang('You have successfully assessed.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{:lang('We have successfully evaluated your information, please go to my storage to
+                                            view the evaluation results.')}<br/></li>
+                                        <li><br/></li>
+                                        <li>{$order.create_time}</li>
+                                        <li>{:lang("Under evaluation")}</li>
+                                        <li>
+                                            <div class="buttons">
+                                                <a href="{:url('index/order/detail',['order_no'=>$order.order_number])}" class="layui-btn mazarine" style="text-transform: none;margin-left: -5px;">{:lang('View Order')}</a>
+                                            </div>
+                                        </li>
+                                    {/if}
+                                </ul>
+                            {/if}
+                        </div>
+                    </div>
+                    {if condition ="!empty($app_step)" }
+                    <div class="layui-col-sm4 layui-col-xs12">
+                        <div class="application-card-item">
+                            <h4>{:lang('Required Steps')}</h4>
+                            <ol>
+                                {foreach name="app_step" item="vo"}
+                                <li>
+                                    <a href="{if condition='$order.status < 3'}{:url('/app_step_info',['app_id'=>$vo.app_id,'sort'=>$vo.sort])}{else/} javascript:;{/if}"  {if condition='$order.status >= 3'} style="text-decoration: none;cursor:auto;" {/if}>
+                                        <i class="fa {if in_array($vo.id,$step_ok)} fa-check-circle {elseif in_array($vo.id,$step_error)} fa-exclamation-circle {else/} fa-arrow-circle-right {/if}"></i>
+                                        {$vo.sort}. {switch name="$Think.cookie.think_var"}
+                                        {case value="en-us"}{$vo.step_en}{/case}
+                                        {case value="zh-cn"}{$vo.step_name}{/case}
+                                        {case value="ja-jp"}{$vo.step_jp}{/case}
+                                        {case value="de-de"}{$vo.step_de}{/case}
+                                        {case value="ko-kr"}{$vo.step_kr}{/case}
+                                        {case value="ru-ru"}{$vo.step_ru}{/case}
+                                        {case value="fr-fa"}{$vo.step_fa}{/case}
+                                        {/switch} - {if in_array($vo.id,$step_ok)} {:lang('Complete')} {elseif in_array($vo.id,$step_error)} {:lang('Incomplete')} {else/} {:lang('Need to do')} {/if}
+                                    </a>
+                                </li>
+                                {/foreach}
+                            </ol>
+                        </div>
+                        <div  style="text-align: center;">
+                            <br>
+                            <span><i class="fa fa-arrow-circle-right"></i>{:lang('Need to do')}</span>
+                            <span><i class="fa fa-exclamation-circle"></i>{:lang('Incomplete')}</span>
+                            <span><i class="fa fa-check-circle"></i>{:lang('Complete')}</span>
+                        </div>
+                    </div>
+                    {/if}
+                    <div class="layui-col-sm4 layui-col-xs12">
+                        <div class="application-card-item">
+                            <h4>{:lang('Application Fee')} <br></h4>
+                            <ol>
+                                <li>
+                                    <!-- {:lang('CES DAE Report Renewal')} - {:lang('expired IRCC report')} (${$total_fee}) -->
+                                </li>
+                                <li>{$app.name} - C${$data.app.fee} + {$data.app.tax * 100}% {:lang('HST')}</li>
+                                {notempty name="$order.copy_number"} 
+                                    <li>
+                                    {:lang('Duplicate Copies Of Additional Fee')} - C${$data.copy.fee} + {$data.copy.tax * 100}% {:lang('HST')}
+                                    </li>
+                                {/notempty}
+                                {notempty name="$order.embassy_id"}
+                                    <li>
+                                    {:lang('Embassy certification Fee')}  -   C${$data.embassy.fee} + {$data.embassy.tax * 100}% {:lang('HST')} 
+                                    </li>
+                                {/notempty}
+                                {notempty name="$order.express_id"}
+                                    <li>
+                                    {:lang('Evaluation report mailing fee')} - C${$data.express.fee} + {$data.express.tax * 100}% {:lang('HST')}
+                                    </li>
+                                {/notempty}
+                                <li> {:lang('Total amount')} (C${$total_fee})</li>
+                            </ol>
+                        {if $order.status == 1 || $order.status == 2}
+                        <div class="application-card-item" style="border: 1px solid #DFDFDF;">
+                            <span>{:lang("State of Payment")} ：{:lang('unpaid')}</span>
+                            <div class="buttons">
+                                <a href="{:url('index/user/application_pay',['order_no'=>$order['order_number']])}" class="layui-btn mazarine" style="text-transform: none;">{:lang('To Pay')}</a>
+                            </div>
+                        </div>
+                        {/if}
+                        </div>
+                    </div>
+                </div>
+                <!--    status    -->
+                <div class="layui-row">
+                    <div class="layui-col-sm12">
+                    </div>
+                </div>
+                <div class="layui-row">
+                    <div class="layui-col-sm12">
+                        <div class="buttons">
+                            <!--    <a href="{:url('/applications_all')}" class="layui-btn layui-btn-primary">{:lang('Back To My Applications')}</a> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</section>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>Register</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/header-footer.css">
+    <link rel="stylesheet" href="/canada/css/login-new.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <style>
+        .form-group .form-input {
+            display: none;
+        }
+        .layui-input {
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+{include file="public/header-login" /}
+
+<section class="main">
+    <div class="container">
+        <div class="row register-form">
+            <div class="col-xs-12">
+                <h1>{:lang('Choose')}{:lang('Registration: Step 2 of 2')}</h1>
+                <p><a href="/home/user/index">{:lang('Skip this section')}</a></p>
+                <div class="register-center">
+                    <h2>{:lang('Education')}</h2>
+
+                    <form id="edu-form" class="layui-form">
+                        <!--科学领域研究下拉菜单-->
+                        <div class="form-group">
+                            <label for="pastMainSubject" class="form-label">
+                                {:lang('What was your main subject area of study')}?
+                            </label>
+                            <select name="faculty" id="pastMainSubject" class="form-input" lay-search lay-filter="pastMainSubject">
+                                <option value="">{:lang('Choose')}...</option>
+                                {foreach name="subject" item="vo"}
+                                <option value="{$vo.id}">{$vo.title}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+
+                        <!--共同领域研究下拉菜单-->
+                        <div class="form-group">
+                            <label for="pastJointSubject" class="form-label">
+                                {:lang('What was your joint subject area of study (if applicable)')}?
+                            </label>
+                            <select name="major" id="pastJointSubject" class="form-input" lay-filter="pastJointSubject">
+                                <option value="" >{:lang('Choose')}...</option>
+                            </select>
+                        </div>
+
+                        <!--在哪学习这门课程(学校)-->
+                        <div class="form-group">
+                            <label for="placeOfStudy" class="form-label">{:lang('Where did you study this course')}?</label>
+                            <select name="school" id="placeOfStudy" class="form-input" lay-search lay-filter="placeOfStudy" >
+                                <!--<option>{:lang('Choose')}...</option>-->
+                                <option value=""> </option>
+                                {foreach name="schools" item="vo"}
+                                <option value="{$vo.id}">{$vo.name}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+
+                        <h2>{:lang('Tell us about yourself to get a more personalised experience')}…</h2>
+
+                        <!--国籍-->
+                        <div class="form-group">
+                            <label for="nationalityCountry" id="nationalityCountry-label" class="form-label">
+                                {:lang('Country of nationality')}
+                            </label>
+                            <select name="nationality" id="nationalityCountry" class="form-input" lay-search>
+                                <option value="" >{:lang('Choose')}...</option>
+                                {foreach name="country" item="vo"}
+                                <option value="{$vo.id}">{$vo.name}</option>
+                                {/foreach}
+                            </select></div>
+
+                        <button type="button" class="btn btn-block">
+                            <div><span class="btn-text" type="submit" lay-submit lay-filter="save">{:lang('All done! Save and continue')}</span><span class="fa fa-angle-right"></span></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+    layui.use(['form'], function(){
+        var form = layui.form;
+
+        //监听提交,进行数据提交修改
+        form.on('submit(save)', function(data){
+            // 获取研究领域信息
+            var faculty = document.getElementById('pastMainSubject').value;
+            // 获取共同领域信息
+            var major = document.getElementById('pastJointSubject').value;
+            // 获取学校信息
+            var school = document.getElementById('placeOfStudy').value;
+            // 获取国籍信息
+            var nationality = document.getElementById('nationalityCountry').value;
+            $.post('create_extra',{faculty:faculty,major:major,school:school,nationality:nationality}, function (data) {
+                window.location.href='/profile';
+            });
+        });
+
+        // 获取研究领域项目id,并动态改变共同领域属性
+        form.on('select(pastMainSubject)', function(){
+            document.getElementById("pastJointSubject").innerHTML = '';
+            var num = document.getElementById('pastMainSubject');
+            var nums = num.value;
+            $.ajax({
+                type:"post",
+                url:"{:url('/home/user/getSubject')}",
+                data:{"faculty":nums},
+                dataType:"json",
+                success:function(data){
+                    var data = JSON.parse(data);
+                    var str = '';
+                    var l = data.length;
+                    for (var i=0;i<l;i++){
+                        str+="<option value=\"";
+                        str+=data[i]['id'];
+                        str+="\">";
+                        str+=data[i]['title'];
+                        str+="</option>";
+                        str+="\n";
+                    }
+                    $('#pastJointSubject').append(str);
+                    layui.form.render();
+                }
+            });
+        });
+
+    });
+
+
+
+</script>
+{include file="public/footer-login" /}
+</body>
+
+</html>

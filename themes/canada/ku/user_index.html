@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	{__NOLAYOUT__}
+	<head>
+		<meta charset="utf-8" />
+		<title>login_index</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/canada/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/jquery.flexslider-min.js"></script>
+		<script src="/static/js/viewer-jquery.min.js"></script>
+		<script src="/static/js/selectFilter.js"></script>
+		<script src="/static/js/mobile.js"></script>
+		<script src="/static/js/layui/layui.js"></script>
+		<script src="/canada/js/html.js"></script>
+	</head>
+	<body>
+		<header class="User_hd_full">
+			<div class="T_main User_hd">
+				<a href="/"><img src="/static/images/logo.png" alt="logo" title="header-logo"/></a>
+				<div class="User_hd_bottom">
+					<ul class="layui-nav">
+						  <!--<li class="layui-nav-item"><a href="/">{:lang('Information review')}</a></li>-->
+<li class="layui-nav-item">
+							<a href="javascript:;">{:lang('Profile')}</a>
+							<dl class="layui-nav-child">
+							  <dd><a href="/user_basic">{:lang('Account Settings')}</a></dd>
+							  <dd><a href="/logout">{:lang('Sign Out')}</a></dd>
+							</dl>
+						  </li>
+					</ul>
+				</div>
+			</div>
+		</header>
+<!-- info hd -->
+		<div class="T_main User_info">
+			<div class=" User_Avatar">
+				<a class="User_logo" href="/user_index">
+					{if condition="!empty($user_upload['zj_img'])"}
+					<img src="{$user_upload.zj_img}">
+					{else/}
+					<img src="/static/images/person-icon.png" >
+					{/if}
+				</a>
+				<div class="User_Avatar_down">
+					<form action="" method="">
+						<div class="User_Ava_tit">
+							{:lang('Edit Profile Picture')}
+							<i class="fa fa-close"></i>
+						</div>
+						<label for="profile" class="User_per">
+							<input name="profileImage" id="profile" type="file">
+							<i class="fa fa-long-arrow-right "></i>
+							<span >{:lang('Add Your Profile Photo')}</span>
+						</label>
+						<p>{:lang('Max File Size')}: 5 MB</p>
+						<p>{:lang('File Formats')}: PNG, JPEG, GIF</p>
+						<a href="javascript:;"  class="User_per">
+							<i class="fa fa-long-arrow-right "></i>
+							<span >{:lang('Remove Photo')}</span>
+						</a>
+					</form>
+					<div class="User_direction_icon fa fa-play"> </div>
+				</div>
+			</div>
+			<div class="User_Avart">
+				<div class="User_Ava_nav"> <a class="User_edit" href="#">{:lang('Edit')}</a></div>
+				<h2>{$user.username}</h2>
+			</div>
+</div>
+<!--主要内容-->
+		<div class=" User_mian_full">
+			<div class="T_main  U_mian">
+				<div class="Ui_bg">
+					<H1>{:lang('EDU Data Exchange Certification Center')}</H1>
+					 <a class="Ui_entrance" href="/apply_info">
+						<i class="fa fa-plus-circle"></i>
+						<p>{:lang('Start my information')}</p>
+					 </a>
+				</div>
+			</div>
+		</div>
+		<footer class="User_ft">
+			<a href="/">{:lang('Home')}</a> | <span>© Copyright 2019 ca.university All Rights Reserved</span>
+		</footer>
+		<script>
+			$(function(){
+				layui.use('layer', function(){
+					$('.no_review').on('click', function(){
+						layer.open({
+							type: 1,
+							title: false ,//不显示标题栏
+							closeBtn: false,
+							area: '300px;',
+							shade: 0.8,
+							id: 'LAY_layuipro' ,//设定一个id，防止重复弹出
+							btn: ['Apply', 'shut down'],
+							btnAlign: 'c',
+							moveType: 1, //拖拽模式，0或者1
+							content: '<div style="padding: 50px; line-height: 22px; background-color: #f7f7f7; color: #333; font-weight: 700;">Have not applied yet, first apply, or material review, the audit failed</div>'
+							,
+							success: function(layero){
+							  var btn = layero.find('.layui-layer-btn');
+							  btn.find('.layui-layer-btn0').attr({
+								href: 'www.apply_info.com'
+								,target: '_blank'
+							  });
+							}
+						  });
+					  });
+				})
+})
+</script>
+	</body>
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('WSE Missing Documents')} ({:lang('Complete only if requested')})</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+     <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class=" layui-form">
+<div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+<!--    user avatar    -->
+                <div class="layui-row user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{switch name="$Think.cookie.think_var"}
+                            {case value="en-us"}{$order.name_en}{/case}
+                            {case value="zh-cn"}{$order.app_name}{/case}
+                            {case value="ja-jp"}{$order.name_jp}{/case}
+                            {case value="de-de"}{$order.name_de}{/case}
+                            {case value="ko-kr"}{$order.name_kr}{/case}
+                            {case value="ru-ru"}{$order.name_ru}{/case}
+                            {case value="fr-fa"}{$order.name_fa}{/case}
+                            {/switch}</h1>
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email}— {$user.search_id}</p>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <div class="steps-card">
+                            <h3>{:lang('Required Steps')}</h3>
+                            <div class="step-arrow-box">
+                                {foreach name="app_step" item="vo"}
+                                <a href="{$vo.sort}">
+                                    {if condition="in_array($vo.id,$step_ok)"}
+                                    <div class="step-arrow-wrap step-arrow-complete">
+                                        {else}
+                                        <div class="step-arrow-wrap">
+                                            {/if}
+                                            <div class="step-arrow-left">
+                                                <div class="arrow-1"></div>
+                                                <div class="arrow-2"></div>
+                                            </div>
+                                            <div class="step-arrow-center">
+                                                <span class="layui-hide-xs">
+                                                    {$vo.sort}. {switch name="$Think.cookie.think_var"}
+                                                    {case value="en-us"}{$vo.step_en}{/case}
+                                                    {case value="zh-cn"}{$vo.step_name}{/case}
+                                                    {case value="ja-jp"}{$vo.step_jp}{/case}
+                                                    {case value="de-de"}{$vo.step_de}{/case}
+                                                    {case value="ko-kr"}{$vo.step_kr}{/case}
+                                                    {case value="ru-ru"}{$vo.step_ru}{/case}
+                                                    {case value="fr-fa"}{$vo.step_fa}{/case}
+                                                    {/switch}
+                                                </span>
+                                                <span class="layui-hide-sm">{$vo.sort}</span>
+                                            </div>
+                                            <div class="step-arrow-right">
+                                                <div class="arrow-1"></div>
+                                                <div class="arrow-2"></div>
+                                            </div>
+                                        </div>
+                                </a>
+                                {/foreach}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <form class="layui-form">
+                <!--    steps    -->
+                <div class="layui-row steps">
+<div class="layui-col-sm12">
+                        <h3>{:lang('DOCUMENT SUBMISSION')}</h3>
+                        <hr/>
+                        <p>{:lang('Submit Required Documents to Complete Your Application')}</p>
+                        <hr/>
+                        <h5>{:lang('Instruction')}</h5>
+                        <p>{:lang('Please only use this form if you have already submitted an application and you have received a notification from WSE regarding missing documents. This form may also be used if you wish to update any documents you have already uploaded, provide any missing documents to complete your application, or replace any submitted documents that are cut off, illegible, in black-and-white, or otherwise invalid.')}</p>
+                        <p>{:lang('All documents uploaded MUST be clear and legible coloured photocopies.')}
+						&nbsp; 
+						{:lang('Please scan all sides of each document, including blank sides.')}</p>
+                        <h5>{:lang('File Upload Guidelines')}</h5>
+                        <ol>
+                            <li>{:lang('File Size Maximum: 10240 KB')}</li>
+                            <li>{:lang('Accepted File Extensions: doc, docx, jpg, pdf, png')}</li>
+                            <li>{:lang('Support Devices: Mobile devices might not be supported')}</li>
+                            <li>{:lang('Content:')}
+                                <ul>
+                                    <li>{:lang('Scan both sides of each page of the original document (e.g., diploma, degree, certificate, academic records/transcripts)')}</li>
+                                    <li>{:lang('All documents not in English or French must be accompanied with official word-for-word translations.')}</li>
+                                    <li>{:lang('Ensure all pages are clear and legible and that no information is cut off')}</li>
+                                </ul>
+                            </li>
+                        </ol>
+                        <hr/>
+                        <p>{:lang('Document')} 1</p>
+                        <hr/>
+                        <div class="form-group">
+                            <p><b>{:lang('Select Document Type')}</b></p>
+                            <select name="miss_img_type" class="form-input">
+                                <option {$upload.miss_img_type=="Government-Issued ID"?"selected":""} value="Government-Issued ID">{:lang('Government-Issued ID')}</option>
+                                <option {$upload.miss_img_type=="Government-Issued ID Translation"?"selected":""} value="Government-Issued ID Translation">{:lang('Government-Issued ID Translation')}</option>
+                                <option {$upload.miss_img_type=="Proof of Name Change"?"selected":""} value="Proof of Name Change">{:lang('Proof of Name Change')}</option>
+                                <option {$upload.miss_img_type=="Proof of Name Change Translation"?"selected":""} value="Proof of Name Change Translation">{:lang('Proof of Name Change Translation')}</option>
+                                <option {$upload.miss_img_type=="Final Award"?"selected":""} value="Final Award">{:lang('Final Award')}</option>
+                                <option {$upload.miss_img_type=="Final Award Translation"?"selected":""} value="Final Award Translation">{:lang('Final Award Translation')}</option>
+                                <option {$upload.miss_img_type=="Academic Records (Transcript/Statement of Marks)"?"selected":""} value="Academic Records (Transcript/Statement of Marks)">{:lang('Academic Records (Transcript/Statement of Marks)')}</option>
+                                <option {$upload.miss_img_type=="Academic Records (Transcript/Statement of Marks) Translation"?"selected":""} value="Academic Records (Transcript/Statement of Marks) Translation">{:lang('Academic Records (Transcript/Statement of Marks) Translation')}</option>
+                                <option {$upload.miss_img_type=="Signed Consent Form"?"selected":""} value="Signed Consent Form">{:lang('Signed Consent Form')}</option>
+                                <option {$upload.miss_img_type=="Other"?"selected":""} value="Other">{:lang('Other')}</option>
+                            </select>
+                        </div>
+                        <table class="layui-table" lay-skin="line">
+                            <tbody>
+                            {if condition="!empty($upload['miss_img'])"}
+                            {foreach name="$upload['miss_img']" item="vo" key="k"}
+                            <tr class="credential-img">
+                                <td>{$vo.note}</td>
+                                <td><a href="{$vo.img}" target="_blank"  class="credential">
+                                    {$vo.img|substr=18}
+                                </a></td>
+                                <td>
+                                    <input class="credential" type="hidden" name="miss_img[{$k}][img]" value="{$vo.img}">
+                                    <input class="credential" type="hidden" name="miss_img[{$k}][note]" value="{$vo.note}">
+                                    <button class="layui-btn layui-btn-primary trans_del">{:lang('Delete')}</button>
+                                </td>
+                            </tr>
+                            {/foreach}
+                            {else}
+                            <tr class="transcript-img null">
+                                <td>{:lang('Select Document Photo')}</td>
+                                <td><a  target="_blank"  class="credential">
+                                    {:lang('Select Document Photo')}
+                                </a></td>
+                                <td></td>
+                            </tr>
+                            {/if}
+                            <input type="hidden" name="user_order_id" value="{$order.id}"/>
+                            </tbody>
+                        </table>
+                        <h5>{:lang('Document')}<span class="necessary">*</span></h5>
+                        <p class="file">
+                            <b>{:lang('File Name')}</b>
+                            <input type="button" class="layui-btn layui-btn-primary" id="test8" value="Choose Valid ID">
+                            <input type="button" style="display: none;" class="layui-btn layui-btn-primary" id="test9">
+                            <a class="layui-btn layui-btn-primary" id="avatar-upload">{:lang('Upload ')}</a>
+                        </p>
+                        <div class="variable-content">
+                            <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('Notes')}</b></p>
+                            <input name="miss_note" class="layui-input input-miss_note"  value="{$upload.miss_note}">
+                            <!--<textarea name="miss_note" rows="5" class="layui-textarea">{$upload.miss_note}</textarea>-->
+                        </div>
+                        <hr/>
+                <div class="form-group">
+                    <p><b>{:lang('Notes')}</b></p>
+                        </div>
+<!--    jSignature    -->
+                        <h5>{:lang('I agree to upload my information to WSE')}</h5>
+                        <h5>{:lang('Sign here with your mouse or finger')}</h5>
+                        <div class="Us_box layui-row">
+                            <div class="Us_sign layui-col-sm12" id="signatureparent">
+                                {if condition="!empty($order['sign_img'])"}
+                                <div class="sign-img"><img src="{$order.sign_img}"></div>
+                                {else}
+                                <div id="signature"></div>
+                                {/if}
+                            </div>
+                            <button class="layui-btn layui-btn-primary Us_clear" type="button">
+                                {:lang('Clear signature')}
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('Signature content')}</b><span>*</span></p>
+                            <input type="hidden" name="sort" value="{$sort}">
+<input type="text" name="sign_name" value="{$order.sign_name}" class="form-input" lay-verify="required">
+                            <input type="hidden" name="sign_img" id="sign_img" value=""/>
+                        </div>
+                        <div class="form-group">
+                            <input type="checkbox" id="privacy-policy" name="" lay-skin="primary" title=" * {:lang('I am proof that I am the above individual in accordance with the law and I have the right to take this action.')}">
+                        </div>
+                </form>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <a class="layui-btn layui-btn-primary savevvv" lay-submit>{:lang('Save This Page')}</a>
+                        <br/>
+                        <br/>
+                        <a class="layui-btn layui-btn-primary savevvv" lay-submit>{:lang('Save and Finish Later')}</a>
+                        <a class="layui-btn mazarine right savevvv" lay-submit>{:lang('Submit Application')}</a>
+                        <hr/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/static/js/jSignature.js"></script>
+<script src="/static/js/jSignature.CompressorBase30.js"></script>
+<script src="/static/js/jSignature.CompressorSVG.js" type="text/javascript" charset="utf-8"></script>
+<script src="/static/js/jSignature.UndoButton.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(document).ready(function () {
+        var arguments = {
+            width: '100%',
+            height: '150px',
+            cssclass: 'zx11',
+            signatureLine: false,//去除默认画布上那条横线
+            lineWidth: '2'
+        };
+        $("#signature").jSignature(arguments);
+        $('.Us_clear').click(function () {
+            $("#signature").jSignature("reset");
+        });
+});
+layui.use(['form','upload'], function(){
+        var form = layui.form,
+            upload = layui.upload;
+form.verify({
+            required: function(value) {
+                if (value == '') {
+                    return '{:lang("Required cannot be empty")}'
+                }
+            },
+        });
+        //添加
+        var key = $('.credential-img').length;
+$('#test8').click(function () {
+            var note_len = $('.input-miss_note').val();
+            if(note_len.length<=0){
+                layer.msg('Notes Could Not Empty');
+                return false;
+            }else {
+                $('#test9').click();
+                $('#test8').val($('#test9').val());
+            }
+        });
+        upload.render({
+            elem: '#test9'
+            ,url: '/upload'
+            ,auto: false
+            //,multiple: true
+            ,bindAction: '#avatar-upload'
+            ,done: function(res){
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed');
+                } else {
+                    //上传成功
+                    key ++;
+                    // $('.miss_img-tr td a').attr('href',res.msg);
+                    // $('.miss_img-tr td input').val(res.msg);
+                    // $('.miss_img-tr td a').text(res.msg.substring(18));
+                    $('.layui-table tbody').append('<tr class="credential-img">' +
+                        '<td>'+$('.input-miss_note').val()+'</td>' +
+                        '<td><a href="'+res.msg+'" target="_blank"  class="credential">'+res.msg.substring(18)+'</a></td>' +
+                        '<td><input type="hidden" name="miss_img['+key+'][img]" value="'+res.msg+'">' +
+                        '<input type="hidden" name="miss_img['+key+'][note]" value="'+$('.input-miss_note').val()+'">' +
+                            '<a class="layui-btn layui-btn-primary trans_del_new">{:lang(\'Delete\')}</a>' +
+                        '</td>' +
+                        '</tr>');
+                    //console.log(key);
+                    $('.null').remove();
+                    $('.input-miss_note').val('');
+                    $('#test8').val("Choose Valid ID");
+                    $('.trans_del').on('click',function () {
+                        $(this).parents('.credential-img').remove();
+                    });
+                }
+            }
+        });
+        //删除原有的
+        $(document).on('click',".trans_del", function () {
+            key--;
+            if(key==0){
+                $('.layui-table tbody').append('<input type="hidden" name="miss_img">');
+            }
+            var that=$(this);
+that.parents(".credential-img").remove();
+            $.post('/miss_img_del',$('.layui-form').serializeArray(),function (res) {
+                layer.msg(res.msg);
+            });
+        });
+        //删除新增的
+        $(document).on('click',".trans_del_new", function () {
+            var that=$(this);
+            that.parents(".credential-img").remove();
+        });
+        $('.savevvv').click(function () {
+            var chk = $("#privacy-policy").prop("checked");
+var cavs = $('#signature').find('canvas')[0].toDataURL("image/png");
+            $('#sign_img').val(cavs);
+            if(chk){
+                $.ajax({
+                    type:"post",
+                    url:"/user_order_sign",
+                    async:false,
+                    data:$('.layui-form').serializeArray(),
+                    success:function (result) {
+                        if (result.code==1) {
+                            window.location.href=result.url;
+                        } else{
+                            layer.open({
+                                title: 'error提示'
+                                ,content: result.msg
+                            });
+                        }
+                    },
+                    error:function (result) {
+                        layer.open({
+                            title: 'error验证提示'
+                            ,content: result.msg
+                        });
+                    }
+                });
+                //window.location.href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort+1])}"
+            }else {
+                layer.msg("Need to agree terms")
+            }
+        });
+    });
+</script>
+</body>
+</html>

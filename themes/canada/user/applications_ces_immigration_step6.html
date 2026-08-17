@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('WSE-DAE for Immigration Programs')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <script src="/static/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <link rel="stylesheet" href="/static/js/zeroModal/css/zeroModal.css">
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <script src="/static/js/zeroModal/js/zeroModal.min.js"></script>
+</head>
+
+<body>
+    {include file="public/header-user" /}
+    <section class="mainContent">
+        <div class=" layui-form">
+            <div class="layui-row ">
+                <div class="layui-col-sm2 nav-fixed ">
+                    <!--    nav-left    -->
+                    {include file="public/nav-left" /}
+                </div>
+                <div class="layui-col-sm10">
+                    <!--    user avatar    -->
+                    {include file="public/_app_dae_steps"}
+                    <!--    steps    -->
+                    <div class="layui-row steps">
+                        <div class="layui-col-sm12">
+                            <h3>{:lang('CONSENT')}</h3>
+                            <p>{:lang('Applicant Agreement and Consent')} - {:lang('Immigration Application')}</p>
+                            <hr />
+                            {:get_pact_lang($app.id,$sort)}
+                            <form class="layui-form" id="form-sign">
+                                <br>
+                                <h5>{:lang('Sign here with your mouse or finger')}</h5>
+                                <div class="Us_box layui-row">
+                                    <div class="Us_sign layui-col-sm12" id="signatureparent">
+                                        {if condition="!empty($order['sign_img'])"}
+                                        <div class="sign-img"><img src="{$order.sign_img}"></div>
+                                        {else}
+                                        <div id="signature"></div>
+                                        {/if}
+                                    </div>
+                                     {if condition="empty($order['sign_img'])"}
+                            <button class="layui-btn layui-btn-primary Us_clear" id="Us_clear" type="button">
+                                {:lang('Clear signature')}
+                            </button>
+                            {/if}
+                            {if $order.resign  == 1} 
+                            <button class="layui-btn layui-btn-primary Us_clear" id="re_clear" type="button">
+                                {:lang('Re signature')}
+                            </button>    {/if}
+                                </div>
+                                <div class="form-group">
+                                    <p><b>{:lang('Signature content')}</b><span>*</span></p>
+                                    <input type="hidden" name="sort" value="{$sort}">
+                                    <input type="hidden" name="user_order_id" value="{$order.id}" />
+                                    <input type="text" name="sign_name" value="{$order.sign_name}" class="form-input"
+                                        lay-verify="required"
+                                        placeholder="{:lang('Please enter your Signature content')}">
+                                    <input type="hidden" name="sign_img" id="sign_img" value="{$order.sign_img}" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="checkbox" id="privacy-policy2" name="clause_status" {eq
+                                        name="$order.clause_status" value="1" } checked {/eq} lay-skin="primary"
+                                        title=" * {:lang('I am proof that I am the above individual in accordance with the law and I have the right to take this action.')}">
+                                </div>
+                            </form>
+                        </div>
+                        <div class="layui-col-sm12"  id="caozuo">
+                            {if $order.resign  != 1} 
+                            <a class="layui-btn layui-btn-primary" lay-submit lay-filter="save">{:lang('Save This
+                                Page')}</a>
+                            <a href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort-1])}"
+                                class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+                            {/if}
+                            <br />
+                            <br />
+                            <a class="layui-btn layui-btn-primary savevvv" lay-submit lay-filter="save">{:lang('Save and
+                                Finish Later')}</a>
+                            <a href="javascript:;" class="layui-btn mazarine right savevvv" lay-submit
+                                lay-filter="save2">{:lang('Submit Application')}</a>
+                            <hr />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {if condition="$order.status >= 3"}
+            <script>
+                $('input').attr('disabled', true);
+                $('input[type=checkbox]').attr('disabled', false);
+                $('select').attr('disabled', true);
+                $('button').attr('disabled', true);
+            </script>
+            {/if}
+        </div>
+    </section>
+    <script src="/static/js/jSignature.js"></script>
+    <script src="/static/js/jSignature.CompressorBase30.js"></script>
+    <script src="/static/js/jSignature.CompressorSVG.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/js/jSignature.UndoButton.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        let init_src = '';
+        let sign_src = '';
+        $(document).ready(function () {
+            var arguments = {
+                width: '100%',
+                height: '150px',
+                cssclass: 'zx11',
+                signatureLine: false,//去除默认画布上那条横线
+                lineWidth: '2'
+            };
+            $("#signature").jSignature(arguments);
+            $('.Us_clear').click(function () {
+                let sign_img = $('[name="sign_img"]').val();
+                if (sign_img == null || sign_img == undefined || sign_img == '') {
+                    $("#signature").jSignature("reset");
+                    return;
+                }
+                $('#signatureparent').css('border', 'none')
+                $('#caozuo').show(); 
+                $('.sign-img').remove();
+                $('#signature').remove('layui-hide');
+                $('#signatureparent').append('<div id="signature" ></div>');
+                var arguments = {
+                    width: '100%',
+                    height: '150px',
+                    cssclass: 'zx11',
+                    signatureLine: false,//去除默认画布上那条横线
+                    lineWidth: '2'
+                };
+                $('[name="sign_img"]').val('');
+                $("#signature").jSignature(arguments);
+            });
+            var datapair = $("#signature").jSignature("getData", "image")
+            if (datapair != null) {
+                init_src = "data:" + datapair[0] + "," + datapair[1];
+            }
+        });
+        layui.use(['form','layer'], function () {
+            var form = layui.form;
+            var layer = layui.layer;
+            var resigns= '{$order.resign}'
+            if (resigns==1) {
+                $('#re_clear').attr('disabled', false); 
+                $('#caozuo').hide(); 
+                $('#signatureparent').css('border', '1px solid #f00')
+                layer.tips("{:lang('Please sign again. Donnot miss words')}", '#signatureparent', {tips: [1, '#f00'], time: 10000});
+
+            }
+            form.verify({
+                required: function (value) {
+                    if (value == '') {
+                        return '{:lang("Required cannot be empty")}'
+                    }
+                },
+            });
+            $('.savevvv').click(function () {
+                let data = {};
+                let sign_img = $('[name="sign_img"]').val();
+                if (sign_img == '' || sign_img == null || sign_img == undefined) {
+                    var datapair = $("#signature").jSignature("getData", "image");
+                    let sign_src = "data:" + datapair[0] + "," + datapair[1];
+                    if ($("#signature").jSignature("getData", "native").length == 0) {
+                        // layer.msg('Please sign your name by hand');
+                        layer.tips('{:lang("Please sign your name by hand")}', $('#signature'), { tips: [3, '#FF5722'] })
+                        return false;
+                    }
+                    data['sign_img'] = sign_src;
+                } else {
+                    data['sign_img'] = sign_img;
+                }
+                data['user_order_id'] = '{$order.id}';
+                let sign_name = $('[name="sign_name"]').val();
+                if (sign_name == null || sign_name == undefined || sign_name == '') {
+                    $('[name="sign_name"]').focus().addClass('layui-form-danger');
+                    layer.tips('{:lang("Signature content can not be empty")}', $('[name="sign_name"]'), { tips: [3, '#FF5722'] })
+                    return false;
+                }
+                data['sign_name'] = sign_name;
+                // var chk = $("#privacy-policy").prop("checked");
+                var chk2 = $("#privacy-policy2").prop("checked");
+                if (!chk2) {
+                    layer.tips('{:lang("Need to agree terms")}', $("#privacy-policy2").siblings('.layui-form-checkbox').find('.layui-icon-ok'), { tips: [3, '#FF5722'] })
+                    return false;
+                }
+                data['clause_status'] = 1;
+                data['sort'] = '{$sort}';
+                data['app_id'] = '{$app.id}';
+                // var h = $(this).attr('lay-filter');
+                $.ajax({
+                    type: "post",
+                    url: "/user_order_sign",
+                    async: false,
+                    data: data,
+                    success: function (result) {
+                        if (result.code == 20000) {
+                            window.location.href = result.data;
+                        } else {
+                            zeroModal.alert('Something went wrong!');
+                            // layer.open({
+                            //     title: 'Error MessageAAAA'
+                            //     ,btn: ['Determine']
+                            //     , content: 'Something went wrong!'
+                            // });
+                        }
+                    },
+                    error: function (result) {
+                        layer.msg(result.msg)
+                    }
+                });
+                //window.location.href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort+1])}"
+            });
+            form.on('submit(save)', function (data) {
+                let sign_img = $('[name="sign_img"]').val();
+                if (sign_img == '' || sign_img == null || sign_img == undefined) {
+                    var datapair = $("#signature").jSignature("getData", "image");
+                    let sign_src = "data:" + datapair[0] + "," + datapair[1];
+                    if ($("#signature").jSignature("getData", "native").length == 0) {
+                        sign_src = '';
+                    }
+                    data.field['sign_img'] = sign_src;
+                } else {
+                    data.field['sign_img'] = sign_img;
+                }
+                let data_state = 'Complete';
+                $.each(data.field, function (index, val) {
+                    if (val == '' || val == undefined || val == null) {
+                        data_state = 'Incomplete';
+                    }
+                })
+                let clause_status = $("[name='clause_status']").prop('checked');
+                if (clause_status) {
+                    data.field['clause_status'] = 1;
+                } else {
+                    data.field['clause_status'] = 0;
+                    data_state = 'Incomplete';
+                }
+                data.field['data_state'] = data_state;
+                data.field['app_id'] = '{$order.app_id}';
+                console.log(data);
+                $.post('/save_upload', data.field, function (result) {
+                    if (result.code == 20000) {
+                        layer.msg(result.msg, { icon: 1 });
+                        let state_item = $('.step-arrow-box>a>.step-arrow-wrap span').eq(data['sort'] - 1);
+                        let icon = state_item.children('.fa-exclamation-circle');
+                        if (data_state == "Complete") {
+                            icon.remove();
+                        } else {
+                            if (icon.length == 0) {
+                                state_item.prepend('<i class="fa fa-exclamation-circle"></i>');
+                            }
+                        }
+                    } else {
+                        layer.msg(result.msg, { icon: 5, time: 1000 }, function () {
+                            // location.reload();
+                        });
+                    }
+                });
+            })
+          
+        });                                                                         
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+{__NOLAYOUT__}
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{:lang('WSE-DAE for General Use')}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+
+    <script src="/static/js/jquery.min.js"></script>
+
+    <script src="/static/js/mobile.js"></script>
+
+    <script src="/static/js/layui/layui.js"></script>
+
+    <script src="/canada/js/html.js"></script>
+
+</head>
+
+<body>
+
+
+
+{include file="public/header-user" /}
+
+
+
+<section class="mainContent">
+
+    <div class="layui-container layui-form">
+
+        <div class="layui-row layui-col-space15">
+
+            <div class="layui-col-sm2">
+
+                <!--    nav-left    -->
+
+                {include file="public/nav-left" /}
+
+            </div>
+
+            <div class="layui-col-sm10">
+
+
+
+                <!--    user avatar    -->
+
+                <div class="layui-row user-avatar">
+
+                    <div class="layui-col-sm2 layui-col-xs4">
+
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+
+                    </div>
+
+                    <div class="layui-col-sm10 layui-col-xs8">
+
+                        <h1>{switch name="$Think.cookie.think_var"}
+
+                            {case value="en-us"}{$order.name_en}{/case}
+
+                            {case value="zh-cn"}{$order.app_name}{/case}
+
+                            {case value="ja-jp"}{$order.name_jp}{/case}
+
+                            {case value="de-de"}{$order.name_de}{/case}
+
+                            {case value="ko-kr"}{$order.name_kr}{/case}
+
+                            {case value="ru-ru"}{$order.name_ru}{/case}
+
+                            {case value="fr-fa"}{$order.name_fa}{/case}
+
+                            {/switch}</h1>
+
+                        <p><b>{$user.username}</b></p>
+
+                        <p>{$user.email}— {$user.search_id}</p>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <div class="steps-card">
+
+                            <h3>{:lang('Required Steps')}</h3>
+
+                            <ol>
+
+                                {foreach name="app_step" item="vo"}
+
+                                <li {$vo.sort==$sort?"class='active'":"" } >
+
+                                    <a href="{$vo.sort}">
+
+                                        {if condition="in_array($vo.id,$step_ok)"}
+
+                                        <i class="fa fa-check-circle"></i>
+
+                                        {$vo.sort}. {switch name="$Think.cookie.think_var"}
+
+                                        {case value="en-us"}{$vo.step_en}{/case}
+
+                                        {case value="zh-cn"}{$vo.step_name}{/case}
+
+                                        {case value="ja-jp"}{$vo.step_jp}{/case}
+
+                                        {case value="de-de"}{$vo.step_de}{/case}
+
+                                        {case value="ko-kr"}{$vo.step_kr}{/case}
+
+                                        {case value="ru-ru"}{$vo.step_ru}{/case}
+
+                                        {case value="fr-fa"}{$vo.step_fa}{/case}
+
+                                        {/switch} - {:lang('Complete')}
+
+                                        {else}
+
+                                        <i class="fa fa-arrow-circle-right"></i>
+
+                                        {$vo.sort}. {switch name="$Think.cookie.think_var"}
+
+                                        {case value="en-us"}{$vo.step_en}{/case}
+
+                                        {case value="zh-cn"}{$vo.step_name}{/case}
+
+                                        {case value="ja-jp"}{$vo.step_jp}{/case}
+
+                                        {case value="de-de"}{$vo.step_de}{/case}
+
+                                        {case value="ko-kr"}{$vo.step_kr}{/case}
+
+                                        {case value="ru-ru"}{$vo.step_ru}{/case}
+
+                                        {case value="fr-fa"}{$vo.step_fa}{/case}
+
+                                        {/switch} - {:lang('Incomplete')}
+
+                                        {/if}
+
+                                    </a>
+
+                                </li>
+
+                                {/foreach}
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr/>
+
+
+
+                <!--    steps    -->
+
+                <div class="layui-row steps">
+
+                    <form class="step-form">
+
+                    <div class="layui-col-sm12">
+
+                        <h3>{:lang('APPLICANT INFORMATION')}</h3>
+
+                        <hr/>
+
+
+
+                        <div class="form-group">
+
+                            <p><b>{:lang('Email')}</b><span class="necessary">*</span></p>
+
+                            <input type="text" class="form-input" lay-verify="email" readonly value="{$user.email}">
+
+                            <p class="variable-content">{:lang('WSE will communicate with you primarily by email. For confidentiality, please ensure that this email address is used exclusively by yourself.')}</p>
+
+                            <p class="variable-content">{:lang('If you want to change your Email address, go to the <a href="/profile">profile </a>page')}.</p>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+
+                            <p><b>{:lang('Valid Government-Issued ID')}</b><span class="necessary">*</span></p>
+
+                            <select name="id_type">
+
+                                <option {$user.id_type=="Permanent Resident Card"?"selected":""} value="Permanent Resident Card">{:lang('Permanent Resident Card')}</option>
+
+                                <option {$user.id_type=="Passport"?"selected":""} value="Passport">{:lang('Passport')}</option>
+
+                                <option {$user.id_type=="Identity Card"?"selected":""} value="Identity Card">{:lang('Identity Card')}</option>
+
+                                <option {$user.id_type=="Visa"?"selected":""} value="Visa">{:lang('Visa')}</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <p><b>{:lang('Valid Government-Issued ID Number')}</b><span class="necessary">*</span></p>
+
+                            <input type="text" class="layui-input" lay-verify="required" name="id_number" value="{$user.id_number}">
+
+                        </div>
+
+                        <table class="layui-table" lay-skin="line">
+
+                            <tbody>
+
+                            <input type="hidden" name="user_order_id" value="{$order.id}">
+
+                            {notempty name="$upload['sfz_img']"}
+
+                            {foreach name="$upload['sfz_img']" item="vo" key="k"}
+
+                            <tr class="layui-tr data-sfz">
+
+                                <td>{:lang('Valid ID')}</td>
+
+                                <td>
+
+                                    <a href="{$vo}" target="_blank"  class="sfz_img">
+
+                                        {:lang('Valid ID')}{$k+1}.jpg
+
+                                    </a>
+
+                                </td>
+
+                                <td>
+
+                                    <input type="hidden" class="sfz_img" name="sfz_img[]" value="{$vo}">
+
+                                    <button class="layui-btn layui-btn-primary sfz-del">{:lang('Delete')}</button>
+
+                                </td>
+
+                            </tr>
+
+                            {/foreach}
+
+                            {else}
+
+                            <tr class="layui-tr null">
+
+                                <td>{:lang('Valid ID')}</td>
+
+                                <td>
+
+                                    <a  class="sfz_img"> {:lang('Valid ID')} </a>
+
+                                </td>
+
+                                <td></td>
+
+                            </tr>
+
+                            {/notempty}
+
+                            {notempty name="$upload['crj_img']"}
+
+                            {foreach name="$upload['crj_img']" item="vo" key="k"}
+
+                            <tr class="layui-tr data-crj">
+
+                                <td>{:lang('Movement Record')}</td>
+
+                                <td>
+
+                                    <a href="{$vo}" target="_blank"  class="sfz_img">
+
+                                        {:lang('Movement Record')}{$k+1}.jpg
+
+                                    </a>
+
+                                </td>
+
+                                <td>
+
+                                    <input type="hidden" class="sfz_img" name="crj_img[]" value="{$vo}">
+
+                                    <button class="layui-btn layui-btn-primary sfz-del">{:lang('Delete')}</button>
+
+                                </td>
+
+                            </tr>
+
+                            {/foreach}
+
+                            {else}
+
+                            <tr class="layui-tr null">
+
+                                <td>{:lang('Movement Record')}</td>
+
+                                <td>
+
+                                    <a  class="sfz_img"> {:lang('Movement Record')} </a>
+
+                                </td>
+
+                                <td></td>
+
+                            </tr>
+
+                            {/notempty}
+
+                            </tbody>
+
+                        </table>
+
+                        <p class="file">
+
+                            <b>{:lang('Valid ID')}</b>
+
+                            <input type="button" class="layui-btn layui-btn-primary" id="test8" value="{:lang('Choose Valid ID')}">
+
+                            <a class="layui-btn layui-btn-primary" id="avatar-upload">{:lang('Upload')}</a>
+
+                        </p>
+
+                        <div class="variable-content">
+
+                            <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                        </div>
+
+                        <p class="file">
+
+                            <b>{:lang('Movement Record')}</b>
+
+                            <input type="button" class="layui-btn layui-btn-primary" id="test9" value="{:lang('Choose Movement Record')}">
+
+                            <a class="layui-btn layui-btn-primary" id="avatar-upload2">{:lang('Upload')}</a>
+
+                        </p>
+
+                        <div class="variable-content">
+
+                            <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                            <p>{:lang('Upload your movement record .')}</p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <a class="layui-btn layui-btn-primary save-upload" lay-submit lay-filter="save">{:lang('Save This Page')}</a>
+
+                        <a href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort-1])}" class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+
+                        <a  lay-submit lay-filter="save2" class="layui-btn mazarine right">{:lang('Next Page')}</a>
+
+                        <br/>
+
+                        <br/>
+
+                        <a class="layui-btn layui-btn-primary"  lay-submit lay-filter="save">{:lang('Save and Finish Later')}</a>
+
+                        <hr/>
+
+                    </div>
+
+                    </form>
+
+                </div>
+
+                {if condition="$or_input==1"}
+
+                <script>
+
+                    $('input').attr('disabled',true);
+
+                    $('input[type=checkbox]').attr('disabled',false);
+
+                    $('select').attr('disabled',true);
+
+                    $('button').attr('disabled',true);
+
+                </script>
+
+                {/if}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+{include file="public/footer-login" /}
+
+
+
+<script>
+
+    layui.use(['form', 'laydate','upload'], function(){
+
+        var form = layui.form,
+
+            laydate  = layui.laydate,
+
+             upload = layui.upload;
+
+        laydate.render({
+
+            elem: '#birthDate',
+
+            lang: 'en'
+
+        });
+
+        var sfz = $('.data-sfz').length;
+
+        upload.render({
+
+            elem: '#test8'
+
+            ,url: '/upload'
+
+            ,auto: false
+
+            //,multiple: true
+
+            ,bindAction: '#avatar-upload'
+
+            ,done: function(res){
+
+                if (res.code != 1) {
+
+                    return layer.msg('Upload Failed');
+
+                } else {
+
+                    //上传成功
+
+                    sfz++;
+
+                    if(sfz>4){
+
+                        return ' Can\'t be more than 4'
+
+                    }
+
+                    // $('.layui-tr td a').attr('href',res.msg);
+
+                    // $('.layui-tr td input').val(res.msg);
+
+                    // $('.layui-tr td a').text(res.msg.substring(18));
+
+                    $('.layui-table tbody').append('<tr class="layui-tr"><td>{:lang("Valid ID")}</td><td><a href="'+res.msg+'" target="_blank"  class="sfz_img">Valid ID'+sfz+'.jpg</a></td><td><input type="hidden" name="sfz_img[]" value="'+res.msg+'"><a class="layui-btn layui-btn-primary sfz-del">{:lang("Delete")}</a></td></tr>');
+
+                    $('.null').remove();
+
+                    $('.sfz-del').click(function () {
+
+                        sfz--;
+
+                        $(this).parents('.layui-tr').remove();
+
+                    });
+
+                }
+
+            }
+
+        });
+
+        $('.sfz-del').click(function () {
+
+            sfz--;
+
+            if(sfz==0){
+
+                //console.log(cre_num);
+
+                $('.layui-table tbody').append('<input type="hidden" name="sfz_img">');
+
+            }
+
+            $(this).parents('.layui-tr').remove();
+
+        });
+
+        var crj = $('.data-crj').length;
+
+        upload.render({
+
+            elem: '#test9'
+
+            ,url: '/upload'
+
+            ,auto: false
+
+            //,multiple: true
+
+            ,bindAction: '#avatar-upload2'
+
+            ,done: function(res){
+
+                if (res.code != 1) {
+
+                    return layer.msg('Upload Failed');
+
+                } else {
+
+                    //上传成功
+
+                    crj++;
+
+                    if(crj>9){
+
+                        return ' Can\'t be more than 4'
+
+                    }
+
+                    // $('.layui-tr td a').attr('href',res.msg);
+
+                    // $('.layui-tr td input').val(res.msg);
+
+                    // $('.layui-tr td a').text(res.msg.substring(18));
+
+                    $('.layui-table tbody').append('<tr class="layui-tr"><td>{:lang("Movement Record")}</td><td><a href="'+res.msg+'" target="_blank"  class="sfz_img">Movement Record'+crj+'.jpg</a></td><td><input type="hidden" name="crj_img[]" value="'+res.msg+'"><a class="layui-btn layui-btn-primary crj-del">{:lang("Delete")}</a></td></tr>');
+
+                    $('.null').remove();
+
+                    $('.sfz-del').click(function () {
+
+                        sfz--;
+
+                        $(this).parents('.layui-tr').remove();
+
+                    });
+
+                }
+
+            }
+
+        });
+
+        $('.crj-del').click(function () {
+
+            crj--;
+
+            if(crj==0){
+
+                //console.log(cre_num);
+
+                $('.layui-table tbody').append('<input type="hidden" name="crj_img">');
+
+            }
+
+            $(this).parents('.layui-tr').remove();
+
+        });
+
+        form.verify({
+
+            required: function(value) {
+
+                if (value == '') {
+
+                    return 'Required can\'t be empty'
+
+                }
+
+            },
+
+        });
+
+        form.on('submit(save)', function (data) {
+            $.post('/save_upload', data.field, function (result) {
+                //console.log(result);
+                window.location.reload();
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+
+        });
+
+        form.on('submit(save2)', function (data) {
+            $.post("{:url('/save_next',['app_id'=>$order.app_id,'sort'=>$sort+1])}", data.field, function (result) {
+                window.location.href = "{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort+1])}";
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+    });
+
+
+
+</script>
+
+
+
+</body>
+
+</html>

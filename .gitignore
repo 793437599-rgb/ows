@@ -1,0 +1,57 @@
+runtime/*
+.idea
+
+/application/*.php
+/application/database.php
+/application/config.php
+
+# 日志文件
+*.log
+/public/*.log
+
+# 上传文件目录
+/public/uploads/
+/public/upload/
+/uploads/
+/upload/
+/static/upload/
+/static/uploads/
+
+# 环境配置文件
+.env
+.env.local
+.env.*.local
+
+# 依赖包（如果通过 composer 安装）
+/vendor/
+composer.lock
+
+# 运行时缓存
+/runtime/
+/cache/
+/temp/
+
+# 数据库备份
+*.sql
+*.sql.gz
+*.bak
+
+# 证书和密钥文件（敏感）
+*.key
+*.pem
+*.crt
+*.csr
+/application/common/util/certificate/
+
+# TortoiseGit
+.tgitconfig
+
+# IDE
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

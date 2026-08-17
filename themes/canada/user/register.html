@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+	<meta charset="utf-8"/>
+	<title>{:lang('Register')}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/js/layui/css/layui.css">
+	<link rel="stylesheet" href="/canada/css/register.css">
+	<link rel="stylesheet" href="/canada/fonts/iconfont.css">
+	<link rel="stylesheet" href="/canada/css/header-footer.css">
+	<link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+		<script src="__JS__/nc.js"></script>
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/layui/layui.js"></script>
+	<script src="/static/js/mobile.js"></script>
+	<script src="/static/js/langCookie.js"></script>
+	<style type="text/css">
+		input[type="text"] {
+			text-transform: uppercase;
+		}
+		.nc-container .nc_scale span {
+			height: 34px;
+		}
+	</style>
+</head>
+<body>
+{include file="public/header-login" /}
+<section class="register-box container">
+	<div class="register-box-wrap row">
+		<div class="col-sm-9">
+			<h3 class="text-success">{:lang('Create Account')}</h3>
+            <div class="note"><b>{:lang('Note')}:</b> {:lang('WSE requires a separate account for each individual applying for credential evaluation.')}
+            </div>
+			<div><span class="text-danger">*</span> {:lang('indicates a required field')}</div>
+			<form id="user-register">
+				<div class="register-form">
+					<div class="row">
+						<div class="col-sm-5">
+							<div class="form-group">
+								<label>{:lang('Your First (Given) Name')}</label><span class="text-danger">*</span>
+								<i class="fa fa-question-circle question first-name-question" aria-hidden="true"></i>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+								<input type="text" name="firstname" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'')" id="firstNames" autocomplete="off" class="form-control" maxlength="12">
+							</div>
+						</div>
+					</div>
+					<div class="row question-info first-name-info">
+						<div class="col-sm-12">
+                            <p>{:lang('This is the name your parents have given you. Example: "Henry" is the first/given name from "Henry Norman Bethune".')}</p>
+						</div>
+						<span class="closeBtn first-name-btn">×</span>
+					</div>
+					<div class="row">
+						<div class="col-sm-5">
+							<div class="form-group">
+								<label>{:lang('Your Second (Middle) Name')}</label>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+                                <input type="text" name="middlename" id="MiddleNames" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'')" autocomplete="off" maxlength="12" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-5">
+							<div class="form-group">
+								<label>{:lang('Your Last (Family) Name')}</label><span class="text-danger">*</span>
+								<i class="fa fa-question-circle question last-name-question" aria-hidden="true"></i>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+                                <input type="text" onkeyup="this.value=this.value.replace(/[^a-zA-Z0-9]/g,'')" name="lastname" id="lastName" autocomplete="off" maxlength="12" class="form-control">
+							</div>
+						</div>
+					</div>
+					<div class="row question-info last-name-info">
+						<div class="col-sm-12">
+                            <p>{:lang('This is the name you share with your family. Example: "Norman Bethune" is the last/family name from "Henry Norman Bethune". If you have multiple last names, you should enter all of your last names exactly as they appear on your official identification (ID) documents.')}</p>
+						</div>
+						<span class="closeBtn last-name-btn">×</span>
+					</div>
+					<div class="row">
+						<div class="col-sm-5">
+							<div class="form-group">
+								<label>{:lang('Email address')}</label><span class="text-danger">*</span>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+                                <input type="email" name="email" id="registerEmail" placeholder="{:lang('you@email.com')}" class="form-control">
+								<span class="email-p1 text-danger hide">{:lang('Must be valid')}.</span>
+							</div>
+						</div>
+					</div>
+					<!--<div class="row">
+						<div class="col-sm-6 col-sm-offset-5 codeBox">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="{:lang('please enter verification code')}">
+								<button class="getCodeBtn" type="button" id="getCode">Get verification code</button>
+							</div>
+						</div>
+					</div>-->
+					<div class="row">
+						<div class="col-sm-5">
+							<div class="form-group">
+								<label>{:lang('PassWord')}</label><span class="text-danger">*</span>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+                                <input type="password" name="password" id="password" placeholder="{:lang('Please enter a password of 4-12 units in length')}" class="form-control">
+								<span class="email-p1 text-danger hide" id="k2">{:lang('Must be valid')}.</span>
+							</div>
+						</div>
+					</div>
+					{if config('verify') == 1}
+					<div class="row">
+						<div class="col-sm-5">
+							<div class="form-group">
+								<label>{:lang('Verification')}</label><span class="text-danger">*</span>
+							</div>
+						</div>
+						<div class="col-sm-6">
+							<div class="form-group">
+                                 <div id="html_element"></div>
+							</div>
+						</div>
+					</div>
+					{/if}
+					<div class="consent">
+						<div class="form-group">
+                            <label for="privacy-policy" class="form-label">
+								{:lang('I accept the')}
+								<a href="/index/user/privacy" target="_blank" class="text-success"><u><b>{:lang('privacy policy')}</b></u></a>
+								<span class="text-danger">*</span>
+							</label>
+							<input type="checkbox" name="check" class="form-label accept-checkbox" id="privacy-policy">
+							<span class="asterisk hide">{:lang('Required')}</span>
+						</div>
+						<button class="btnNext" type="button" id="btn"  >{:lang('Next Step')}</button>
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="col-sm-3">
+			<h3 class="text-success">{:lang('Already have an account')}?</h3>
+			<div class="btn-login-wrap"><a class="btnNext" href="/index/user/log">{:lang('Log in')}</a></div>
+		</div>
+	</div>
+</section>
+<footer class="footer">
+	<div class="container">
+        <span>© 2020 WSE. {:lang('All Rights Reserved')}.</span> | <a href="/index/user/privacy" target="_blank">{:lang('Privacy Policy')}</a>
+	</div>
+</footer>
+<script src="https://www.recaptcha.net/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=en" async defer></script>
+<script type="text/javascript">
+	var onloadCallback = function () {
+		grecaptcha.render('html_element', {
+			'sitekey': '6LfiJLoZAAAAAPgIpo8P68CBeljDe05DKZY0SC_U',
+			'callback': function (token) {
+			}
+		});
+	};
+</script>
+<script>
+	$('.first-name-question').on('click', function () {
+		$(this).toggleClass('active')
+		$('.first-name-info').slideToggle()
+	})
+	$('.first-name-btn').on('click', function () {
+		$('.first-name-question').toggleClass('active')
+		$('.first-name-info').slideToggle()
+	})
+	$('.last-name-question').on('click', function () {
+		$(this).toggleClass('active')
+		$('.last-name-info').slideToggle()
+	})
+	$('.last-name-btn').on('click', function () {
+		$('.last-name-question').toggleClass('active')
+		$('.last-name-info').slideToggle()
+	})
+	$(document).ready(function () {
+		$('#registerEmail').blur(function () {
+			var eml = $('#registerEmail').val();
+			var res = /^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/;
+			if (res.test(eml)) {
+				$('#registerEmail').css({border: ''});
+				$('#registerEmail').siblings('.email-p1').addClass('hide');
+			} else {
+				$('#registerEmail').siblings('.email-p1').removeClass('hide');
+				$('#registerEmail').css({border: '1px solid red'});
+			}
+		});
+		$('#password').blur(function () {
+			var pass = $('#password').val();
+			if (pass =='') {
+			  	$('#password').siblings('.email-p1').removeClass('hide');
+			  	$('#password').css({border: '1px solid red'});
+			  	return false
+			}
+			if (pass != '') {
+				if (pass.length >= 4 && pass.length <= 12) {
+					$('#password').css({border: ''});
+				} else {
+					$('#password').css({border: '1px solid red'});
+				}
+				$('#password').siblings('.asterisk').addClass('hide');
+			} else{
+				$('#k2').hide();
+				$('#password').css({border: ''});
+			}
+		});
+		$('#firstNames').blur(function () {
+			var fname = $('#firstNames').val();
+			if (fname != '') {
+				$('#firstNames').css({border: ''});
+				$('#firstNames').siblings('.asterisk').addClass('hide');
+			} else {
+  				$('#firstNames').css({border: '1px solid red'});
+				$('#firstNames').siblings('.asterisk').removeClass('hide');
+			}
+		});
+		$('#lastName').blur(function () {
+			var lname = $('#lastName').val();
+			if (lname != '') {
+				$('#lastName').css({border: ''});
+				$('#lastName').siblings('.asterisk').addClass('hide');
+			} else {
+				$('#lastName').css({border: '1px solid red'});
+				$('#lastName').siblings('.asterisk').removeClass('hide');
+			}
+		});
+		$('#privacy-policy').click(function () {
+			var chk = $("#privacy-policy").prop("checked");
+			//console.log('checked',chk);
+			if (chk) {
+				$('.btn').prop('disabled', false);
+				$('#privacy-policy').siblings('.asterisk').addClass('hide');
+			} else {
+				$('.btn').prop('disabled', true);
+				$('#privacy-policy').siblings('.asterisk').removeClass('hide');
+			}
+		});
+		$('#protocol').click(function () {
+			layer.open({
+				title: '{:lang("protocol")}',
+				content: '{:lang("You should read the following agreement carefully before clicking on the consent process during the registration process. Please be sure to read and fully understand the terms of the agreement, including:")}' +
+						'{:lang("1: Terms of agreement with you for exemption or limitation of liability;")}' +
+						'{:lang("2: Agreement with you on the applicable terms and jurisdiction of the law;")}' +
+						'{:lang("3: Other important terms are marked with bold underline.")}' +
+						'{:lang("If you have any questions about the agreement, you can consult the platform customer service.")}' +
+						'{:lang("Tip: When you follow the instructions on the registration page to fill out the information, read and agree to the agreement and complete all registration procedures, you have fully read, understood and accepted the entire contents of the agreement. If you have any disputes about the platform services, the Service Agreement will apply. If you are in dispute with other users during the use of Platform Services, they will be processed according to the agreement you have with other users.")}' +
+						'{:lang("In the process of reading the agreement, if you do not agree to the relevant agreement or any terms and conditions, you should immediately stop the registration process")}',
+				area: '500px',
+				btn: ['{:lang("Close prompt")}']
+			});
+		})
+	});
+
+	layui.use(['form', 'upload'], function () {
+		var form = layui.form;
+		$('#btn').click(function () {
+		
+
+			
+			var firstname = $('#firstNames').val();
+			if (firstname =='') {
+			  	$('#firstNames').css({border: '1px solid red'});
+			  	layer.msg('{:lang("firstName Cannot be empty")}', {time: 1000, icon: 2});   
+			  	return false
+			}
+
+			var firstname1 = $('#lastName').val();
+			if (firstname1 =='') {
+			  	$('#lastName').css({border: '1px solid red'});
+			  	layer.msg('{:lang("lastName Cannot be empty")}', {time: 1000, icon: 2});   
+			  	return false
+			}
+
+			var registerEmail = $('#registerEmail').val();
+			if (registerEmail =='') {
+			  	$('#registerEmail').css({border: '1px solid red'});
+			  	layer.msg('{:lang("Email Cannot be empty")}', {time: 1000, icon: 2});   
+			  	return false
+			} 
+			var res = /^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/;
+			if (res.test(registerEmail)) {
+			} else {
+				$('#registerEmail').siblings('.email-p1').removeClass('hide');
+				$('#registerEmail').css({border: '1px solid red'});
+					layer.msg('{:lang("The mailbox format is incorrect")}', {time: 1000, icon: 2});   
+						return false
+			}
+
+
+
+			var pass = $('#password').val();
+			if (pass =='') {
+				console.log('kkk')
+			  	$('#password').siblings('.email-p1').removeClass('hide');
+			  	$('#password').css({border: '1px solid red'});
+			  	layer.msg('{:lang("password Cannot be empty")}', {time: 1000, icon: 2});   
+			  	return false
+			}
+
+			var len = pass.length;
+			if (len != 0) {
+				if (len <= 4 || len >= 12) {
+					// 代表密码规则不符合,不能注册
+					layer.msg('{:lang("Cannot Submit Incorrect password format")}', {time: 1000, icon: 2});
+					$('#password').css({border: 'solid 1px red'});
+					return false;
+				} else {
+					// var nc =  $("#huadong").val();
+					// if (nc==0) {
+					//   	layer.msg('{:lang("Please pass the slider verification first")}', {time: 1000, icon: 2});   
+					//   	return false;                    
+					// }
+					// 代表密码规则符合,可以进行注册
+					$.post("/index/user/create", $("#user-register").serialize(), function (result) {
+						if (result.code == 20000) {
+							window.location.href = "{:url('index/user/profile')}";
+						} else {
+							// if (result.msg == 'Failed to register, mail already occupied！') {
+							// 	$('#registerEmail').addClass('border-red');
+							// }
+							layer.msg(result.msg, {time: 2000, icon: 2}, function () {
+								grecaptcha.reset();
+							});
+							return false;
+						}
+					});
+				}
+			} else {
+				layer.msg('{:lang("Cannot Submit")}', {time: 2000, icon: 2});
+				return false;
+			}
+		});
+	});
+	/* 验证码按钮 */
+	$("#getCode").on('click', function () {
+		var c = 60;
+		$(this).attr("disabled", "disabled").addClass("getCodeBtn-grey"); //点击一次不可再点
+		var interval = setInterval(function () {
+			c--;
+			$("#getCode").text(c + 's');
+			if (c == 0) {
+				clearInterval(interval);
+				$("#getCode").text("Resend").removeAttr("disabled").removeClass("getCodeBtn-grey");
+				c = 60;
+			}
+		}, 1000);
+	})
+
+	function isEmpty(obj) {
+		if (typeof obj == "undefined" || obj == null || obj == "") {
+			return true;
+		} else {
+			return false;
+		}
+	}
+</script>
+
+
+
+</body>
+</html>

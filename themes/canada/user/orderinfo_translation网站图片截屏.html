@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+<script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/Newlanguage/jquery.anchor.js"></script>
+    <script src="/canada/js/Newlanguage/jquery.tabslet.min.js"></script>
+    <script src="/canada/js/html.js"></script>
+<style>
+        .layui-tab {
+            margin: 10px 0 0 0;
+        }
+    </style>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="">
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                <div class="layui-row layui-col-space20 user-avatar">
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{:lang('Translation/Notarization')}</h1>
+                    </div>
+                </div>
+                <hr />
+                <!--    applications    -->
+                <div class="layui-row station">
+                    <div class="layui-col-sm12">
+                        <div class="layui-tab country-content">
+                            <h4>{:lang('Please select the language to use for the certificate')}</h4>
+                            <div class='tabs tabs_default'>
+                                <ul class='horizontal' id="langBox">
+                                    <li data-lang="english"><a href="#tab-1">{:lang('English')}</a></li>
+                                    <li data-lang="french"><a href="#tab-2">{:lang('French')}</a></li>
+                                    <li data-lang="japanese"><a href="#tab-3">{:lang('Japanese')}</a></li>
+                                    <li data-lang="chinese"><a href="#tab-4">{:lang('Chinese')}</a></li>
+                                    <li data-lang="korean"><a href="#tab-5">{:lang('Korean')}</a></li>
+                                    <li data-lang="russian"><a href="#tab-6">{:lang('Russian')}</a></li>
+                                    <li data-lang="other" id="other-btn"><a href="#tab-7"><i class="iconfont icon-language"></i> {:lang('Other Languages')}</a></li>
+                                </ul>
+                                <hr class="tab-hr">
+                                <div class="tabs-content">
+                                    <div class="tabs-full">
+                                        <div id='tab-1' class="">
+                                            <div class="certificate-flex certificate-nox">
+                                                <div><img id="kkk" src="/canada/images/certificate/D-EN.jpg" alt=""></div>
+                                                <div><img src="/canada/images/certificate/T-EN.jpg" alt=""></div>
+                                            </div>
+                                        </div>
+                                        <div id='tab-2'>
+                                            <div class="certificate-flex certificate-nox">
+                                                <div><img src="/canada/images/certificate/D-FR.jpg" alt=""></div>
+                                                <div><img src="/canada/images/certificate/T-FR.jpg" alt=""></div>
+                                            </div>
+                                        </div>
+                                        <div id='tab-3'>
+                                            <div class="certificate-flex certificate-nox">
+                                                <div><img src="/canada/images/certificate/D-JA.jpg" alt=""></div>
+                                                <div><img src="/canada/images/certificate/T-JA.jpg" alt=""></div>
+                                            </div>
+                                        </div>
+                                        <div id="tab-4">
+                                            <div class="certificate-flex certificate-nox">
+                                                <div><img src="/canada/images/certificate/D-ZH.jpg" alt=""></div>
+                                                <div><img src="/canada/images/certificate/T-ZH.jpg" alt=""></div>
+                                            </div>
+                                        </div>
+                                        <div id="tab-5">
+                                            <div class="certificate-flex certificate-nox">
+                                                <div><img src="/canada/images/certificate/D-KO.jpg" alt=""></div>
+                                                <div><img src="/canada/images/certificate/T-KO.jpg" alt=""></div>
+                                            </div>
+                                        </div>
+                                        <div id="tab-6">
+                                            <div class="certificate-flex certificate-nox">
+                                                <div><img src="/canada/images/certificate/D-RU.jpg" alt=""></div>
+                                                <div><img src="/canada/images/certificate/T-RU.jpg" alt=""></div>
+                                            </div>
+                                        </div>
+                                        <div id="tab-7">
+                                            <div class="certificate-tips">
+                                                <img src="/canada/images/my-nolanguage.svg" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tabs-preview-hint">
+                                        <h3>{:lang('Certificate Preview')}</h3>
+                                        <p>{:lang('The preview image of the certificate on the left is for language style reference only. The actual certificate needs to be checked and translated according to the content of different countries and different certificate requirements.')}</p>
+                                        <div class="tabs-input" style="display: none;">
+                                            <input type="text" name="" id="langInput" placeholder="{:lang('Please enter the language you want to apply for')}">
+                                        </div>
+                                        <button id="applyBtn">{:lang('Apply For This Language Certificate')}</button>
+                                        <button id="xxxxxxxx" onclick="takephotosss()">xxxxxxxxxxxxxx</button>
+
+ 
+ 
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>  
+<script src="/static/js/html2canvas.js"></script>v
+<script>
+
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        layer.photos({
+            photos: '.certificate-nox',
+            anim: 5
+        });
+    });
+    // Run javascript after DOM is initialized
+    $(document).ready(function () {
+        $('.tabs_default').tabslet();
+    });
+ 
+
+    $('#other-btn').click(function(){
+        $('.tabs-input').fadeIn()
+    })
+        var lang = 'english'
+    $('#langBox li').click(function () {
+        lang = $(this).attr('data-lang')
+    })
+    $('#applyBtn').click(function () {
+        if (lang == 'other') {
+            var val = $('#langInput').val()
+            val = val.replace(/\s+/g,"")
+            if (val == '' || val == null || val == undefined) {
+                layer.msg('{:lang("Please fill in the correct language")}')
+                return
+            } else {
+                lang = val
+            }
+        }
+        window.location.href = "{:url('/app_step_info')}" + '?app_id=8&sort=1&lang=' + lang
+    })
+
+</script>
+<script type="text/javascript">   
+// function takephotos() { 
+//   let save2 = document.body;
+//   html2canvas(save2).then((canvas) => {
+//     let url = canvas.toDataURL("image/png");
+//     let aLink = document.createElement("a");
+//     aLink.style.display = "none";
+//     aLink.href = url;
+//     console.log(aLink.href);
+//     $('#kkk').attr('src', aLink.href)
+//   });
+// }
+
+function takephotosss() { 
+  let save2 = "11";
+  html2canvas(save2,{
+    proxy: 'https://www.wse.org/wsekus/view/assess_report/order_id/712.html',
+    useCORS: true,
+    dpi: window.devicePixelRatio,
+  }).then((canvas) => {
+
+    allowTaint = true;
+    let url = canvas.toDataURL("https://www.wse.org/wsekus/view/assess_report/order_id/712.html");
+    let aLink = document.createElement("a");
+    console.log(url);
+    aLink.style.display = "none";
+    aLink.href = url;
+     console.log(aLink.href);
+     $('#kkk').attr('src', aLink.href)
+  
+  });
+  }
+
+</script>
+</html>

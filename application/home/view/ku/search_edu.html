@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html>
+
+{__NOLAYOUT__}
+
+	<head>
+
+		<meta charset="utf-8" />
+
+		<title>Information</title>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<link rel="stylesheet" href="/canada/css/common.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css"/>
+
+		<link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css"/>
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+
+		<script src="/static/js/jquery.min.js"></script>
+
+		<script src="/static/js/jquery.flexslider-min.js"></script>
+
+		<script src="/static/js/viewer-jquery.min.js"></script>
+
+		<script src="/static/js/mobile.js"></script>
+
+		<script src="/static/js/layui/layui.js"></script>
+
+		<script src="/canada/js/html.js"></script>
+
+	</head>
+
+	<body>
+
+	<header class="User_hd_full">
+
+		<div class="T_main User_hd">
+
+			<a href="/"><img src="/static/images/logo.png" alt="logo" title="header-logo"/></a>
+
+			<div class="User_hd_bottom">
+
+				<ul class="layui-nav">
+
+					  <li class="layui-nav-item">
+
+						<a href="javascript:;">{:lang('Information')}</a>
+
+						<dl class="layui-nav-child">
+
+						  <dd><a href="/search_edu">{:lang('School Information')}</a></dd>
+
+						  <dd><a href="/search_trans">{:lang('Transcript')}</a></dd>
+
+						</dl>
+
+					  </li>
+
+				</ul>
+
+			</div>
+
+		</div>
+
+	</header>
+
+	
+
+	<!-- info hd -->
+
+	<div class="T_main Q_main">
+
+		<div class="Q_rt_line">
+
+		 <h3 class="Q_tit">{$info.username} | {$edu.academic_level}</h3>
+
+		</div>
+
+		<div class="Q_lt_box">
+
+			<div class="Qi_hd">
+
+				<div class="Qi_Hpic">
+
+					<img src="{$info.head_img}">
+
+				</div>
+
+				<div class="Qi_Hbasci">
+
+					<h3 class="Qi_tit">
+
+						{$info.username}
+
+						<i class="fa fa-print"></i>
+
+					</h3>
+
+					<div>
+
+						<table border="" cellspacing="" cellpadding="">
+
+							<tr>
+
+								<td>{:lang('Gender')}:</td><td>{$info.sex}</td>
+
+								<td>{:lang('Date of Birth')}:</td><td>{$info.birth_time}</td>
+
+							</tr>
+
+							<tr>
+
+								<td>{:lang('Country of Citizenship')} :</td><td>{$info.name}</td>
+
+								<td>{:lang('Maple Leaf Card')}:</td><td>{$info.id_number}</td>
+
+							</tr>
+
+							<tr>
+
+								<td>{:lang('E-mail')}:</td><td rowspan="3">{$info.email}</td>
+
+							</tr>
+
+						</table>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="Qi_bd">
+
+				<table class="Qi_info" border="" cellspacing="" cellpadding="">
+
+					<tr>
+
+						<td>{:lang('Student ID')}</td><td>{$edu.student_id}</td>
+
+						<td>{:lang('School Name')}</td><td>{$edu.name_en}</td>
+
+					</tr>
+
+					<tr>
+
+						<td>{:lang('Academic Degree')}</td><td> {$edu.academic_level}</td>
+
+						<td>{:lang('School Category')}</td><td>{$edu.student_id}Public universities</td>
+
+					</tr>
+
+					<tr>
+
+						<td>{:lang('Subject Category')}</td><td>{$edu.title_en}</td>
+
+						<td>{:lang('Professional Title')}</td><td>{$edu.pro_title}</td>
+
+					</tr>
+
+					<tr>
+
+						<td>{:lang('Length of Schooling')}</td><td >{$edu.school_year}</td>
+
+						<td>{:lang('Dissertation')}</td><td>{$edu.paper_name}</td>
+
+						
+
+					</tr>
+
+					<tr>
+
+						<td>{:lang('Start Date')}</td><td>{$edu.enrollment_date}</td>
+
+						<td>{:lang('Form of Study')}</td><td>full time</td>
+
+					</tr>
+
+					<tr>
+
+						<td>{:lang('Graduation Date')}</td><td>{$edu.completion_date}</td>
+
+						<td>{:lang('Year of Establishment')}</td><td>{$edu.clnf}</td>
+
+					</tr>
+
+					<tr>
+
+						<td>{:lang('Exchange Type')}</td><td colspan="3">WSE人才库</td>
+
+					</tr>
+
+					<tr>
+
+						<td >{:lang('Date of Application')}</td>
+
+						<td>
+
+							{$info.create_time|substr=0,-9}
+
+						</td>
+
+						<td>{:lang('Date of Review')}</td><td>{$info.update_time|substr=0,-9}</td>
+
+					</tr>
+
+					<!--<tr>
+
+						<td rowspan="2">{:lang('Grade')}</td>
+
+						<td  colspan="3">{:lang('According to official records')}, York University 2018 {:lang('Education Total Credits')}: 160</td>
+
+					</tr>
+
+					<tr>
+
+						<td  colspan="3">{:lang('According to the materials provided by the student, the final GPA')}:3.56</td>
+
+					</tr>-->
+
+					<!--<tr>
+
+						<td>{:lang('Pre-school')}</td><td>{$edu.pre_education_school}  {$edu.hschool_province} </td>
+
+						<td>{:lang('Pre-school Education')}</td><td>{$edu.pre_education}</td>
+
+					</tr>-->
+
+					<tr>
+
+						<td class="Qi_Dec" colspan="4">
+
+							<h3>***{:lang('Declaration')} :</h3>
+
+							<p>1.     {:lang('This material shall not be used for purposes contrary to the wishes of the owner without the consent of the holder of the educational background information.The educational background information is marked with "*", indicating that the content is unknown.If the educational background information has been modified, please refer to the online query content of the website.')}</p>
+
+							<p>2.     {:lang('The result of academic qualification certificate inquiry is only used by the searcher and does not have the function of re-verification.')}</p>
+
+						</td>
+
+					</tr>
+
+
+
+					
+
+				</table>
+
+				<div class="Q_Sign">
+
+					<img src="/static/images/logo.png" >
+
+					<p>{:lang('EDU DATA EXCHANGE CERTIFICATE CENTER')} </p>
+
+				</div>			
+
+							
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<!--主要内容-->
+
+
+
+	<footer class="User_ft">
+
+		<a href="/">{:lang('Home')}</a> | <span>© Copyright 2019 ca.university All Rights Reserved</span>
+
+	</footer>
+
+
+
+	</body>
+
+
+
+</html>

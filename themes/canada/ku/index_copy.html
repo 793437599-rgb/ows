@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('Verification Services')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/header.css" />
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/canada/css/header-anim.css">
+    <link rel="stylesheet" href="/canada/css/header-new.css">
+    <link rel="stylesheet" href="/canada/css/VerificationServices.css">
+    <link rel="stylesheet" href="/canada/css/query.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="//aeis.alicdn.com/sd/ncpc/nc.js?t=2015052012"></script>
+    <!--page header & footer style-->
+    <link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+     <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="/canada/js/jquery.ckSlide.js"></script>
+    <script src="/canada/js/waypoints.min.js"></script>
+    <script src="/canada/js/header-main.js"></script>
+    <!-- share css & js -->
+    <link rel="stylesheet" href="/static/share/css/share.min.css">
+    <link rel="stylesheet" href="/static/share/css/share.more.css">
+    <script src="/static/share/js/share.min.js"></script>
+    <link rel="stylesheet" href="/canada/css/animate.css">
+    <link rel="stylesheet" href="/canada/css/codehim-dropdown.css">
+    <script src="/canada/js/codehim.dropdown.js"></script>
+    <script src="/static/js/gt.js"></script>
+</head>
+<body>
+    {include file="public/header-new" /}
+    <div class="verify-box">
+        <section class="verify">
+            <div class="login-main-l">
+                <div class="login-welcome-left">
+                    <h1>{:lang('WELCOME')}</h1>
+                    <div class="login-wel-red"></div>
+                    <h3>{:lang('World Storage Education')}</h3>
+                    <p>{:lang('Wse has empowered international students and professionals to reach their goals through our trusted credential evaluations and advice')}.</p>
+                </div>
+            </div>
+            <div class="verify-left">
+                <div class="Tr_rebox">
+                    <h3>{:lang('WHO WOULD YOU LIKE TO VERIFY?')}</h3>
+                    <hr>
+                </div>
+                <form class="layui-form" action="" method="post" id="login">
+                    <div class="form-box-table form-box-table-1">
+                        <div class="Tr_info_list ">
+                            <input type="hidden" name="huadong" id="huadong" value="0">
+                            <h4>{:lang('Name')}:</h4>
+                            <div class="Tr_formbox ">
+                                <input type="text" name="name"  value="" required />
+                            </div>
+                        </div>
+                        <div class="Tr_info_list ">
+                            <h4>{:lang('Search of ID')}:</h4>
+                            <div class="Tr_formbox ">
+                                <input type="text" name="search_id" id="id_number" value="" required />
+                            </div>
+                        </div>
+                        <div class="Tr_info_list ">
+                            <h4>{:lang('Verification')}:</h4>
+                            <div class="Tr_formbox tr-btn-text">
+                                  <div id="your-dom-id" style="margin-bottom: 10px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="btn submit ver-sub" href="javascript:;">{:lang('SUBMIT')}</a>
+                </form>
+            </div>
+        <script type="text/javascript">
+            var nc_token = ["CF_APP_1", (new Date()).getTime(), Math.random()].join(':');
+            console.log(nc_token)
+            var NC_Opt =
+            {
+                renderTo: "#your-dom-id",
+                appkey: "CF_APP_1",
+                scene: "register",
+                token: nc_token,
+                customWidth: 334,
+                trans:{"key1":"code0"},
+                language: "en",
+                isEnabled: true,
+                timeout: 3000,
+                times:5,
+                callback: function (data) {
+                    $('#huadong').val(1);
+                    window.console && console.log(nc_token)
+                    window.console && console.log(data.csessionid)
+                    window.console && console.log(data.sig)
+                }
+            }
+            var nc = new noCaptcha(NC_Opt)
+            nc.upLang('en', {
+                _startTEXT: "Drag the slider to the far right to verify",
+                _yesTEXT: "Verified",
+                _error300: "Oops, something went wrong，Click<a href=\"javascript:__nc.reset()\">Refresh</a>Again",
+                _errorNetwork: "Network is not good， <a href=\"javascript:__nc.reset()\">Click refresh</a>"
+            })
+        </script>
+            <div class="query-right">
+                <div class="query-right-top">{:lang('Verification Services')}</div>
+                <div class="query-right-box">
+                    <ul>
+                        <li><a href="{$urlss}/applications_lists"><i class="fa fa-file-text"></i><span>{:lang('Request a Verification')}</span></a>
+                        </li>   
+                        <li><a href="{$urlss}/index/user/add"><i class="fa fa-user"></i><span>{:lang('Create an Account')}</span></a></li>
+                        <li><a href="{$urlss}/index/user/log"><i class="fa fa-key"></i><span>{:lang('Log in to Your Account')}</span></a></li>
+                        <li><a href="{$urlss}/page/318"><i class="fa fa-pencil-square-o"></i><span>{:lang('Terms and Conditions')}</span></a></li>
+                        <li><a href="{$urlss}/page/70"><i class="fa fa-question-circle"></i><span>{:lang('Frequently Asked Questions')}</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>  
+    <script>
+        $(".submit").click(function () {
+            if ($('#id_number').val().length < 6) {
+                layer.msg('Please enter the correct id number');
+            } else {
+                submit();
+            }
+        })
+        $(document).keyup(function (event) {
+            if (event.keyCode == 13) {
+                submit();
+            }
+        });
+function submit() {
+            // console.log( $("#login").serialize());
+            if ($('#id_number').val().length < 6) {
+                layer.msg('Please enter the correct id number');
+                return false;
+            }
+            var nc =  $("#huadong").val();
+            if (nc == 0) {
+                layer.msg('Drag the slider to the far right to verify');
+                return false;
+            }
+            $.post("http://wse.com/query", $("#login").serialize(),
+                function (data) {
+                    if (data.code == 1) {
+                        layer.msg('query success', {
+                            time: 2000
+                        }, function () {
+                            window.location.href = data.url;
+                        })
+                    } else {
+                        layer.msg(data.msg)
+                    }
+                },
+                "json"
+            );
+        }
+    </script>
+    <script >
+        $(document).ready(function (){
+            $('.aside-policy').hide()
+            $('.aside-message').hide()
+        });
+    </script>
+    {include file="public/footer-login" /}
+</body>
+</html>

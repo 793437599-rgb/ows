@@ -1,0 +1,344 @@
+<header class="T_hd">
+	<div class="T_top">
+		<div class="T_topc">
+			<div class="filter-box">
+				<div class="select dowebok select-pc">
+					<span class="placeholder">{:lang('English')}</span>
+					<ul>
+						<li class="en">{:lang('English')}</li>
+						<li class="fr">{:lang('Français')}</li>
+						<li class="ja">{:lang('日本語')}</li>
+						<li class="cn">{:lang('中文')}</li>
+						<li class="ko">{:lang('한국어')}</li>
+						<li class="ru">{:lang('Русский')}</li>
+					</ul>
+				</div>
+			</div>
+			<div class="T_tlt">
+				<a href="/index/user/add"><i class="fa fa-user-plus"></i>{:lang('Create Account')}</a>
+				<a href="/index/user/log"><i class="fa fa-sign-in"></i>{:lang('Login In')}</a>
+				<a href="http://edu.ca.university"><i class="fa fa-check-square-o"></i>{:lang('Query verification')}</a>
+			</div>
+		</div>
+	</div>
+	<div class="T_bt">
+		<a href="/">
+			<img src="{$C['site_logo']}"/>
+<span>{:lang('EDU DATA EXCHANGE CERTIFICATE CENTER')}</span>
+		</a>
+		<div class="T_bt_form">
+			<form id="search-form" method="post">
+				<input type="text" name="search" id="search-form-input" value="" placeholder="{:lang('Search for...')}"/>
+				<input id="search-form-submit" type="submit" style="display: none;"/>
+				<button id="search-btn" type="button"><i class="fa fa-search"></i></button>
+			</form>
+<script type="text/javascript">
+                $('#search-btn').click(function () {
+                    if ($('#search-form-input').val() != '') {
+$.post("/search", $("#search-form").serialize(),
+                            function (data) {
+if (data.code == 1) {
+                                    layer.msg('query success', {time: 2000}, function () {
+//alert(data.url);
+                                        window.location.href = '/article_list?search=' + $('#search-form-input').val();
+                                    })
+                                } else {
+                                    layer.msg(data.msg)
+                                }
+                            },
+                            "json"
+                        );
+                    }
+                });
+			</script>
+		</div>
+	</div>
+</header>
+<!--    移动端导航    -->
+<nav class="codehim-dropdown">
+	<img class="logo-mobile" src="/canada/images/logo.png">
+	<div class="select dowebok">
+		<span class="placeholder">{:lang('English')}</span>
+		<ul>
+			<li class="en">{:lang('English')}</li>
+			<li class="fr">{:lang('Français')}</li>
+			<li class="ja">{:lang('日本語')}</li>
+			<li class="cn">{:lang('中文')}</li>
+			<li class="ko">{:lang('한국어')}</li>
+			<li class="ru">{:lang('Русский')}</li>
+		</ul>
+	</div>
+	<ul class="dropdown-items">
+		<li class="home-link">
+			<a class="home-link-btn"><i class="fa fa-home"></i></a>
+			<img src="/canada/images/logo.png">
+		</li>
+		<li>
+               <span class="dropdown-heading">
+               {:lang('INDIVIDUAL')}</span>
+			<ul class="menu-items">
+				<li><b><a href="/page/277.html">{:lang('Individual portal')}</a></b></li>
+				<li><b><a href="/page/275.html">{:lang('Settle in Canada')}</a></b></li>
+				<li><a href="/page/271.html">{:lang('Study in Canada')}</a></li>
+				<li class="has-child">
+					<span class="parent">{:lang('Study')}</span>
+					<ul>
+						<li><a href="/page/77.html">{:lang('Choose Canada')}</a></li>
+						<li><a href="/page/252.html">{:lang('Find an educational institution')}</a></li>
+						<li><a href="/page/52.html">{:lang('Apply to study in Canada')}</a></li>
+						<li><a href="/page/82.html">{:lang('Get financial assistance')}</a></li>
+						<li><a href="/page/84.html">{:lang('Immigrate to Canada')}</a></li>
+						<li><a href="/page/88.html">{:lang('Live in Canada')}</a></li>
+						<li><a href="/page/90.html">{:lang('Work in Canada')}</a></li>
+					</ul>
+				</li>
+				<li><a href="/page/272.html">{:lang('Work in Canada')}</a></li>
+				<li class="has-child">
+					<span class="parent">{:lang('Work')}</span>
+					<ul>
+						<li><a href="/page/79.html">{:lang('Choose Canada')}</a></li>
+						<li><a href="/page/80.html">{:lang('Find the name of your intended occupation in Canada')} </a></li>
+						<li><a href="/page/70.html">{:lang('Learn about qualifications recognition')}</a></li>
+						<li><a href="/page/255.html">{:lang('Find an occupational profile')}</a></li>
+						<li><a href="/page/95.html">{:lang('Immigrate to Canada')}</a></li>
+						<li><a href="/page/102.html">{:lang('Live in Canada')}</a></li>
+						<li><a href="/page/103.html">{:lang('Study in Canada')}</a></li>
+					</ul>
+				</li>
+				<li><b><a href="/page/276.html">{:lang('Settle outside Canada')}</a></b></li>
+				<li><a href="/page/273.html">{:lang('Study in Canada')}</a></li>
+				<li class="has-child">
+					<span class="parent">{:lang('Study')}</span>
+					<ul>
+						<li><a href="/page/105.html">{:lang('Study internationally')}</a></li>
+						<li><a href="/page/45.html">{:lang('Learn about recognition of your academic credentials')}</a></li>
+						<li><a href="/page/111.html">{:lang('Get financial assistance')}</a></li>
+						<li><a href="/page/113.html">{:lang('Emigrate from Canada')}</a></li>
+						<li><a href="/page/115.html">{:lang('Find an offshore schools and international education resources')}</a></li>
+					</ul>
+				</li>
+				<li><a href="/page/274.html">{:lang('Work in Canada')}</a></li>
+				<li class="has-child">
+					<span class="parent">{:lang('Work')}</span>
+					<ul>
+						<li><a href="/page/119.html">{:lang('Work internationally')}</a></li>
+						<li><a href="/page/122.html">{:lang('Find the name of your intended occupation outside Canada')} </a></li>
+						<li><a href="/page/132.html">{:lang('Learn about qualification recognition')}</a></li>
+						<li><a href="/page/135.html">{:lang('Emigrate from Canada')}</a></li>
+						<li><a href="/page/138.html">{:lang('Find international labour-mobility resources')}</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+               <span class="dropdown-heading">
+               {:lang('ASSESSOR')}</span>
+			<ul class="menu-items">
+				<li><b><a href="/page/239.html">{:lang('ASSESSOR PORTAL')}</a></b></li>
+				<li><b><a href="/page/240.html">{:lang('Assess an academic credential')}</a></b></li>
+				<li><a href="/page/242.html">{:lang('Issued outside Canada')}</a></li>
+				<li class="has-child">
+					<span class="parent">{:lang('Issued outside Canada')}</span>
+					<ul>
+						<li><a href="/page/128.html">{:lang('Receiving documents for assessment')}</a></li>
+						<li><a href="/page/140.html">{:lang('Confirm the status of the educational institution and/or its academic programs')} </a></li>
+						<li><a href="/page/149.html">{:lang('Authenticate the documents')}</a></li>
+						<li><a href="/page/155.html">{:lang('Compare the academic credential to those found in Canada')} </a></li>
+						<li><a href="/page/168.html">{:lang('Decide on the assessment outcome')}</a></li>
+						<li><a href="/page/171.html">{:lang('Communicate the result to the applicant')}</a></li>
+					</ul>
+				</li>
+				<li><b><a href="/page/241.html">{:lang('Access assessment resources')}</a></b></li>
+				<li><a href="/page/190.html">{:lang('Use the tools')}</a></li>
+				<li class="has-child">
+					<span class="parent">{:lang('Use the tools')}</span>
+					<ul>
+						<li><a href="/page/124.html">{:lang('Quality Assurance Framework')}</a></li>
+						<li><a href="/page/145.html">{:lang('Alternative qualification-assessment procedure')} </a></li>
+						<li><a href="/page/190.html">{:lang('Directory of Comparability Assessment Outcomes')}</a></li>
+						<li><a href="/page/189.html">{:lang('EVALUATION listserv')}</a></li>
+						<li><a href="/page/185.html">{:lang('Competency Profile')}</a></li>
+						<li><a href="/page/175.html">{:lang('Terminology Guides')}</a></li>
+					</ul>
+				</li>
+				<li><a href="/page/243.html">{:lang('Develop your skills')}</a></li>
+				<li class="has-child">
+					<span class="parent">{:lang('Develop your skills')}</span>
+					<ul>
+						<li><a href="/page/201.html">{:lang('Enrol in Assessment 101')}</a></li>
+						<li><a href="/page/191.html">{:lang('Seek employment opportunities')}</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+               <span class="dropdown-heading">
+               {:lang('EDUCATION')}</span>
+			<ul class="menu-items">
+				<li><b><a href="/page/301.html">{:lang('PROVINCES AND TERRITORIES OF CANADA')}</a></b></li>
+				<li><b><a href="/page/301.html">{:lang('Education in Canada')}</a></b></li>
+				<li><a href="/page/299.html">{:lang('Provinces and Territories of Canada')}</a></li>
+				<li class="has-child">
+					<span class="parent">{:lang('Provinces and Territories of Canada')}</span>
+					<ul>
+						<li><a href="/page/161.html">{:lang('Alberta')}</a></li>
+						<li><a href="/page/178.html">{:lang('British Columbia')}</a></li>
+						<li><a href="/page/193.html">{:lang('Manitoba')}</a></li>
+						<li><a href="/page/204.html">{:lang('New Brunswick')} </a></li>
+						<li><a href="/page/211.html">{:lang('Newfoundland and Labrador')} </a></li>
+						<li><a href="/page/218.html">{:lang('Northwest Territories')} </a></li>
+						<li><a href="/page/225.html">{:lang('Nova Scotia')} </a></li>
+						<li><a href="/page/232.html">{:lang('Nunavut')} </a></li>
+						<li><a href="/page/244.html">{:lang('Ontario')} </a></li>
+						<li><a href="/page/257.html">{:lang('Prince Edward Island')} </a></li>
+						<li><a href="/page/264.html">{:lang('Quebec')} </a></li>
+						<li><a href="/page/278.html">{:lang('Saskatchewan')} </a></li>
+						<li><a href="/page/288.html">{:lang('Yukon')}</a></li>
+					</ul>
+				</li>
+				<li><a href="/page/300.html">{:lang('An overview of education in Canada')}</a></li>
+				<li class="has-child">
+					<span class="parent">{:lang('An overview of education in Canada')}</span>
+					<ul>
+						<li><a href="/page/303.html">{:lang('Ministries/departments responsible for education in Canada')} </a></li>
+						<li><a href="/page/308.html">{:lang('Elementary and secondary education systems')}</a></li>
+						<li><a href="/page/57.html">{:lang('Postsecondary education systems')}</a></li>
+						<li><a href="/page/309.html">{:lang('Quality assurance in postsecondary education')}</a></li>
+						<li><a href="/page/305.html">{:lang('Credit transfer and articulation')}</a></li>
+						<li><a href="/page/296.html">{:lang('Qualifications frameworks')}</a></li>
+						<li><a href="/page/295.html">{:lang('Academic credentials')}</a></li>
+						<li><a href="/page/285.html">{:lang('EduCanada')}</a></li>
+						<li><a href="/page/321.html">{:lang('List of Canadian Schools: Universities')}</a></li>
+						<li><a href="/page/322.html">{:lang('List of Canadian Schools: Colleges')}</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+               <span class="dropdown-heading">
+               {:lang('MOBILITY')}</span>
+			<ul class="menu-items">
+				<li><b><a href="/page/44">{:lang('MOBILITY PORTAL')}</a></b></li>
+				<li><b><a href="/page/44">{:lang('Inbound and outbound mobility to/from Canada')}</a></b></li>
+				<li><a href="/page/44">{:lang('An overview')}</a></li>
+				<li class="has-child">
+					<span class="parent">{:lang('An overview')}</span>
+					<ul>
+						<li><a href="/page/251.html">{:lang('Alliance of Credential Evaluation Services')}</a></li>
+						<li><a href="/page/65.html">{:lang('The Lisbon Recognition Convention')}</a></li>
+						<li><a href="/page/48.html">{:lang('Other international agreements')}</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+		<li>
+               <span class="dropdown-heading">
+               {:lang('Quick links')}</span>
+			<ul class="menu-items">
+				<li><b><a>{:lang('Quick link list')}</a></b></li>
+				<li><a>{:lang('Credential recognition for')}:</a></li>
+				<li class="has-child">
+					<span class="parent">{:lang('Credential recognition for')}</span>
+					<ul>
+						<li><a href="/page/317.html">{:lang('Brief analysis of certificates')}</a></li>
+						<li><a href="/ku">{:lang('Query validation')}</a></li>
+						<li><a href="/page/84.html">{:lang('Immigration to Canada')}</a></li>
+						<li><a href="/page/70.html">{:lang('General purposes')}</a></li>
+						<li><a href="/page/45.html">{:lang('Further studies outside Canada')}</a></li>
+						<li><a href="/page/132.html">{:lang('Employment outside Canada')}</a></li>
+					</ul>
+				</li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+<script type="text/javascript">
+    /*   选择语言   */
+    $('.placeholder').text(window.sessionStorage.text);
+    $('.select').on('click', '.placeholder', function (e) {
+        var parent = $(this).closest('.select');
+        if (!parent.hasClass('is-open')) {
+            parent.addClass('is-open');
+            $('.select.is-open').not(parent).removeClass('is-open');
+        } else {
+            parent.removeClass('is-open');
+        }
+        e.stopPropagation();
+    }).on('click', 'ul>li', function (e) {
+        e.stopPropagation();
+        //点击选择语种
+        var parent = $(this).closest('.select');
+        lang = $(this).attr('class');
+        var domain = document.domain;
+        parent.removeClass('is-open').find('.placeholder').text($(this).text());
+        if (domain = 'edu.ca.university') {
+            $.get("{:url('/lang')}", "lang=" + lang, function () {
+                location.reload();
+            });
+        } else {
+            $.get("{:url('Index/lang')}", "lang=" + lang, function () {
+                location.reload();
+            });
+        }
+        /*$('.select li:first-child').on('click', function (e) {
+            e.stopPropagation();
+            console.log(1)
+            $('.placeholder').text('English')
+        });*/
+    });
+$('body').on('click', function () {
+        $('.select.is-open').removeClass('is-open');
+    });
+/*   移动端导航   */
+    $(function () {
+        $(".codehim-dropdown").CodehimDropdown();
+        $(".nav-downbox").find(".down-list").hide();
+        $(".nav-bg a ").click("mouseover", function () {
+            document.body.scrollTop = document.documentElement.scrollTop = 0;
+            var index = $(this).index();
+            if ($(this).hasClass("nav-active")) {
+                $(this).parent().parent().next().find(".down-list").slideUp();
+                $(this).removeClass("nav-active");
+            } else {
+                $(this).parent().parent().next().find(".down-list").hide().eq(index).slideDown();
+                $(this).addClass("nav-active").siblings().removeClass("nav-active");
+            }
+        });
+    })
+</script>
+<script>
+    //当前版本是：v3.3
+    /*window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '818011615237260',
+              cookie     : true,
+              xfbml      : true,
+              version    : 'v3.3'
+            });
+FB.AppEvents.logPageView();
+};
+(function(d, s, id){
+             var js, fjs = d.getElementsByTagName(s)[0];
+             if (d.getElementById(id)) {return;}
+             js = d.createElement(s); js.id = id;
+             js.src = "https://connect.facebook.net/en_US/sdk.js";
+             fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+       */
+    //在页面加载期间运行以检查用户登录状态
+/*function checkLoginState() {
+      FB.getLoginStatus(function(response) {
+        statusChangeCallback(response);
+      });
+    }*/
+    //提供给回调的 response 对象
+    /*{
+        status: 'connected',		//status 表示应用用户的登录状态,connected — 用户已登录
+        authResponse: {				//响应对象
+            accessToken: 'd354471a994df8d92d08c78d49f49616',		//应用用户的访问口令
+            expiresIn:'...',		//表示口令到期且需要更新的 UNIX 时间
+            signedRequest:'...',	// 经签名的参数，其中包括应用用户的信息
+            userID:'818011615237260'			//应用用户的编号
+        }
+    }*/
+</script>

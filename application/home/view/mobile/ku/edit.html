@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>UKED</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/mobile.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
+    <script src="/static/js/layui/layui.js"></script>
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+</head>
+
+<body>
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'><a class="hd-logo" href="/"> <img src="/canada/images/logo.png"/> </a>
+        <div class="infor-off"><a href="/logout"> <img src="/canada/images/off-icon.svg"/> <span>{:lang('Exit')}</span>
+        </a></div>
+    </div>
+</header>
+
+<section class="information-wrap">
+    <h2>{:lang('PERSONAL DATA DISPLAY')}</h2>
+    <div class="information">
+        <div class="header">
+            <div class="img-box"><img src="{$info.headimg}"/></div>
+            <div class="info">
+                <h3>{$info.name}</h3>
+                <p>
+                    <i class="icon iconfont icon-UK-address"></i>
+                    <b>{$edu.school}</b>
+                </p>
+            </div>
+            <ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down">
+                    <i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="{$v.id==$edu.id? 'infor-active':''}" href="/info/edu_id/{$v.id}">{:lang('Information')}</a>
+                        </li>
+                        <li><a href="/transcript/edu_id/{$v.id}">{:lang('Transcript')}</a></li>
+                    </ol>
+                </li>
+                {/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-UK-major"></i>{:lang('major')}
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/info">{:lang('Information')}</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+                <li><a href="/transfer">{:lang('TRANSFER')}</a></li>
+            </ul>
+        </div>
+        <div class="table">
+        	<form class="info-edit layui-form" action="/edit_ku" method="post">
+        		
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-Personal"></i><b>{:lang('Name')}:</b></label>
+                        <input type="text" name="name" value="{$info.name}">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-UK-date"></i><b>{:lang('Date of Birth')}:</b></label>
+                        <input type="text" id="dataBirth" placeholder="年/月/日" name="birthdate" value="{$info.birthdate}">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-address"></i><b>{:lang('Place of Birth')}:</b></label>
+                        <input type="text" name="address"  value="{$info.address}">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-gender"></i><b>{:lang('Sex')}:</b></label>
+                        <input type="radio" name="sex" value="男" title="男">
+                        <input type="radio" name="sex" value="女" title="女" checked>
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-passport"></i><b>{:lang('Passport')}:</b></label>
+                        <input type="text"  name="passport" value="{$info.passport}">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-UK-university"></i><b>{:lang('University')}:</b></label>
+                        <input type="text" name="school" value="{$edu.school}">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-Website"></i><b>{:lang('Official Website')}:</b></label>
+                        <input type="text" name="web_site" value="{$edu.web_site}">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-degree"></i><b>{:lang('Degree')}:</b></label>
+                        <input type="text" name="academic_level" value="{$edu.academic_level}" />
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-student"></i><b>{:lang('Student ID')}:</b></label>
+                        <input type="text" name="student_id" value="{$edu.student_id}">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-UK-major"></i><b>{:lang('Major')}:</b></label>
+                        <input type="text" name="major"  value="{$edu.major}" />
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-Study_Mode"></i><b>{:lang('Study Mode')}:</b></label>
+                        <input type="text" name="study_mode" value="{$edu.study_mode}" />
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-Length_schooling"></i><b>{:lang('Length of schooling')}:</b></label>
+                        <input type="number" name="school_year"  value="{$edu.school_year}" />
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-Language"></i><b>{:lang('Language of Instruction')}:</b></label>
+                        <input type="text" name="instruction_language"  value="{$edu.instruction_language}" />
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-UK-date"></i><b>{:lang('Date of Enrollment')}:</b></label>
+                        <input type="text" id="dataEnrollment" placeholder="年/月/日"  name="enrollment_date" value="{$edu.enrollment_date}">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-date"></i><b>{:lang('Date of Completion')}:</b></label>
+                        <input type="text" id="dataCompletion" placeholder="年/月/日" name="completion_date" value="{$edu.completion_date}">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-Pre_Education"></i><b>{:lang('Faculty')}:</b></label>
+                        <input type="text" name="faculty" value="{$edu.faculty}">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-Faculty"></i><b>{:lang('Pre Education')}:</b></label>
+                        <input type="text" name="pre_education" value="{$edu.pre_education}">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-Pre_Education_name"></i><b>{:lang('Name of Pre-education')}:</b></label>
+                        <input type="text" name="pre_education_school" value="{$edu.pre_education_school}">
+                    </div>
+                </div>
+                <div class="info-edit-item remark">
+                    <div>
+                        <label><i class="icon iconfont icon-uk-apply"></i><b>{:lang('Remark')}:</b></label>
+                        <textarea>{$edu.remark}</textarea>
+                    </div>
+                </div>
+                <div class="info-edit-item diploma">
+                    <div>
+                        <label><b>{:lang('DIPLOMA')}</b></label>
+                        <input type="text" name="diploma" id="" value="{$edu.diploma}" />
+                        <span>
+                            <img src="{$edu.diploma}" alt="diploma">
+                        </span>
+                    </div>
+                    <div>
+                    	
+                        <label><b>{:lang('TRANSCRIPT')}</b></label>
+                        <input type="text" name="transcript" id="" value="{$edu.transcript}" />
+                        <span>
+                            <img src="" alt="">
+                        </span>
+                        
+                    </div>
+                </div>
+                <div class="info-edit-item remark">
+                	
+                    <div>
+                        <input type="submit" value="{:lang('Save')}">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+<div class="infor-ft"><a href="#">Home</a>&nbsp;|&nbsp; <span>Copyright © Canada education data</span></div>
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+    layui.use(['form','laydate'], function(){
+        var form = layui.form
+            ,laydate = layui.laydate;
+
+        laydate.render({
+            elem: '#dataBirth'
+        });
+        laydate.render({
+            elem: '#dataEnrollment'
+        });
+        laydate.render({
+            elem: '#dataCompletion'
+        });
+    });
+</script>
+</body>
+
+</html>

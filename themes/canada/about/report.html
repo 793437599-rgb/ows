@@ -1,0 +1,179 @@
+ <script src="/static/js/layui/layui.js"></script>
+ 
+<div class="problem-box">
+    <div class="problem-fail">
+        <h1 class="title">{:lang('Reporting Center')}</h1>
+        <div class="mess-board">
+              <form  class="layui-form" >
+            <h2>{:lang('Please fill in the report information')}</h2>
+            <div class="mess-content">
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-xs6">
+                        <div>
+                            <p><b>{:lang('Complaint object name')}</b></p>
+                            <input type="text" lay-verify="required" required   class="mess-input-v1" name="name">
+                            
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div>
+                            <p><b>{:lang('User code')}</b></p>
+                            <input type="text" lay-verify="required"  name="code"   class="mess-input-v1">
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-row layui-col-space15">
+                    <div class="layui-col-xs6">
+                        <div>
+                            <p><b>{:lang("Informer's phone")}</b></p>
+                            <input type="text" lay-verify="required"  name="phone"    class="mess-input-v1">
+                        </div>
+                    </div>
+                    <div class="layui-col-xs6">
+                        <div>
+                            <p><b>{:lang("Informer's mailbox")}</b></p>
+                            <input type="text"   lay-verify="required|email" name="mail"    class="mess-input-v1">
+                        </div>
+                    </div>
+                </div>
+                <div class="basic-filebox">
+                    <p><b>{:lang('upload files')}</b></p>
+                    <p>{:lang('Please upload relevant files')}</p>
+                    <!-- <div class="file-ev" id="file-content">
+                        <i class="layui-icon layui-icon-addition"></i>
+                    </div> -->
+                    <div class="layui-upload-list">
+                        <div class="uploa-pre-view" id="uploadDemoView">
+                        </div>
+                        <div class="layui-upload-drag" id="ID-upload">
+                            <i class="icon iconfont">&#xe66b;</i>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <p><b>{:lang('describe')}</b></p>
+                        <textarea name="desc"    rows="10"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="mess-sub-box">
+                <button type="button" class="mess-sub" lay-submit lay-filter="save">{:lang('Submit')}</button>
+            </div>
+            <br> </form>
+        </div>
+    </div> 
+</div>
+<script>
+    // layer.photos({
+    //     photos: '.layer-photos-demo',
+    //     anim: 5
+    // });
+
+    layui.use(['form', 'upload','element'], function () {
+        var layer = layui.layer;
+        var form = layui.form,  upload = layui.upload;
+        var element = layui.element;
+        var sfz = $('#uploadDemoView .uploadImg').length;
+        let num = 4 - sfz;
+        let uploadInst = upload.render({
+            elem: '#ID-upload'
+            , url: '/upload'
+            , accept: 'file'
+            , multiple: true
+            , exts: 'pdf|jpeg|png|jpg'
+            , number:num
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    let img = '';
+                    let upload_class = '';
+                    if (file.type == 'application/pdf'){
+                        img = '/canada/images/blockchain/PDF.png';
+                        upload_class = 'upload-pdf';                   
+                    }else {
+                        img = result;
+                        upload_class = 'preview';
+                    }
+                    let content = '<div class="layui-inline uploadImg '+ upload_class +'" id="uploadImg_'+ index +'">' +
+                        '<img src="'+ img +'">' +
+                        '<i class="fa fa-trash sfz-del" aria-hidden="true"></i>' +
+                    '</div>';
+                    $('#uploadDemoView').append(content);
+                });
+            }
+            ,done: function (res,index) {
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed');
+                } else {
+                    //上传成功
+                    if (sfz > 4) {
+                        return ' Can\'t be more than 4'
+                    }
+                    $('#uploadImg_' + index).append('<input type="hidden" class="certificate_img" name="evidence[]" value="' + res.msg + '">');
+                    num--;
+                    $('#ID-upload').removeClass('layui-form-danger')
+                    if ($('#uploadDemoView').children().length >= 4){
+                        $('#ID-upload').hide();
+                    }
+                }
+                layer.photos({
+                    photos: '.preview',
+                    closeBtn: 2,
+                    tab: function (pic, layero) {
+                        // console.log(pic) //当前图片的一些信息
+                    }
+                });
+            }
+            ,allDone: function(obj){ //当文件全部被提交后，才触发
+                // console.log(obj.total); //得到总文件数
+                // console.log(obj.successful); //请求成功的文件数
+                // console.log(obj.aborted); //请求失败的文件数
+            }
+            ,error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#ID-text');
+                demoText.html('<span style="color: #FF5722;">Upload Failed</span> <a class="layui-btn layui-btn-xs demo-reload">{:lang("Try Again")}</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    idUpload.upload();
+                });
+            }
+        });
+        $(document).on('click', '.sfz-del', function () {
+            num++;
+            uploadInst.reload({
+                number: num
+            })
+            $(this).parents('.uploadImg').remove();
+            $('#ID-upload').show();
+        });
+
+
+        form.on('submit(save)', function(data){
+                // var qujian =  $("#qujian").text();
+                // data.field['area_code'] = qujian.substr(1);
+                if ($('.certificate_img').length == 0){
+                    $('#ID-upload').addClass('layui-form-danger');
+                    layer.tips('{:lang("Please upload the evidence file")}','#ID-upload',{tips:[3,'#FF5722']});
+                    return false
+                }
+                $.post('/index/about/report',data.field,function (result) {
+                    if(result.code == 20000){
+                        layer.msg(result.msg,{time:1500},function(){
+                        //window.location.reload();
+                        location.href="{:url('/')}";
+                    }); 
+                }else {
+                    layer.msg(result.msg,{icon:5,time:1000});
+                }
+            });
+        });
+    })
+
+    $('.icon-cross, .tips-btn a').on('click', function () {
+        $('.w-tips').hide()
+    })
+
+    
+
+</script>

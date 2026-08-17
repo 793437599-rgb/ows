@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>CANADA.EDUCATION DATA-SEARCH</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/canada/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+		<script src="/canada/js/jquery.min.js"></script>
+	    <script type="text/javascript" src="/canada/js/mobile.js" ></script>
+	    <script type="text/javascript" src="/static/js/layer/layer.js" ></script>
+	</head>
+	<body class="login-bg">
+        <style>
+            .log-ver{width:127px;height:50px;}
+            .log-list .log-icon{width: 28px;}
+        </style>
+        <div class="login-hd">
+			<div class="main-with">
+				<a class="login-logo" href="/">
+					<img src="/canada/images/logo.png"/>L'évaluation de la performance des étudiants internationaux de données.
+				</a>
+			</div>
+		</div>
+	  	<div class="log-rt">
+	  		<h2><img src="/canada/images/logo.png"/></h2>
+	  		<form action="" method="post">
+	  			<div class="log-list">
+					<img id="blur_img_1" class="log-icon" src="/canada/images/pass-icon.svg"/>
+	  				<input id="blur_input_1" type="text" value="" name="passport" placeholder="Passport No"/>
+	  			</div>
+	  			<div class="log-list">
+					<img id="blur_img_2" class="log-icon" src="/canada/images/name-icon.svg"/>
+	  				<input id="blur_input_2" type="text" value="" name="name" placeholder="name"/>
+	  			</div>
+	  			<div class="log-list">
+	  				<img id="blur_img_3" class="log-icon" src="/canada/images/yz-icon.svg"/>
+	  				<input id="blur_input_3" type="text" name="captcha" value="" placeholder="Verification" maxlength="6" />
+	  				<img class="log-ver" src="{:captcha_src()}" alt="captcha" onclick="this.src='/captcha.html?time='+Math.random()"/>
+	  			</div>
+	  			<button type="button" class="log-btn">SEARCH</button>
+	  			<a class="log-back" href="/">Home</a>
+	  		</form>
+          </div>
+          <div class="logo-bot">
+	  		<ul class="main-with logob-top">
+	  			<li>
+	  				<a href="/page/301.html">
+	  					<img src="/canada/images/login-1.svg"/>
+	  					<p>Education</p>
+	  				</a>
+	  			</li>
+	  			<li>
+	  				<a href="/page/317.html">
+	  					<img src="/canada/images/login-2.svg"/>
+	  					<p>Certificate introduction</p>
+	  				</a>
+	  			</li>
+	  			<li>
+	  				<a href="/page/239.html">
+	  					<img src="/canada/images/login-3.svg"/>
+	  					<p>ADDESSOR</p>
+	  				</a>
+	  			</li>
+	  			<li>
+	  				<a href="/page/272.html">
+	  					<img src="/canada/images/login-4.svg"/>
+	  					<p>WORK</p>
+	  				</a>
+	  			</li>
+	  			<li>
+	  				<a href="/page/321.html">
+	  					<img src="/canada/images/login-5.svg"/>
+	  					<p>Quick links</p>
+	  				</a>
+	  			</li>
+	  		</ul>
+	  		<div class="logb-hd">
+	  			<div class=" main-with login-link">
+	  				<a href="javascript:;">© COPYRIGHT EDU.CA.UNIVERSITY</a>
+	  				<a href="https://www.parchment.com/">parchment</a>
+	  				<a href="https://www.myequals.net/#/user/login">My eQuals</a>
+	  				<a href="http://www.aic.lv/portal/en/sakums">Academic Information</a>
+	  				<a href="https://www.nuffic.nl/">NUFFIC</a>
+	  				<a href="http://www.nic.gov.ru/">NUFFIC</a>
+	  				<a href="https://hedd.ac.uk/">HEDD</a>
+	  				<a href="https://www.ece.org">ECE</a>
+	  				<a href="http://www.cscse.edu.cn">cscse.edu</a>
+	  				
+	  			</div>
+	  		</div>
+	  	</div>
+	
+    <script>
+		$('#blur_input_1').blur(function () {
+			$('#blur_img_1').attr('src','/canada/images/pass-icon-active.svg');
+		});
+		$('#blur_input_2').blur(function () {
+			$('#blur_img_2').attr('src','/canada/images/name-icon-active.svg');
+		});
+		$('#blur_input_3').blur(function () {
+			$('#blur_img_3').attr('src','/canada/images/yz-icon-active.svg');
+		});
+        $(".log-btn").click(function (e) {
+            e.preventDefault();
+            $.post("/index/ku/login", $("form").serialize(),
+                function (data) {
+                    if(data.code==1){
+                        layer.msg('登录成功',{time:500},function(){
+							window.location.href=data.url;
+						})
+                    }else{
+                        layer.msg(data.msg)
+                    }
+                },
+                "json"
+            );
+        });
+    </script>
+	</body>
+</html>

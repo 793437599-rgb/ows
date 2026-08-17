@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="layui-container">
+<div class="layui-row layui-col-space15">
+            <div class="layui-col-sm2">
+                <!--    nav-left    -->
+                {include file="public/nav-left2" /}
+            </div>
+            <div class="layui-col-sm10">
+                <!--    user avatar    -->
+                <div class="layui-row user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="/static/images/person-icon.png"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{:lang('Application and Electronic Delivery Instruction')}</h1>
+                        <p><b>Tom</b></p>
+                        <p>8788@qq.com — X361987</p>
+                    </div>
+                </div>
+                <hr/>
+<!--    transfer information    -->
+                <section class="layui-row information-wrap">
+                    <h2>{:lang('Application and Electronic Delivery Instruction')}</h2>
+                    <div class="application border-shadow">
+                        <div class="apply clearfix">
+                            <div class="layui-row layui-col-space30 apply_main clearfix">
+                                <div class="layui-col-sm6">
+                                    <div class="apply_main_left">
+                                        <div class="left_top">
+                                            <h4>{:lang('Apply Online Verification Report')}</h4>
+                                            <!--<a>{:lang('Sample')}</a>-->
+                                        </div>
+                                        <div class="left_bottom"></div>
+                                        <div class="layui-row">
+                                            <div class="layui-col-sm2 left_l">
+                                                <span class="one"></span>
+                                                <span class="arrow_1"></span>
+                                                <span class="two"></span>
+                                                <span class="arrow_2"></span>
+                                                <span class="three"></span>
+                                            </div>
+                                            <div class="layui-col-sm9 left_r">
+                                                <div class="one">
+                                                    <h5>{:lang('Log into "WSE"')}</h5>
+                                                    <p>{:lang('If you can’t get an online verification report for your qualification here, please go to Online Application Platform')}</p>
+                                                </div>
+                                                <div class="two">
+                                                    <h5>{:lang('Go to "International Cooperative Application" column')}</h5>
+                                                    <p>{:lang('Choose English Translation and make payment online')}</p>
+                                                </div>
+                                                <div class="three">
+                                                    <h5>{:lang('Verification completed')}</h5>
+                                                    <p>{:lang('View your verification report online')}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm6">
+                                    <div class="apply_main_right">
+                                        <div class="left_top">
+                                            <h4>{:lang('Apply Verification Report')}</h4>
+                                            <!--<a>{:lang('Sample')}</a>-->
+                                        </div>
+                                        <div class="left_bottom"></div>
+                                        <div class="layui-row">
+                                            <div class="layui-col-sm2 left_l">
+                                                <span class="one"></span>
+                                                <span class="arrow_1"></span>
+                                                <span class="two"></span>
+                                                <span class="arrow_2"></span>
+                                                <span class="three"></span>
+                                            </div>
+                                            <div class="layui-col-sm9 left_r">
+                                                <div class="one">
+                                                    <h5>{:lang('Go to "Online Application Platform"')}</h5>
+                                                    <p>{:lang('Click "Start an application"')}</p>
+                                                </div>
+                                                <div class="two">
+                                                    <h5>{:lang('Enter into "Start an application" column')}</h5>
+                                                    <p>{:lang('Make payment online')}</p>
+                                                    <p>{:lang('Wait for the verification result (About one month to complete the entire verification process)')}</p>
+                                                </div>
+                                                <div class="three">
+                                                    <h5>{:lang('Verification completed')}</h5>
+                                                    <p>{:lang('View your verification report online Relog into "WSE"')}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="apply_main_arrow_1">
+                                    <span></span>
+                                </div>
+                                <div class="apply_main_arrow_2">
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="apply_btm">
+                                {:lang('Go to “International Cooperative Application” under “WSE” to send reports to your applied institution.')}
+                                <a class="send_report">{:lang('Send Report')}</a>
+                            </div>
+                            <p class="apply_text">{:lang('（Flowchart of Cooperative Application）')}</p>
+                            <div class="note">
+                                <p>{:lang('Firstly complete the online application according to WSE’s requirement. Then follow the instructions below to apply for verification report(s) and submit to international institution through the WSE Portal Service.')}</p>
+                                <ol class="listOl">
+                                    <li class="fontB">{:lang('STEP 1:')} <a>{:lang('REGISTER')}</a> {:lang('a WSE ACCOUNT')}</li>
+                                    <li><span class="fontB">{:lang('STEP 2:')} {:lang('APPLY FOR YOUR REPORT(S)')}</span>
+                                        <ol class="listOl2">
+                                            <li><span class="fontB">{:lang('1.Log in to the&nbsp;WSE Website, choose&nbsp;“International Cooperative Application”;')}</span>
+                                            </li>
+                                            <li>
+                                                <span class="fontB">{:lang('2.Select translation types:')} </span>
+                                                <ol class="listOl3">
+                                                    <li>{:lang('Online Verification Report for Higher Education Student Record;')}</li>
+                                                    <li>{:lang('Online Verification Report for Higher Education Qualification;')}</li>
+                                                    <li>{:lang('Verification Report of China Higher Education Qualification Certificate;')}</li>
+                                                    <li>{:lang('China Higher Education Degree Certificate Information (Translation).')}</li>
+                                                </ol>
+                                            </li>
+                                            <li>
+                                                <span class="fontB">{:lang('Other Verification Reports')}</span>
+                                                <ol class="listOl3">
+                                                    <li>{:lang('Go to')} <a>{:lang('Online Application Platform')}</a> {:lang('to apply for required verification report(s);')}</li>
+                                                    <li>{:lang('For Chinese degree verification please go to CDGDC.')}</li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                    </li>
+                                    <li><span class="fontB">{:lang('STEP 3:')} {:lang('DELIVER YOUR REPORT(S)')}</span>
+                                        <ol class="listOl3">
+                                            <li>{:lang('Log in to&nbsp;')}<a>{:lang('WSE Archive')}</a>{:lang('&nbsp;and choose "International Cooperative Application", click “Send Report(s)”;')}</li>
+                                            <li>{:lang('Select country and institution from drop-down list, and enter the requested personal information;')}</li>
+                                            <li>{:lang('Select report(s) that you wish to send, confirm and send.')}</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                                <p><b>{:lang("Note: Pricing of WSE's Verification Reports")}</b></p>
+                                <br>
+                                <p>{:lang('Contact:')} 416-526-2352</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+</div>
+</section>
+{include file="public/footer-login" /}
+</body>
+</html>

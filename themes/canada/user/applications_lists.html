@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>{:lang('My Applications')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+	<link rel="stylesheet" href="/canada/fonts/iconfont.css" />
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <style  >
+        .layui-table tr:nth-child(odd) {
+        background-color: #fff;
+    }
+	/* 2020-07-28 */
+		.app-lists{
+			display:-webkit-flex;
+			display: flex;
+			align-items: center;
+		}
+		.app-lists i{
+			font-size: 26px;
+			margin-left: 10px;
+			margin-right: 30px;
+			color: #D3101B;
+		}
+    </style>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div >
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                {include file="public/_nav_center_header" /}
+		        <div class="layui-row">
+		            <div class="layui-col-sm12">
+                        <div class="layui-row step-come steps">
+                            <div class="variable-content application-lists">
+                                <!-- <p>{:lang('Select "More Information" to see more details about a program and to start an application. If there is an application fee, you will not be required to pay it until you have completed and submitted the application.')}</p> -->
+                                <p>{:lang('Please read the instructions below the project carefully, and select the corresponding application project according to your needs to apply.')}</p>
+                                <table class="layui-table">
+                                <tbody>
+                                    <tr style="text-align: center;height: 60px;background-color:#f2f2f2;">
+                                        <td>{:lang('Application Project')}</td>
+                                        <td class="layui-hide-xs">{:lang('Application Status')}</td>
+                                        <td>{:lang('Apply')}</td>
+                                    </tr>
+                                {php} $icon = ['icon-diploma1','icon-Immigration-crude','icon-updata','icon-fuben']; {/php}
+                                {foreach name='applications' item='vo'}
+                                    <tr>
+                                        <td style="font-size: 16px;">
+                                            <div class="app-lists">
+                                                <i class="iconfont {$icon[$key]}"></i>
+                                                <div class="app-lists-detial">
+                                                    <b>{:lang($vo.name_en)}</b><p class="layui-hide-xs" style="font-size: 12px; color:rgb(166,166,166);">{:lang($vo.msginfos)}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="status-info layui-hide-xs">
+                                            <div>
+                                                {if $vo.order_status < 3}
+                                                <ul>
+                                                    {foreach name='vo.steps' item="v" key='k'}
+                                                    <li {if condition="in_array($v.id,$vo['step_complete'])"}class="active " {/if}>{$k+1}</li>
+                                                    {/foreach}
+                                                </ul>
+                                                {else/}
+                                                    <p class="layui-hide-xs" style="color: {if $vo.order_status_des == 3}#5FB878{elseif $vo.order_status_des == 4} #FF5722{elseif $vo.order_status_des == 7}#2F4056{else/}#FF5722{/if} ">{$vo.order_status_des}</p>
+                                                {/if}
+                                            </div>
+                                        </td>
+                                        <td>
+                                            {if  !empty($vo['resign']) &&($vo.resign ==1)}
+                                            <a href="{:url('index/user/updata_sign',['app_id'=>$vo.id])}"   class="layui-btn mazarine">  {:lang('Need to re-sign')}</a>
+                                            {else/}
+                                            {if condition="$vo.order_status < 3"}
+                                            <a href="javascript:;" onclick="link('{$vo.id}')" class="layui-btn mazarine">
+                                            {:lang('apply')}</a>
+                                            {elseif  $vo.order_status == 3 ||  $vo.order_status == 5 || $vo.order_status == 4 || $vo.order_status == 8/}
+                                            <a href="{:url('index/order/detail',['order_no'=>$vo.order_no])}" class="layui-btn mazarine">{:lang('Details')}</a>
+                                            {elseif  $vo.order_status == 7 /}
+                                     <!--        <a href="{:url('index/user/orderinfo')}" class="layui-btn mazarine">{:lang('My Storage')}</a> -->
+                                            <!-- <a href="javascript:;" onclick="link('{$vo.id}')" class="layui-btn mazarine">   {:lang('apply')}</a> -->
+                                            <a href="{:url('index/order/detail',['order_no'=>$vo.order_no])}" class="layui-btn mazarine">{:lang('Details')}</a>
+                                            {/if}
+                                             
+                                            {/if}
+                                             
+                                        </td>
+                                    </tr>
+                                    {/foreach}
+                                    <tr >
+                                        <td style="font-size: 16px;">
+                                            <div class="app-lists">
+                                                <i class="iconfont icon-Blockchain"></i>
+                                                <div class="app-lists-detial">
+                                                    <b>{:lang('WSE--Blockchain  Storage')}</b>
+                                                    <p class="layui-hide-xs" style="font-size: 12px;color:rgb(166,166,166);">{:lang('Store your application information on the blockchain and permanently deposit the certificate')}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td colspan="2" class="layui-hide-xs">{:lang('Apply for this service item automatically after applying for DAE service, no need to apply separately')}</td>
+                                        <td colspan="2" class="layui-hide-sm">/</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

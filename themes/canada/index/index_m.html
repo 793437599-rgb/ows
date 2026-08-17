@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+	<meta charset="utf-8" />
+	<title>{$C['site_title']}{$title?='--'.$title}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="/canada/css/common.css" />
+	<link rel="stylesheet" href="/static/css/flexslider.min.css">
+	<!--<link rel="stylesheet" href="/static/js/layui/css/layui.css"/>-->
+	<link rel="stylesheet" href="/canada/css/animate.css">
+	<link rel="stylesheet" href="/canada/css/codehim-dropdown.css">
+	<link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+	<link rel="stylesheet" type="text/css" href="/canada/css/education.css" />
+	<link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+	<meta name="description" content="{$C['seo_keyword']}">
+	<meta name="keywords" content="{$C['seo_description']}">
+	<!--<script src="/canada/js/jquery.min.js"></script>-->
+	<script src="/canada/js/jquery-1.9.1.min.js"></script>
+	<script src="/static/js/jquery.flexslider-min.js"></script>
+	<script type="text/javascript" src="/canada/js/mobile.js"></script>
+	<script type="text/javascript" src="/canada/js/common.js"></script>
+	<script type="text/javascript" src="/canada/js/selectFilter.js"></script>
+	<script src="/canada/js/codehim.dropdown.js"></script>
+	<!-- share css & js -->
+	<link rel="stylesheet" href="/static/share/css/share.min.css">
+	<link rel="stylesheet" href="/static/share/css/share.more.css">
+	<script src="/static/share/js/share.min.js"></script>
+	<!--<script src="/static/js/layui/layui.js"></script>-->
+	<script src="/static/js/langCookie.js"></script>
+	<script type="text/javascript" src="/static/js/layer/layer.js" ></script>
+</head>
+<body>
+{include file="public/header_m" /}
+<!--banner-->
+<div class="T_banner">
+	<div class="T_banner_mian">
+		<div class="T_b_text">
+			<h3>{:lang('Do you need a graduation education data exchange?')}</h3>
+			<a href="/index/user/add">{:lang('Learn More')}</a>
+		</div>
+		<div class="T_b_Entrance">
+			<h1>WSE <span>{:lang('Entrance')}</span> </h1>
+			<p>{:lang('WSE is an important tool for studying work and life in Canada.')}</p>
+			<a class="T_b_btn" href="https://edu.ca.university">{:lang('Free evaluation')}</a>
+			<a href="https://edu.ca.university/log">{:lang('Canadian immigrant')}</a>
+			<a href="https://edu.ca.university/log">{:lang('Canadian work permit')}</a>
+		</div>
+	</div>
+</div>
+<!--各国认证机构-->
+<div class="T_full">
+	<div class="T_main  T_box">
+		<h1>{:lang('WSE agent applies for accreditation assessment report of higher education institutions in various countries')}</h1>
+		<div class="flexslider T_cerbox">
+			<ul class="slides">
+				<li>
+					<div class="T_list">
+						<div class="T_list_hd">
+							<img src="/canada/images/cun1_usa.png"/>
+							<h2>{:lang('USA')}</h2>
+							<!--<p>American Higher Education Certification Body</p>-->
+						</div>
+						<ul>
+							<li>
+								<div>
+									<img src="/canada/images/USA_cer_1.jpg"/>
+									<a href="#"><h3>{:lang('NSCH')}</h3></a>
+									<a href="https://www.studentclearinghouse.org/" target="_blank"><p>{:lang('National Student Clearinghouse')}</p></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/USA_cer_2.jpg"/>
+									<a href="#"><h3>{:lang('WES')}</h3></a>
+									<a href="https://www.wes.org/" target="_blank"><p>{:lang('WORLD EDUCATION SERVICE')}</p></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/USA_cer_3.jpg"/>
+									<a href="#"><h3>{:lang(' ECE')}</h3></a>
+									<a href="https://www.ece.org/ECE" target="_blank"><p>{:lang('Educational Credential Evaluators')}</p></a>
+								</div>
+							</li>
+							<li>
+								<div id="">
+									<img src="/canada/images/USA_cer_4.jpg"/>
+									<a href="#"><h3>{:lang('NACES')}</h3></a>
+									<a href="https://www.naces.org/" target="_blank"><P>{:lang('National Association of Credential Evaluation Services')}</P></a>
+								</div>
+							</li>
+</ul>
+					</div>
+					<div class="T_list">
+						<div class="T_list_hd">
+							<img src="/canada/images/cun1_ca.png"/>
+							<h2>{:lang('Canada')}</h2>
+						</div>
+						<ul>
+							<li>
+								<div >
+									<img src="/canada/images/CANADA_cer_1.jpg"/>
+									<a href="#"><h3>{:lang('ICAS')}</h3></a>
+									<a href="https://www.icascanada.ca/home.aspx" target="_blank"><P>{:lang('International Credential Assessment Service of Canada')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/USA_cer_2.jpg"/>
+									<a href="#"><h3>{:lang('WES')}</h3></a>
+									<a href="https://www.wes.org/ca" target="_blank"><p>{:lang('WORLD EDUCATION SERVICE')}</p></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/CANADA_cer_3.jpg"/>
+									<a href="#"><h3>{:lang('IQAS')}</h3></a>
+									<a href="https://www.alberta.ca/iqas-education-guides.aspx" target="_blank"><p>{:lang('International qualification assessment service')}</p></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/CANADA_cer_4.jpg"/>
+									<a href="#"><h3>{:lang('ICEA')}</h3></a>
+									<a href="https://www.bcit.ca/ices/" target="_blank"><p>{:lang('INTERNATIONAL CREDENTIAL EVALUATION SERVICE')}</p></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="T_list">
+						<div class="T_list_hd">
+							<img src="/canada/images/cun1_ch.png"/>
+							<h2>{:lang('CHINA')}</h2>
+						</div>
+						<ul>
+							<li>
+								<div >
+									<img src="/canada/images/china_cer_1.jpg"/>
+									<a href="#"><h3>{:lang('CHESICC')}</h3></a>
+									<a href="https://www.chsi.com.cn/" target="_blank"><P>{:lang('China Credentials Verification')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/china_cer_2.jpg"/>
+									<a href="#"><h3>{:lang(' CSCSE')}</h3></a>
+									<a href="http://www.cscse.edu.cn/publish/portal0/" target="_blank"></a><p>{:lang('Chinese Service Center for Scholarly Exchange')}</p>
+								</div>
+							</li>
+							<li>
+								<div >
+									<img src="/canada/images/china_cer_3.jpg"/>
+									<a href="#"><h3>{:lang('CSCSS')}</h3></a>
+									<a href="https://www.cscss.com.cn/" target="_blank"></a><P>{:lang('National Student Information Service Network')}</P>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/china_cer_4.jpg"/>
+									<a href="#"><h3>{:lang('CDGDC')}</h3></a>
+									<a href="https://www.chinadegrees.cn/" target="_blank"><P>{:lang('China Academic Degree & Graduate Education Information Center')}</P></a>
+								</div>
+</li>
+						</ul>
+					</div>
+					<div class="T_list">
+						<div class="T_list_hd T_list_hdhalf">
+							<img src="/canada/images/cun1_au.png"/>
+							<h2>{:lang('AUSTRALIA')}</h2>
+						</div>
+						<div class="T_list_hd T_list_hdhalf">
+							<img src="/canada/images/cun1_uk.png"/>
+							<h2>{:lang('UK')}</h2>
+						</div>
+						<ul>
+							<li>
+								<div >
+									<img src="/canada/images/AUSTRALIA_cer_1.jpg"/>
+									<a href="#"><h3>{:lang(' My eQuals')}</h3></a>
+									<a href="https://www.myequals.edu.au/"><P>{:lang('Australia and New Zealand certified digital documents')}</P></a>
+								</div>
+							</li>
+<li>
+								<div>
+									<img src="/canada/images/UK_cer_1.jpg"/>
+									<a href="#"><h3>{:lang(' HEDD')}</h3></a>
+									<a href="https://hedd.ac.uk/" target="_blank"><P>{:lang('PROSPECTS HEDD VERIFICATION + AUTHENTICATION')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div >
+									<img src="/canada/images/AUSTRALIA_cer_2.jpg"/>
+									<a href="#"><h3>{:lang('TEQSA')}</h3></a>
+									<a href="https://www.teqsa.gov.au/"><P>{:lang('Tertiary Education Quality and Standards Agency')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/UK_cer_2.jpg"/>
+									<a href="#"><h3>{:lang('UK-NARIC')}</h3></a>
+									<a href="https://www.naric.org.uk" target="_blank"> <P>{:lang('UK-National Recognition Information Centre')}</P></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+</li>
+				<li>
+					<div class="T_list">
+						<div class="T_list_hd T_list_hdhalf">
+							<img src="/canada/images/cun1_ne.png"/>
+							<h2>{:lang('Netherlands')}</h2>
+						</div>
+						<div class="T_list_hd T_list_hdhalf">
+							<img src="/canada/images/cun1_ir.png"/>
+							<h2>{:lang('Ireland')}</h2>
+						</div>
+						<ul>
+							<li>
+								<div >
+									<img src="/canada/images/net_cer_1.jpg"/>
+									<a href="#"><h3>{:lang('DUO')}</h3></a>
+									<a href="https://www.duo.nl/particulier/" target="_blank"><P>{:lang('Dienst Uitvoering Onderwijs')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/Ireland_cer_1.jpg"/>
+									<a href="#"><h3> {:lang(' DIGITARY')}</h3></a>
+									<a href="https://www.digitary.net/" target="_blank"><P>{:lang('Digitary')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div >
+									<img src="/canada/images/net_cer_2.jpg"/>
+									<a href="#"><h3>{:lang('IDW')}</h3></a>
+									<a href="https://www.idw.nl/en/" target="_blank"><P>{:lang('International credential evaluation')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/Ireland_cer_2.jpg"/>
+									<a href="#"><h3>{:lang('QQI')}</h3></a>
+									<a href="https://www.digitary.net/" target="_blank"><P>{:lang('Quality and Qualifications Ireland')}</P></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="T_list">
+						<div class="T_list_hd T_list_hdhalf">
+							<img src="/canada/images/cun1_new.png"/>
+							<h2>{:lang('New Zealand')}</h2>
+							<p></p>
+						</div>
+						<div class="T_list_hd T_list_hdhalf">
+							<img src="/canada/images/cun1_fr.png"/>
+							<h2>{:lang('France')}</h2>
+						</div>
+						<ul>
+							<li>
+								<div>
+									<img src="/canada/images/new_cer_2.jpg"/>
+									<a href="#"><h3>{:lang('AQA')}</h3></a>
+									<a href="https://www.aqa.ac.nz/" target="_blank"><P>{:lang('Academic Quality Agency')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/France_cer_1.jpg"/>
+									<a href="#"><h3>{:lang(' Verifdiploma')}</h3></a>
+									<a href="https://www.verifdiploma.com/" target="_blank"><P>{:lang('Verifdiploma')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/new_cer_1.jpg"/>
+									<a href="#"><h3>{:lang('NZQA')}</h3></a>
+									<a href="https://www.nzqa.govt.nz/" target="_blank"> <P>{:lang('New Zealand Qualifications Authority')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/France_cer_2.jpg"/>
+									<a href="#"><h3>{:lang('Hceres')}</h3></a>
+									<a href="https://www.hceres.fr/fr/faire-connaissance" target="_blank"><P>{:lang('Higher council for research and higher education')}</P></a>
+								</div>
+							</li>
+						</ul>
+					</div>
+					<div class="T_list">
+						<div class="T_list_hd T_list_hdhalf">
+							<img src="/canada/images/cun1_JA.png"/>
+							<h2>{:lang('Japan')}</h2>
+							<p></p>
+						</div>
+						<div class="T_list_hd T_list_hdhalf">
+							<img src="/canada/images/cun1_ru.png"/>
+							<h2>{:lang('Russia')}</h2>
+							<p></p>
+						</div>
+						<ul>
+							<li>
+								<div>
+									<img src="/canada/images/Japan_cer_1.jpg"/>
+									<a href="#"><h3>{:lang('NIAD-QE')}</h3></a>
+									<a href="https://www.niad.ac.jp/" target="_blank"><P>{:lang('NIAD-QE')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/Russia_cer_1.jpg"/>
+									<a href="#"><h3>{:lang('NIC')}</h3></a>
+									<a href="https://nic.gov.ru" target="_blank"><P>{:lang('National Information Center')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/Japan_cer_2.jpg"/>
+									<a href="#"><h3>{:lang('JUAA')}</h3></a>
+									<a href="https://www.juaa.or.jp" target="_blank"><P>{:lang('Japan University Accreditation')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/Russia_cer_2.jpg"/>
+									<a href="#"><h3>{:lang('NIC ARM')}</h3></a>
+									<a href="http://www.russianenic.ru/" target="_blank"><P>{:lang('National Information Center on Academic Recognition and Mobility')} </P></a>
+								</div>
+							</li>
+</ul>
+					</div>
+					<div class="T_list">
+						<div class="T_list_hd T_list_hdhalf ">
+							<img src="/canada/images/cun1_sp.png"/>
+							<h2>{:lang('Spain')}</h2>
+							<p></p>
+						</div>
+						<div class="T_list_hd T_list_hdhalf ">
+							<img src="/canada/images/cun1_it.png"/>
+							<h2>{:lang('Italy')}</h2>
+							<p></p>
+						</div>
+						<ul>
+							<li>
+								<div>
+									<img src="/canada/images/sp_cer_1.jpg"/>
+									<a href="#"><h3>{:lang('ANECA')}</h3></a>
+									<a href="http://www.aneca.es/" target="_blank"><P>{:lang('National agency for the evaluation of quality and accreditation')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/it_cer_1.jpg"/>
+									<a href="#"><h3>{:lang('CIMEA')}</h3></a>
+									<a href="http://www.cimea.it/en/index.aspx" target="_blank"><P>{:lang('THE ART OF CONNECTING ACADEMIA')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/sp_cer_2.jpg"/>
+									<a href="#"><h3>{:lang('EACEA')}</h3></a>
+									<a href="https://eacea.ec.europa.eu/homepage_en" target="_blank"><P>{:lang('Education, Audiovisual and Culture Executive Agency')}</P></a>
+								</div>
+							</li>
+							<li>
+								<div>
+									<img src="/canada/images/it_cer_2.jpg"/>
+									<a href="#"><h3>{:lang(' UNIVERSITALY')}</h3></a>
+									<a href="https://www.universitaly.it/index.php/index_m.html#null" target="_blank"><P>{:lang('UNIVERSITALY')}</P></a>
+								</div>
+							</li>
+</ul>
+					</div>
+</li>
+			</ul>
+		</div>
+</div>
+</div>
+<!--加拿大概况-->
+<div class="T_main  T_CA">
+	<div class="T_cabox">
+		<h1><i class="fa fa-institution"></i>{:lang('Canada')} <span>{:lang('Study')}</span></h1>
+		<ul class="T_caft">
+			<li><a href="/page/321.html" target="_blank">{:lang('List of Canadian Schools: Universities')}<i class="fa fa-arrow-circle-o-right"></i>  </a></li>
+			<li><a href="/page/322.html" target="_blank"> {:lang('List of Canadian Schools: Universities')}  <i class="fa fa-arrow-circle-o-right"></i>  </a></li>
+			<li><a href="/page/88.html" target="_blank">{:lang('Live in Canada')} <i class="fa fa-arrow-circle-o-right"></i> </a></li>
+			<li><a href="/page/82.html" target="_blank">{:lang('Get financial assistance')} <i class="fa fa-arrow-circle-o-right"></i> </a></li>
+			<li><a href="/page/52.html" target="_blank">{:lang('Apply to study in Canada')} <i class="fa fa-arrow-circle-o-right"></i> </a></li>
+			<li><a href="/page/252.html" target="_blank">{:lang('Find an educational institution')} <i class="fa fa-arrow-circle-o-right"></i> </a></li>
+</ul>
+	</div>
+	<div class="T_calist">
+		<h1><i class="fa fa-desktop"></i>{:lang('Canada')} <span>{:lang('Work')}</span></h1>
+<ul clas>
+			<li><a href="/page/79.html" target="_blank"><i class="fa fa-toggle-right"></i>{:lang('Choose Canada')}</a></li>
+			<li><a href="/page/255.html" target="_blank"><i class="fa fa-toggle-right"></i>{:lang('Find an occupational profile')}</a></li>
+			<li><a href="/page/95.html" target="_blank"><i class="fa fa-toggle-right"></i>{:lang('Immigrate to Canada')}</a></li>
+			<li><a href="/page/102.html" target="_blank"><i class="fa fa-toggle-right"></i>{:lang('Live in Canada')}</a></li>
+			<li><a href="/page/70.html" target="_blank"><i class="fa fa-toggle-right"></i>{:lang('Learn about qualifications recognition')}</a></li>
+			<li><a href="/page/80.html" target="_blank"><i class="fa fa-toggle-right"></i>{:lang('Find the name of your intended occupation in Canada')}</a></li>
+		</ul>
+	</div>
+<div class="T_cabox">
+		<h1><i class="fa fa-check-square"></i>{:lang('Canadian Immigration')} <span>{:lang('Assessment')}</span></h1>
+		<div class="T_immg ">
+			<img src="/canada/images/ca_immigration.png"/>
+			<a class="T_ca_btn" href="#">{:lang('Canadian immigrant')}</a>
+		</div>
+</div>
+</div>
+<!--毕业典礼-->
+<div class="T_full_bg">
+	<div class="T_gradu_mask"></div>
+	<div class="T_main T_tit">
+		<h3><i class="fa fa-mortar-board"></i> {:lang('GRADUATION CEREMONY')}</h3>
+		<p>{:lang('Canadian Prestigious Graduation Ceremony')}</p>
+	</div>
+<div class=" flexslider T_ca_gradu ">
+		<ul class="slides">
+			<li>
+				<img src="/canada/images/adv-pic1.jpg"/>
+				<h3>{:lang('university of Toronto')}</h3>
+				<a target="_blank" href="http://www.convocation.utoronto.ca/">{:lang('GRADUATION SEASON')}</a>
+			</li>
+			<li>
+				<img src="/canada/images/adv-pic2.jpg"/>
+				<h3>{:lang('York University')}</h3>
+				<a target="_blank" href="https://convocation.students.yorku.ca/">{:lang('GRADUATION SEASON')}</a>
+			</li>
+			<li>
+				<img src="/canada/images/adv-pic3.jpg"/>
+				<h3>{:lang('Simon Fraser university')}</h3>
+				<a target="_blank" href="http://www.sfu.ca/convocation.html">{:lang('GRADUATION SEASON')}</a>
+			</li>
+			<li>
+				<img src="/canada/images/adv-pic4.jpg"/>
+				<h3>{:lang('Mcgill university')}</h3>
+				<a target="_blank" href="https://www.mcgill.ca/graduation/convocation">{:lang('GRADUATION SEASON')}</a>
+			</li>
+</ul>
+	</div>
+</div>
+<!--为什么要选择DAE-->
+<div class="T_full">
+	<div class="T_main T_wbox">
+		<h1>{:lang('Why Choose')} <span>WSE</span></h1>
+		<ul class="T_wlist">
+			<li>
+				<img src="/canada/images/choose_icon_1.png"/>
+				<h3>{:lang('Fast Service')}</h3>
+				<p>{:lang('We can complete your evaluation in seven business days after we receive and approve all your documents.')}</p>
+			</li>
+			<li>
+				<img src="/canada/images/choose_icon_2.png"/>
+				<h3>{:lang('Trusted Evaluations')}</h3>
+				<p>{:lang('We have provided more than 0.2 million evaluations to international students and professionals.')}</p>
+			</li>
+			<li>
+				<img src="/canada/images/choose_icon_3.png"/>
+				<h3>{:lang('Unmatched Resources')}</h3>
+				<p>{:lang('We have a diverse staff and a custom-built database that contains over 10 years of research.')}</p>
+			</li>
+		</ul>
+	</div>
+</div>
+<script>
+    //毕业
+    $(function () {
+        $(".T_ca_gradu").flexslider({
+            slideshowSpeed:2000,
+            animation: "slide",
+        });
+        $(".T_cerbox").flexslider({
+            slideshowSpeed:6000,
+            animation: "slide",
+        });
+    });
+</script>
+{include file="public/footer_m" /}
+<script>
+    $(function() {
+        $(".con-selbox").click(function(e) {
+            $(".con-select").toggleClass('con-open');
+            e.stopPropagation();
+        });
+        $(".con-seldel li").click(function(e) {
+            var _this = $(this);
+            $(".con-select> .con-selbox").text(_this.attr('value'));
+            _this.addClass("con-Selected").siblings().removeClass("con-Selected");
+            $(".con-select").removeClass("con-open");
+            e.stopPropagation();
+        });
+        $(document).on('click', function() {
+            $(".con-select").removeClass("con-open");
+        })
+    });
+</script>
+</body>
+</html>

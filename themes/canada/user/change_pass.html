@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('Change My User Name or Password')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/index.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <script src="/static/js/langCookie.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div >
+        <div class="layui-row ">
+<div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+<div class="layui-col-sm10">
+                <!--    user header    -->
+                {include file="public/_nav_center_header" /}
+
+                <div class="layui-row">
+                    <div class="layui-col-sm12">
+                        <div class="layui-row steps">
+                            <div class="errorMessage hide err1">
+                                <h2>{:lang('Validation error')}</h2>
+                                <p>{:lang('You must correct the following errors to continue')}:</p>
+                                <ul>
+                                    <li>{:lang('Please modify user name or update password')}.</li>
+                                    <li class="err-info">{:lang('Current password must be correct before a new password can be set')}.</li>
+                                </ul>
+                            </div>
+<!--    Change My User Name or Password    -->
+                            <form id="change_pass" class="layui-form" action="">
+                                <div class="layui-row">
+                                    <div class="layui-col-sm6">
+                                        <input type="hidden" name="id" value="{$user.id}">
+                                        <div class="form-group">
+                                            <p><b>{:lang('Current Password')}:</b></p>
+                                            <input type="password" name="pwd_old" class="form-input" lay-verify="pass" placeholder="{:lang('Please fill out Current Password')}">
+                                        </div>
+                                        <div class="form-group">
+                                            <p><b>{:lang('New Password')}:</b></p>
+                                            <input type="password" name="pwd_new" class="form-input" lay-verify="pass" placeholder="{:lang('Please fill out New Password')}">
+                                            <div class="errorMessage hide">
+                                                <ul>
+                                                    <li>{:lang('The password is too short. Minimum number of characters')}: 6.</li>
+                                                    <li>{:lang('The password does not contain enough lower case characters. Minimum number of lower case characters')}: 1.</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <p><b>{:lang('Retype New Password')}:</b></p>
+                                            <input type="password" name="pwd_new2" class="form-input" lay-verify="pass" placeholder="{:lang('Please fill out Retype New Password')}">
+                                        </div>
+                                        <div class="variable-content">
+                                            <p>{:lang('Note: Your password must be a minimum of seven (6) characters and contain both alpha and numeric characters')}.</p>
+                                        </div>
+                                    </div>
+                                </div>
+<div class="layui-row">
+                                    <div class="buttons layui-col-sm6 ">
+                                        <a class="layui-btn layui-btn-primary" id="cancel">{:lang('Cancel')}</a>
+                                        <button type="button" class="layui-btn mazarine save" lay-submit lay-filter="save">{:lang('Save')}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+layui.use(['form'], function(){
+        var form = layui.form;
+        form.verify({
+            pass: [
+                /^[\S]{6,30}$/
+                ,'Passwords must be 6 to 12 bits long and no Spaces can appear'
+            ]
+        });
+form.on('submit(save)', function(data){
+            $.post('/index/user/change_pwd',data.field,function (result) {
+                if(result.code == 1){
+                    window.location.href=result.url;
+                }else {
+                    $('.err1').removeClass('hide');
+                    $('.err-info').text(result.msg);
+                }
+            });
+            console.log(data.field);
+            return false;
+        });
+// 取消按钮
+        $('#cancel').click(function () {
+           window.history.back(-1);
+        })
+    });
+</script>
+</body>
+</html>

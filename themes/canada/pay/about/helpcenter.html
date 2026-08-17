@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+{__NOLAYOUT__}
+<head>
+     <meta charset="utf-8"/>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script src="/static/js/mobile.js"></script>  
+    <script src="/canada/js/html.js"></script>
+    <title>help-center</title>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div >
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                {include file="public/nav-left" /}
+            </div>
+            <!-- 问题中心 内容 -->
+            <div class="layui-col-sm10">
+                {include file="public/_nav_center_header" /}
+                <!-- <div class="layui-row mainContent-header">
+                    <div class="layui-row mianContent-title">
+                        <div class="layui-col-sm10 layui-col-xs8"> 
+                            <h1>{:lang('Help center')}</h1>
+                        </div>
+                    </div>
+		        </div> -->
+                <!-- <hr /> -->
+                <!--  一般问题 -->
+                <div class="koko-help">
+                    {volist name="questionGroups" id="vo"}
+                    <div class="help-box">
+                        <h2>{:lang($vo.category_name)}</h2>
+                        <div id="help-all" class="help-all">
+                            <span href="" id="open" class="open-close">{:lang('Open All')}</span>
+                            <div class="open-group">
+                                <ul class="sche-panel-group">
+                                    {volist name="$vo->questions" id="question"}
+                                    <li class="sche-panel-list">
+                                        <h1><i class="fa  fa-angle-right"></i>{:lang($question.title)}</h1>
+                                        <div class="sche-down-box">
+                                            <div class="sche-down-p">{$question.content|htmlspecialchars_decode}</div>
+                                        </div>
+                                    </li>
+                                    {/volist}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+<!--                &lt;!&ndash; 有关于副本的问题 &ndash;&gt;-->
+<!--                <div class="help-box">-->
+<!--                    <h2>{:lang('Question About Copy')} </h2>-->
+<!--                    <div id="" class="help-all">-->
+<!--                        <span class="open-close">{:lang('Open All')}</span>-->
+<!--                        <div class="open-group">-->
+<!--                            <ul class="sche-panel-group">-->
+<!--                                <li class="sche-panel-list">-->
+<!--                                    <h1>-->
+<!--                                        <i class="fa fa-angle-right"></i>{:lang('Can I order a copy of the certificate evaluation report?')}</h1>-->
+<!--                                    <div class="sche-down-box">-->
+<!--                                        <p>{:lang('Yes, you can order a copy of the report for up to 5 years from the date the report is first published. After five years, applicants will no longer be able to order copies of their reports. You can apply for additional copies through "<a>Application Copy</a>"')}</p>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                                <li class="sche-panel-list">-->
+<!--                                    <h1>-->
+<!--                                        <i class="fa fa-angle-right"></i>{:lang('Can I apply for multiple copies?')}</h1>-->
+<!--                                    <div class="sche-down-box">-->
+<!--                                        <p>{:lang('No, in order to prevent illegal operations such as illegal transactions, we only provide an application service for up to four copies at a time.If you need more copies for special reasons, please "<a href="">contact us</a>" to apply')}</p>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                                <li class="sche-panel-list">-->
+<!--                                    <h1>-->
+<!--                                        <i class="fa fa-angle-right"></i>{:lang('When will I usually receive my copy')}</h1>-->
+<!--                                    <div class="sche-down-box">-->
+<!--                                        <p>{:lang('We will mail you a copy of the assessment material within two to three working days after the end of the assessment. Since different countries use different courier services, the time will vary.')}</p>-->
+<!--                                        <p>{:lang('In order to ensure that you can receive your copy materials faster, we will arrange our service center according to your delivery address to prepare the copy materials for you.')}</p>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                &lt;!&ndash;教育文件的问题 &ndash;&gt;-->
+<!--                <div class="help-box">-->
+<!--                    <h2>{:lang('Problems with educational documents')}</h2>-->
+<!--                    <div class="help-all">-->
+<!--                        <span class="open-close">{:lang('Open All')}</span>-->
+<!--                        <div class="open-group">-->
+<!--                            <ul class="sche-panel-group">-->
+<!--                                <li class="sche-panel-list">-->
+<!--                                    <h1><i class="fa fa-angle-right"></i>{:lang('When my education documents are lost and I cannot provide the required documents, can I not apply?')}</h1>-->
+<!--                                    <div class="sche-down-box">-->
+<!--                                        <p>{:lang('No, you can submit evaluation files or education file storage files provided by relevant authorities to us through "<a href="">Special Service</a> ", we accept these files and provide the same service')}-->
+<!--                                        </p>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                                <li class="sche-panel-list">-->
+<!--                                    <h1><i class="fa fa-angle-right"></i>{:lang('What are the consequences of false submission of educational documents?')}</h1>-->
+<!--                                    <div class="sche-down-box">-->
+<!--                                        <p>{:lang('The services we provide will permanently store your educational files on the blockchain. If your information is false or forged, we will permanently store your information on the blockchain and use "data transmission" to the world Of authoritative educational institutions transmit your false data.')}</p>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                                <li class="sche-panel-list">-->
+<!--                                    <h1><i class="fa fa-angle-right"></i>{:lang('What if the educational documents provided by my country of study do not meet the conditions?')}</h1>-->
+<!--                                    <div class="sche-down-box">-->
+<!--                                        <p>{:lang('We know that there are certain differences in the educational documents issued by different countries. If the documents issued by the country where you study do not meet the needs, you can contact us for a special evaluation, and we will customize the relevant regulations of the country where you study Evaluation plan')}</p>-->
+<!--                                    </div>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    layer.photos({
+        photos: '.layer-photos-demo',
+        anim: 5,
+    });
+    $(function () {
+        $('.sche-down-box').hide();
+        $('.sche-panel-list>h1').click(function () {
+            $(this).toggleClass('sche-active').next().slideToggle()
+        })
+        $('.open-close').click(function () {
+            var li = $(this).siblings('.open-group')
+            if ($(this).text() == 'Open All') {
+                $(this).text('Close All')
+                li.find('h1').addClass('sche-active')
+                li.find('.sche-down-box').fadeIn()
+            } else {
+                $(this).text('Open All')
+                li.find('h1').removeClass('sche-active')
+                li.find('.sche-down-box').hide()
+            }
+        })    
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.all.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <script src="/static/js/jquery.flexslider-min.js"></script>
+    <script src="/static/js/viewer-jquery.min.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/static/js/clipboard.min.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <title></title>
+    <title>{:lang('My Storage')}</title>
+</head>
+
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div>
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10 storageBox">
+                <div class="layui-row layui-col-space20 user-avatar">
+                    <div class="layui-col-sm10 layui-col-xs12">
+                        <div class="storage-tab">
+                            <button onclick="javascript:location.href='{:url('index/user/storageList',['show'=>1])}';" type="button" {if $show == 1} class="active" {/if} data-show="1">{:lang('Original File\Information Storage')}</button>
+                            <button onclick="javascript:location.href='{:url('index/user/storageList',['show'=>0])}';" type="button" {if $show == 0} class="active" {/if} data-show="0">{:lang('WSE Assessment File Storage')}</button>
+                        </div>
+                    </div>
+                </div>
+                <hr />
+                {if $show == 0}
+                <div class="storage-fs-box">
+                    {volist name="$assessments" id="vo"}
+                    <div class="original-aw-cont">
+                        <h3>{:lang($vo.certificate.application)}</h3>
+                        <div>
+                            <div class="original-aw-table">
+                                <div class="original-aw-listone original-aw-first">
+                                    <div>
+                                        <h5>{:lang('Depositary Subject')}</h5>
+                                        <h2 class="first-letter-capital">{$vo.certificate.username}</h2>
+                                    </div>
+                                    <div>
+                                        <div class="original-aw-icon">
+                                            <i class="iconfont icon-zhuti"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="original-aw-listone original-aw-center">
+                                    <div>
+                                        <h5>{:lang('Depository Media Subject')}</h5>
+                                        <h2>{:lang('Degree Assessed Exchange Center INC.')}</h2>
+                                    </div>
+                                    <div>
+                                        <div class="original-aw-icon">
+                                            <i class="iconfont icon-jigou1"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="original-aw-listone original-aw-last">
+                                    <div>
+                                        <h5>{:lang('Deposit Size')}</h5>
+                                        <h2>{$vo.deposit_size}</h2>
+                                    </div>
+                                    <div>
+                                        <div class="original-aw-icon">
+                                            <i class="iconfont icon-zhuti"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="original-aw-table">
+                                <div class="original-aw-listone original-aw-first">
+                                    <div>
+                                        <h5>{:lang('Identification Number of Deposited Media Structure')}</h5>
+                                        <h2 class="first-letter-capital">1138742-1</h2>
+                                    </div>
+                                </div>
+                                <div class="original-aw-listone original-aw-center">
+                                    <div>
+                                        <h5>{:lang('Depository Affairs')}</h5>
+                                        <h2>{:lang('Blockchain Storage in Progress')}</h2>
+                                    </div>
+                                </div>
+                                <div class="original-aw-listone original-aw-last">
+                                    <div>
+                                        <h5>{:lang('Depositary Subject Identification Number')}</h5>
+                                        <h2>{:hidestr($vo.order_detail.id_no)}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stor-fs-tabletwo">
+                            <div class="stor-fs-items">
+                                {volist name="$vo.certificate.certificate_png" id="cpng"}
+                                <table class="stor-table-contentt">
+                                    <tr>
+                                        <td rowspan="4" class="table-img affair"><img src="{:trim($cpng,'.')}" alt=""></td>
+                                        <td style="color: #666;font-size: 12px;">{:lang('File Name')}</td>
+                                        <td>{:lang('Evaluation Certificate')}</td>
+                                        <td rowspan="4">
+                                            <a class="blockVerifyBtn" href="javascript: void(0);">{:lang('Block Verification')}</a>
+                                          
+                                    </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{:lang('Deposit Hash')}</td>
+                                        <td colspan="1">
+                                            <span class="stor-hash">{:lang('Blockchain Storage in Progress')}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{:lang('Deposit Time')}</td>
+                                        <td>{:lang('Not yet on the chain')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="affair">{:lang('Deposit Size')}</td>
+                                        <td class="affair">{:get_file_size($cpng)}</td>
+                                    </tr>
+                                </table>
+                                {/volist}
+                                {volist name="$vo.transcript.certificate_png" id="tpng" key="k"}
+                                <table class="stor-table-contentt">
+                                    <tr>
+                                        <td rowspan="4" class="table-img affair"><img src="{:trim($tpng,'.')}" alt=""></td>
+                                        <td style="color: #666;font-size: 12px;">{:lang('File Name')}</td>
+                                        <td>{:lang('Transcript')} {$k}</td>
+                                        <td rowspan="4"><a class="blockVerifyBtn" href="javascript: void(0);">{:lang('Block Verification')}</a>
+                                             <!-- {if $vo.transcript.certificate_path != ''} 
+                                            <a href="../{$vo.transcript.certificate_path}" target="_blank" class="ball-file-btn">{:lang('View evaluation file')}</a>{/if}  -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{:lang('Deposit Hash')}</td>
+                                        <td colspan="1">
+                                            <span class="stor-hash">{:lang('Blockchain Storage in Progress')}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{:lang('Deposit Time')}</td>
+                                        <td>{:lang('Not yet on the chain')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="affair">Deposit Size</td>
+                                        <td class="affair">{:get_file_size($tpng)}</td>
+                                    </tr>
+                                </table>
+                                {/volist}
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+                {else /}
+                <div class="storage-fs-box">
+                    {volist name="$assessments" id="vo"}
+                    <div class="original-aw-cont">
+                        <h3>{:lang($vo.certificate.application)}</h3>
+                        <div>
+                            <table class="stor-table-ball">
+                                <tr>
+                                    <td rowspan="5" class="ball-img">
+                                        <img src="{$user.head_img}" alt="">
+                                    </td>
+                                    <td style="color: #666;font-size: 12px;width: 12%;">{:lang('Account Name')}</td>
+                                    <td style="color: #333;font-size: 13px;width: 28%;">{$user.username}</td>
+                                    <td style="color: #666;font-size: 12px;width: 15%;">{:lang('WSE Num')}</td>
+                                    <td style="color: #333;font-size: 13px;width: 32%;">{$user.search_id}</td>
+                                </tr>
+                                <tr>
+                                    <td>{:lang('Gender')}</td>
+                                    <td>{$user.sex}</td>
+                                    <td>{:lang('Documents information')}</td>
+                                    <td>{$user.id_number} , {$user.document_type}</td>
+                                </tr>
+                                <tr>
+                                    <td>{:lang('Educational location')}</td>
+                                    <td>{$vo.order_detail.edu_nationality}&ensp;{$vo.order_detail.edu_province}&ensp; {$vo.order_detail.edu_city}</td> 
+                                    <td>{:lang('Name of academic institution')}</td>
+                                    <td>{$vo.order_detail.university}</td>
+                                </tr>
+                                <tr>
+                                    <td>{:lang('Profession')}</td>
+                                    <td>{$vo.order_detail.major}</td>
+                                    <td>{:lang('Certificate/Diploma/degree')}</td>
+                                    <td>{$vo.order_detail.degree} of {$vo.order_detail.degree_program}</td>
+                                </tr>
+                                <tr>
+                                    <td>{:lang('Already graduated')}</td>
+                                    <td>{if $vo.order_detail.graduated == 1}  {:lang('Graduated')} {else/} {:lang('Not graduated')}{/if}  </td>
+                                    <td>{:lang('Research areas')}</td>
+                                    <td>{$vo.order_detail.faculty}  </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2">{:lang('Admission time ~ Graduation time')}</td>
+                                    <td>{$vo.order_detail.start_date}  ~ {$vo.order_detail.completion_date}  </td>
+                                    <td>{:lang('Email')}</td>
+                                    <td>{$user.email}</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="original-aw-cont" >
+                    <!--  <h3>{:lang($vo.certificate.application)}</h3>-->
+                        <div>
+                            <div class="original-aw-table">
+                                <div class="original-aw-listone original-aw-first">
+                                    <div>
+                                        <h5>{:lang('Depositary Subject')}</h5>
+                                        <h2 class="first-letter-capital">{$vo.certificate.username}</h2>
+                                    </div>
+                                    <div>
+                                        <div class="original-aw-icon">
+                                            <i class="iconfont icon-zhuti"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="original-aw-listone original-aw-center">
+                                    <div>
+                                        <h5>{:lang('Depository Media Subject')}</h5>
+                                        <h2>{:lang('Degree Assessed Exchange Center INC.')}</h2>
+                                    </div>
+                                    <div>
+                                        <div class="original-aw-icon">
+                                            <i class="iconfont icon-jigou1"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="original-aw-listone original-aw-last">
+                                    <div>
+                                        <h5>{:lang('Deposit Size')}</h5>
+                                        <h2>{$vo.information_deposit_size}</h2>
+                                    </div>
+                                    <div>
+                                        <div class="original-aw-icon">
+                                            <i class="iconfont icon-zhuti"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="original-aw-table">
+                                <div class="original-aw-listone original-aw-first">
+                                    <div>
+                                        <h5>{:lang('Identification Number of Deposited Media Structure')}</h5>
+                                        <h2 class="first-letter-capital">1138742-1</h2>
+                                    </div>
+                                </div>
+                                <div class="original-aw-listone original-aw-center">
+                                    <div>
+                                        <h5>{:lang('Depository Affairs')}</h5>
+                                        <h2>{:lang('Blockchain Storage in Progress')}</h2>
+                                    </div>
+                                </div>
+                                <div class="original-aw-listone original-aw-last">
+                                    <div>
+                                        <h5>{:lang('Depositary Subject Identification Number')}</h5>
+                                        <h2>{:hidestr($vo.order_detail.id_no)}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stor-fs-tabletwo">
+                            <div class="stor-fs-items">
+                                {volist name="$vo.order_detail.diploma" id="diploma" key="k"}
+                                <table class="stor-table-contentt">
+                                    <tr>
+                                        <td rowspan="4" class="table-img affair"><img src="{$diploma}" alt=""></td>
+                                        <td style="color: #666;font-size: 12px;">File Name</td>
+                                        <td>{:lang('Diploma')} {$k}</td>
+                                        <td rowspan="4">
+                                            <a class="blockVerifyBtn" href="javascript: void(0);">{:lang('Block Verification')}</a>
+                                            <!-- <a href="{$vo.transcript.certificate_path}"  class="ball-file-btn">{:lang('View evaluation file')}</a> -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{:lang('Deposit Hash')}</td>
+                                        <td colspan="1">
+                                            <span class="stor-hash">{:lang('Blockchain Storage in Progress')}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{:lang('Deposit Time')}</td>
+                                        <td>{:lang('Not yet on the chain')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="affair">{:lang('Deposit Size')}</td>
+                                        <td class="affair">{:get_file_size('.' . $diploma)}</td>
+                                    </tr>
+                                </table>
+                                {/volist}
+                                {volist name="$vo.order_detail.transcript" id="transcript" key="k"}
+                                <table class="stor-table-contentt">
+                                    <tr>
+                                        <td rowspan="4" class="table-img affair"><img src="{$transcript}" alt=""></td>
+                                        <td style="color: #666;font-size: 12px;">{:lang('File Name')}</td>
+                                        <td>{:lang('Transcript')} {$k}</td>
+                                        <td rowspan="4"><a class="blockVerifyBtn" href="javascript: void(0);">{:lang('Block Verification')}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td>{:lang('Deposit Hash')}</td>
+                                        <td colspan="1">
+                                            <span class="stor-hash">{:lang('Blockchain Storage in Progress')}</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{:lang('Deposit Time')}</td>
+                                        <td>{:lang('Not yet on the chain')}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="affair">{:lang('Deposit Size')}</td>
+                                        <td class="affair">{:get_file_size('.' . $transcript)}</td>
+                                    </tr>
+                                </table>
+                                {/volist}
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+                {/if}
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+<script>
+    var clipboard = new ClipboardJS('.icon-fuben', {
+        text: function (trigger) {
+            return trigger.parentNode.previousElementSibling.innerHTML
+        }
+    });
+    clipboard.on('success', function (e) {
+        // console.info('Action:', e.action);
+        // console.info('Text:', e.text);
+        // console.info('Trigger:', e.trigger);
+        layer.msg('Copied');
+        e.clearSelection();
+    });
+    clipboard.on('error', function (e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+    });
+    $('.blockVerifyBtn').click(function () {
+        layer.msg("{:lang('Blockchain Storage in Progress' )}")
+    })
+</script>
+</body>
+
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('WSE-ECA for General Use')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/static/js/layui/layui.all.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="layui-container layui-form">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-sm2">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                <!--    user avatar    -->
+                <div class="layui-row user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{switch name="$Think.cookie.think_var"}
+                            {case value="en-us"}{$order.name_en}{/case}
+                            {case value="zh-cn"}{$order.app_name}{/case}
+                            {case value="ja-jp"}{$order.name_jp}{/case}
+                            {case value="de-de"}{$order.name_de}{/case}
+                            {case value="ko-kr"}{$order.name_kr}{/case}
+                            {case value="ru-ru"}{$order.name_ru}{/case}
+                            {case value="fr-fa"}{$order.name_fa}{/case}
+                            {/switch}</h1>
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email} — {$user.search_id}</p>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <div class="steps-card">
+                            <h3>{:lang('Required Steps')}</h3>
+                            <ol>
+                                {foreach name="app_step" item="vo"}
+                                <li {$vo.sort==$sort?"class='active'":"" } >
+                                    <a href="{$vo.sort}">
+                                        {if condition="in_array($vo.id,$step_ok)"}
+                                        <i class="fa fa-check-circle"></i>
+                                        {$vo.sort}. {switch name="$Think.cookie.think_var"}
+                                        {case value="en-us"}{$vo.step_en}{/case}
+                                        {case value="zh-cn"}{$vo.step_name}{/case}
+                                        {case value="ja-jp"}{$vo.step_jp}{/case}
+                                        {case value="de-de"}{$vo.step_de}{/case}
+                                        {case value="ko-kr"}{$vo.step_kr}{/case}
+                                        {case value="ru-ru"}{$vo.step_ru}{/case}
+                                        {case value="fr-fa"}{$vo.step_fa}{/case}
+                                        {/switch} - {:lang('Complete')}
+                                        {else}
+                                        <i class="fa fa-arrow-circle-right"></i>
+                                        {$vo.sort}. {switch name="$Think.cookie.think_var"}
+                                        {case value="en-us"}{$vo.step_en}{/case}
+                                        {case value="zh-cn"}{$vo.step_name}{/case}
+                                        {case value="ja-jp"}{$vo.step_jp}{/case}
+                                        {case value="de-de"}{$vo.step_de}{/case}
+                                        {case value="ko-kr"}{$vo.step_kr}{/case}
+                                        {case value="ru-ru"}{$vo.step_ru}{/case}
+                                        {case value="fr-fa"}{$vo.step_fa}{/case}
+                                        {/switch} - {:lang('Incomplete')}
+                                        {/if}
+                                    </a>
+                                </li>
+                                {/foreach}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <!--    steps    -->
+                <div class="layui-row steps">
+                    <div class="layui-col-sm12">
+                        <h3>{:lang('EDUCATION INFORMATION')}</h3>
+                        <p>{:lang('Instructions for submitting academic documents')}</p>
+                        <hr/>
+                        <h5>{:lang('General Instructions')}</h5>
+                        <p>{:lang('Supporting academic documents required within your application vary by country.  For instructions on documents specific to your country of education please refer to our online country specific academic document tool.')}</p>
+                        <hr/>
+                        <form class="layui-form edu-form" action="">
+                        <div class="form-group">
+                            <p><b>{:lang('Name of Academic Institution on final award')}</b><span class="necessary">*</span></p>
+                            <input type="hidden" name="user_order_id" value="{$order.id}">
+                            <select name="school" class="form-input" lay-search>
+                                {foreach name="school" item="vo"}
+                                <option {$edu['school']==$vo['id']?'selected':''} value="{$vo.id}">{$vo.name_en}</option>
+                                {/foreach}
+                            </select>
+                            <p class="variable-content">{:lang('Provide the name of the institution as it appears on your academic credential.')}</p>
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('Name of Certificate/Diploma/Degree Program')}</b><span class="necessary">*</span></p>
+                            <input type="text" class="form-input" lay-verify="required" name="degree_program" value="{$edu.degree_program}">
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('Official Length of the Program')}</b><span class="necessary">*</span></p>
+                            <input type="number" class="form-input" lay-verify="required" name="program_length" value="{$edu.program_length}">
+                            <p class="variable-content">{:lang('Numbers only in years or credits')}</p>
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('Program Length Type')}</b><span class="necessary">*</span></p>
+                            <input type="radio" name="length_type" value="Years" {$edu.length_type=="Years"||$edu.length_type==""?"checked":""} title="{:lang('Years')}" ><br/>
+                            <input type="radio" name="length_type" value="Credits" {$edu.length_type=="Credits"?"checked":""} title="{:lang('Credits')}" >
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('Major/Specialization')}: </b><span class="necessary">*</span></p>
+                            <select name="major" lay-search>
+                                {foreach name="subject" item="vo"}
+                                <option {$edu.major==$vo.id?"selected":""} value="{$vo.id}">{$vo.title_en}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+                        <div class="form-group date">
+                            <p><b>{:lang('Dates Attended - From')} </b><span class="necessary">*</span></p>
+                            {if condition="!empty($edu.enrollment_date)&&$edu.enrollment_date!='0000-00-00'&&$edu.enrollment_date!='0100-01-01'"}
+                            <input type="text" class="form-input" id="datesAttendedTo" lay-verify="required" placeholder="{:lang('Click to select date')}" autocomplete="off"  name="enrollment_date" value="{$edu.enrollment_date}">
+                            {else}
+                            <input type="text" class="form-input" id="datesAttendedTo" lay-verify="required" placeholder="{:lang('Click to select date')}" autocomplete="off"  name="enrollment_date" value="{$date}">
+                            {/if}
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="form-group date">
+                            <p><b>{:lang('Dates Attended - To')}</b><span class="necessary">*</span></p>
+                            {if condition="!empty($edu.completion_date)&&$edu.completion_date!='0000-00-00'&&$edu.completion_date!='0100-01-01'"}
+                            <input type="text" class="form-input" id="datesAttendedFrom" lay-verify="required" placeholder="{:lang('Click to select date')}" autocomplete="off"  name="completion_date" value="{$edu.completion_date}">
+                            {else}
+                            <input type="text" class="form-input" id="datesAttendedFrom" lay-verify="required" placeholder="{:lang('Click to select date')}" autocomplete="off"  name="completion_date" value="{$date}">
+                            {/if}
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="form-group">
+                            <p><b>{:lang('Graduated')}</b></p>
+                            <input type="radio" name="graduated" {$edu.graduated==1||$edu.graduated==""?"checked":""} lay-verify="required" value="1" title="{:lang('Yes')}" ><br/>
+                            <input type="radio" name="graduated" {$edu.graduated==0?"checked":""} lay-verify="required" value="0" title="{:lang('No')}" >
+                        </div>
+                        <div class="form-group date">
+                            <p><b>{:lang('Date Awarded')}</b><span class="necessary">*</span></p>
+                            {if condition="!empty($edu.award_date)&&$edu.award_date!='0000-00-00'&&$edu.award_date!='0100-01-01'"}
+                            <input type="text" class="form-input" id="DateAwarded" lay-verify="required" placeholder="{:lang('Click to select date')}" autocomplete="off"  name="award_date" value="{$edu.award_date}">
+                            {else}
+                            <input type="text" class="form-input" id="DateAwarded" lay-verify="required" placeholder="{:lang('Click to select date')}" autocomplete="off"  name="award_date" value="{$date}">
+                            {/if}
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <div class="form-group date">
+                            <p><b>{:lang('Date Issued')}</b><span class="necessary">*</span></p>
+                            {if condition="!empty($edu.issued_date)&&$edu.issued_date!='0000-00-00'&&$edu.issued_date!='0100-01-01'"}
+                            <input type="text" class="form-input" id="DateIssued" lay-verify="required" placeholder="{:lang('Click to select date')}" autocomplete="off"  name="issued_date" value="{$edu.issued_date}">
+                            {else}
+                            <input type="text" class="form-input" id="DateIssued" lay-verify="required" placeholder="{:lang('Click to select date')}" autocomplete="off"  name="issued_date" value="{$date}">
+                            {/if}
+                            <i class="fa fa-calendar"></i>
+                        </div>
+                        <table class="layui-table" lay-skin="line">
+                            <tbody>
+                            {if condition="!empty($edu['diploma'])"}
+                            <tr class="diploma-img">
+                                <td>{:lang('Diploma')}</td>
+                                <td><a href="{$edu.diploma}" target="_blank"  class="diploma">
+                                    {:lang('Diploma')}.jpg
+                                </a></td>
+                                <td>
+                                    <input class="diploma" type="hidden" name="diploma" value="{$edu.diploma}">
+                                </td>
+                            </tr>
+                            {else}
+                            <tr class="diploma-img">
+                                <td>{:lang('Diploma')}</td>
+                                <td><a href="" target="_blank"  class="credential">
+                                    {:lang('Diploma')}
+                                </a></td>
+                                <td>
+                                    <input class="credential" type="hidden" name="diploma" value="">
+                                </td>
+                            </tr>
+                            {/if}
+                            {if condition="!empty($edu['credential'])"}
+                            {foreach name="$edu['credential']" item="vo" key="k"}
+                            <tr class="credential-img">
+                                <td>{:lang('Credential')}</td>
+                                <td><a href="{$vo}" target="_blank"  class="credential">
+                                    {:lang('Credential')}{$k+1}.jpg
+                                </a></td>
+                                <td>
+                                    <input class="credential" type="hidden" name="credential[]" value="{$vo}">
+                                    <button class="layui-btn layui-btn-primary credential_del">{:lang('Delete')}</button>
+                                </td>
+                            </tr>
+                            {/foreach}
+                            {else}
+                            <tr class="cre-null">
+                                <td>{:lang('Credential')}</td>
+                                <td><a href="{$edu.credential}" target="_blank"  class="credential">
+                                    {:lang('Credential')}
+                                </a></td>
+                                <td></td>
+                            </tr>
+                            {/if}
+                            {if condition="!empty($edu['cj_img'])"}
+                            {foreach name="$edu['cj_img']" item="vo"}
+                            <tr class="transcript-img">
+                                <td>{:lang('Transcript')}</td>
+                                <td><a href="{$vo}" target="_blank"  class="cj_img" key="k">
+                                    {:lang('Transcript')}{$k+1}.jpg
+                                </a></td>
+                                <td>
+                                    <input class="transcript" type="hidden" name="cj_img[]" value="{$vo}">
+                                    <button class="layui-btn layui-btn-primary trans_del">{:lang('Delete')}</button>
+                                </td>
+                            </tr>
+                            {/foreach}
+                            {else}
+                            <tr class="trans-null">
+                                <td>{:lang('Transcript')}</td>
+                                <td><a href="" target="_blank"  class="transcript">
+                                    {:lang('Transcript')}
+                                </a></td>
+                                <td></td>
+                            </tr>
+                            {/if}
+                            </tbody>
+                        </table>
+						<br/>
+                        <h5>{:lang('Final Award')}</h5>
+                        <p class="file">
+                            <b>{:lang('File Name')}</b>
+                            <input type="button" id="diploma-file" class="layui-btn layui-btn-primary" value="{:lang('Diploma')}">
+                            <a type="button" id="diploma-upload" class="layui-btn layui-btn-primary">{:lang('Upload')}</a>
+                        </p>
+                        <div class="variable-content">
+                            <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                            <p>{:lang('(if applicable)')}</p>
+                        </div>
+						<br/>
+                            <h5>{:lang('Credential')}</h5>
+                            <p class="file">
+                                <b>{:lang('File Name')}</b>
+                                <input type="button" class="layui-btn layui-btn-primary" id="credential-file" value="{:lang('Credential')}">
+                                <a type="button" id="credential-upload" class="layui-btn layui-btn-primary">{:lang('Upload')}</a>
+                            </p>
+                            <div class="variable-content">
+                                <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                                <p>{:lang('Upload both sides of your academic records (transcript /statement of marks) for all years of studies.')}</p>
+                            </div>
+							<br/>
+	                        <h5>{:lang('Academic Record (Transcript/Statements of Marks)')}</h5>
+	                        <p class="file">
+	                            <b>{:lang('File Name')}</b>
+	                            <input type="button" class="layui-btn layui-btn-primary" id="transcript-file" value="{:lang('Transcript')}">
+	                            <a type="button" id="transcript-upload" class="layui-btn layui-btn-primary">{:lang('Upload')}</a>
+	                        </p>
+	                        <div class="variable-content">
+	                            <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+	                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+	                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+	                            <p>{:lang('Upload both sides of your academic records (transcript /statement of marks) for all years of studies.')}</p>
+	                        </div>
+							<br/>
+                        </div>
+                        </form>
+						<div class="layui-col-sm12">
+	                        <a class="layui-btn layui-btn-primary save" lay-submit lay-filter="save">{:lang('Save This Page')}</a>
+	                        <a href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort-1])}"  class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+	                        <a class="layui-btn mazarine right" lay-submit lay-filter="save2">{:lang('Next Page')}</a>
+	                        <br/>
+	                        <br/>
+	                        <a class="layui-btn layui-btn-primary save" lay-submit lay-filter="save">{:lang('Save and Finish Later')}</a>
+	                        <hr/>
+	                    </div>
+                    </div>
+                </div>
+            {if condition="$or_input==1"}
+            <script>
+                $('input').attr('disabled',true);
+                $('input[type=checkbox]').attr('disabled',false);
+                $('select').attr('disabled',true);
+                $('button').attr('disabled',true);
+            </script>
+            {/if}
+            </div>
+        </div>
+    </div>
+</section>
+{include file="public/footer-login" /}
+<script>
+    $('.trans_del').on('click',function () {
+        $(this).parents('.transcript-img').remove();
+    });
+    layui.use(['form', 'laydate','upload','layer'], function(){
+        var form = layui.form,
+            laydate  = layui.laydate,
+            upload = layui.upload,
+            layer = layui.layer;
+        upload.render({
+            elem: '#diploma-file'
+            ,url: '/upload'
+            ,auto: false
+            //,multiple: true
+            ,bindAction: '#diploma-upload'
+            ,done: function(res){
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed');
+                } else {
+                    //上传成功
+                    //console.log(res);
+                    $('.diploma-img td a').attr('href',res.msg);
+                    $('.diploma-img td input').val(res.msg);
+                    $('.diploma-img td a').text('Diploma.jpg');
+                }
+            }
+        });
+        var cre_num = $('.layui-table .credential-img').length;
+        //alert(cre_num);
+        upload.render({
+            elem: '#credential-file'
+            ,url: '/upload'
+            ,auto: false
+            ,bindAction: '#credential-upload'
+            ,done: function(res){
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed');
+                } else {
+                    //上传成功
+                    //console.log(res);
+                    cre_num++;
+                    if(cre_num >=8){
+                        return layer.msg('The Credential Upload Failed Can\'t Be More Than 8');
+                    }
+                    $('.cre-null').remove();
+                    $('.layui-table tbody').append('<tr class="credential-img"><td>Credential</td><td><a href="'+res.msg+'" target="_blank"  class="credential">Credential'+cre_num+'.jpg</a></td><td><input type="hidden" name="credential[]" value="'+res.msg+'"><a class="layui-btn layui-btn-primary credential_del">{:lang(\'Delete\')}</a></td></tr>');
+                    $('.credential_del').on('click',function () {
+                        $(this).parents('.credential-img').remove();
+                    });
+                }
+            }
+        });
+        $('.credential_del').on('click',function () {
+            cre_num--;
+            if(cre_num==0){
+                //console.log(cre_num);
+                $('.layui-table tbody').append('<input type="hidden" name="credential">');
+            }
+            $(this).parents('.credential-img').remove();
+        });
+        var tran_num = $('.layui-table .transcript-img').size();
+        upload.render({
+            elem: '#transcript-file'
+            ,url: '/upload'
+            ,auto: false
+            ,bindAction: '#transcript-upload'
+            ,done: function(res){
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed');
+                } else {
+                    //上传成功
+                    //console.log(res);
+                    tran_num++;
+                    if(tran_num >=8){
+                        return layer.msg('The Transcript Upload Failed Can\'t Be More Than 8');
+                    }
+                    $('.trans-null').remove();
+                    $('.layui-table tbody').append('<tr class="transcript-img"><td>Transcript</td><td><a href="'+res.msg+'" target="_blank"  class="cj_img">Transcript'+tran_num+'.jpg</a></td><td><input type="hidden" name="cj_img[]" value="'+res.msg+'"><a class="layui-btn layui-btn-primary trans_del">{:lang(\'Delete\')}</a></td></tr>');
+                    $('.trans_del').on('click',function () {
+                        $(this).parents('.transcript-img').remove();
+                    });
+                }
+            }
+        });
+        $('.trans_del').on('click',function () {
+            tran_num--;
+            if(tran_num==0){
+                //console.log(tran_num);
+                $('.layui-table tbody').append('<input type="hidden" name="transcript">');
+            }
+            $(this).parents('.transcript-img').remove();
+        });
+        upload.render({
+            elem: '#diploma-file2'
+            ,url: '/upload'
+            ,auto: false
+            //,multiple: true
+            ,bindAction: '#diploma-upload2'
+            ,done: function(res){
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed');
+                } else {
+                    //上传成功
+                    console.log(res);
+                    $('.diploma-img2 td a').attr('href',res.msg);
+                    $('.diploma-img2 td input').val(res.msg);
+                    $('.diploma-img2 td a').text(res.msg.substring(18));
+                }
+            }
+        });
+        upload.render({
+            elem: '#transcript-file2'
+            ,url: '/upload'
+            ,auto: false
+            ,bindAction: '#transcript-upload2'
+            ,done: function(res){
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed');
+                } else {
+                    //上传成功
+                    console.log(res);
+                    $('.transcript-img2 td a').attr('href',res.msg);
+                    $('.transcript-img2 td input').val(res.msg);
+                    $('.transcript-img2 td a').text(res.msg.substring(18));
+                    //$('.layui-table tbody').append('<tr><td>Transcript</td><td><a href="'+res.msg+'" target="_blank"  class="sfz_img">'+res.msg.substring(18)+'</a></td><td><input type="hidden" name="diploma" value="'+res.msg+'"><a class="layui-btn layui-btn-primary">{:lang(\'Delete\')}</a></td></tr>');
+                }
+            }
+        });
+        form.on('checkbox(gredential2)', function(data){
+            if (data.elem.checked == true) {
+                $('.credential-box-2').fadeIn(200)
+                $('.credential2').attr('lay-verify','required');
+            } else {
+                $('.credential2').removeAttr('lay-verify')
+                $('.credential-box-2').fadeOut(300)
+            }
+        });
+        form.on('submit(save)', function(data){
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            $.post('/save_upload',data.field,function (result) {
+                //console.log(result);
+               window.location.reload();
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+        form.on('submit(save2)', function(data){
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            $.post("{:url('/save_next',['app_id'=>$order.app_id,'sort'=>$sort+1])}",data.field,function (result) {
+                //console.log(result);
+                window.location.href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort+1])}";
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+        laydate.render({
+            elem: '#birthDate',
+            lang: 'en'
+        });
+        laydate.render({
+            elem: '#datesAttendedTo',
+            lang: 'en'
+        });
+        laydate.render({
+            elem: '#datesAttendedFrom',
+            lang: 'en'
+        });
+        laydate.render({
+            elem: '#DateAwarded',
+            lang: 'en'
+        });
+        laydate.render({
+            elem: '#DateIssued',
+            lang: 'en'
+        });
+
+    });
+</script>
+</body>
+</html>

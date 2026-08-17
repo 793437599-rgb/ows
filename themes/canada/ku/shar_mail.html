@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+
+<head>
+	<meta charset="utf-8" />
+	<title>wse</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="/canada/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
+    <link rel="stylesheet" href="/canada/css/header-footer.css">
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/canada/css/login-new.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+	<link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+	<link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+   
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/jquery.flexslider-min.js"></script>
+	<script src="/static/js/viewer-jquery.min.js"></script>
+	<script src="/static/js/mobile.js"></script>
+	<script src="/static/js/layui/layui.js"></script>
+	<script src="/canada/js/html.js"></script>
+</head>
+			  
+<body>
+	{include file="public/header-login" /}
+	<div class="Ur_box">
+		{empty name="$info"}
+		<h1>连接已经失效</h1>  <!-- 已实现 -->
+      	{else /}
+		<form id="reset_pass" method="">
+			<h2>{:lang('Verify Email')}</h2> 
+			<div class="Ur_reset">
+				<div class="Ul_flist ">
+					<h3>{:lang('Current Email Address')}:</h3>
+					<input class="email-input input_password" type="text" style="text-transform: none;" lay-verify="mail" name="mail" id="mail" placeholder="{:lang('Please enter your e-mail address')}" />
+					<button class="code-btn" id="getcode"  type="button">Get Verification Code </button>
+				</div>
+				<div class="Ul_flist ">
+					<h3>{:lang('Verification Code')}:</h3>
+					<input class="input_password" type="text" style="text-transform: none;"    name="code" id="" placeholder="{:lang('Please enter the verification code accepted by your email address')}" />
+				</div>
+				<input type="hidden" name="urlcode" value="{$i}">
+				<div class="Ul_flist">
+					<button class="submit" type="button">{:lang('Submit')}</button>
+				</div>
+			</div>
+		</form>
+		{/empty}
+	</div>
+	<script type="text/javascript">
+		layui.use(['form', 'layedit', 'laydate'], function () {
+			var form = layui.form,
+				layer = layui.layer;
+			form.verify({
+				mail: [
+					 /^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/, 'Please enter the correct email address'
+				]
+			});
+			$(".submit").click(function () {
+				submit();
+			})
+			function submit() {          //ajax 需要修改  提交跳转
+				$.ajax({
+					type: "post",
+					url: "/index/index/code_shar_check",
+					async: false,
+					data: $("#reset_pass").serializeArray(),
+					success: function (result) {
+  if (result.code == 1) {
+						layer.msg('{:lang("Send Success")}', {
+							time: 2000
+						}, function () {
+							window.location.href = result.url;
+						});
+} else {
+	                        layer.msg(result.msg, {icon: 2});
+	                    }
+
+					},
+					error: function (result) {
+						layer.msg(result.msg);
+					}
+				});
+			}
+
+			$('#getcode').on('click', function () {  //获取邮箱验证码方法
+	            var mail =  $('#mail').val()
+	            var urlcode =  '{$i}'
+	            var res = /^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/;
+	            if (res.test(mail)){
+	                var indexss = layer.load(2);
+	                $.post('/index/index/code_shar',{mail:mail,urlcode:urlcode},function (result) { //邮箱验证部分
+	                    if (result.code == 1) {
+	                        layer.close(indexss); 
+	                        $('.link-wraps').fadeOut()
+	                        layer.msg('{:lang("Send Success")}', {icon: 1});
+	                    } else {
+	                        layer.close(indexss); 
+	                        layer.msg(result.msg, {icon: 2});
+	                    }
+	                })
+	            }else {
+	                layer.msg('{:lang("Mail Error")}', {icon: 2});
+	            }
+	        })
+
+		});
+	</script>
+	{include file="public/footer-login" /}
+</body>
+
+</html>

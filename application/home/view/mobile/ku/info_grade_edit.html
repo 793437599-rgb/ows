@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>UKED</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/mobile.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
+    <script src="/static/js/layui/layui.js"></script>
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+</head>
+
+<body>
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'><a class="hd-logo" href="/"> <img src="/canada/images/logo.png"/> </a>
+        <div class="infor-off"><a href="/home/ku/logout"> <img src="/canada/images/off-icon.svg"/> <span>Exit</span>
+        </a></div>
+    </div>
+</header>
+
+<section class="information-wrap">
+    <h2>PERSONAL DATA DISPLAY</h2>
+    <div class="information">
+        <div class="header">
+            <div class="img-box"><img src="/canada/images/pic-hd.jpg"/></div>
+            <div class="info">
+                <h3>{info.name}</h3>
+                <p>
+                    <i class="icon iconfont icon-UK-address"></i>
+                    <b>{edu.school}</b>
+                </p>
+            </div>
+            <ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down">
+                    <i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="{$v.id==$edu.id? 'infor-active':''}" href="/home/ku/info/edu_id/{$v.id}">Information</a>
+                        </li>
+                        <li><a href="/home/ku/transcript/edu_id/{$v.id}">Transcript</a></li>
+                    </ol>
+                </li>
+                {/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-UK-major"></i>major
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/home/ku/info">Information</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+                <li><a href="/home/ku/transfer">TRANSFER</a></li>
+            </ul>
+        </div>
+        <div class="table">
+            <div class="table-items">  <h3>2015-2016- Class Grades- Fall Term 2016</h3>
+                <table>
+                    <tbody>
+                    <tr>
+                        <th>Course Code</th>
+                        <th>Course Title</th>
+                        <th>Credit</th>
+                        <th>Grade</th>
+                        <th>Points</th>
+                    </tr>
+                    <tr>
+                        <td>ACCT 101</td>
+                        <td>INTRODUCTION TO MICROECONOMICS</td>
+                        <td>3.00</td>
+                        <td>B</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>MATH 101</td>
+                        <td>ELEMENTARY CALCULUS 1</td>
+                        <td>4.00</td>
+                        <td>B-</td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>MATH101</td>
+                        <td>ELEMENTARY CAL</td>
+                        <td>3.00</td>
+                        <td>C</td>
+                        <td>-</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-edit layui-form">
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-Personal"></i><b>Year:</b></label>
+                        <select name="">
+                            <option value="">2019</option>
+                            <option value="">2018</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label><b>Course Code:</b></label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><b>Course Title:</b></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label><b>Credit:</b></label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><b>Grade:</b></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label><b>Points:</b></label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="info-edit-item remark">
+                    <div>
+                        <a href="" class="add">Add</a>
+                        <a href="">Send</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="infor-ft"><a href="#">Home</a>&nbsp;|&nbsp; <span>Copyright © Canada education data</span></div>
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+    layui.use(['form','laydate'], function(){
+        var form = layui.form;
+    });
+</script>
+</body>
+
+</html>

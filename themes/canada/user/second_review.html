@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>{:lang('Application Lists')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css"/>
+    <link rel="stylesheet" href="/canada/css/user.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div>
+        <div class="layui-row">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                <!--    user avatar    -->
+                {include file="public/_nav_center_header" /}
+                <hr/>
+                <!-- application order -->
+                <div class="layui-row Ua_box second-review">
+                    <div class="layui-col-sm12">
+                        <div class="ua_xl_top">
+                            <h3>{:lang('Second Review')}</h3>
+                            <p>{:lang('After the data update application is approved, WSE will make the following changes to your data. Please ensure that the information is correct and authorize WSE to make changes.')}</p>
+                            <table>
+                                <tbody>
+                                    </tbody><colgroup width="14%"></colgroup>
+                                    <colgroup width="43%"></colgroup>
+                                    <colgroup width="43%"></colgroup>
+                                    <tbody>
+                                    <tr>
+                                        <th>{:lang('Updated Content')}</th>
+                                        <th>{:lang('Data Before Update')}</th>
+                                        <th>{:lang('Updated Data')}</th>
+                                    </tr>
+                                    {volist name="data" id="vo"}
+                                    <tr>
+                                        <td>{$vo.title}</td>
+                                        {if !is_array($vo.before) && !is_array($vo.after)}
+                                        <td>{$vo.before}</td>
+                                        <td>{$vo.after}</td>
+                                        {else /}
+                                        {if is_array($vo.before) && count($vo.before) > 0}
+                                        <td>
+                                            {volist name="$vo.before" id="v"}
+                                            <img src="{$v}" alt="">
+                                            {/volist}
+                                        </td>
+                                        {else /}
+                                        <td>
+                                            <img src="/canada/images/no-picture.svg" alt="">
+                                        </td>
+                                        {/if}
+                                        {if is_array($vo.after) && count($vo.after) > 0}
+                                        <td>
+                                            {volist name="$vo.after" id="v"}
+                                            <img src="{$v}" alt="">
+                                            {/volist}
+                                        </td>
+                                        {else /}
+                                        <td>
+                                            <img src="/canada/images/no-picture.svg" alt="">
+                                        </td>
+                                        {/if}
+                                        {/if}
+                                    </tr>
+                                    {/volist}
+                                </tbody>
+                            </table>
+
+                            <div class="protocol">
+                                <label for="protocol_1">
+                                    <input type="checkbox" id="protocol_1">
+                                    {:lang('I guarantee that the updated data above are authentic data.')}
+                                </label>
+                            </div>
+                            <div class="protocol">
+                                <label for="protocol_2">
+                                    <input type="checkbox" id="protocol_2">
+                                    {:lang('I authorize WSE to make changes to the above data submitted by me and bear all consequences caused by the data update.')}
+                                </label>
+                            </div>
+                            <div class="buttons">
+                                <a class="layui-btn mazarine right" href="{:url('index/user/application_pay',['order_no'=>$order.order_number])}" id="submit">{:lang('Submit')}</a>
+                                <a class="layui-btn layui-btn-primary right" href="{:url('index/user/modification_of_education_order_data',['order_no'=>$master_order_no,'sort'=>2])}">{:lang('Revise')}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--<script src="/static/js/layui/layui.js"></script>-->
+<script src="/static/js/layui/layui.all.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#submit').click(function () {
+            let protocol1 = $('#protocol_1').is(':checked');
+            let protocol2 = $('#protocol_2').is(':checked');
+            if (!protocol1) {
+                layer.tips('{:lang("Need to agree terms")}', $('#protocol_1'), { tips: [3, '#FF5722'] })
+                return false;
+            }
+            if (!protocol2) {
+                layer.tips('{:lang("Need to agree terms")}', $('#protocol_2'), { tips: [3, '#FF5722'] })
+                return false;
+            }
+        });
+    })
+</script>
+</body>
+</html>

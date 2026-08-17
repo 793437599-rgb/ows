@@ -1,0 +1,34 @@
+<div class="public-user-h1"><a href="/profile"><img src="{$user.head_img}"></a></div>
+<div class="public-user-h2">
+    <p class="p-user-name"><b>{$user.username}</b><span class="stored-id">{$user.search_id}</span><span class="p-ediet"><a href="index/user/email_modification"><i class="iconfont icon-ediet"></i></a></span></p>
+    <div class="public-imfor-three">
+        <div>{:lang($user.sex)}</div>
+        <div>{$user.birth_time|birthdayToAge} {:lang('year old')}</div>
+        <div>{if empty($user.nationality)} {:lang('Nationality')} {else /} {:lang($user.nationality)} {/if}</div>
+    </div>
+    <div class="public-imfor-two">
+        <div><span><i class="iconfont icon-phone"></i>{$user.mobile}</span></div>
+        <div><span><i class="iconfont icon-youxiang1"></i>{$user.email}</span></div>
+    </div>
+</div>
+<div class="public-user-h3 layui-hide-xs">
+    <!-- <h5>Assessment Status</h5> -->
+    <div class="p-h3-right">
+        {if condition="order_payst($user['id'])==0" }
+        <div class="p-h3-state h3-state-red">
+            <span><i class="iconfont icon-assess"></i>{:lang('Not Assessed')}</span>
+        </div>
+        {else /}
+        <div class="p-h3-state h3-state-green">
+            <span><i class="iconfont icon-assessed"></i>{:lang('Assessed')}</span>
+        </div>
+        {/if}
+        <div class="p-h3-applybtn">
+            {if condition="order_payst($user['id'])==0" }
+            <a href="javascript:;" onclick="link('3')">{:lang('APPLY ASSESSMENT')}</a>
+            {else /}
+            <a href="/index/user/orderinfo.html">{:lang('My Storage')}</a>
+            {/if}
+        </div>
+    </div>
+</div>

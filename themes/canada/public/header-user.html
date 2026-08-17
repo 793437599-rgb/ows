@@ -1,0 +1,121 @@
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1910963_mqv6rg3gr1.css" />
+<header class="User_hd_full">
+    <div >
+        <div class="layui-row User_hd_box">
+            <div class="user-logo layui-col-xs3">
+                <a href="/"><img src="/static/images/logo.png" alt="logo" title="header-logo"/></a>
+            </div>
+            <div class="  User_hd_bottom">
+                <ul class="layui-nav right">
+					<li class="layui-nav-item">
+					    <a href="javascript:;"><i class="fa fa-user-o"></i><span>{$Think.session.user_id|getusername}</span></a>
+					    <dl class="layui-nav-child">
+					        <dd><a href="/profile"><i class="fa fa-user"></i> {:lang('Account Settings')}</a></dd>
+					        <dd><a href="/logout"><i class="fa fa-sign-out"></i> {:lang('Sign Out')}</a></dd>
+					    </dl>
+					</li>
+                    <li class="layui-nav-item">
+                        <a class="info-tips" href="/index/about/questionnaire" {if condition="unread($Think.session.user_id,'index') neq ''"} id="flashing" {/if} ><i class="iconfont icon-Customer"></i><span>{:lang('Advisory Service')}{$Think.session.user_id|unread="index"}</span> </a>
+                    </li>
+                    <li class="layui-nav-item selects">
+                        <a href="javascript:;" ><i class="iconfont icon-language"></i> <span class="placeholder"> {:lang('Language')}</span></a>
+                        <dl class="layui-nav-child">
+                            <dd><li class="en"><a href="javascript:;">English</a></li></dd>
+                            <dd><li class="fr"> <a href="javascript:;" >Français </a></li></dd>
+                            <dd><li class="ja"> <a  href="javascript:;">日本語 </a></li></dd>
+                            <dd><li class="cn"> <a href="javascript:;" >中文 </a></li></dd>
+                            <dd><li class="ko"> <a href="javascript:;" >한국어</a></li></dd>
+                            <dd><li class="ru"> <a  href="javascript:;">Русский </a></li></dd>
+                        </dl>
+                    </li>
+                    <li class="layui-nav-item mobile-bars">
+					    <a  href="javascript:;"  >
+							<i class="fa fa-bars"></i>
+						</a>
+					</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<aside class="back-btn layui-hide-sm"><a>{:lang('Back')}</a></aside>
+
+<script type="text/javascript">
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++)
+        {
+            var c = ca[i].trim();
+            if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
+    var langText = getCookie('think_var')
+    switch (langText) {
+        case 'en-us':
+            langText = 'English'
+            break;
+        case 'zh-cn':
+            langText = '中文'
+            break;
+        case 'ja-jp':
+            langText = '日本語'
+            break;
+        case 'ko-kr':
+            langText = '한국어'
+            break;
+        case 'ru-ru':
+            langText = 'Русский'
+            break;
+        case 'fr-fa':
+            langText = 'Français'
+            break;
+        default:
+            langText = 'English'
+    }
+    // console.log('langText user', langText)
+    $('.placeholder').text(langText);
+    $('.selects').on('click', '.placeholder', function (e) {
+        var parent = $(this).closest('.select');
+        if (!parent.hasClass('is-open')) {
+            parent.addClass('is-open');
+            $('.select.is-open').not(parent).removeClass('is-open');
+        } else {
+            parent.removeClass('is-open');
+        }
+        e.stopPropagation();
+    }).on('click', 'dl>dd>li', function (e) {
+        e.stopPropagation();
+        var langText = $(this).text()
+        localStorage.setItem('langText', langText)
+        //点击选择语种
+        var parent = $(this).closest('.select'),
+        lang = $(this).attr('class').substr(0,2);
+        parent.removeClass('is-open').find('.placeholder').text($(this).text());
+            $.get("{:url('index/Index/lang')}", "lang=" + lang, function () {
+            location.reload();
+            });
+    });
+    $('body').on('click', function () {
+        $('.select.is-open').removeClass('is-open');
+    });
+	// moblie nav
+	$(function(){
+		$('.mobile-bars').on('click',function(){
+			if($('.mobile-bars').hasClass('nav-active')){
+				$(this).removeClass('nav-active')
+				$('.nav-fixed').css({'top':'-100%'})
+			}else{
+				$(this).addClass('nav-active')
+				$('.nav-fixed').css({'top':'1.2rem'})
+			}
+		})
+        var sort = '{$sort|default="0"}';
+        if (sort > 0 && sort < 10) {
+            $('.step-arrow-box a').eq(sort - 1).children('.step-arrow-wrap').removeClass('step-arrow-complete').addClass('step-arrow-current');
+        }
+	})
+</script>

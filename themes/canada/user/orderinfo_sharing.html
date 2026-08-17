@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/static/js/clipboard.min.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<style type="text/css">
+    .e-sharing-img-wrap{
+            height: 200px;
+    }
+</style>
+<section class="mainContent">
+    <div class="layui-row ">
+        <div class="layui-col-sm2 nav-fixed">
+            <!--    nav-left    -->
+            {include file="public/nav-left" /}
+        </div>
+        <div class="layui-col-sm10">
+            <div class="layui-row layui-col-space20 user-avatar">
+                <div class="layui-col-sm10 layui-col-xs8">
+                    <h1>{:lang('Electronic Certificate Sharing')}</h1>
+                </div>
+            </div>
+            <hr>
+            <div class="layui-row e-sharing">
+                <div class="layui-col-sm12">
+                    <p>{:lang('Note: the sharing of e-Cert will be shared to others in the form of link or email,')}
+                        <a class="difference-click color-blue">{:lang('Click here')} </a>{:lang('see how link sharing is different from email sharing.')}</p>
+                </div>
+                <div class="layui-row">
+                    <div class="layui-col-sm4 search-box">
+                        <input type="text">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="e-sharing-img-box">
+                    {volist name="credentials" id="vq"}
+                    <div class="e-sharing-img">
+                        <h6>{:lang('WES Evaluation Document')}</h6>
+                        <div class="e-sharing-img-wrap">
+                        <!--     <img src="{$vq.thumbnail}" alt="" data-src="{$vq.src}"> -->
+                            <img src="/canada/images/blockchain/d.jpg"  alt="" >
+                            <div class="e-sharing-img-mask">         
+                               
+                                <a   onclick="x_admin_show('view','{:url(\'wsekus/view/assess_report\')}?uid={$user_id}',1345,860)">{:lang('Preview')}</a>
+                                <a class="link-share" data-secret="{$vq.secret}" data-id="">{:lang('Link Sharing')}</a>
+                                <a class="link-mail"  data-src="{$vq.src}" data-secret="{$vq.secret}">{:lang('E-mail Sharing')}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                    {volist name="reports" id="vw"}
+                    <div class="e-sharing-img">
+                        <h6>{:lang('WES Evaluation Document')}</h6>
+                        <div class="e-sharing-img-wrap">
+                            <!-- <img src="{$vw.thumbnail}" alt="" data-src="{$vw.src}"> -->
+                              <img src="/canada/images/blockchain/T.jpg" alt="" >
+                            <div class="e-sharing-img-mask">
+                                <a   onclick="x_admin_show('view','{:url(\'wsekus/view/tra\')}?uid={$user_id}',1345,860)"  >{:lang('Preview')}</a>
+                                <a class="link-share" data-secret="{$vw.secret}">{:lang('Link Sharing')}</a>
+                                <a class="link-mail"  data-src="{$vw.src}" data-secret="{$vw.secret}">{:lang('E-mail Sharing')}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                    {volist name="originalDiplomas" id="vo"}
+                    <div class="e-sharing-img">  <!-- 测试 稍后删除 -->
+                        <h6>{:lang('WES Evaluation Document')}</h6>
+                        <div class="e-sharing-img-wrap">
+                            <img src="{$vo.thumbnail}" alt="" data-src="{$vo.src}">
+                            <div class="e-sharing-img-mask">
+                                <a class="preview-btn">{:lang('Preview')}</a>
+                                <a class="link-share" data-secret="{$vo.secret}">{:lang('Link Sharing')}</a>
+                                <a class="link-mail"  data-src="{$vo.src}" data-secret="{$vo.secret}">{:lang('E-mail Sharing')}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                    {volist name="originalTranscripts" id="vo"}
+                    <div class="e-sharing-img">  <!-- 测试 稍后删除 -->
+                        <h6>{:lang('WES Evaluation Document')}</h6>
+                        <div class="e-sharing-img-wrap">
+                            <img src="{$vo.thumbnail}" alt="" data-src="{$vo.src}">
+                            <div class="e-sharing-img-mask">
+                                <a class="preview-btn">{:lang('Preview')}</a>
+                                <a class="link-share" data-secret="{$vo.secret}">{:lang('Link Sharing')}</a>
+                                <a class="link-mail"  data-src="{$vo.src}"  data-secret="{$vo.secret}">{:lang('E-mail Sharing')}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {/volist}
+                </div>
+            </div>
+            {if empty($reports) && empty($credentials) && empty($originalDiplomas) && empty($originalTranscripts)}
+            <div class="layui-row e-sharing">
+                <div class="query-tips">
+                    <div class="query-tips-content">
+                        <img src="/canada/images/my-Inquire.svg" alt="">
+                        <p>{:lang('No one has checked your certificate information.')}</p>
+                    </div>
+                </div>
+            </div>
+            {/if}
+        </div>
+    </div>
+</section>
+
+<aside class="link-wrap" style="display: none;">
+    <div class="link-box" style="display: block;">
+        <div class="link-icon">
+            <h5>{:lang('Link Sharing')}</h5>
+            <i class="iconfont icon-close"></i>
+        </div>
+        <div id="zhiding" class="link-tips">
+            <p>{:lang('Any viewer can view your e-Cert after verifying the email address.')}</p>
+            <div class="link-flex">
+                <select id="types" class="check-select">
+                    <option value="1">{:lang('Authority : Everyone can view')}</option>
+                    <option value="2">{:lang('Authority : Designated person view')}</option>
+                </select>
+                <select class="date-select">
+                    <option selected value="1">{:lang('Link validity period : 10 days')}</option>
+                    <option value="2">{:lang('Link validity period : 20 days')}</option>
+                    <option value="3">{:lang('Link validity period : 30 days')}</option>
+                </select>
+            </div>
+            <div class="link-box-lx">
+                <div class="link-copylink">
+                    <input type="text" value="http://wse.org/shar/1599fpp92896Fiz3s0" placeholder="http://wse.org/shar/1599fpp92896Fiz3s0" data-token="" class="share-link" id="ordinary-share" readonly>
+                    <button class="link-copy" data-clipboard-target="#ordinary-share">{:lang('Copy Link')}</button>
+                </div>
+            </div>
+            <div class="link-box-lt" style="display: none;">
+                <div class="link-copylink">
+                    <input type="text" value="http://wse.org/shar/1599fpp92896Fiz3s0" class="share-link" placeholder="http://wse.org/shar/1599fpp92896Fiz3s0" id="assign-share" readonly>
+                    <button class="link-copy" data-clipboard-target="#assign-share">{:lang('Copy Link')}</button>
+                </div>
+                <div class="link-email">
+                </div>
+                <div class="linl-add-email">
+                    <h5>{:lang('Add email')}</h5>
+                    <div class="">
+                        <input type="text" name="email">
+                        <button id="add-email"><i class="iconfont icon-add-people"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+<aside class="link-wraps" style="display: none;">
+    <div class="link-box">
+        <h5>{:lang('Specify Mailbox')}</h5>
+        <div class="link-url">
+            <span>e-mail</span>
+            <input class="email-input" id="mail" type="text">
+            <input type="hidden" name="secret" value="">
+            <input type="hidden" name="imgage" value="">
+        </div>
+        <p style="text-align: center; font-size: 18px;">{:lang('We can send the certificate to your email.')} &ensp;{:lang('You have to pay')}<b> C$50</b></p>
+        <br>
+        <div class="link-btn" ><!-- style="display: none;"-->
+            <div id="pay-treaty-4" class="pay-img-box layui-form">
+                <div>
+                    <label for="pay-img-7">
+                        <input type="radio" value="1" lay-ignore name="pay" id="pay-img-7">
+                        <img src="/imgs/weixinzhifu.svg" style="width: 110px">
+                    </label>
+                </div>
+                <div>
+                    <label for="pay-img-8">
+                        <input type="radio" value="2" lay-ignore name="pay" id="pay-img-8">
+                        <img src="/imgs/zhifubaobangding.svg"  style="width: 110px">
+                    </label>
+                </div>
+            </div>
+            <br>
+            <a class="link-btn-cans">{:lang('Cancel')}</a>
+            <a class="link-btn-copy" id="pay">{:lang('Pay')}</a>
+        </div>
+        
+    </div>
+</aside>
+
+<aside id="payCodeBox" style="display: none;text-align: center;">
+    <h1>{:lang('Payment is in progress, please do not close this page')}</h1>
+    <div class="pay-code-box" >
+        <h1  >{:lang('Please pay by scanning code!')}</h1>
+        <div  id="pay_code"><img src=""   alt=""></div>
+    </div>
+</aside>
+
+<aside class="difference-mask">
+    <div class="difference">
+        <h5>{:lang('Link Sharing')}</h5>
+        <p>{:lang("The recipient can view your file through the link. When viewing, the recipient needs to verify the mailbox to view the information, and will record the recipient's record of viewing your certificate in the <a class='color-blue' href='/certificate_query_logs.html' style='text-decoration: underline;'>verification history</a>.")}</p>
+        <h5>{:lang('Email Sharing')}</h5>
+        <p>{:lang("We will send your documents to the recipients in the form of PDF or scanned copies stored by you. The recipients can view the file information directly in the mailbox, without the need to record the <a class='color-blue' href='/certificate_query_logs.html' style='text-decoration: underline;'>verification history</a>")}</p>
+        <h5>{:lang('WSE Remind')}</h5>
+        <p>{:lang('In order to ensure the security of your personal information, please choose the appropriate sharing method to share your stored certificates to others.')}</p>
+        <div class="difference-btn"><a>{:lang('I See')}</a></div>
+    </div>
+</aside>
+<script type="text/javascript" src="__JS__/qrcode.min.js"></script>
+<script>
+    layui.use('layer', function () {
+        var layer = layui.layer;
+        $('.preview-btn').on('click', function () {
+            let img = $(this).parents('.e-sharing-img-wrap').find('img');
+            let srcs = img.data('src').split(',');
+            let data = [];
+            $.each(srcs, function (index, val) {
+                let item = {};
+                item.pid = index;
+                item.src = val;
+                item.thumb = val;
+                data[index] = item;
+            });
+            let json = {
+                "title": "", //相册标题
+                "id": 123, //相册id
+                "start": 0, //初始显示的图片序号，默认0
+                "data": data
+            }
+            layer.photos({
+                photos: json
+                , anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+                , tab: function (pic, layero) {
+                    console.log(pic) //当前图片的一些信息
+                }
+            });
+        })
+
+        $('.link-share').on('click', function () {
+            let secret = $(this).data('secret');
+            $('.link-box-lx').show();
+            $('.link-box-lt').hide();
+            $('#types').val(1);
+            $('.date-select').val(1);
+            $('.link-email').empty();
+            $.ajax({
+                url: '{:url("index/share/create")}',
+                type: 'post',
+                data: {secret: secret},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 20000) {
+                        $('#ordinary-share').val(res.data.shareLink).data('token',res.data.token);
+                        $('#assign-share').val(res.data.shareLink).data('token',res.data.token);
+                        $('.link-wrap').fadeIn();
+                    } else {
+                        layer.msg(res.msg, {icon: 2})
+                    }
+                }
+            });
+        })
+
+        $('.date-select').change(function(){
+            let authority = $('.check-select').val();
+            let token = authority == 1 ? $('#ordinary-share').data('token') :  $('#assign-share').data('token');
+            let validity = $(this).val();
+            $.ajax({
+                url: '{:url("index/share/store")}',
+                type: 'post',
+                data: {validity:validity,token:token},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code != 20000)  {
+                        layer.msg(res.msg, {icon: 2})
+                    }
+                }
+            });
+        });
+        $('.check-select').change(function () {
+            let authority = $(this).val();
+            let token = authority == 1 ? $('#ordinary-share').data('token') :  $('#assign-share').data('token');
+            $.ajax({
+                url: '{:url("index/share/store")}',
+                type: 'post',
+                data: {authority:authority,token:token},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 20000) {
+                        $('#ordinary-share').val(res.data.shareLink);
+                        $('#assign-share').val(res.data.shareLink);
+                        if (authority == 1) {
+                            $('.link-box-lx').show()
+                            $('.link-box-lt').hide()
+                        } else {
+                            $('.link-box-lt').show()
+                            $('.link-box-lx').hide()
+                        }
+                        $('.link-wrap').fadeIn();
+                    } else {
+                        layer.msg(res.msg, {icon: 2})
+                    }
+                }
+            });
+        })
+
+        $('#add-email').click(function () {
+            let email = $('[name="email"]').val();
+            var res = /^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/;
+            if (!res.test(email)){
+                return layer.msg('{:lang("Mail   Error")}', {icon: 2});
+            }
+            let authority = $('.check-select').val();
+            let token = authority == 1 ? $('#ordinary-share').data('token') :  $('#assign-share').data('token');
+            $.ajax({
+                url: '{:url("index/share/store")}',
+                type: 'post',
+                data: {email:email,token:token,type:'add'},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 20000) {
+                        let html = "<h5>shared email address added</h5>";
+                        $.each(res.data.emails,function(index,item){
+                            html += " <div>\n" +
+                                "<span><i class=\"iconfont icon-youxiang\"></i>"+ item +"</span>\n" +
+                                "<span class='email-del'><i class=\"fa fa-trash-o\"></i></span>\n" +
+                                "</div>";
+                        });
+                        $('.link-email').empty().append(html);
+                        $('[name="email"]').val('');
+                    } else {
+                        layer.msg(res.msg, {icon: 2},function (){
+                            $('[name="email"]').val('');
+                        })
+                    }
+                }
+            });
+        });
+
+        $(document).on('click','.email-del',function (){
+            let email = $(this).siblings('span').text();
+            let authority = $('.check-select').val();
+            let token = authority == 1 ? $('#ordinary-share').data('token') :  $('#assign-share').data('token');
+            $.ajax({
+                url: '{:url("index/share/store")}',
+                type: 'post',
+                data: {email:email,token:token,type:'del'},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 20000) {
+                        let html = "<h5>{:lang('shared email address added')}</h5>";
+                        $.each(res.data.emails,function(index,item){
+                            html += " <div>\n" +
+                                "<span><i class=\"iconfont icon-youxiang\"></i>"+ item +"</span>\n" +
+                                "<span class='email-del'><i class=\"fa fa-trash-o\"></i></span>\n" +
+                                "</div>";
+                        });
+                        $('.link-email').empty().append(html);
+                    } else {
+                        layer.msg(res.msg, {icon: 2})
+                    }
+                }
+            });
+        });
+        $('.link-btn-can').click(function () {
+            $('.link-wrap').fadeOut()
+        })
+        $('.link-btn-cans').click(function () {
+            $('.link-wraps').fadeOut()
+        })
+
+        /**
+         * 滚轮放大缩小图片
+         */
+        $(document).on("mousewheel DOMMouseScroll", ".layui-layer-phimg img", function (e) {
+            var delta = (e.originalEvent.wheelDelta && (e.originalEvent.wheelDelta > 0 ? 1 : -1)) || // chrome & ie
+                (e.originalEvent.detail && (e.originalEvent.detail > 0 ? -1 : 1)); // firefox
+            var imagep = $(".layui-layer-phimg").parent().parent();
+            var image = $(".layui-layer-phimg").parent();
+            var h = image.height();
+            var w = image.width();
+            if (delta > 0) {
+                h = h * 1.05;
+                w = w * 1.05;
+            } else if (delta < 0) {
+                if (h > 100) {
+                    h = h * 0.95;
+                    w = w * 0.95;
+                }
+            }
+            imagep.css("top", (window.innerHeight - h) / 2);
+            imagep.css("left", (window.innerWidth - w) / 2);
+            image.height(h);
+            image.width(w);
+            imagep.height(h);
+            imagep.width(w);
+        });
+            let load_index; //send 
+        $('.link-mail').click(function (){   //弹窗
+             //layer.msg('ok', {icon: 1})  //成功
+            let secret = $(this).data('secret');
+            let seccc = $(this).data('src');
+            $('[name="secret"]').val(secret)
+            $('[name="imgage"]').val(seccc)
+            $('.link-wraps').fadeIn();
+        })
+
+       
+        $('#pay').click(function () {
+            let emails = $('#mail').val().trim();
+            let secret = $('[name="secret"]').val();
+            let imgage = $('[name="imgage"]').val();
+            var res = /^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/;
+            if (!res.test(emails)){
+                return layer.msg('{:lang("Mail   Error")}', {icon: 2});
+            }
+            var tpyes =  $("input[name='pay']:checked").val();
+            if (tpyes== undefined) {
+                layer.tips('<?php echo lang("Please select payment method"); ?>', '#pay-img-8', {
+                    tips: [1, '#013763']
+                });
+                return
+            }
+
+            $.ajax({
+                url: '{:url("index/share/pay_getcode")}',
+                type: 'post',
+                data: {email:emails,secret:secret,imgage:imgage,pay_type:tpyes},
+                dataType: 'json',
+                beforeSend:function (){
+                    load_index = layer.load();
+                },
+                success: function (res) {
+                    if (res.code == 20000) {
+                        //layer.msg('ok', {icon: 1})  //弹窗
+                        var qrcode = new QRCode(document.getElementById("pay_code"), {
+                            width : 100,
+                            height : 100
+                        });
+                        var int  
+                        qrcode.makeCode(res.data );
+                        setTimeout(function () {
+                            int = self.setInterval(function(){pay_status()},3000);
+                        }, 8000);
+                        layer.open({
+                            type: 1,
+                            title: '',
+                            //closeBtn : 0,
+                            area: ['700px', '480px'],
+                            content: $('#payCodeBox'),
+                            cancel: function(index, layero){ 
+                                layer.close(index)
+                                window.clearInterval(int);
+                                $('#pay_code').attr('title', '').empty().append('<img src="" alt="">')
+                                return false; 
+                            }    
+                        });
+                    } else {
+                        layer.msg(res.msg,{icon: 2});
+                    }
+                },
+                complete:function (){
+                    layer.close(load_index);
+                }
+            });
+        });
+
+        function pay_status() {
+            let imgage = $('[name="imgage"]').val();
+            let emails = $('#mail').val().trim();
+            $.ajax({
+                url: '{:url("index/share/pay_status")}',
+                type: 'post',
+                data: {imgage: imgage,emails: emails},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 20000) {
+                        location.href = res.data;
+                    }   
+                },
+            }) 
+        }
+
+        var clipboard = new ClipboardJS('.link-copy');
+        clipboard.on('success', function (e) {
+            // console.info('Action:', e.action);
+            // console.info('Text:', e.text);
+            // console.info('Trigger:', e.trigger);
+            e.clearSelection();
+            layer.msg('{:lang("Copied")}');
+        });
+        clipboard.on('error', function (e) { });
+    });
+
+    $('.difference-click').click(function () {
+        $('.difference-mask').fadeIn()
+    })
+    $('.difference-btn').click(function () {
+        $('.difference-mask').fadeOut()
+    })
+
+
+    $('.link-icon >.icon-close').click(function () {
+        $('.link-wrap').hide()
+    })
+
+function x_admin_show(title,url,w,h){
+    layer.open({
+        type: 2,
+        area: [w+'px', h +'px'],
+        fix: false, //不固定
+        maxmin: true,
+        shadeClose: true,
+        shade:0.4,
+        title: title,
+        content: url
+    });
+}
+
+</script>
+ 
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>{:lang('My Applications')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="layui-container">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-sm2">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+		        <!--    user header    -->
+		        <div class="layui-row mainContent-header">
+	                <div class="layui-col-sm10 layui-col-xs8">
+	                    <h1>{:lang('My Applications')}</h1>
+		            </div>
+		        </div>
+                <hr/>
+		        <!--    applications    -->
+		        <div class="layui-row">
+		            <div class="layui-col-sm12">
+		                <div class="variable-content application-lists">
+		                            <p>{:lang('Select "More Information" to see more details about a program and to start an application. If there is an application fee, you will not be required to pay it until you have completed and submitted the application.')}</p>
+		                    <table class="layui-table">
+		                        <tbody>
+		                        {foreach name='applications' item='vo'}
+		                        <tr>
+		                            <td>
+                                        {switch name="$Think.cookie.think_var"}
+                                        {case value="en-us"}{$vo.name_en}{/case}
+                                        {case value="zh-cn"}{$vo.app_name}{/case}
+                                        {case value="ja-jp"}{$vo.name_jp}{/case}
+                                        {case value="de-de"}{$vo.name_de}{/case}
+                                        {case value="ko-kr"}{$vo.name_kr}{/case}
+                                        {case value="ru-ru"}{$vo.name_ru}{/case}
+                                        {case value="fr-fa"}{$vo.name_fa}{/case}
+                                        {/switch}
+		                            </td>
+		                            <td>
+		                                <a href="{:url('/applications_info',['id'=>$vo.id])}" class="layui-btn mazarine">{:lang('More Information')}</a>
+		                            </td>
+		                        </tr>
+		                        {/foreach}
+		                        </tbody>
+		                    </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+				
+    </div>
+</section>
+{include file="public/footer-login" /}
+</body>
+</html>

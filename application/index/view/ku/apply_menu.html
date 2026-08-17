@@ -1,0 +1,16 @@
+<div class="infor-left">
+    {notempty name="edulist"}
+    {foreach name="edulist" item="v"}
+    <h3>{$v.academic_level}</h3>
+    <ul>
+        <li><a href="/index/ku/info/edu_id/{$v.id}">Information</a></li>
+        <li><a href="/index/ku/transcript/edu_id/{$v.id}">Transcript</a></li>
+    </ul>
+    {/foreach}
+    {else /}
+    <ul>
+        <li><a href="/index/ku/info">Information</a></li>
+    </ul>
+    {/notempty}
+    <h3 style="background: #fff;border-left: 4px solid #88C34D;"><a href="/index/ku/transfer">TRANSFER</a></h3>
+</div>

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+{__NOLAYOUT__}
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{:lang('WSE-DAE for General Use')}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+
+    <script src="/static/js/jquery.min.js"></script>
+
+    <script src="/static/js/mobile.js"></script>
+
+    <script src="/static/js/layui/layui.js"></script>
+
+    <script src="/canada/js/html.js"></script>
+
+</head>
+
+<body>
+
+
+
+{include file="public/header-user" /}
+
+
+
+<section class="mainContent">
+
+    <div class="layui-container">
+
+        <div class="layui-row layui-col-space15">
+
+            <div class="layui-col-sm2">
+
+                <!--    nav-left    -->
+
+                {include file="public/nav-left" /}
+
+            </div>
+
+            <div class="layui-col-sm10">
+
+
+
+                <!--    user avatar    -->
+
+                <div class="layui-row user-avatar">
+
+                    <div class="layui-col-sm2 layui-col-xs4">
+
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+
+                    </div>
+
+                    <div class="layui-col-sm10 layui-col-xs8">
+
+                        <h1>{switch name="$Think.cookie.think_var"}
+
+                            {case value="en-us"}{$order.name_en}{/case}
+
+                            {case value="zh-cn"}{$order.app_name}{/case}
+
+                            {case value="ja-jp"}{$order.name_jp}{/case}
+
+                            {case value="de-de"}{$order.name_de}{/case}
+
+                            {case value="ko-kr"}{$order.name_kr}{/case}
+
+                            {case value="ru-ru"}{$order.name_ru}{/case}
+
+                            {case value="fr-fa"}{$order.name_fa}{/case}
+
+                            {/switch}</h1>
+
+                        <p><b>{$user.username}</b></p>
+
+                        <p>{$user.email}— {$user.search_id}</p>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <div class="steps-card">
+
+                            <h3>{:lang('Required Steps')}</h3>
+
+                            <ol>
+
+                                {foreach name="app_step" item="vo"}
+
+                                <li {$vo.sort==$sort?"class='active'":"" } >
+
+                                    <a href="{$vo.sort}">
+
+                                        {if condition="in_array($vo.id,$step_ok)"}
+
+                                        <i class="fa fa-check-circle"></i>
+
+                                        {$vo.sort}. {switch name="$Think.cookie.think_var"}
+
+                                        {case value="en-us"}{$vo.step_en}{/case}
+
+                                        {case value="zh-cn"}{$vo.step_name}{/case}
+
+                                        {case value="ja-jp"}{$vo.step_jp}{/case}
+
+                                        {case value="de-de"}{$vo.step_de}{/case}
+
+                                        {case value="ko-kr"}{$vo.step_kr}{/case}
+
+                                        {case value="ru-ru"}{$vo.step_ru}{/case}
+
+                                        {case value="fr-fa"}{$vo.step_fa}{/case}
+
+                                        {/switch} - {:lang('Complete')}
+
+                                        {else}
+
+                                        <i class="fa fa-arrow-circle-right"></i>
+
+                                        {$vo.sort}. {switch name="$Think.cookie.think_var"}
+
+                                        {case value="en-us"}{$vo.step_en}{/case}
+
+                                        {case value="zh-cn"}{$vo.step_name}{/case}
+
+                                        {case value="ja-jp"}{$vo.step_jp}{/case}
+
+                                        {case value="de-de"}{$vo.step_de}{/case}
+
+                                        {case value="ko-kr"}{$vo.step_kr}{/case}
+
+                                        {case value="ru-ru"}{$vo.step_ru}{/case}
+
+                                        {case value="fr-fa"}{$vo.step_fa}{/case}
+
+                                        {/switch} - {:lang('Incomplete')}
+
+                                        {/if}
+
+                                    </a>
+
+                                </li>
+
+                                {/foreach}
+
+
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr/>
+
+
+
+                <!--    steps    -->
+
+                <div class="layui-row steps">
+
+                    <div class="layui-col-sm12">
+
+                        <h3>{:lang('INSTRUCTIONS')}</h3>
+
+                        <hr/>
+
+                        <p>{:lang('Please read and follow carefully to avoid delays')}.</p>
+
+                        <hr/>
+
+                        <h5>{:lang('General Instructions')}</h5>
+
+                        <p>{:lang('Before starting this application, please make sure you have available scanned copies of all supporting document.  We strongly recommend you download and complete our document checklist before starting this online application.')}</p>
+
+                        <h5>{:lang('Official Academic Record')}</h5>
+
+                        <p>{:lang('Your official academic record (transcript) must also be sent directly to our office. Official academic record (transcript) must be signed, stamped, and dated by the officials (i.e. Registrar, Controller of Examination) of the awarding institution. Official academic record (transcript) must be in a sealed institution envelope with an institution stamp, a seal, or a signature over the back flap.')}  </p>
+
+                        <p>{:lang('It is your responsibility to make this arrangement. WSE cannot order these documents for applicants. Do not send us official academic record (transcript) prior to completing this application.')}</p>
+
+                        <p><b>{:lang('Service Standards:')}</b>
+
+                            <br/>
+
+                            {:lang('Our service delivery standard starts from the time that we have received and verified all documents related to your application. You will be notified by email when your application and supporting documents have been verified.')}
+
+                        </p>
+
+                        <p><b>{:lang('Payment:')}</b>
+
+                            <br/>
+
+                            {:lang('A valid credit card (Visa, MasterCard, or American Express) is required to complete your online application.  Debit cards are not accepted. All fees are in Canadian dollars.')}
+
+                        </p>
+
+                    </div>
+
+
+
+                    <div class="layui-col-sm12">
+
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save This Page')}</a>
+
+                        <a href="{:url('/save_next',['app_id'=>$fee.id,'sort'=>$sort+1])}" class="layui-btn mazarine right">{:lang('Next Page')}</a>
+
+                        <br/>
+
+                        <br/>
+
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save and Finish Later')}</a>
+
+                        <hr/>
+
+                    </div>
+
+
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+{include file="public/footer-login" /}
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+	<head>
+		<meta charset="utf-8" />
+		<title>Forgot password</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/canada/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/jquery.flexslider-min.js"></script>
+		<script src="/static/js/viewer-jquery.min.js"></script>
+		<script src="/static/js/mobile.js"></script>
+		<script src="/static/js/layui/layui.js"></script>
+		<script src="/canada/js/html.js"></script>
+	</head>
+	<body>
+	{include file="public/header" /}
+		<div class=" Ul_form">
+			<div class="Ul_orlog">
+				<a href="/"> <i class=" fa fa-facebook-f"></i>{:lang('Sign in with Facebook')}</a>
+			</div>
+			<div class="Ul_line">
+				<span>{if condition="!empty($init)"}{$init}{else/}OR{/if}</span>
+			</div>
+			<form id="login" method="" class="">
+				{:token()}
+				<div class="Ul_flist">
+					<p>{:lang('Email address')}</p>
+					<input type="email" name="email" required />
+				</div>
+				<div class="Ul_flist ">
+					<p>{:lang('Password')}</p>
+					<input class="input_password" type="password" name="password"  required />
+					<i class="reg_ibtn fa fa-eye-slash"></i>
+				</div>
+				<div class="Ul_flist">
+					<button class="submit" type="button">{:lang('Log in')}</button>
+				</div>
+				<a class="Ul_forget" href="/forget_pass">{:lang('Forgot your password')}?</a>
+				<p class="Ul_reg">{:lang('Not have an account')}? <a class="Ul_forget" href="/add">{:lang('Sign up')}</a></p>
+			</form>
+		</div>
+<script type="text/javascript">
+layui.use(['form', 'layedit'], function(){
+                var form = layui.form
+                    ,layer = layui.layer
+                    ,layedit = layui.layedit;
+                $(document).ready(function () {
+                    $(".submit").click(function(){
+                        submit();
+                    })
+                    function submit(){
+                        $.post("/login", $("#login").serialize(),
+                            function (data) {
+                                if(data.code==1){
+                                    layer.msg('login success',{time:2000},function(){
+                                        window.location.href=data.url;
+                                    })
+                                }else{
+                                    if (data.msg=='invalid token') {
+									layer.open({
+									  title: 'error hint'
+									  ,content: 'Data invalid, refresh page...'
+									});
+									window.location.reload();
+								} else{
+									layer.open({
+									  title: 'error hint'
+									  ,content: data.msg
+									});
+								}
+                                }
+                            },
+                            "json"
+                        );
+                    }
+                });
+});
+		</script>
+	{include file="public/footer" /}
+	</body>
+</html>

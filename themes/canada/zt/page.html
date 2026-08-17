@@ -1,0 +1,51 @@
+<script type="text/javascript">
+	if (!!(window.history && history.pushState)){
+		// var stateObj = { foo: 'bar' };
+		// history.pushState(stateObj, 'page 2', '2.html');
+var id =  {$ids};	
+var  texts=	 '{$ids}';	
+var  texts =texts.replace(1,'q');
+var  texts =texts.replace(2,'w');
+var  texts =texts.replace(3,'e');
+var  texts =texts.replace(4,'r');
+var  texts =texts.replace(5,'t');
+var  texts =texts.replace(6,'y');
+var  texts =texts.replace(7,'u');
+var  texts =texts.replace(8,'i');
+var  texts =texts.replace(9,'o');
+var  texts =texts.replace(0,'p');
+var  bbs =texts+randomString(4);
+console.log(bbs);
+var state = { 'page': bbs, };
+var title = 'World';
+var url = bbs+'.html';
+history.pushState(state, title, url);
+   // var originUrl=window.location.href;
+   //  var valiable = originUrl.split("?")[0];  console.log(valiable)
+   //  window.history.pushState(null, null, valiable+"?name="+self.dname+"&line="+type+"");
+} else {
+  // 不支持
+}
+function randomString(len) {
+　　len = len || 32;
+　　var $chars = 'asdhkjflzxcmnb';   
+　　var maxPos = $chars.length;
+　　var pwd = '';
+　　for (i = 0; i < len; i++) {
+　　　　pwd += $chars.charAt(Math.floor(Math.random() * maxPos));
+　　}
+　　return pwd;
+}
+ 
+</script>
+
+{switch name="$Think.cookie.think_var"}
+{case value="en-us"}{$category.content}{/case}
+{case value="zh-cn"}{$category.content_cn}{/case}
+{case value="ja-jp"}{$category.content_jp}{/case}
+{case value="de-de"}{$category.content_de}{/case}
+{case value="ko-kr"}{$category.content_kr}{/case}
+{case value="ru-ru"}{$category.content_ru}{/case}
+{case value="fr-fa"}{$category.content_fa}{/case}
+{/switch}
+{include file="public/middle" /}

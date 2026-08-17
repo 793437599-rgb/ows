@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+<head>
+    <meta charset="utf-8"/>
+    <title>UKED</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
+    <script src="/static/js/layui/layui.js"></script>
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+</head>
+<body>
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'><a class="hd-logo" href="/"> <img src="/canada/images/logo.png"/> </a>
+        <div class="infor-off"><a href="/index/ku/logout"> <img src="/canada/images/off-icon.svg"/> <span>Exit</span>
+        </a></div>
+    </div>
+</header>
+<section class="information-wrap">
+    <h2>PERSONAL DATA DISPLAY</h2>
+    <div class="information">
+        <div class="header">
+            <div class="img-box"><img src="/canada/images/pic-hd.jpg"/></div>
+            <div class="info">
+                <h3>{info.name}</h3>
+                <p>
+                    <i class="icon iconfont icon-UK-address"></i>
+                    <b>{edu.school}</b>
+                </p>
+            </div>
+            <ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down">
+                    <i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="{$v.id==$edu.id? 'infor-active':''}" href="/index/ku/info/edu_id/{$v.id}">Information</a>
+                        </li>
+                        <li><a href="/index/ku/transcript/edu_id/{$v.id}">Transcript</a></li>
+                    </ol>
+                </li>
+                {/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-UK-major"></i>major
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/index/ku/info">Information</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+                <li><a href="/index/ku/transfer">TRANSFER</a></li>
+            </ul>
+        </div>
+        <div class="table">
+            <div class="info-edit layui-form">
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-Personal"></i><b>Name:</b></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-UK-date"></i><b>Date of Birth:</b></label>
+                        <input type="text" id="dataBirth" placeholder="{:lang('year/month/day')}">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-address"></i><b>Place of Birth:</b></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-gender"></i><b>Sex:</b></label>
+                        <input type="radio" name="sex" value="男" title="男">
+                        <input type="radio" name="sex" value="女" title="女" checked>
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-passport"></i><b>Passport:</b></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-UK-university"></i><b>University:</b></label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-Website"></i><b>Official Website:</b></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-degree"></i><b>Degree:</b></label>
+                        <select name="">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-student"></i><b>Student ID:</b></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-UK-major"></i><b>Major:</b></label>
+                        <select name="">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-Study_Mode"></i><b>Study Mode:</b></label>
+                        <select name="">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-Length_schooling"></i><b>Length of schooling:</b></label>
+                        <select name="">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-Language"></i><b>Language of Instruction:</b></label>
+                        <select name="">
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-UK-date"></i><b>Date of Enrollment:</b></label>
+                        <input type="text" id="dataEnrollment" placeholder="{:lang('year/month/day')}">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-UK-date"></i><b>Date of Completion:</b></label>
+                        <input type="text" id="dataCompletion" placeholder="{:lang('year/month/day')}">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-Pre_Education"></i><b>Faculty:</b></label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="info-edit-item">
+                    <div>
+                        <label><i class="icon iconfont icon-Faculty"></i><b>Pre Education:</b></label>
+                        <input type="text">
+                    </div>
+                    <div>
+                        <label><i class="icon iconfont icon-Pre_Education_name"></i><b>Name of Pre-education:</b></label>
+                        <input type="text">
+                    </div>
+                </div>
+                <div class="info-edit-item remark">
+                    <div>
+                        <label><i class="icon iconfont icon-uk-apply"></i><b>Remark:</b></label>
+                        <textarea></textarea>
+                    </div>
+                </div>
+                <div class="info-edit-item diploma">
+                    <div>
+                        <label><b>DIPLOMA</b></label>
+                        <a class="layui-btn" id="diplomaButton">上传图片</a>
+                        <span>
+                            <img src="" alt="" id="diplomaImg">
+                        </span>
+                    </div>
+                    <div>
+                        <label><b>TRANSCRIPT</b></label>
+                        <a class="layui-btn" id="transcriptButton">上传图片</a>
+                        <span id="transcriptImg">
+                        </span>
+                    </div>
+                </div>
+                <div class="info-edit-item remark">
+                    <div>
+                        <a href="">Send</a>
+                    </div>
+                </div>
+                <div class="info-edit-item diploma">
+                    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
+                        <legend>上传多张图片</legend>
+                    </fieldset>
+<div class="layui-upload">
+                        <input type="button" class="layui-btn" id="test2">多图片上传</input>
+                        <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                            预览图：
+                            <div class="layui-upload-list" id="demo2"></div>
+                        </blockquote>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="infor-ft"><a href="#">Home</a>&nbsp;|&nbsp; <span>Copyright © Canada education data</span></div>
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+    layui.use(['form','laydate','upload'], function(){
+        var form = layui.form
+            ,laydate = layui.laydate
+            ,upload = layui.upload;
+laydate.render({
+            elem: '#dataBirth'
+        });
+        laydate.render({
+            elem: '#dataEnrollment'
+        });
+        laydate.render({
+            elem: '#dataCompletion'
+        });
+//普通图片上传
+        var uploadInst = upload.render({
+            elem: '#diplomaButton'
+            ,url: '/upload/'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#diplomaImg').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.code > 0){
+                    return layer.msg('上传失败');
+                }
+                //上传成功
+            }
+            ,error: function(){
+}
+        });
+//多图片上传
+        upload.render({
+            elem: '#transcriptButton'
+            ,url: '/upload/'
+            ,multiple: true
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#transcriptImg').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                });
+            }
+            ,done: function(res){
+                //上传完毕
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<style>
+    .nav-left .layui-nav .layui-nav-item > a:hover {
+        background: #013763;
+    }
+</style>
+<!--侧边导航-->
+<div class="nav-left">
+<ul class="layui-nav layui-nav-tree">
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="/profile"><i class="iconfont icon-home"></i> {:lang('Home Page')}</a>
+        </li>
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="{:url('index/user/orderinfo')}"><i class="iconfont icon-cunchu"></i> {:lang('My Storage')}</a>
+        </li>
+        <li class="layui-nav-item layui-nav-itemed ">
+            <a href="#"><i class="iconfont icon-fuwu"></i> {:lang('Application Project')}</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/applications_lists"><i class="iconfont icon-Project1"></i> {:lang('Application Project')}</a>
+                </dd>
+                {php}
+                $id = input('id');
+                $app_id = input('app_id');
+                $id == 18 || $id == 19 ? $id = 7 : $id;
+                $app_id == 18 || $app_id == 19 ? $app_id = 7 : $app_id;
+                $icon = ['icon-diploma1','icon-Immigration-crude','icon-updata','icon-fuben'];
+                {/php}
+                {volist name="applications" id="vo"}
+                <dd class="{if $vo.id == $id || $vo.id == $app_id} act {/if}">
+                    <!--  href="/applications_info/id/{$vo.id}" -->
+                    <a href="javascript:;" onclick="link('{$vo.id}')"><i class="iconfont {$icon[$key]}"></i>{:lang($vo.alias)}</a></dd>
+                {/volist}
+            </dl>
+        </li>
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;"><i class="iconfont icon-institution"></i>{:lang('Institutional Storage')}</a>
+            <dl class="layui-nav-child">
+                <dd><a href="{:url('index/application/institutional_apply')}"><i class="iconfont icon-direct"></i>{:lang('API Application')}</a></dd>
+                <dd><a href="{:url('index/application/api')}"><i class="fa fa-connectdevelop" aria-hidden="true"></i>{:lang('Developer')}</a>
+                
+                </dd>
+                <dd><a href="{:url('index/application/institutional_application')}">  <i class="iconfont icon-iconapplications"></i>{:lang('Storage Application')}</a></dd>
+            </dl>
+        </li>
+        <!--数据传输-->
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="{:url('index/about/payinfo')}"><i class="iconfont icon-pay"></i>{:lang(' Application Orders ')}</a>
+        </li>
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;"><i class="iconfont icon-data-transmission"></i>{:lang('Transfer')}</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/apply_all"><i class="iconfont icon-shujuziliaogengxin"></i>{:lang('Transfer')}</a></dd>
+                <!-- <dd><a href="/apply_introduction">{:lang('Introduction')}</a></dd> -->
+                <dd><a href="/apply_how"><i class="iconfont icon-Application"></i>{:lang('How to Apply')}</a></dd>
+                <dd><a href="/apply_order"><i class="iconfont icon-report"></i>{:lang('Data Transfer Order')}</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;"> <i class=" fa fa-id-badge"></i>{:lang('Profile')}</a>
+            <dl class="layui-nav-child">
+                <!--  <dd  ><a href="/profile"><i class="fa fa-user-circle"></i>{:lang('Basic Information')}</a></dd> -->
+                <dd><a href="/change_pass?user_id={$Think.session.user_id}"><i class="iconfont icon-password"></i>{:lang('Change Password')}</a></dd>
+                <dd><a href="/index/about/helpcenter"><i class="iconfont icon-service"></i>{:lang('Help Center')}</a></dd>
+                <!--<dd><a href="/index/about/payinfo"><i class="iconfont icon-pay"></i>{:lang('Payment Management')}</a></dd>-->
+            </dl>
+        </li>
+    </ul>
+</div>
+<div class="user_copy">© 2020 WSE - All Rights Reserved</div>
+<style>
+    .nav-left-mobile {
+        display: none;
+    }
+@media screen and (max-width: 768px) {
+.nav-left-mobile {
+            display: block;
+        }
+    }
+</style>
+<ul class="layui-fixbar">
+    <li class="layui-icon layui-fixbar-top" lay-type="top" style="display: list-item;"></li>
+</ul>
+<script>
+    $(document).ready(function () {
+        $('.layui-nav-child a').each(function () {
+            $this = $(this);
+            if (String(window.location).indexOf($this[0].href) != -1) {
+                $this.parent().addClass('act')
+            }
+        })
+    });
+    $(".layui-fixbar-top").click(function () {
+        $("html, body").animate({scrollTop: 0}, "slow");
+        return false;
+    });
+</script>
+
+<link rel="stylesheet" href="/static/js/zeroModal/css/zeroModal.css">
+<script src="/static/js/zeroModal/js/zeroModal.min.js"></script>
+<script src="/canada/js/html.js"></script>
+<script>
+    let layer  = layui.layer;
+    function link(id) {
+        if (id > 0) {
+            let info_status = '{$user.info_start|default=2}';
+            if (info_status == 2){
+                window.location.href = '/applications_info/id/' + id;
+            }   else {
+                zeroModal.alert({
+                    content: '{:lang("Please complete your personal information first, and then apply")}',
+                    okTitle: '{:lang("Improve Basic Information!")}',
+                    okFn: function () {
+                        location.href = "/profile";
+                    },
+                    cancel: true,
+                    cancelTitle:"{:lang('Cancel')}"
+                });
+            }
+
+        }
+    }
+
+    // $('#stu').on('click', function () {
+    //     $('#load-nav').hide()
+    // })
+
+    // $('.apply-box-link').on('click', function () {
+    //     let src = $(this).attr('data-src');
+    //     $('#go-url').attr('href',src);
+    //     $('#load-nav').show() 
+    // })
+</script>
+
+ 

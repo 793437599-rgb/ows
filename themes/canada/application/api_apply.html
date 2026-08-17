@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('Renew WSE-DAE Application V1')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <script src="/static/js/html2canvas.js"></script>
+    <script src="/static/js/colorpicker.min.js"></script>
+    <style type="text/css">
+        .areaBox {
+            display: inline-block;
+            vertical-align: top;
+            width: 23%;
+        }
+        .basic-box .basic-news .areaBox + input {
+            width: 73%;
+            margin-left: 2%;
+        }
+        .icon-box{
+            margin-bottom: 10px;
+        }
+        .layui-form-radio{
+            margin: 6px 0px;
+            padding-right: 0px;
+            line-height: 20px;
+        }
+        .icon-demo{
+            padding: 0px 10px;
+        }
+        .icon-demo img{
+            width: 100px;
+        }
+        .icon-demo .layui-form-radio > div{
+            display: none;
+        }
+        .capital-m{
+            text-transform:uppercase;
+        }
+        input::-webkit-input-placeholder{
+            color: #c1c1c1;
+            font-size: 12.5px;
+        }
+        input::-moz-placeholder{
+           color: #c1c1c1;
+           font-size: 12px;
+        }
+        .caplital-kk{
+            text-transform: capitalize;
+        }
+    </style>
+</head>
+<body>
+
+{include file="public/header-user" /}
+
+<section class="mainContent">
+    <div class="">
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+
+            <div class="layui-col-sm10">
+                {include file="public/_nav_center_header" /}
+                <!-- <div class="layui-row mainContent-header">
+                    <div class="layui-row mianContent-title">
+                        <div class="layui-col-sm10 layui-col-xs8">
+                            <h1>Institutional Storage Application</h1>
+                        </div>
+                    </div>
+		        </div> -->
+                {if $apply_status == 0 ||  $apply_status == 2}
+                <!--    applications    -->
+                <div class="layui-row">
+                    <div class="layui-col-sm12">
+                        <div class="layui-row steps">
+                            <div class="basic-box api-pk">
+                                <h3>{:lang('Basic Information')}</h3>
+                                <p>{:lang('In order to ensure that we can contact you in time, please add your contact information and requirements below')}</p>
+                                <form id="change_pass" class="layui-form" action="">
+                                    <div class="basic-news">
+                                        <div class="layui-row layui-col-space15">
+                                            <div class="layui-col-sm6 layui-col-xs12">
+                                                <div>
+                                                    <p><b>{:lang('Name')}</b></p>
+                                                    <input type="text" name="name" lay-verify="required" class="form-input-l1 capital-m" placeholder="{:lang('please enter your name')}" lay-verify="required">
+                                                </div>
+                                            </div>
+                                            <div class="layui-col-sm6 layui-col-xs12">
+                                                <div>
+                                                    <p><b>{:lang('Contact Information')}</b></p>
+                                                    <!-- <input type="text" class="form-input-l1 form-input-l2" name="qujian"> -->
+                                                    <div class="areaBox">
+                                                        <div class="qujian">
+                                                            <img src="/imgs/Canada.png" alt="">
+                                                            <span id="qujian">+1</span>
+                                                        </div>
+                                                        <ul  >
+                                                            {foreach name="mobile_arr" item="vo"}
+                                                            <li data-area="{$vo.qujian}" data-src="/imgs/{$vo.imgs}">
+                                                                <img src="/imgs/{$vo.imgs}" alt="">
+                                                                <span>{$vo.name} {$vo.qujian} </span>
+                                                            </li>
+                                                            {/foreach}
+                                                        </ul>
+                                                    </div>
+                                                    <input type="text" class="form-input-l1 form-input-l3 caplital-kk" lay-verify="required|number"  name="phone" placeholder="{:lang('Please enter your contact information')}" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="layui-row layui-col-space15">
+                                            <div class="layui-col-sm6 layui-col-xs12">
+                                                <div>
+                                                    <p><b>{:lang('University / Institution Name')}</b></p>
+                                                    <input type="text" name="organization" lay-verify="required" class="form-input-l1 caplital-kk" placeholder="{:lang('Please fill in the name of university-institution')}" >
+                                                </div>
+                                            </div>
+                                            <div class="layui-col-sm6 layui-col-xs12">
+                                                <div>
+                                                    <p><b>{:lang('Country of University / Institution')}</b></p>
+                                                    <input type="text" name="country" lay-verify="required"  class="form-input-l1 caplital-kk" placeholder="{:lang('Please fill in the country where the university-institution is located')}" >
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-row layui-col-space15">
+                                            <div class="layui-col-sm6 layui-col-xs12">
+                                                <div>
+                                                    <p><b>{:lang('Your Position In The University / Institution Is')}</b></p>
+                                                    <input type="text"  name="position" lay-verify="required" class="form-input-l1 caplital-kk" placeholder="{:lang('Please fill in your position in the university-institution')}" >
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-row layui-col-space15">
+                                            <div class="website-in">
+                                                <h3>{:lang('Website Information')}</h3>
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-row layui-col-space15">
+                                            <div class="layui-col-sm6 layui-col-xs12">
+                                                <div>
+                                                    <p><b>{:lang('Site Name')}</b></p>
+                                                    <input type="text" name="site_name" lay-verify="required" class="form-input-l1 caplital-kk" placeholder="{:lang('Please enter the site name')}" >
+                                                </div>
+                                            </div>
+                                            <div class="layui-col-sm6 layui-col-xs12">
+                                                <div>
+                                                    <p><b>{:lang('Web Site Address')}</b></p>
+                                                    <input type="text" class="form-input-l1" name="site_address" lay-verify="required|url"   placeholder="https://" style="text-transform: lowercase;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="layui-row layui-col-space15">
+                                            <div>
+                                                <h3>{:lang('Choose Certificate Style')}</h3>
+                                            </div>
+                                        </div>
+                                        <div class="layui-row layui-col-space15">
+                                            <div class="layui-col-xs12">
+                                                <div class="logo-style">
+                                                    <div class="logo-img">
+                                                        <div>
+                                                            <div class="logo-img-left">
+                                                                <div><img src="/canada/images/wse-top.jpg" alt="" width="50" height="30"></div>
+                                                                <div>
+                                                                    <h5 class="api-text">{:lang('BLOCKCHAIN')}</h5>
+                                                                    <h5 class="api-text">{:lang('STORAGE')}</h5>
+                                                                </div>
+                                                            </div>
+                                                            <h6 class="api-text">World Storage Education</h6>
+                                                        </div>
+                                                        <div><i class="iconfont icon-card-block"></i></div>
+                                                    </div>
+                                                    <div class="logo-style-set">
+                                                        <p><span type="color" style="background-color: #ffffff;" class="api-kk api-color-text"></span><span>{:lang("Font")}</span></p>
+                                                        <p><span type="color" style="background-color: #013763;" class="api-kk api-color-icon"></span><span>{:lang('Icon')}</span></p>
+                                                        <p><span type="color" style="background-color: #013763;" class="api-kk api-color-bg"></span><span>{:lang('Background')}</span></p>
+                                                    </div>
+                                                   
+                                                    <div class="logo-canvas" style="display: none;"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="basic-applybtn">
+                                            <!-- <a href="{:url('index/Application/app_complete')}">Apply</a> -->
+                                            <button type="button" class="layui-btn mazarine save" lay-submit lay-filter="save">{:lang('Apply')}</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {else /}
+                <div class="layui-row station">
+                    {:lang('The current application is already being processed, please wait patiently for the processing result.')}
+                </div>
+                {/if}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    $('.api-color-text').colorpicker({
+        color: '#fff'
+    }, function (event,obj) {
+        $(event).css('background-color','#' + obj.hex)
+        $('.api-text').css('color', '#' + obj.hex)
+    })
+    $('.api-color-icon').colorpicker({
+        color: '#fff'
+    }, function (event,obj) {
+        $(event).css('background-color','#' + obj.hex)
+        $('.icon-card-block').css('color', '#' + obj.hex)
+    })
+    $('.api-color-bg').colorpicker({
+        color: '#fff'
+    }, function (event,obj) {
+        $(event).css('background-color','#' + obj.hex)
+        $('.logo-img').css('background-color', '#' + obj.hex)
+    })
+
+    // $(function(){
+    //     let  apply_status = '{$apply_status}';
+    //     if (apply_status == 2){
+    //         zeroModal.alert({
+    //             content: '{:lang("You have applied for the current application, do you want to check.")}',
+    //             okTitle: 'Confirm',
+    //             okFn: function() {
+    //                 location.href="{:url('index/application/app_complete')}";
+    //             },
+    //             cancel:true,
+    //         });
+    //     } else if (apply_status == 1){
+    //         zeroModal.alert({
+    //             content: '{:lang("The application is currently being processed, please be patient.")}',
+    //             okTitle: 'Confirm',
+    //             // okFn: function() {
+    //             //     location.href="{:url('index/application/app_complete')}";
+    //             // },
+    //             // cancel:true,
+    //         });
+    //     }
+    // })
+
+    $('input[name="site_address"]').blur(function () {
+        var val = $(this).val()
+        if (val.search('https') == -1 && val.search('http') == -1) {
+            val = 'https://' + val
+        }
+        $(this).val(val)
+    })
+
+    layui.use(['form','layer'], function(){
+        var form = layui.form;
+        var layer = layui.layer;
+        form.on('submit(save)', function(data){
+            var qujian =  $("#qujian").text();
+            data.field['area_code'] = qujian.substr(1);
+            html2canvas(document.querySelector(".logo-img")).then(canvas => {
+                document.querySelector(".logo-canvas").appendChild(canvas)
+                var imgBase64 = canvas.toDataURL()
+                data.field['imgbase'] = imgBase64
+                $.post('/index/application/saveapi',data.field,function (result) {
+                    if(result.code == 20000){
+                        layer.msg('Stored successfully',{time:1500},function(){
+                            //window.location.reload();
+                            window.location.href = result.data.url;
+                        });
+                    }else {
+                        layer.msg('Stored error',{icon:5,time:1000});
+                    }
+                });
+            });
+        });
+
+    });
+</script>
+<script>
+    $('.areaBox div').on('click', function() {
+        if (!$(this).hasClass('areaDisabled')) {
+            $(this).siblings().fadeIn()
+        }
+    })
+    $('.areaBox li').on('click', function(e) {
+        e.stopPropagation();
+        $('.areaBox ul').fadeOut()
+        var src = $(this).attr('data-src'),
+            areaNum = $(this).attr('data-area');
+            console.log(areaNum)
+        $('.areaBox div img').attr('src', src)
+        $('.areaBox div span').text(areaNum)
+    })
+    $(document).click(function(event){
+        var _con = $('.areaBox');  // 设置目标区域
+        if(!_con.is(event.target) && _con.has(event.target).length === 0){ // Mark 1
+            $('.areaBox ul').fadeOut();     //淡出消失
+        }
+    });
+    $('.icon-cross, .tips-btn a').on('click', function () {
+        $('.w-tips').hide()
+    })
+
+
+
+</script>
+</body>
+</html>

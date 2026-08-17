@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+{__NOLAYOUT__}
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{:lang('WSE-DAE for Immigration Programs')}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+
+    <script src="/static/js/jquery.min.js"></script>
+
+    <script src="/static/js/mobile.js"></script>
+
+    <script src="/static/js/layui/layui.js"></script>
+
+    <script src="/canada/js/html.js"></script>
+
+</head>
+
+<body>
+
+
+
+{include file="public/header-user" /}
+
+
+
+<section class="mainContent">
+
+    <div class="layui-container layui-form">
+
+
+
+        <div class="layui-row layui-col-space15">
+
+            <div class="layui-col-sm2">
+
+                <!--    nav-left    -->
+
+                {include file="public/nav-left" /}
+
+            </div>
+
+            <div class="layui-col-sm10">
+
+
+
+                <!--    user avatar    -->
+
+                <div class="layui-row user-avatar">
+
+                    <div class="layui-col-sm2 layui-col-xs4">
+
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+
+                    </div>
+
+                    <div class="layui-col-sm10 layui-col-xs8">
+
+                        <h1>{:lang('WSE-DAE for Immigration Programs')}</h1>
+
+                        <p><b>Tom</b></p>
+
+                        <p>8788@qq.com — X361987</p>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <div class="steps-card">
+
+                            <h3>{:lang('Required Steps')}</h3>
+
+                            <ol>
+
+                                <li><a href=""><i class="fa fa-arrow-circle-right"></i>1. {:lang('Instructions')} - {:lang('Incomplete')}</a></li>
+
+                                <li><a href=""><i class="fa fa-arrow-circle-right"></i>2. {:lang('Applicant Information')} - {:lang('Incomplete')}</a></li>
+
+                                <li class="active"><a href=""><i class="fa fa-arrow-circle-right"></i>3. {:lang('Education Information')} - {:lang('Incomplete')}</a></li>
+
+                                <li><a href=""><i class="fa fa-arrow-circle-right"></i>4. {:lang('Additional Services')} - {:lang('Incomplete')}</a></li>
+
+                                <li><a href=""><i class="fa fa-arrow-circle-right"></i>5. {:lang('Delivery of Official Academic Records')} - {:lang('Incomplete')}</a></li>
+
+                                <li><a href=""><i class="fa fa-arrow-circle-right"></i>6. {:lang('Consent')} - {:lang('Incomplete')}</a></li>
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr/>
+
+
+
+                <!--    steps    -->
+
+                <div class="layui-row steps">
+
+                    <div class="layui-col-sm12">
+
+                        <h3>{:lang('EDUCATION INFORMATION')}</h3>
+
+                        <p>{:lang('Instructions for submitting academic documents')}</p>
+
+                        <hr/>
+
+                        <h5>{:lang('General Instructions')}</h5>
+
+                        <p>{:lang('Supporting academic documents required within your application vary by country.  For instructions on documents specific to your country of education please refer to our online country specific academic document tool.')}</p>
+
+                        <p>{:lang('Credential')} 1</p>
+
+                        <hr/>
+
+                        <div class="form-group">
+
+                            <p><b>{:lang('Name of Academic Institution on final award')}</b><span class="necessary">*</span></p>
+
+                            <input type="text" class="form-input">
+
+                            <p class="variable-content">{:lang('Provide the name of the institution as it appears on your academic credential.')}</p>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <p><b>{:lang('Current Name of Academic Institution (if different)')}</b></p>
+
+                            <input type="text" class="form-input">
+
+                            <p class="variable-content">{:lang('If the name of the institution has changed since your credential was awarded, please provide its current name.')}</p>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <p><b>{:lang('Institution Location City/Town')}</b><span class="necessary">*</span></p>
+
+                            <input type="text" class="form-input">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <p><b>{:lang('Country')} </b><span class="necessary">*</span></p>
+
+                            <select name="" class="form-input">
+
+                                <option value="">1</option>
+
+                                <option value="">1</option>
+
+                                <option value="">1</option>
+
+                            </select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <p><b>{:lang('Name of Certificate/Diploma/Degree Program')}</b><span class="necessary">*</span></p>
+
+                            <input type="text" class="form-input" lay-verify="required">
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <p><b>{:lang('Official Length of the Program')}</b><span class="necessary">*</span></p>
+
+                            <input type="text" class="form-input" lay-verify="required">
+
+                            <p class="variable-content">{:lang('Numbers only in years or credits')}</p>
+
+                        </div>
+
+                        <div>
+
+                            <p><b>{:lang('Program Length Type')}</b><span class="necessary">*</span></p>
+
+                            <input type="radio" name="LengthType" value="" title="{:lang('Years')}" ><br/>
+
+                            <input type="radio" name="LengthType" value="" title="{:lang('Credits')}" >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <p><b>{:lang('Major/Specialization')}</b><span class="necessary">*</span></p>
+
+                            <input type="text" class="form-input">
+
+                        </div>
+
+                        <div class="form-group date">
+
+                            <p><b>{:lang('Dates Attended - From')} </b><span class="necessary">*</span></p>
+
+                            <input type="text" class="form-input" id="datesAttendedTo" placeholder="{:lang('Click to select date')}" autocomplete="off">
+
+                            <i class="fa fa-calendar"></i>
+
+                        </div>
+
+                        <div class="form-group date">
+
+                            <p><b>{:lang('Dates Attended - To')}</b><span class="necessary">*</span></p>
+
+                            <input type="text" class="form-input" id="datesAttendedFrom" placeholder="{:lang('Click to select date')}" autocomplete="off">
+
+                            <i class="fa fa-calendar"></i>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <p><b>{:lang('Graduated')}</b></p>
+
+                            <input type="radio" name="Graduated" value="" title="{:lang('Yes')}" ><br/>
+
+                            <input type="radio" name="Graduated" value="" title="{:lang('No')}" >
+
+                        </div>
+
+                        <div class="form-group date">
+
+                            <p><b>{:lang('Date Awarded')}</b><span class="necessary">*</span></p>
+
+                            <input type="text" class="form-input" id="DateAwarded" placeholder="{:lang('Click to select date')}" autocomplete="off">
+
+                            <i class="fa fa-calendar"></i>
+
+                        </div>
+
+                        <div class="form-group date">
+
+                            <p><b>{:lang('Date Issued')}</b><span class="necessary">*</span></p>
+
+                            <input type="text" class="form-input" id="DateIssued" placeholder="{:lang('Click to select date')}" autocomplete="off">
+
+                            <i class="fa fa-calendar"></i>
+
+                        </div>
+
+                        <h5>{:lang('Final Award Translation')}</h5>
+
+                        <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                        <div class="variable-content">
+
+                            <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                            <p>{:lang('(if applicable)')}</p>
+
+                        </div>
+
+                        <h5>{:lang('Academic Record (Transcript/Statements of Marks)')}</h5>
+
+                        <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                        <div class="variable-content">
+
+                            <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                            <p>{:lang('Upload both sides of your academic records (transcript /statement of marks) for all years of studies.')}</p>
+
+                        </div>
+
+                        <h5>{:lang('Academic Record (Transcript/Statements of Marks) Translation')}</h5>
+
+                        <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                        <div class="variable-content">
+
+                            <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                            <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                            <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                            <p>{:lang('(if applicable)')}</p>
+
+                        </div>
+
+                        <p>{:lang('Credential')} 2</p>
+
+                        <hr/>
+
+                        <div class="form-group buttons">
+
+                            <b><input type="checkbox" lay-filter="gredential2" name="" lay-skin="primary" title="{:lang('I would like to add an additional credential to my application')}"></b>
+
+                            <p class="variable-content">{:lang('An additional $149 fee is required upon checkout if you select this option')}</p>
+
+                        </div>
+
+                        <div class="credential-box-2 hide">
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Name of Academic Institution on final award')} </b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input">
+
+                                <p class="variable-content">{:lang('Provide the name of the institution as it appears on your academic credential.')}</p>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Current Name of Academic Institution (if different)')}</b></p>
+
+                                <input type="text" class="form-input">
+
+                                <p class="variable-content">{:lang('If the name of the institution has changed since your credential was awarded, please provide its current name.')}</p>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Institution Location City/Town')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Country')}</b><span class="necessary">*</span></p>
+
+                                <select class="form-input">
+
+                                    <option value="">{:lang('Country')}</option>
+
+                                    <option value="">1</option>
+
+                                    <option value="">2</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Name of Certificate/Diploma/Degree Program')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Official Length of the Program')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" >
+
+                                <p class="variable-content">{:lang('Numbers only in years or credits')}</p>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Program Length Type')}</b><span class="necessary">*</span></p>
+
+                                <input type="radio" name="" value="" title="{:lang('Years')}" ><br/>
+
+                                <input type="radio" name="" value="" title="{:lang('Credits')}" >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Major/Specialization')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input">
+
+                            </div>
+
+                            <div class="form-group date">
+
+                                <p><b>{:lang('Dates Attended - From')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" id="DatesAttendedFromCredential2" placeholder="{:lang('Click to select date')}" autocomplete="off">
+
+                                <i class="fa fa-calendar"></i>
+
+                            </div>
+
+                            <div class="form-group date">
+
+                                <p><b>{:lang('Dates Attended - To')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" id="DatesAttendedToCredential2" placeholder="{:lang('Click to select date')}" autocomplete="off">
+
+                                <i class="fa fa-calendar"></i>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p>{:lang('Graduated')}</p>
+
+                                <input type="radio" name="GraduatedCredential2" value="" title="{:lang('Yes')}" >
+
+                                <input type="radio" name="GraduatedCredential2" value="" title="{:lang('No')}" >
+
+                            </div>
+
+                            <div class="form-group date">
+
+                                <p><b>{:lang('Date Awarded')}</b></p>
+
+                                <input type="text" class="form-input" id="DatesAwardedCredential2" placeholder="{:lang('Click to select date')}" autocomplete="off" >
+
+                                <i class="fa fa-calendar"></i>
+
+                            </div>
+
+                            <div class="form-group date">
+
+                                <p><b>{:lang('Date Issued')}</b></p>
+
+                                <input type="text" class="form-input" id="DatesIssuedCredential2" placeholder="{:lang('Click to select date')}" autocomplete="off" >
+
+                                <i class="fa fa-calendar"></i>
+
+                            </div>
+
+                            <h5>{:lang('Final Award')}</h5>
+
+                            <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                            <div class="variable-content">
+
+                                <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                            </div>
+
+                            <h5>{:lang('Final Award Translation')}</h5>
+
+                            <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                            <div class="variable-content">
+
+                                <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                                <p>{:lang('(if applicable)')}</p>
+
+                            </div>
+
+                            <h5>{:lang('Academic Record (Transcript/Statements of Marks)')}</h5>
+
+                            <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                            <div class="variable-content">
+
+                                <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                                <p>{:lang('Upload both sides of your academic records (transcript /statement of marks) for all years of studies.')}</p>
+
+                            </div>
+
+                            <h5>{:lang('Academic Record (Transcript/Statements of Marks) Translation')}</h5>
+
+                            <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                            <div class="variable-content">
+
+                                <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                                <p>{:lang('(if applicable)')}</p>
+
+                            </div>
+
+                        </div>
+
+                        <p>{:lang('Credential')} 3</p>
+
+                        <hr/>
+
+                        <div class="form-group buttons">
+
+                            <b><input type="checkbox" lay-filter="gredential3" name="" lay-skin="primary" title="{:lang('I would like to add an additional credential to my application')}"></b>
+
+                            <p class="variable-content">{:lang('An additional $149 fee is required upon checkout if you select this option')} </p>
+
+                        </div>
+
+                        <div class="credential-box-3 hide">
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Name of Academic Institution on final award')}  </b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input">
+
+                                <p class="variable-content">{:lang('Provide the name of the institution as it appears on your academic credential.')}</p>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Current Name of Academic Institution (if different)')}</b></p>
+
+                                <input type="text" class="form-input">
+
+                                <p class="variable-content">{:lang('If the name of the institution has changed since your credential was awarded, please provide its current name.')}</p>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Institution Location City/Town')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Country')}</b><span class="necessary">*</span></p>
+
+                                <select class="form-input">
+
+                                    <option value="">country</option>
+
+                                    <option value="">1</option>
+
+                                    <option value="">2</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Name of Certificate/Diploma/Degree Program')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Official Length of the Program')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" >
+
+                                <p class="variable-content">{:lang('Numbers only in years or credits')}</p>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Program Length Type')}</b><span class="necessary">*</span></p>
+
+                                <input type="radio" name="" value="" title="{:lang('Years')}" ><br/>
+
+                                <input type="radio" name="" value="" title="{:lang('Credits')}" >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Major/Specialization')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input">
+
+                            </div>
+
+                            <div class="form-group date">
+
+                                <p><b>{:lang('Dates Attended - From')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" id="DatesAttendedFromCredential3" placeholder="{:lang('Click to select date')}" autocomplete="off" >
+
+                                <i class="fa fa-calendar"></i>
+
+                            </div>
+
+                            <div class="form-group date">
+
+                                <p><b>{:lang('Dates Attended - To')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" id="DatesAttendedToCredential3" placeholder="{:lang('Click to select date')}" autocomplete="off" >
+
+                                <i class="fa fa-calendar"></i>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p>{:lang('Graduated')}</p>
+
+                                <input type="radio" name="GraduatedCredential2" value="" title="{:lang('Yes')}" >
+
+                                <input type="radio" name="GraduatedCredential2" value="" title="{:lang('No')}" >
+
+                            </div>
+
+                            <div class="form-group date">
+
+                                <p><b>{:lang('Date Awarded')}</b></p>
+
+                                <input type="text" class="form-input" id="DatesAwardedCredential3" placeholder="{:lang('Click to select date')}" autocomplete="off" >
+
+                                <i class="fa fa-calendar"></i>
+
+                            </div>
+
+                            <div class="form-group date">
+
+                                <p><b>{:lang('Date Issued')}</b></p>
+
+                                <input type="text" class="form-input" id="DatesIssuedCredential3" placeholder="{:lang('Click to select date')}" autocomplete="off" >
+
+                                <i class="fa fa-calendar"></i>
+
+                            </div>
+
+                            <h5>{:lang('Final Award')}</h5>
+
+                            <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                            <div class="variable-content">
+
+                                <p>{:lang('The file extensions allowed for uploads are')} 10240 KB.</p>
+
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                            </div>
+
+                            <h5>{:lang('Final Award Translation')}</h5>
+
+                            <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                            <div class="variable-content">
+
+                                <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                                <p>{:lang('(if applicable)')}</p>
+
+                            </div>
+
+                            <h5>{:lang('Academic Record (Transcript/Statements of Marks)')}</h5>
+
+                            <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                            <div class="variable-content">
+
+                                <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                                <p>{:lang('Upload both sides of your academic records (transcript /statement of marks) for all years of studies.')}</p>
+
+                            </div>
+
+                            <h5>{:lang('Academic Record (Transcript/Statements of Marks) Translation')}</h5>
+
+                            <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                            <div class="variable-content">
+
+                                <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                                <p>{:lang('(if applicable)')}</p>
+
+                            </div>
+
+                        </div>
+
+                        <p>{:lang('Credential')} 4</p>
+
+                        <hr/>
+
+                        <div class="form-group buttons">
+
+                            <b><input type="checkbox" lay-filter="gredential4" name="" lay-skin="primary" title="{:lang('I would like to add an additional credential to my application')}"></b>
+
+                            <p class="variable-content">{:lang('An additional $149 fee is required upon checkout if you select this option')}</p>
+
+                        </div>
+
+                        <div class="credential-box-4 hide">
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Name of Academic Institution on final award')} </b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input">
+
+                                <p class="variable-content">{:lang('Provide the name of the institution as it appears on your academic credential.')}</p>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Current Name of Academic Institution (if different)')}</b></p>
+
+                                <input type="text" class="form-input">
+
+                                <p class="variable-content">{:lang('If the name of the institution has changed since your credential was awarded, please provide its current name.')}</p>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Institution Location City/Town')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input">
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Country')}</b><span class="necessary">*</span></p>
+
+                                <select class="form-input">
+
+                                    <option value="">country</option>
+
+                                    <option value="">1</option>
+
+                                    <option value="">2</option>
+
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Name of Certificate/Diploma/Degree Program')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Official Length of the Program')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" >
+
+                                <p class="variable-content">{:lang('Numbers only in years or credits')}</p>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Program Length Type')}</b><span class="necessary">*</span></p>
+
+                                <input type="radio" name="" value="" title="{:lang('Years')}" ><br/>
+
+                                <input type="radio" name="" value="" title="{:lang('Credits')}" >
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p><b>{:lang('Major/Specialization')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input">
+
+                            </div>
+
+                            <div class="form-group date">
+
+                                <p><b>{:lang('Dates Attended - From')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" id="DatesAttendedFromCredential4" placeholder="{:lang('Click to select date')}" autocomplete="off" >
+
+                                <i class="fa fa-calendar"></i>
+
+                            </div>
+
+                            <div class="form-group date">
+
+                                <p><b>{:lang('Dates Attended - To')}</b><span class="necessary">*</span></p>
+
+                                <input type="text" class="form-input" id="DatesAttendedToCredential4" placeholder="{:lang('Click to select date')}" autocomplete="off" >
+
+                                <i class="fa fa-calendar"></i>
+
+                            </div>
+
+                            <div class="form-group">
+
+                                <p>{:lang('Graduated')}</p>
+
+                                <input type="radio" name="GraduatedCredential2" value="" title="{:lang('Yes')}" >
+
+                                <input type="radio" name="GraduatedCredential2" value="" title="{:lang('No')}" >
+
+                            </div>
+
+                            <div class="form-group date">
+
+                                <p><b>{:lang('Date Awarded')}</b></p>
+
+                                <input type="text" class="form-input" id="DatesAwardedCredential4" placeholder="{:lang('Click to select date')}" autocomplete="off" >
+
+                                <i class="fa fa-calendar"></i>
+
+                            </div>
+
+                            <div class="form-group date">
+
+                                <p><b>{:lang('Date Issued')}</b></p>
+
+                                <input type="text" class="form-input" id="DatesIssuedCredential4" placeholder="{:lang('Click to select date')}" autocomplete="off" >
+
+                                <i class="fa fa-calendar"></i>
+
+                            </div>
+
+                            <h5>{:lang('Final Award')}</h5>
+
+                            <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                            <div class="variable-content">
+
+                                <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                            </div>
+
+                            <h5>{:lang('Final Award Translation')}</h5>
+
+                            <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                            <div class="variable-content">
+
+                                <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                                <p>{:lang('(if applicable)')}</p>
+
+                            </div>
+
+                            <h5>{:lang('Academic Record (Transcript/Statements of Marks)')}</h5>
+
+                            <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                            <div class="variable-content">
+
+                                <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                                <p>{:lang('Upload both sides of your academic records (transcript /statement of marks) for all years of studies.')}</p>
+
+                            </div>
+
+                            <h5>{:lang('Academic Record (Transcript/Statements of Marks) Translation')}</h5>
+
+                            <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+
+                            <div class="variable-content">
+
+                                <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+
+                                <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+
+                                <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+
+                                <p>{:lang('(if applicable)')}</p>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save This Page')}</a><a class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+
+                        <a class="layui-btn mazarine right">{:lang('Next Page')}</a>
+
+                        <br/>
+
+                        <br/>
+
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save and Finish Later')}</a>
+
+                        <hr/>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</section>
+
+
+
+{include file="public/footer-login" /}
+
+
+
+<script>
+
+    layui.use(['form', 'laydate'], function(){
+
+        var form = layui.form
+
+            ,laydate = layui.laydate;
+
+
+
+        form.on('checkbox(gredential2)', function(data){
+
+            if (data.elem.checked == true) {
+
+                $('.credential-box-2').fadeIn(200)
+
+            } else (
+
+                $('.credential-box-2').fadeOut(300)
+
+            )
+
+        });
+
+        form.on('checkbox(gredential3)', function(data){
+
+            if (data.elem.checked == true) {
+
+                $('.credential-box-3').fadeIn(200)
+
+            } else (
+
+                $('.credential-box-3').fadeOut(300)
+
+            )
+
+        });
+
+        form.on('checkbox(gredential4)', function(data){
+
+            if (data.elem.checked == true) {
+
+                $('.credential-box-4').fadeIn(200)
+
+            } else (
+
+                $('.credential-box-4').fadeOut(300)
+
+            )
+
+        });
+
+
+
+        laydate.render({
+
+            elem: '#datesAttendedTo',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#datesAttendedFrom',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DateAwarded',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DateIssued',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DatesAttendedFromCredential2',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DatesAttendedToCredential2',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DatesAwardedCredential2',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DatesIssuedCredential2',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DatesAttendedFromCredential3',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DatesAttendedToCredential3',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DatesAwardedCredential3',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DatesIssuedCredential3',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DatesAttendedFromCredential4',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DatesAttendedToCredential4',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DatesAwardedCredential4',
+
+            lang: 'en'
+
+        });
+
+        laydate.render({
+
+            elem: '#DatesIssuedCredential4',
+
+            lang: 'en'
+
+        });
+
+    })
+
+</script>
+
+
+
+</body>
+
+</html>

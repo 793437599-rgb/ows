@@ -1,0 +1,42 @@
+<div class="crumbs">
+    <ul>
+        <li><a href="/">{:lang('Home')}</a></li>/
+        <li><a class="" href="/lists?cid={$cid}">{$category['name']}</a></li>/
+        <li><a class="ca-active">{$article['title']}</a></li>
+    </ul>
+</div>
+<div class="news-main">
+    <div class="news-ct">
+        <ul class="news-tabtit">        
+            {volist name="category_list" id="data"}  
+                <li class='{eq name="data.id" value="$cid"}tab-active{/eq}''><a href="/lists?cid={$data.id}">{$data.name}</a></li>
+            {/volist}         
+        </ul>
+        <div class="news-mbox">
+            <div class="news-lt">
+                <div class="news-title">
+                    <h3>{$article.title}</h3>
+                    <span>{$article.publish_time}</span>
+                </div>
+                <div class="news-del">
+                    {$article.content}
+                </div>
+                <div class="social-share news-share" data-initialized="true">
+						<a href="#" class="social-share-icon icon-google"></a>
+						<a href="#" class="social-share-icon icon-twitter"></a>
+						<a href="#" class="social-share-icon icon-facebook"></a>
+						<a href="#" class="social-share-icon icon-linkedin"></a>
+				</div>
+                <!-- <div class="news-share">
+                    <ul>
+                        <li><a href="#"><img src="/canada/images/other-icon1.png"/></a></li>
+                        <li><a href="#"><img src="/canada/images/other-icon2.png"/></a></li>
+                        <li><a href="#"><img src="/canada/images/other-icon3.png"/></a></li>
+                        <li><a href="#"><img src="/canada/images/other-icon4.png"/></a></li>
+                    </ul>
+                </div> -->
+            </div>
+            {include file="public/right" /}            
+        </div>
+    </div>
+</div>

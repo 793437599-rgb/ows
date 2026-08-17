@@ -1,0 +1,172 @@
+<nav class="nav">
+    <div class="container">
+        <div class="row">
+             <a href="/"><img src="/canada/images/logo-white.png"></a>
+            <!-- <a href="/page/272.html" class="post-job">{:lang('Work in Canada')} <i class="fa fa-angle-right"></i></a> -->
+            <div class="langBox">
+                <div><span>{:lang('English')}</span> <i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                <ul>
+                    <li class="en">English</li>
+                    <li class="fr">Français</li>
+                    <li class="ja">日本語</li>
+                    <li class="cn">中文</li>
+                    <li class="ko">한국어</li>
+                    <li class="ru">Русский</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Virus tips-->
+<div class="top03">
+    <div class="statement">
+        <div><i class="iconfont icon-tanhao"></i></div>
+        <div class="special-pop">
+            <p>{:lang('<strong>Special Notice Concerning COVID-19 :</strong> We are open for business. The majority of our staff continues to work from home while a small, dedicated team ensures that physical documents are handled securely. Now Now you can apply for our service at WSE')}...</p>
+        </div>
+    </div>
+</div>
+<aside class="aside-policy">
+    <div class="aside-policy-header">
+        <img src="{$C['site_logo']}" alt="">
+        <b>{:lang('Our website uses cookies.')}</b>
+    </div>
+       {:getcookiecontent()}
+    <div class="aside-policy-buttons">
+        <button class="decline" type="button">{:lang('Decline Cookies')}</button>
+        <button class="allow" type="button">{:lang('Allow Cookies')}</button>
+    </div>
+</aside>
+<script>
+    /*   header hide   */
+    $('.cookie-close').on('click', function () {
+        $('.header').slideUp();
+    });
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++)
+        {
+            var c = ca[i].trim();
+            if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
+    var langText = getCookie('think_var')
+    switch (langText) {
+        case 'en-us':
+            langText = 'English'
+            break;
+        case 'zh-cn':
+            langText = '中文'
+            break;
+        case 'ja-jp':
+            langText = '日本語'
+            break;
+        case 'ko-kr':
+            langText = '한국어'
+            break;
+        case 'ru-ru':
+            langText = 'Русский'
+            break;
+        case 'fr-fa':
+            langText = 'Français'
+            break;
+        default:
+            langText = 'English'
+    }
+    // console.log('langText login', langText)
+    $('.langBox div span').text(langText);
+    $('.langBox div').on('click', function (e) {
+        e.stopPropagation();
+        $(this).siblings().slideToggle()
+        if ($(this).find('.fa').hasClass('fa-angle-down')) {
+            $(this).find('.fa').removeClass('fa-angle-down').addClass('fa-angle-right')
+        } else {
+            $(this).find('.fa').removeClass('fa-angle-right').addClass('fa-angle-down')
+        }
+    })
+    $('.langBox li').on('click', function (e) {
+        e.stopPropagation();
+        $('.langBox div .fa').removeClass('fa-angle-down').addClass('fa-angle-right')
+        var langText = $(this).text()
+        localStorage.setItem('langText', langText)
+        var lang = $(this).attr('class');
+        var domain = document.domain;
+        $('.langBox div span').text($(this).text());
+        $.get("{:url('/lang')}", "lang=" + lang, function () {
+            location.reload();
+        });
+    });
+    $('body').on('click', function () {
+        $('.langBox ul').slideUp()
+    });
+/* aside-message */
+    if ($('.aside-policy').is(':visible')) {
+        var height = $('.aside-policy').outerHeight() + 'px'
+        $('.aside-message').css({'bottom': height})
+    } else {
+        $('.aside-message').css({'bottom': '0'})
+    }
+    $('.aside-message-send').click(function () {
+        $(this).fadeOut()
+        $('.aside-message-box').fadeIn()
+    })
+    $('.aside-message-box .fa-window-minimize').click(function () {
+        $('.aside-message-box').hide()
+        $('.aside-message-send').fadeIn()
+    })
+    $('.input-box input[type="text"], .input-box textarea').blur(function () {
+        var val = $(this).val()
+        if (val == '') {
+            $(this).siblings('p').fadeIn()
+        } else {
+            $(this).siblings('p').fadeOut()
+        }
+    })
+    $('#agreeInput').click(function () {
+        if ($(this).is(':checked')) {
+            $(this).siblings('p').fadeOut()
+        } else {
+            $(this).siblings('p').fadeIn()
+        }
+    })
+    $('.leaveBtn').click(function () {
+        // var d = {};
+        // var isCheck = false
+        // var t = $('#asideMessage').serializeArray();
+        // $.each(t, function () {
+        //     // d[this.name] = this.value;
+        //     if (this.value == '') {
+        //         var className = '.input-box input[name="' + this.name + '"]'
+        //         if ($(className).siblings('p').is(':visible')) {
+        //             $(className).siblings('p').fadeIn()
+        //             return false
+        //         } else {
+        //             isCheck = true
+        //         }
+        //     }
+        // });
+        // console.log(JSON.stringify(d));
+        // if (isCheck && $('#agreeInput').is(':checked')) {
+            layer.msg('Success', {icon: 1});
+            $('.aside-message-box').hide()
+            $('.aside-message-send').fadeIn()
+        // }
+    })
+/* aside-policy */
+    var agreePolicy = window.localStorage.getItem('agreePolicy')
+    if (agreePolicy) {
+        $('.aside-policy').fadeOut()
+        $('.aside-message').css({'bottom': '0'})
+    }
+    $('.decline').click(function () {
+        $('.aside-policy').fadeOut()
+        $('.aside-message').css({'bottom': '0'})
+    })
+    $('.allow').click(function () {
+        $('.aside-policy').fadeOut()
+        $('.aside-message').css({'bottom': '0'})
+        window.localStorage.setItem('agreePolicy', true)
+    })
+</script>

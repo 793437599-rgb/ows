@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>CANADA.EDUCATION DATA-{:lang('SEARCH')}</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/canada/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+		<link rel="stylesheet" href="/static/js/layui/css/layui.css">
+		<script src="/canada/js/jquery.min.js"></script>
+	    <script type="text/javascript" src="/canada/js/mobile.js" ></script>
+	    <script type="text/javascript" src="/static/js/layer/layer.js" ></script>
+	    <script src="__JS__/admin.js"></script>
+	</head>
+	<body class="login-bg">
+        <style>
+            .log-list .log-icon{width: 28px;}
+.radio{
+            	display: inline !important;
+            	width: 30% !important;
+            }
+            .radio-span{
+            	color: #FFFFFF;
+            	font-size: 0.15rem;
+            }
+        </style>
+<div id="" style="height: 800px;width: 100%;">
+</div>
+	  	<div class="log-rt">
+	  		<h2><img src="/canada/images/logo.png"/></h2>
+	  		<form action="/create" method="post" id="form-add-ku">
+<div class="log-list">
+					<img i class="log-icon" src="/canada/images/name-icon-active.svg"/>
+	  				<input id="blur_input_2" type="text" required name="name" placeholder="{:lang('Username')}"  class="layui-input">
+	  			</div>
+	  			<div class="log-list">
+					<img  class="log-icon" src="/canada/images/pass-icon-active.svg"/>
+	  				<input id="blur_input_1" type="text" value="" name="passport" placeholder="{:lang('Passport No')}" required/>
+</div>
+<div class="log-list">
+	  				<input type="radio" class="radio"  name="sex"  value="0" checked="checked" />
+	  				<span class="radio-span" >{:lang('Mr')}</span>
+	  				<input type="radio" class="radio"   name="sex"  value="1" />
+	  				<span class="radio-span" >{:lang('lady')}</span>
+</div>
+	  			<div class="log-list">
+					<img  class="log-icon" src="/canada/images/email.jpg"/>
+	  				<input id="email" type="text" required="required" value="" name="email" placeholder="{:lang('Email')}"/>
+</div>
+	  			<div class="log-list">
+					<img  class="log-icon" src="/canada/images/login-3.svg"/>
+	  				<input id="birthdate" class="layui-input"  value="" name="birthdate" placeholder="{:lang('Birthdate')}"/>
+</div>
+	  			<div class="log-list">
+					<img  class="log-icon" src="/canada/images/address.svg"/>
+	  				<input id="address" type="text" value="" name="address" placeholder="{:lang('Address')}"/>
+	  			</div>
+	  			<div class="log-list">
+					<img class="log-icon" src="/canada/images/pass-icon-active.svg"/>
+	  				<input type="text" style="width: 100% !important;" required maxlength="13" id="reference_id" name="reference_id" placeholder="{:lang('Telephone')} "/>
+	  				<div class="layui-upload">
+						<button type="button" class="layui-btn" id="button-code">
+							<i class="layui-icon">&#xe67c;</i>获取验证码
+						</button>
+					</div>
+	  			</div>
+	  			<div class="log-list">
+	  				<input id="code" type="text" value="" name="code" placeholder="{:lang('Verification')}"/>
+	  			</div>
+	  			<!--<div class="log-list">
+	  				<img class="log-icon" src="/canada/images/name-icon-active.svg"/>
+					<input type="text" readonly="readonly" name="headimg" id="img" placeholder="{:lang('Head portrait')}" />
+	  				<img id="headimage" width="320" src=""/>
+	  				<div class="layui-upload">
+						<button type="button" class="layui-btn" id="test1">
+							<i class="layui-icon">&#xe67c;</i>上传图片
+						</button>
+					</div>
+</div>-->
+<input type="submit" class="log-btn" value="{:lang('Sign In')}" />
+	  			<a class="log-back" href="/">{:lang('Home')}</a>
+	  		</form>
+          </div>
+          <div class="logo-bot">
+	  		<ul class="main-with logob-top">
+	  			<li>
+	  				<a href="/page/301.html">
+	  					<img src="/canada/images/login-1.svg"/>
+	  					<p>{:lang('Education')}</p>
+	  				</a>
+	  			</li>
+	  			<li>
+	  				<a href="/page/317.html">
+	  					<img src="/canada/images/login-2.svg"/>
+	  					<p>{:lang('Certificate introduction')}</p>
+	  				</a>
+	  			</li>
+	  			<li>
+	  				<a href="/page/239.html">
+	  					<img src="/canada/images/login-3.svg"/>
+	  					<p>{:lang('ASSESSOR')}</p>
+	  				</a>
+	  			</li>
+	  			<li>
+	  				<a href="/page/272.html">
+	  					<img src="/canada/images/login-4.svg"/>
+	  					<p>{:lang('WORK')}</p>
+	  				</a>
+	  			</li>
+	  			<li>
+	  				<a href="/page/321.html">
+	  					<img src="/canada/images/login-5.svg"/>
+	  					<p>{:lang('Quick links')}</p>
+	  				</a>
+	  			</li>
+	  		</ul>
+	  		<div class="logb-hd">
+	  			<div class=" main-with login-link">
+	  				<a href="javascript:;">© {:lang('COPYRIGHT')} EDU.CA.UNIVERSITY</a>
+	  				<a href="https://www.{:lang('parchment')}.com/">{:lang('parchment')}</a>
+	  				<a href="https://www.myequals.net/#/user/login">My eQuals</a>
+	  				<a href="http://www.aic.lv/portal/en/sakums">{:lang('Academic Information')}</a>
+	  				<a href="https://www.nuffic.nl/">NUFFIC</a>
+	  				<a href="http://www.nic.gov.ru/">NUFFIC</a>
+	  				<a href="https://hedd.ac.uk/">HEDD</a>
+	  				<a href="https://www.ece.org">ECE</a>
+	  				<a href="http://www.cscse.edu.cn">cscse.edu</a>
+</div>
+	  		</div>
+	  	</div>
+	<script src="/static/js/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+layui.use('laydate', function(){
+		  var laydate = layui.laydate;
+//执行一个laydate实例
+		  laydate.render({
+		    elem: '#birthdate' //指定元素
+		  });
+		});
+layui.use(['upload','form'],function(){
+	  		var upload = layui.upload;
+	  		var form = layui.form;
+//执行实例
+			  var uploadInst = upload.render({
+			    elem: '#test1' //绑定元素
+			    ,url: '/upload' //上传接口
+			    ,done: function(res){
+			      //上传完毕回调
+			    $('#img').val(res.msg);
+			//      document.getElementById('img').value=res.msg
+			//    form.val("image", {
+			//		  "image": res.msg, // "name": "value"
+			//		})
+			//    form.render()
+$("#headimage").attr('src',res.msg);
+console.log($('#img').val());
+			    }
+			    ,error: function(res){
+			      //请求异常回调
+			      console.log('error',res);
+			    }
+});
+			});
+	</script>
+    <script>
+		$('#blur_input_1').blur(function () {
+			$('#blur_img_1').attr('src','/canada/images/pass-icon-active.svg');
+		});
+		$('#blur_input_2').blur(function () {
+			$('#blur_img_2').attr('src','/canada/images/name-icon-active.svg');
+		});
+		$('#blur_input_3').blur(function () {
+			$('#blur_img_3').attr('src','/canada/images/yz-icon-active.svg');
+		});
+		$('#reference_id').change(function(){
+			var phone=$('#reference_id').val();
+var flag = false;
+		      var myreg = /^(((13[0-9]{1})|(14[0-9]{1})|(17[0]{1})|(15[0-3]{1})|(15[5-9]{1})|(18[0-9]{1}))+\d{8})$/;       
+		      if(phone == ''){
+		      	alert('手机号码不能为空！');
+		      }else if(phone.length !=11){
+		      	alert('请输入有效的手机号码！');
+		      }else if(!myreg.test(phone)){
+		      	alert('请输入有效的手机号码！');
+		      }else{
+		          $(document).on('click','#button-code',function(){
+$.ajax({
+		                cache: true, 
+		                type: "POST", 
+		                url:"/phone_code", 
+		                data: {
+			                'phone': $('#reference_id').val()
+			            },
+		                //data:$('#form-add-ku').serialize(),// 你的formid 
+		                async: false, 
+		                error: function(request) { 
+		                    alert("Connection error:"+request.error); 
+		                }, 
+		                success: function(data) { 
+		                    layer.open({
+							  title: '验证提示'
+							  ,content: '可验证码已发送，请注意查收'
+							});
+		                } 
+		            }); 
+				});
+		      }
+			});
+</script>
+	</body>
+</html>

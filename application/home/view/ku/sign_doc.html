@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+	<head>
+		<meta charset="utf-8" />
+		<title>Data preview</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/canada/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/jquery.flexslider-min.js"></script>
+		<script src="/static/js/viewer-jquery.min.js"></script>
+		<script src="/static/js/selectFilter.js"></script>
+		<script src="/static/js/mobile.js"></script>
+		<script src="/static/js/layui/layui.js"></script>
+		<script src="/canada/js/html.js"></script>
+
+	</head>
+	<body>
+		<header class="User_hd_full">
+			<div class="T_main User_hd">
+				<a href="/"><img src="/static/images/logo.png" alt="logo" title="header-logo"/></a>
+				<div class="User_hd_bottom">
+					<ul class="layui-nav">
+						<!--<li class="layui-nav-item"><a href="">Application review</a></li>
+                        <li class="layui-nav-item"><a href="">Data exchange</a></li>
+                        <li class="layui-nav-item"><a href="">Order</a></li>-->
+
+						<li class="layui-nav-item">
+							<a href="javascript:;">{:lang('Profile')}</a>
+							<dl class="layui-nav-child">
+								<dd><a href="/user_basic">{:lang('Account Settings')}</a></dd>
+								<dd><a href="/logout">{:lang('Sign Out')}</a></dd>
+							</dl>
+						  </li>
+					</ul>
+				</div>
+			</div>
+		</header>
+		
+		<!-- info hd -->
+		<div class="T_main User_info">
+			<div class=" User_Avatar">
+				<a class="User_logo" href="/user_index">
+					{if condition="!empty($user_upload['zj_img'])"}
+					<img src="{$user_upload.zj_img}">
+					{else/}
+					<img src="/static/images/person-icon.png" >
+					{/if}
+				</a>
+				<div class="User_Avatar_down">
+					<form action="" method="">
+						<div class="User_Ava_tit">
+							{:lang('Edit Profile Picture')}
+							<i class="fa fa-close"></i>
+						</div>
+						<label for="profile" class="User_per">
+							<input name="profileImage" id="profile" type="file">
+							<i class="fa fa-long-arrow-right "></i>
+							<span >{:lang('Add Your Profile Photo')}</span>
+						</label>
+						<p>{:lang('Max File Size')}: 5 MB</p>
+						<p>{:lang('File Formats')}: PNG, JPEG, GIF</p>
+						<a href="javascript:;"  class="User_per">
+							<i class="fa fa-long-arrow-right "></i>
+							<span >{:lang('Remove Photo')}</span>
+						</a>
+					</form>
+					<div class="User_direction_icon fa fa-play"> </div>
+				</div>
+			</div>
+			<div class="User_Avart">
+				<div class="User_Ava_nav"> <a class="User_edit" href="#">{:lang('Edit')}</a></div>
+				<h2>{$user.username}</h2>
+			</div>
+			
+		</div>
+		<!--主要内容-->
+		<div class=" User_mian_full">
+			<div class="T_main ">
+				<ul class="User_step">
+					<li class="User_list_step">
+						<h3>1</h3>
+						<p>{:lang('Education Information')}</p>
+						<span class="User_step_dot"></span>
+					</li>
+					<li class="User_list_step">
+						<h3>2</h3>
+						<p>{:lang('Data upload')}</p>
+						<span class="User_step_dot"></span>
+					</li>
+					<li class="User_list_step">
+						<h3>3</h3>
+						<p>{:lang('Agree')}</p>
+						<span class="User_step_dot"></span>
+					</li>
+					<li>
+						<h3>4</h3>
+						<p>{:lang('Carry out')}</p>
+						<span class="User_step_dot"></span>
+					</li>
+				</ul>
+				
+				<div class="Ua_box">
+					<table class="D_table" border="" cellspacing="" cellpadding="">
+						<tr>
+							<td>{:lang('Name')}:</td> <td>{$user.username}</td>
+							<td>{:lang('Country of Citizenship')}:</td> <td>{$user.nationality}</td>
+						</tr>
+						<tr>
+							<td>{:lang('Gender')}:</td> <td>{$user.sex}</td>
+							<td>{:lang('ID number')}:</td> <td>{$user.id_number}</td>
+						</tr>
+						<tr>
+							<td>{:lang('Type of ID')}:</td> <td>{$user.id_type}</td>
+							<td>{:lang('Date of birth')}:</td> <td>{$user.birth_time}</td>
+						</tr>
+						
+						<tr>
+							<td>{:lang('School name')}:</td> <td>{$edu.school}</td>
+							<td>{:lang('Learning level')}:</td> <td>{$edu.academic_level}</td>
+						</tr>
+						<tr>
+							<td>{:lang('Subject category')}:</td> <td>{$edu.major}</td>
+							<td>{:lang('Professional title')}:</td> <td>{$edu.pro_title}</td>
+						</tr>
+						<tr>
+							<td>{:lang('student ID')}:</td> <td>{$edu.student_id}</td>
+							<td>{:lang('Paper name')}:</td> <td>{$edu.paper_name}</td>
+						</tr>
+						<tr>
+							<td>{:lang('Start date')}:</td> <td>{$edu.enrollment_date}</td>
+							<td>{:lang('Graduation date')}:</td> <td>{$edu.completion_date}</td>
+						</tr>
+						<tr>
+							<td>{:lang('Document photo')}:</td>
+							<td><img class="D_tableimg" data-original="{$user_upload.zj_img}" src="{$user_upload.zj_img}" ></td>
+							<td>{:lang('ID card scan')}:</td>
+							<td>
+								{if condition="!empty($user_upload['sfz_img'])"}
+								{foreach name="user_upload['sfz_img']" item="val"}
+								<img  class="D_tableimg" data-original="{$val}" src="{$val}" >
+								{/foreach}
+								{/if}
+							</td>
+						</tr>
+						<tr>
+							<td>{:lang('Diploma')}:</td>
+							<td>
+								{if condition="!empty($user_upload['xwz_img'])"}
+								{foreach name="user_upload['xwz_img']" item="val"}
+								<img  class="D_tableimg" data-original="{$val}" src="{$val}" >
+								{/foreach}
+								{/if}
+							</td>
+							<td>{:lang('Transcript')}:</td>
+							<td>
+								{if condition="!empty($user_upload['cj_img'])"}
+								{foreach name="user_upload['cj_img']" item="val"}
+								<img  class="D_tableimg" data-original="{$val}" src="{$val}" >
+								{/foreach}
+								{/if}
+							</td>
+						</tr>
+					</table>
+					<div class="D_confirm">
+						<span>{:lang('Personal signature')}:</span>
+						 <img src="{$user_upload.sign_img}" >
+					</div>
+					<div class="User_apply">
+						<a href="/user_sign">{:lang('Previous')}</a>
+						<button>{:lang('Next step')}</button>
+					</div>
+				</div>	
+			</div>
+		</div>
+		<div id="signatureparent">
+			<div id="signature"></div>
+		</div>
+		<div id="tools"></div>
+		<footer class="User_ft">
+			<a href="/">{:lang('Home')}</a> | <span>© Copyright 2019 ca.university All Rights Reserved</span>
+		</footer>
+		<script>
+			$(function () {
+				$('.D_tableimg').viewer({
+					url: 'data-original',
+				});
+			});
+			$('.User_apply').click(function () {
+				window.location.href="/apply_status"
+            });
+		</script>
+	
+	</body>
+
+</html>

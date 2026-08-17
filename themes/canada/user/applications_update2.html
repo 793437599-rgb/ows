@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('Renew WSE-DAE Application V1')}</title>
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link href="/canada/css/common.css" rel="stylesheet"/>
+    <link href="/static/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link href="/static/js/layui/css/layui.css" rel="stylesheet"/>
+    <link href="/canada/css/user-new.css" rel="stylesheet"/>
+    <link href="/canada/css/Underlying-changes.css" rel="stylesheet">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <style>
+        .layui-upload-list .uploa-pre-view {
+            display: inline-block;
+        }
+
+        .layui-upload-list .layui-upload-drag i {
+            font-size: 24px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .upload-error {
+            border-color: #FF5722;
+        }
+
+        .steps a {
+            text-decoration: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            .User_hd_full .layui-col-sm2 {
+                padding: 0
+            }
+        }
+    </style>
+</head>
+
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="layui-form">
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm12">
+                <div class="layui-row user-avatar">
+                    <h1>{:lang('Basic Information')}</h1>
+                    <div class="public-user-header center-header-new2">
+                        {include file="public/_user_basic_information"}
+                    </div>
+
+                    <!-- <div class="layui-row  user-avatar">
+                    <h1>{:lang('Basic Information')}</h1>
+                    <div class="public-user-header center-header-new2">
+                        <div class="public-user-h1"><a href="/profile"><img src="{$user.head_img}"></a></div>
+                        <div class="public-user-h2">
+                            <p class="p-user-name"><b>{$user.username}</b><span class="stored-id">{$user.search_id}</span><span class="p-ediet"><i class="iconfont icon-ediet"></i></span></p>
+                            <div class="public-imfor-three">
+                                <div>{$user.sex}</div>
+                                <div>24 years old</div>
+                                <div>{$user.nationality}</div>
+                            </div>
+                            <div class="public-imfor-two">
+                                <div><span><i class="iconfont icon-phone"></i>{$user.mobile}</span></div>
+                                <div><span><i class="iconfont icon-youxiang1"></i>{$user.email}</span></div>
+                            </div>
+                        </div>
+                        <div class="public-user-h3">
+
+                            <div class="p-h3-right">
+                                <div class="p-h3-state h3-state-green">
+                                    <span><i class="iconfont icon-assessment-state"></i>Not Assessed</span>
+                                    <span style="display: none;"><i class="iconfont"></i>Assessed</span>
+                                </div>
+                                <div class="p-h3-applybtn">
+                                    <a href="javascript:;">APPLY ASSESSMENT</a>
+                                    <a href="javascript:;"style="display: none;">My Storage</a>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>    -->
+                    <!--<script>-->
+                    <!--    $(function () {-->
+                    <!--        let forms = $('#infodata input,#infodata select');-->
+                    <!--        let falg = true;-->
+                    <!--        $.each(forms, function (index, item) {-->
+                    <!--            let val = $(item).val().replace(/^\s*|\s*$/g, "");-->
+                    <!--            let verify = $(item).attr('lay-verify');-->
+                    <!--            if (verify == null || verify == undefined) {-->
+                    <!--                verify = ''-->
+                    <!--            }-->
+                    <!--            let msg = '';-->
+                    <!--            verify = verify.split('|');-->
+                    <!--            if (verify.indexOf('required') > -1 && (val == null || val == undefined || val == '')) {-->
+                    <!--                if (falg) {-->
+                    <!--                    $(item).focus();-->
+                    <!--                    falg = false;-->
+                    <!--                }-->
+                    <!--                $(item).addClass('error_border');-->
+                    <!--            }-->
+                    <!--        })-->
+                    <!--        $('#infodata input').on('input',function () {-->
+                    <!--            let val = $(this).val();-->
+                    <!--            if (val != '' && val != undefined && val != null) {-->
+                    <!--                $(this).removeClass('error_border');-->
+                    <!--            }-->
+                    <!--        });-->
+                    <!--        $('#infodata select').change(function(){-->
+                    <!--             $(this).removeClass('error_border');-->
+                    <!--        });-->
+                    <!--          -->
+                    <!--    })-->
+                    <!--</script>-->
+                </div>
+                <div class="layui-row steps card-style">
+                    <div class="layui-col-sm12 ">
+                        <div class="pay-boxtent">
+                            <table border="1" class="layui-table">
+                                <tbody>
+                                <tr class="pay-title">
+                                    <td>{:lang('Order Number')}</td>
+                                    <td>{:lang('Payment Items')}</td>
+                                    <td>{:lang('Payment Amount')}</td>
+                                    <td>{:lang('Payment Time')}</td>
+                                    <td>{:lang('Payment Status')}</td>
+                                    <td>{:lang('Application Status')}</td>
+                                    <td>{:lang('Payment Method')}</td>
+                                    <td style="width: 12%;">{:lang('Operating')}</td>
+                                </tr>
+                                {volist name="orders" id="vo"}
+                                <tr>
+                                    <td>{$vo.order_number}</td>
+                                    <td>{$vo.name_en|lang}</td>
+                                    <td>{$vo.fee}</td>
+                                    <td>{$vo.create_time}</td>
+                                    <td class="unpaid"> {:lang('Paid')}</td>
+                                    <td>{:lang('Evaluation Completed')}</td>
+                                    <td>
+                                        <img src="/canada/images/pay-paypal.png" alt="" width="50">
+                                    </td>
+                                    <td>
+                                        <a href="{:url('index/user/modification_of_education_order_data',['sort'=>2,'order_no'=>$vo.order_number])}">{:lang('Data Update')}</a>
+                                    </td>
+                                </tr>
+                                {/volist}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <br/>
+                        <!--<a href="{:url('/save_next',['app_id'=>$app.id,'sort'=>$sort+1])}" class="layui-btn mazarine right">{:lang('Next Page')}</a> -->
+<!--                        <a class="layui-btn mazarine right" lay-filter="save2" lay-submit>{:lang('Next Page')}</a>-->
+                        <br/>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    layui.use(['form', 'laydate', 'upload', 'layer'], function () {
+        var form = layui.form,
+            laydate = layui.laydate,
+            layer = layui.layer,
+            upload = layui.upload;
+        layer.photos({
+            photos: '.preview',
+            closeBtn: 2,
+            tab: function (pic, layero) {
+                console.log(pic) //当前图片的一些信息
+            }
+        });
+        var sfz = $('.data-sfz').length;
+        upload.render({
+            elem: '#ID-upload',
+            url: '/upload',
+            multiple: true,
+            done: function (res) {
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed');
+                } else {
+                    //上传成功
+                    sfz++;
+                    if (sfz > 4) {
+                        return ' Cannot be more than 4'
+                    }
+                    $('#ID-upload').removeClass('layui-form-danger')
+                    $('#uploadDemoView').append('<div class="layui-inline uploadImg"><img src="' + res.msg + '"><i class="fa fa-trash sfz-del" aria-hidden="true"></i><input type="hidden" class="prove_file" name="prove_file[]" value="' + res.msg + '"></div>')
+                }
+            },
+            error: function () {
+                //演示失败状态，并实现重传
+                var demoText = $('#ID-text');
+                demoText.html('<span style="color: #FF5722;">Upload Failed</span> <a class="layui-btn layui-btn-xs demo-reload">{:lang("Try Again")}</a>');
+                demoText.find('.demo-reload').on('click', function () {
+                    idUpload.upload();
+                });
+            }
+        });
+        $(document).on('click', '.sfz-del', function () {
+            sfz--;
+            $(this).parents('.uploadImg').remove();
+        });
+        form.verify({
+            required: function (value) {
+                if (value == '') {
+                    return '{:lang("Required cannot be empty")}'
+                }
+            },
+        });
+        form.on('submit(save2)', function (data) {
+            //当前容器的全部表单字段，名值对形式：{name: value}
+            if (data.field['prove_file[0]'] == undefined) {
+                $('#ID-upload').addClass('layui-form-danger');
+                layer.tips('{:lang("Please upload supporting documents")}', $('#ID-upload'), {
+                    tips: [3, '#FF5722']
+                })
+                return;
+            }
+            $.post("{:url('/save_next',['app_id'=>$app.id,'sort'=>$sort+1])}", data.field, function (result) {
+                if (result.code == 20000) {
+                    window.location.href = result.data;
+                } else {
+                    layer.msg(result.msg, {
+                        icon: 5
+                    });
+                }
+            });
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+    });
+</script>
+</body>
+
+</html>

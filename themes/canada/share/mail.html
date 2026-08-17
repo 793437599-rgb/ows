@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{__NOLAYOUT__}
+<html lang="{:lang_code()}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>mail-wse</title>
+</head>
+<body>
+
+<table style="margin:0px;padding:0px;" width="100%" cellspacing="0" cellpadding="10" align="center">
+    <tbody>
+    <tr>
+        <td>
+            <table width="715" cellspacing="0" cellpadding="0" border="0" align="center">
+                <tbody>
+                <tr>
+                    <td style="background-color:#e6f3ed" height="30" bgcolor="#e6f3ed"></td>
+                </tr>
+                <tr>
+                    <td bgcolor="#ffffff">
+                        <table style="border: 2px #e6f3ed solid;" width="100%" bordercolor="#e6f3ed" align="center">
+                            <tbody>
+                            <tr>
+                                <td style="padding-left:10px; padding-right:10px">
+                                    <img style="display: inline-block;vertical-align: middle;width: 25%;margin-top: 15px;" src="{$icons[0]}" border="0">
+                                    <span style="display: inline-block;vertical-align: middle;width: 70%;color: #013763;font-weight: bold;font-size: 20px;padding-top: 12px;line-height: 1.2;">WORLD STORAGE EDUCATION <br/>
+                                        <span style="font-size: 14px;font-weight: normal;line-height: 1;">WSE is the world's leading 'Degree Assessed' and 'Blockchain Storage' institution.</span>
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <hr style="color:#e6f3ed; background-color:#e6f3ed; height:2px; border: 0;">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding-left:10px; padding-right:10px; padding-bottom:15px">
+                                    <table width="600" cellpadding="0" border="0" align="center">
+                                        <tbody>
+                                        <tr>
+                                            <td valign="top" align="left" style="padding: 50px 0;">
+                                                <h3>WSE E-Certificates Description</h3>
+                                                <p>The E-Certificates is valid for 10 days. After <span>10</span> days, the E-Certificates will lose the rights of the WSE certificate. The E-Certificates below is valid until {$expire_date}.</p>
+                                                {volist name="files" id="vo"}
+                                                <div style="text-align: center;">
+                                                    <img src="{$vo}" alt="" width="596">
+                                                </div>
+                                                {/volist}
+                                                <table cellspacing="0" cellpadding="0" border="0" style="width: 100%;">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td><h5>Blockchain Storage Information</h5></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3" style="border: 1px solid #013763;padding: 15px 10px;">
+                                                            <img style="display: inline-block;vertical-align: middle;width: 35px;" src="{$icons[1]}">
+                                                            <span style="display: inline-block;vertical-align: middle;">
+                                                                Block Hash <br/>
+                                                                <span style="font-size: 12px;">12345678901234678901234567892346</span>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="border-left: 1px solid #013763;border-bottom: 1px solid #013763;padding: 15px 10px;">
+                                                            <img style="display: inline-block;vertical-align: middle;width: 35px;" src="{$icons[2]}" alt="">
+                                                            <span style="display: inline-block;vertical-align: middle;">Deposit Time <br/>
+                                                                <span style="font-size: 12px;"></span>
+                                                            </span>
+                                                        </td>
+                                                        <td style="border-bottom: 1px solid #013763;border-left: 1px solid #013763;border-right: 1px solid #013763;padding: 15px 10px;">
+                                                            <img style="display: inline-block;vertical-align: middle;width: 35px;" src="{$icons[3]}" alt="">
+                                                            <span style="display: inline-block;vertical-align: middle;">Block Height <br/>
+                                                                <span style="font-size: 12px;">1235343</span>
+                                                            </span>
+                                                        </td>
+                                                        <td style="border-bottom: 1px solid #013763;border-right: 1px solid #013763;padding: 15px 10px;">
+                                                            <img style="display: inline-block;vertical-align: middle;width: 35px;" src="{$icons[4]}" alt="">
+                                                            <span style="display: inline-block;vertical-align: middle;">
+                                                                Type of Deposit <br/>
+                                                                <span style="font-size: 12px;">Document Deposit</span>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="right" colspan="3" style="padding-top: 20px;">
+                                                            <a style="color: #fff;background-color: #013763;text-decoration: none;padding: 10px 20px;" href="https://ve.wse.org/" target="_blank">Document Trusted Verification</a>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="background-color:#e6f3ed" valign="center" bgcolor="#e6f3ed" align="center">
+                        <p style="padding-top:5px;font-family: Verdana, Arial, Helvetica, sans-serif; color:#013763; font-size:9px">World Storage Education(WSE) | No.2613, Kingston Road, Toronto, Ontario</p>
+                        <p style="padding-top:5px;font-family: Verdana, Arial, Helvetica, sans-serif; color:#013763; font-size:9px"><a href="https://www.wse.org/" rel="noopener" target="_blank">https://www.wse.org/</a></p>
+                        <p><a style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size:9px; text-decoration:none; color: #D3101B;" href="../../../public/index.php" rel="noopener" target="_blank">For issues or questions: mail@wse.org</a></p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

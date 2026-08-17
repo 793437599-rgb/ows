@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+		<meta charset="utf-8" />
+		<title>change</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="css/common.css" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/flexslider.min.css" />
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="css/content.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<link rel="stylesheet" type="text/css" href="css/user.css" />
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.flexslider-min.js"></script>
+		<script src="js/selectFilter.js"></script>
+		<script src="js/mobile.js"></script>
+		<script src="layui/layui.js"></script>
+	</head>
+	<body>
+	<body>
+		<header class="User_hd_full">
+			<div class="T_main User_hd">
+				<a href="#"><img src="images/logo.png"/></a>
+				<div class="User_hd_bottom">
+					<!-- <img src="user-img/user_profession.png"/>
+					<img src="user-img/user_safety.png"/> -->
+					<form class="layui-form" action="" method="post"  lay-filter="example">
+							<div class="filter-box">
+								<select name="filter">
+									<option value="new" selected disabled>Switch language</option>
+									<option value="unaudited">简体中文</option>
+									<option value="nothrough">繁体中文</option>
+									<option value="audit">日本語</option>
+									<option value="audited">Deutsch</option>
+									<option value="passed">已通过</option>
+									<option value="1">한국어</option>
+									<option value="2">Русский</option>
+									<option value="3">Français</option>
+								</select>
+							</div>
+					</form>
+					<dl class="User_hd-rt">
+						<dt>
+							<i class="fa fa-user"></i>
+							qiaojie xu
+							<i class="fa fa-angle-down"></i>
+						</dt>
+						<dd><i class="fa fa-sign-out"></i> sign out</dd>
+					</dl>
+				</div>
+			</div>
+		</header>
+		<!--主要内容-->
+		<div class=" User_mian_full">
+			<div class="T_main  U_mian">
+				<div class="User_left">
+					<h3><i class="fa fa-mortar-board"></i>Function List</h3>
+					<ul class="User_ltbox">
+						<li><a href="#">Basic Information <i class="fa fa-angle-right"></i></a></li>
+						<li><a href="#">My application <i class="fa fa-angle-right"></i></a></li>
+						<li><a href="#">Payment details<i class="fa fa-angle-right"></i></a></li>
+						<li class="User_nav_active"><a href="#">change Password<i class="fa fa-angle-right"></i></a></li>
+					</ul>
+					<dl class="U_soft">
+						<dt >
+							<img src="user-img/soft_icon1.png" >
+							<img src="user-img/soft_icon2.png" >
+							<img src="user-img/soft_icon3.png" >
+							<img src="user-img/soft_icon4.png" >
+						</dt>
+						<dd>
+							WSE protects users' privacy, science majors, and security hubs for academic qualification assessment.
+						</dd>
+</dl>
+</div>
+<div class="User_right">
+					<form class="layui-form Uc_form" action="" method="post"  lay-filter="example">
+						<div class="Ua_list">
+							<span>Old Password</span>
+							<input type="text" name="" id="" value="" lay-verify="number" lay-reqtext="student ID cannot be empty" placeholder="{:lang('Enter the old password')}"/>
+						</div>
+						<div class="Ua_list">
+							<span>New Password</span>
+							<input type="text" name="" id="" value="" lay-verify="pass"  placeholder="{:lang('Enter the New Password')}"/>
+						</div>
+						<div class="Ua_list">
+							<span>Confirm Password</span>
+							<input type="text" name="" id="" value="" lay-verify="number" lay-reqtext="student ID cannot be empty" placeholder="{:lang('Confirm the new password again')}"/>
+						</div>
+						<div class="User_apply  User_btn_no" >
+							<button>Save</button>
+						</div>
+					</form>
+				</div>
+			</div>
+</div>
+		<footer class="User_ft">
+			<a href="#">Home</a> | <span>© Copyright 2019 ca.university All Rights Reserved</span>
+		</footer>
+		<script>
+			//语言选择
+			$('.filter-box').selectFilter({
+				callBack: function(val) {
+					//返回选择的值
+					console.log(val + '-是返回的值')
+				}
+			});
+			layui.use(['form', 'layedit', 'laydate'], function(){
+})
+		</script>
+	</body>
+</html>

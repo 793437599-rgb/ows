@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>CANADA.EDUCATION DATA</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Keywords" content=""/>
+    <meta name="Description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/education.css"/>
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <script src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+</head>
+<body>
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'><a class="hd-logo" href="/"> <img src="/canada/images/logo.png"/> </a>
+        <div class="infor-off"><a href="/index/ku/logout"> <img src="/canada/images/off-icon.svg"/> <span>Exit</span>
+        </a></div>
+    </div>
+</header>
+
+<section class="information-wrap">
+    <h2>PERSONAL DATA DISPLAY</h2>
+    <div class="information transcript">
+        <div class="header">
+            <div class="img-box">
+                <img src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"'/>
+            </div>
+            <div class="info">
+                <h3>{$info.name}</h3>
+            </div>
+
+            <ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a href="/index/ku/info/edu_id/{$v.id}">Information</a>
+                        </li>
+                        <li><a href="/index/ku/transcript/edu_id/{$v.id}">Transcript</a></li>
+                    </ol>
+                </li>
+
+                {/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/index/ku/info">Information</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+
+                <li><a href="/index/ku/transfer">TRANSFER</a></li>
+
+
+            </ul>
+
+        </div>
+    </div>
+    <div class="infor-right">
+        <div class="application border-shadow">
+            <div class="introduction"><h4>WES机构介绍</h4>
+                <div style="text-align: justify;"><p> We are a non-profit organization dedicated to helping
+                    international students and professionals achieve their educational and professional goals in the
+                    United States and Canada. Founded in 1974, we evaluate and advocate for the recognition of
+                    international education qualifications.</p>
+                    <p> We have provided credential evaluations to more than one million people worldwide. Our
+                        evaluations are widely recognized by more than 2,500 educational, business, and governmental
+                        institutions throughout the U.S. and Canada. </p></div>
+            </div>
+        </div>
+    </div>
+    <div class="table-bg"></div>
+</section>
+
+<div class="infor-ft"><a href="#">Home</a>&nbsp;|&nbsp; <span>Copyright © Canada education data</span></div>
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+
+</script>
+</body>
+</html>

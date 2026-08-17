@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>{:lang('IPG: Canadian Pharmacy Skills (CPS) 1 Application')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="layui-container">
+<!--    user header    -->
+        <div class="layui-row mainContent-header">
+            <div class="layui-col-sm12">
+                        <h1>{:lang('IPG: Canadian Pharmacy Skills (CPS) 1 Application')}</h1>
+            </div>
+        </div>
+<div class="layui-row profile">
+            <div class="layui-col-sm12">
+                        <p><b>{:lang('Application Fee')}:</b><span class="right">$250.00 ({:lang('Conditional fees may apply')})   </span></p>
+            </div>
+        </div>
+<div class="layui-row">
+            <div class="buttons layui-col-sm12 ">
+                        <a class="layui-btn layui-btn-primary">{:lang('Cancel')}</a>
+                        <a class="layui-btn mazarine right">{:lang('Apply Now')}</a>
+            </div>
+        </div>
+    </div>
+</section>
+{include file="public/footer-login" /}
+</body>
+</html>

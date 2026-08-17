@@ -1,0 +1,40 @@
+<div class="layui-row  user-avatar">
+    <h1>{:lang('Basic Information')}</h1>
+    <div class="public-user-header center-header-new2">
+        <div class="public-user-h1"><a   href="{:url('/profile')}">
+            <img {if empty($user.head_img)} src="/static/images/person-icon.png" {else /}src="{$user.head_img}" {/if}></a></div>
+        <div class="public-user-h2">
+            <p class="p-user-name"><b>{$user.username}</b><span class="stored-id">{$user.search_id}</span><span class="p-ediet"><a   href="{:url('index/user/email_modification')}"><i class="iconfont icon-ediet"></i></a></span></p>
+            <div class="public-imfor-three">
+                <div>{if empty($user.sex)} {:lang('Gender')} {else /} {:lang($user.sex)} {/if}</div>
+                <div>{$user.birth_time|birthdayToAge} {:lang('year old')}</div>
+                <div>{if empty($user.nationality)} {:lang('Nationality')} {else /} {:lang($user.nationality)}  {/if}</div>
+            </div>
+            <div class="public-imfor-two">
+                <div><span><i class="iconfont icon-phone"></i>{$user.mobile}{empty name="$user.mobile"}{:lang('Phone Number')}{/empty}</span></div>
+                <div><span><i class="iconfont icon-youxiang1"></i>{$user.email}</span></div>
+            </div>
+        </div>
+        <div class="public-user-h3 layui-hide-xs">
+            <!-- <h5>Assessment Status</h5> 1 表示有数据-->
+            <div class="p-h3-right">
+                    {if condition="order_payst($user['id'])==0" }     
+                <div class="p-h3-state h3-state-red"> 
+                    <span style="display: block;"><i class="iconfont icon-assess"></i>{:lang('Not Assessed')}</span>
+                    {else /}
+                <div class="p-h3-state h3-state-green">
+                    <span style="display: block;" ><i class="iconfont icon-assessed"></i>{:lang('Assessed')}</span>
+                    {/if}
+                </div>
+                <div class="p-h3-applybtn">
+                    {if condition="order_payst($user['id'])==0" }   
+                    <a href="javascript:;" onclick="link('3')">{:lang('APPLY ASSESSMENT')}</a>
+                    {else /}
+                    <a   href="{:url('index/user/orderinfo')}">{:lang('My Storage')}</a>
+                    {/if}
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>   
+

@@ -1,0 +1,58 @@
+<footer>
+    <div class="ftnav">
+        <ul>
+            {volist name="nav" id="vo"}
+                <li><a href="{$vo.link}">{$vo.name}</a> </li>
+            {/volist}
+        </ul>
+    </div>
+    <div class="ft-mian">
+        <div class="ft-adress">
+            <a href="#">
+                <img src="/canada/images/logo.png" />
+            </a>
+            <p>
+                Address: {$C['home_address']}
+            </p>
+            <P>
+                Telephone : {$C['home_phone']}
+            </P>
+        </div>
+        <div class="ft-link">
+            <ul>
+                {volist name="link[0]" id="vo"}
+                    <li><a href="{$vo.link}">{$vo.name}</a> </li>
+                {/volist}
+            </ul>
+            <ul>
+                {volist name="link[1]" id="vo"}
+                    <li><a href="{$vo.link}">{$vo.name}</a> </li>
+                {/volist}
+            </ul>
+            <ul>
+                {volist name="link[2]" id="vo"}
+                    <li><a href="{$vo.link}">{$vo.name}</a> </li>
+                {/volist}
+            </ul>
+   
+        </div>
+    </div>
+    <div class="ft-copy">
+    	    <p>Research publications, presentations, newsletters, advisory statements, fact sheets, brochures and reports available on this site (excluding publications for purchase and our databases) can be copied and distributed, as long as you (1) do not modify or adapt the materials, (2) do not use the materials for commercial purposes, (3) provide appropriate attribution to AuraData, and (4) notify recipients of AuraData’s restrictions on use of the materials. Please note this is just a summary of your rights. Please see our 
+    	    	<a href="/page/318.html"  target="_blank">{:lang('Terms of Use')}</a> , 
+    	    	<a href="/page/319.html" target="_blank">{:lang('Privacy Policy')}</a>, 
+    	    	and   <a href="/page/320.html"  target="_blank">{:lang('Cookie Policy')}</a> 
+    	    	for further details regarding your actual licensed rights.
+    	    </p>
+  			<p>{$C['site_copyright']}</p>{$C['site_icp']}{$C['site_tongji']}
+  	</div>
+</footer>
+<style>
+	.ft-copy p a{
+		color: #88c34d;
+	}
+	.ft-copy p a:hover{
+		text-decoration: underline;
+	}
+</style>
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('Renew WSE-DAE Application V1')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css" />
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/static/js/clipboard.js-master/dist/clipboard.min.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+        <div class="">
+            <div class="layui-row ">
+                <div class="layui-col-sm2 nav-fixed">
+                    <!--    nav-left    -->
+                    {include file="public/nav-left" /}
+                </div>
+                <div class="layui-col-sm10">
+                    <div class="layui-row layui-col-space20 user-avatar">
+                        <div class="complete-box-tips">
+                            <div class="complete-flex">
+                                <div class="complete-tips"><i class="iconfont icon-succeed"></i></div>
+                                <div class="complete-tipstext"><span>{:lang('API application is completed, and the certification mark has been generated for you')}</span></div>
+                            </div>
+                            <p>{:lang('Please complete the certification installation code steps, so that WSE can find certification and provide interface solutions')}</p>
+                        </div>
+                    </div>
+                    <hr>
+                    <!--    applications    -->
+                    <div class="layui-row station">
+                        <div class="layui-col-sm12">
+                            <div class="basic-box">
+                                <div class="">
+                                    <h3>{:lang('Please place the code in the text box below in the HTML code of all your web pages')}.</h3>
+                                    <div class="complete-code-content" id="bar">
+                                        <p>&lt;script type="text/javascript" src="{$record.script_src}"&gt;&lt;/script&gt;</p>
+                                    </div>
+                                    <div class="com-code-btn"><button class="copy-btn"  data-clipboard-target="#bar">{:lang('Copy code')}</button></div>
+                                </div>
+                                <div class="basic-i2">
+                                    <p><b>{:lang('The installation code is as follows')}:</b></p>
+                                    <p>{:lang('Please note that the statistical code must be placed in the footer master page')} &lt;/footer&gt; {:lang('position, and then adjust the CSS style to the appropriate position to achieve the final effect of Figure 2 below')}</p>
+                                    <img src="/canada/images/blockchain/sample-1.png" alt="">
+                                </div>
+                                <div class="basic-i2">
+                                    <h3>{:lang('Adjust the style of css on the page, place the certificate in a suitable position, and refer to the figure below for the final effect')}</h3>
+                                    <img src="/canada/images/blockchain/sample-2.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+    <script>
+        layui.use('layer',function(){
+            let leyer = layui.layer;
+            var clipboard = new ClipboardJS('.copy-btn');
+            clipboard.on('success', function (e) {
+                layer.tips('Copied', '.copy-btn', {
+                tips: [1, '#5FB878'],
+                time: 2000
+                });
+            });
+        })
+    </script>
+</body>
+</html>

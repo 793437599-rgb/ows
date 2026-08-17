@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+	<head>
+		<meta charset="utf-8" />
+		<title>Selection agency</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/canada/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/jquery.flexslider-min.js"></script>
+		<script src="/static/js/viewer-jquery.min.js"></script>
+		<script src="/static/js/selectFilter.js"></script>
+		<script src="/static/js/mobile.js"></script>
+		<script src="/static/js/layui/layui.js"></script>
+		<script src="/canada/js/html.js"></script>
+	</head>
+	<body>
+		<header class="User_hd_full">
+			<div class="T_main User_hd">
+				<a href="/"><img src="/static/images/logo.png" alt="logo" title="header-logo"/></a>
+				<div class="User_hd_bottom">
+					<ul class="layui-nav">
+						<li class="layui-nav-item"><a href="">{:lang('Application review')}</a></li>
+						<li class="layui-nav-item"><a href="">{:lang('Data exchange')}</a></li>
+						<li class="layui-nav-item"><a href="">{:lang('Order')}</a></li>
+<li class="layui-nav-item">
+							<a href="javascript:;">{:lang('Profile')} </a>
+							<dl class="layui-nav-child">
+								<dd><a href="/user_basic">{:lang('Account Settings')}</a></dd>
+								<dd><a href="/logout">{:lang('Sign Out')}</a></dd>
+							</dl>
+						  </li>
+					</ul>
+				</div>
+			</div>
+		</header>
+<!-- info hd -->
+		<div class="T_main User_info">
+			<div class=" User_Avatar">
+				<a class="User_logo" href="/user_index">
+					{if condition="!empty($user_upload['zj_img'])"}
+					<img src="{$user_upload.zj_img}">
+					{else/}
+					<img src="/static/images/person-icon.png" >
+					{/if}
+				</a>
+				<div class="User_Avatar_down">
+					<form action="" method="">
+						<div class="User_Ava_tit">
+							{:lang('Edit Profile Picture')}
+							<i class="fa fa-close"></i>
+						</div>
+						<label for="profile" class="User_per">
+							<input name="profileImage" id="profile" type="file">
+							<i class="fa fa-long-arrow-right "></i>
+							<span >{:lang('Add Your Profile Photo')}</span>
+						</label>
+						<p>{:lang('Max File Size')}: 5 MB</p>
+						<p>{:lang('File Formats')}: PNG, JPEG, GIF</p>
+						<a href="javascript:;"  class="User_per">
+							<i class="fa fa-long-arrow-right "></i>
+							<span >{:lang('Remove Photo')}</span>
+						</a>
+					</form>
+					<div class="User_direction_icon fa fa-play"> </div>
+				</div>
+			</div>
+			<div class="User_Avart">
+				<div class="User_Ava_nav"> <a class="User_edit" href="#">{:lang('Edit')}</a></div>
+				<h2>{$user.username}</h2>
+			</div>
+</div>
+		<!--主要内容-->
+		<div class=" User_mian_full">
+			<div class="T_main ">
+				<div class="Up_box Ua_box">
+					<form  class="layui-form" action="" method="post"  lay-filter="example">
+						<div class="Up_info">
+							<div class="Up_ubox">
+								<img src="/static/images/DAEC-icon.png" >
+								<h3>FROM </h3>
+								<p>WSE</p>
+							</div>
+							<h3 class="Up_level">University of California <span>Master's degree</span></h3>
+							<div class="Up_DT">
+								{if condition="!empty($user_upload['xwz_img'])"}
+								{foreach name="user_upload['xwz_img']" item="val"}
+								<img  class="D_tableimg" data-original="{$val}" src="{$val}" >
+								{/foreach}
+								{/if}
+								{if condition="!empty($user_upload['cj_img'])"}
+								{foreach name="user_upload['cj_img']" item="val"}
+								<img  class="D_tableimg" data-original="{$val}" src="{$val}" >
+								{/foreach}
+								{/if}
+								<!--<img src="/static/images/icon1_D.png" >
+								<img src="/static/images/icon1_T.png" >-->
+								<h3>Transfer method</h3>
+								<p><i class="fa fa-send"></i>Electronic</p>
+							</div>
+</div>
+						<div class="Up_agency">
+							<div class="Up_ubox">
+								<img src="/static/images/agency_icon.jpg" >
+								<h3>To</h3>
+								<p>Selection agency</p>
+							</div>
+							<div class="User_form-item ">
+								<label>Country*</label>
+								<select  lay-search="" lay-verify="required"  lay-reqtext="The country cannot be empty" >
+									<option value="1">Choose country </option>
+									<option  value="2">china</option>
+									<option  value="3">china</option>
+								</select>
+							</div>
+							<div class="User_form-item ">
+								<label>Data assessment agency*</label>
+								<select  lay-search="" lay-verify="required"  lay-reqtext="Data assessment agency cannot be empty">
+									<option value="1">Choose the assessment agency</option>
+									<option  value="2">HEDD</option>
+									<option  value="3">EDE</option>
+								</select>
+							</div>
+						</div>
+						<div class="Up_result">
+							<div class="Up_ubox">
+								<img src="/static/images/USA_cer_1.jpg" >
+								<h3>RESULT</h3>
+								<p>NSCH</p>
+							</div>
+							<div class="Up_cost">
+								<div class="Up_cost_list">
+									<p>Certificate fee: <span>$1560</span></p>
+									<p>Handling fee: <span>$0.00</span></p>
+								</div>
+<h3>Total: <span>$1560</span></h3>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="Uf_pay">
+							<label class="Uf_paylist" for="pay-1">
+								<div class="Uf_check">
+									<input type="radio"  id="pay-1" name="pay" value="" />
+</div>
+								<img src="/static/images/pay_Google.png" >
+							</label>
+							<label class="Uf_paylist" for="pay-2">
+								<div class="Uf_check">
+									<input type="radio"  id="pay-2" name="pay" value="" />
+</div>
+								<img src="/static/images/pay_pal.png" >
+							</label>
+							<label class="Uf_paylist" for="pay-3">
+								<div class="Uf_check">
+									<input type="radio"  id="pay-3" name="pay" value="" />
+</div>
+								<img src="/static/images/pay_apple.png" >
+							</label>
+						</div>
+						<div class="clearfix"></div>
+						<div class="user_btn_box Up_pay">
+							<button class="layui-btn" lay-submit="" type="button">Save and pay</button>
+						</div>
+						<div class="clearfix"></div>
+					</form>
+				</div>
+</div>
+		</div>
+<footer class="User_ft">
+			<a href="#">Home</a> | <span>© Copyright 2019 ca.university All Rights Reserved</span>
+		</footer>
+		<script>
+layui.use(['form', 'layedit', 'laydate'], function(){
+})
+		</script>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>{$res.name_en}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/canada/css/PrivacyPolicy.css">
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/langCookie.js"></script>
+</head>
+<body>
+<header class="header">
+    <div class="header-wrap">
+        <div class="container"><a href="/"> <img src="/canada/images/logo.png"> </a> <span>  <b>{:lang($res.name_en)}</b></span>
+        </div>
+    </div>
+</header>
+<section class="container privacy-box"><h2 class="privacy-title">  <b class="text-success">{:lang($res.name_en)} </b></h2>
+<br> 
+ 
+{switch name="$Think.cookie.think_var"}
+{case value="en-us"}{$res.content}{/case}
+{case value="zh-cn"}{$res.content_zh}{/case}
+{case value="ja-jp"}{$res.content_jp}{/case}
+{case value="ko-kr"}{$res.content_kr}{/case}
+{case value="ru-ru"}{$res.content_ru}{/case}
+{case value="fr-fa"}{$res.content_fr}{/case}
+{/switch}
+</section>
+<footer class="footer">
+    <div class="container"><span>© 2020 WSE. All rights reserved.</span> </div>
+</footer>
+</body>
+</html>

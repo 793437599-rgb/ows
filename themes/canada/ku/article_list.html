@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="{$C['seo_keyword']}">
+    <meta name="keywords" content="{$C['seo_description']}">
+    <title>{$C['site_title']}{$title?='--'.$title}</title>
+    <link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" href="/canada/css/VerificationServices.css">
+    <link rel="stylesheet" href="/canada/css/query.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <!--page header & footer style-->
+    <link rel="stylesheet" type="text/css" href="/canada/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/user.css"/>
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <!-- share css & js -->
+    <link rel="stylesheet" href="/static/share/css/share.min.css">
+    <link rel="stylesheet" href="/static/share/css/share.more.css">
+    <script src="/static/share/js/share.min.js"></script>
+    <link rel="stylesheet" href="/canada/css/animate.css">
+    <link rel="stylesheet" href="/canada/css/codehim-dropdown.css">
+    <script src="/canada/js/codehim.dropdown.js"></script>
+</head>
+<body>
+    {include file="public/header" /}
+    <section class="article-list">
+    	{if condition="!empty($category)"}
+        {foreach name="$category" item="vo" key="k"}
+        {if condition = "$k%2==0"}
+        <div class="article-item-left">
+            <div class="item-left" style="background-image: url('/canada/images/Alberta_2.jpg');">
+                <i></i>
+            </div>
+            <div class="item-right">
+                <a href="/page/{$vo.id}.html">
+                    <h3>{switch name="$Think.cookie.think_var"}
+                        {case value="en-us"}{$vo.name}{/case}
+                        {case value="zh-cn"}{$vo.name_cn}{/case}
+                        {case value="ja-jp"}{$vo.name_jp}{/case}
+                        {case value="de-de"}{$vo.name_de}{/case}
+                        {case value="ko-kr"}{$vo.name_kr}{/case}
+                        {case value="ru-ru"}{$vo.name_ru}{/case}
+                        {case value="fr-fa"}{$vo.name_fa}{/case}
+                        {/switch}</h3>
+                    <p><span>{switch name="$Think.cookie.think_var"}
+                        {case value="en-us"}{$vo.alias}{/case}
+                        {case value="zh-cn"}{$vo.alias_cn}{/case}
+                        {case value="ja-jp"}{$vo.alias_jp}{/case}
+                        {case value="de-de"}{$vo.alias_de}{/case}
+                        {case value="ko-kr"}{$vo.alias_kr}{/case}
+                        {case value="ru-ru"}{$vo.alias_ru}{/case}
+                        {case value="fr-fa"}{$vo.alias_fa}{/case}
+                        {/switch}</span></p>
+                </a>
+            </div>
+        </div>
+        {else}
+        <div class="article-item-right">
+            <div class="item-right">
+                <a href="/page/{$vo.id}.html">
+                    <h3>{switch name="$Think.cookie.think_var"}
+                        {case value="en-us"}{$vo.name}{/case}
+                        {case value="zh-cn"}{$vo.name_cn}{/case}
+                        {case value="ja-jp"}{$vo.name_jp}{/case}
+                        {case value="de-de"}{$vo.name_de}{/case}
+                        {case value="ko-kr"}{$vo.name_kr}{/case}
+                        {case value="ru-ru"}{$vo.name_ru}{/case}
+                        {case value="fr-fa"}{$vo.name_fa}{/case}
+                        {/switch}</h3>
+                    <p><span>{switch name="$Think.cookie.think_var"}
+                        {case value="en-us"}{$vo.alias}{/case}
+                        {case value="zh-cn"}{$vo.alias_cn}{/case}
+                        {case value="ja-jp"}{$vo.alias_jp}{/case}
+                        {case value="de-de"}{$vo.alias_de}{/case}
+                        {case value="ko-kr"}{$vo.alias_kr}{/case}
+                        {case value="ru-ru"}{$vo.alias_ru}{/case}
+                        {case value="fr-fa"}{$vo.alias_fa}{/case}
+                        {/switch}</span></p>
+                </a>
+            </div>
+            <div class="item-left" style="background-image: url('/canada/images/Alberta_3.jpg');">
+                <i></i>
+            </div>
+        </div>
+        {/if}
+        {/foreach}
+        {/if}
+    </section>
+{include file="public/footer" /}
+<script>
+    $(function() {
+        $(".con-selbox").click(function(e) {
+            $(".con-select").toggleClass('con-open');
+            e.stopPropagation();
+        });
+        $(".con-seldel li").click(function(e) {
+            var _this = $(this);
+            $(".con-select> .con-selbox").text(_this.attr('value'));
+            _this.addClass("con-Selected").siblings().removeClass("con-Selected");
+            $(".con-select").removeClass("con-open");
+            e.stopPropagation();
+        });
+        $(document).on('click', function() {
+            $(".con-select").removeClass("con-open");
+        })
+    });
+</script>
+</body>
+</html>

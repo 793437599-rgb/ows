@@ -1,0 +1,172 @@
+<link rel="stylesheet" href="/canada/css/General-news.css">
+<div class="news-general">
+    <div class="news-boxcont">
+        <div>
+            <h1>{:lang('Why the Blockchain will Revolutionize Academic Credentialing')}</h1>
+            <div class="news-status">
+                <div class="news-status-items praise">
+                    <span>2020-02-01 09:30</span>
+                    <span><i class="iconfont icon-chakan"></i><span>142</span></span>
+                    <!-- <span id="praise"><i class="iconfont icon-dianzan" id="praise-img"></i><span id="praise-txt">365</span></span> -->
+                     <span id="praise"><img src="/canada/images/blockchain/zan.png" id="praise-img" /></span><span id="praise-txt">89</span>
+                </div>
+                <div>
+                    <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fa fa-linkedin-square"></i></a>
+                    <a href="https://www.facebook.com/"><i class="fa fa-facebook-official"></i></a>
+                </div>
+            </div>
+            <div class="news-text-box">
+               <p>{:lang('This is a transcript of the presentation given during <a href="">Educause</a> at the Anaheim Convention Center on October 28, 2016.')}</p>
+               <p>{:lang('Hello everyone. My name is Chris Jagers. I’m the CEO of <a href="">Learning Machine</a> , the software company that has been working with MIT over the last year to develop an open standard for blockchain certificates. I’ll be giving a short presentation about blockchain-based academic credentials, followed by a discussion with our panel and with all of you.')}</p>
+               <ul>
+                   <li>Kim Hamilton Duffy is the Principal Engineer jointly hired by the MIT Media Lab and Learning Machine to lead efforts on developing a new standard for issuing and verifying blockchain certificates. I’m so glad she is here because she will be able to provide the authoritative answer to any technical questions or misconceptions.</li>
+                   <li>John Papinchak is the Registrar for Carnegie Mellon University. I’ve asked him to join us so can help speak to the current state of credentialing and the needs of real-world of institutions, particularly from a registrar’s perspective.</li>
+                   <li>Natalie Smolenski is the head of Learning Machine Research. She has written extensively on the future of credentialing, particularly in regard to skills and how the blockchain fits into that big picture. A collection of her recent essays on this topic are in the back, so be sure to pick that up.</li>
+                   <li>Dan Hughes is the Chief Operating Officer of Learning Machine. He has been instrumental in guiding our collaboration with the Media Lab as well as our own commercial products for blockchain certificates, arriving in a few months.</li>
+               </ul>
+               <p>{:lang('There’s been a lot of genuine excitement around using the blockchain within higher education (and beyond) because the promise is immense. The promise is that it will enable students to hold and share their own official records directly with others in a manner that is safe, tamper-proof, and trusted. We’re talking about degrees, transcripts, certifications, badges … everything. That is a really big deal.')}</p>
+               <p>{:lang('Before we dive into details that technology, let’s cover some background. Even though schools moved from sheepskin to digital records a while ago, schools are still acting as the sole record keepers for student information. If a student wants to access or share their official records, they have to engage in a slow, complicated, and often expensive process. And so, for the most part, those records aren’t used much after graduation, nor built upon.')}</p>
+               <p>{:lang('Additionally, education is changing. Online learning and competency-based programs are rising in popularity. And this is magnified by a rapidly growing number of accredited education providers that expand far beyond traditional schools. This is causing a proliferation of educational claims that are hard to manage and it raises many new questions, both in terms of policy and technology. And what I hope to explain today is how a new technical infrastructure has emerged that enables students to be part of the solution by acting as their own lifelong registrar.')}</p>
+               <p>{:lang('Let’s start by looking at an example. A little over a year ago, the MIT Media Lab started an experiment for issuing some alumni digital certificates that could be validated using the Bitcoin blockchain. I say “experiment,” because it wasn’t ready to be safely released to the public, but it did illustrate how to use the blockchain as a notary for issuing certificates and verifying their authenticity.')}</p>
+               <p>{:lang('The image above shows that verification process taking place, which involves checking MIT’s signature, checking that nothing has changed in the certificate itself, and checking that the certificate hasn’t expired or been revoked. Once all that checks out, which just takes a second, a verified status is displayed.')}</p>
+               <p>{:lang('We’ve all heard funny stories of kids attempting to text photos of their official grades during the admissions process, but MIT’s prototype demonstrated how this new technology could actually secure that type of direct interaction for sharing official records.')}</p>
+               <p>{:lang('Let’s take a closer look at that prototype. The bottom of this slide represents the global blockchain database, which is basically a timeline of transactions. It is constituted by blocks of transactions that form one continuous chain. A blockchain. And because each new block builds upon the previous block, the entire chain is immutable. This is why it’s often referred to as a secure anchor of trust, because no government or private company can edit its history. And the schematic on top shows the core concept for logging certificate transactions.')}</p>
+               <p>{:lang('The blockchain itself is simply a ledger of transactions. In the case of money, it is recording financial transactions: who sent it, who received it, and how much. That pattern makes it ideally suited to record academic credentialing as well, because it records the same basic things: who issued it, who received it, and a one-way hash of the content that can later be used for verification. An academic achievement is simply another kind of value.')}</p>
+               <p>{:lang('The idea was clear, but this prototype had barriers preventing much use in the real world. For instance, it didn’t take into account how to efficiently issue thousands of certificates at the same time in a manner that was computationally efficient or cost effective. So, we began a year long collaboration to expand the concept and implementation into a complete toolkit of open-source components that any developer, school, or vendor could use.')}</p>
+               <div><img src="/canada/images/blockchain/4-1.jpg" alt=""></div>
+               <p>{:lang('This week, we’re excited to announce that this toolkit has been launched and is freely available at <a href="">www.blockcerts.org</a>. This open standard is OBI compliant and includes libraries for creating, issuing, holding, viewing, and verifying blockchain credentials. There is no other public resource delivering this complete ecosystem. The website itself is a friendly introduction to the source code on Git, and it includes helpful articles that introduce the project, answers questions, and provides step-by-step guides.')}</p>
+               <p>{:lang('And I should point out, that this codebase is already being used by MIT and others, so the future is here. It’s not two years away.')}</p>
+               <div style="text-align: center;"><img src="/canada/images/blockchain/4-2.png" alt=""></div>
+               <p>{:lang('Now, let’s take a look at how all these components can work together in the real world. This diagram is organized into three lanes: one for a school, one for a student, and one for employers or anyone else that needs to verify authenticity.')}</p>
+               <p>{:lang('The process starts with the mobile app, which handles all of the crypto key-management stuff in the background. And just as you might add friends within a new app, the student simply adds their school. This sends the school their name, email, and public key which establishes a strong connection between them. Once that’s setup, the school can begin issuing that person certificates.')}</p>
+               <p>{:lang('When a certificate is issued, a record of the transaction goes onto the blockchain. And the student can then hold their official certificate within their mobile app. The school still has an official copy, but now the student does as well.')}</p>
+               <p>{:lang('Let’s say that student later wants to apply for a job. They apply through an employer’s HR system and they paste a link to their certificate. The HR system uses an independent blockchain verification service to verify any claims that are made. And it’s by using an independent verification service, as oppose to the one built into the certificate, that sidesteps any attempts at faking a blockchain certificate.')}</p>
+               <p>{:lang('That’s it. No school, vendor, or institution has to be consulted at any point during the verification process. The student has a convenient way to use their academic credentials, and employers have an immediate way to view and verify those claims. And perhaps more profoundly, the world has an entirely new infrastructure of trust for the 21st century.')}</p>
+               <div><img src="/canada/images/blockchain/4-3.jpg" alt=""></div>
+               <p>{:lang('So let’s talk a little more about that infrastructure. The Bitcoin blockchain persists as a distributed network all over the world, just like the Internet. It’s replicated across thousands of computers, so it can’t be easily taken down. If institutions disappear, or even if entire governments collapse, people with blockchain-based certificates can still prove their education and what they have achieved. In essence, they can prove who they are. And the current refugee crisis highlights the relevance of this breakthrough. People need a more reliable ways to operate as self-sovereign individuals.')}</p>
+               <p>{:lang('In my experience, once schools grasp the magnitude of this technology, they want to get practical. How can they use it? How easy is it to get started?')}</p>
+               <p>{:lang('If you’re a developer, the code and instructions for building are available today at blockcerts.org. If you’re school that wants a convenient product, we’ll be launching a commercial app for Registrars this January, which provides a graphical interface for issuing and tracking the use of certificates. This commercial product will also serve as a model to other vendors, for how they can use the Blockcerts toolkit to build out their own solutions.')}</p>
+               <p>{:lang('And, I want to show you a preview of the product, because I think that seeing a friendly user interface can also help to clarify many of these concepts.')}</p>
+               <p>{:lang('This particular view is part of the process for issuing a certificate template to an entire cohort of students. It’s kind of like an email campaign. At this point, the certificate on the right has been defined, the recipient list can be selected, the date/time of issuance can be scheduled, and the email notification can be customized as well. Once this goes out, the transaction gets registered on the the blockchain and the certificate appears for students in their mobile app.
+                Image for post')}</p>
+               <p>{:lang('That’s what we’re looking at now above. Certificates are organized by school, which could include corporate training, alternative schools or any type of education provider. Individual certificates can be viewed and ultimately shared publicly online or privately with a third party. While issuing and verification happens via the bitcoin network, the certificate can also be displayed on the web, which generates the normal kinds of web analytics, like clicks and views.')}</p>
+               <p>{:lang('So, coming back to the school’s view above, we’re now looking at a dashboard for the Advanced Robotics certificate where activity data is visualized. This provides schools a whole new layer of analytics that have never existed before. And these analytics could greatly be expanded should schools utilize some known taxonomy or credential registry. That data could be built into each certificate automatically resulting in more detailed analytics.')}</p>
+               <p>{:lang('This is obviously beneficial for everyone involved. First, it gives graduates a useful tool that directly contributes to their economic advancement. And by using a school’s branded certificates, it creates a daily reminder of the school in the mind of graduates and in the mind of others who are viewing certificates. So certificates become a type of marketing. And more importantly, the school and student maintain a connection that’s alive, far after graduation. And that ongoing connection has a lot of potential.')}</p>
+               <p>{:lang('So, hopefully that’s enough to kick off good conversation!')}</p>
+               <p>...</p>
+               <p>{:lang('The presentation was followed by 45 minutes of great questions, most revolving around logistics like lost certificates, the longevity of the Bitcoin blockchain, and how employers adopt the verification service. Overall, a great discussion and enthusiasm for this direction.')}</p>
+            </div>
+            <div class="news-label-block">
+                <span>{:lang('Blockchain')}</span>
+                <span>{:lang('Bitcoin')}</span>
+                <span>{:lang('Higher Education')}</span>
+                <span>{:lang('Technology')}</span>
+                <span>{:lang('Learning')}</span>
+            </div>
+            <div class="news-block">
+                <div>
+                    <a class="chakan-left"><i class="iconfont icon-chakan"></i><span>142</span></a>
+                    <span id="last-zan"><img src="/canada/images/blockchain/zan.png" id="last-zan-img" /></span><span id="last-zan-txt">89</span>
+                </div>
+                <div>
+                    <a href=""><i class="fa fa-twitter"></i></a>
+                    <a href=""><i class="fa fa-linkedin-square"></i></a>
+                    <a href=""><i class="fa fa-facebook-official"></i></a>
+                </div>
+            </div>
+            <p class="split-line"></p>
+            <div>
+                <h1>{:lang('More From WSE')}</h1>
+                <div class="news-more">
+                    <div class="more-one">
+                        <div class="more-one-item">
+                            <a href="/index/about/newsDetails" class="news-link">
+                                <div><img src="/canada/images/blockchain/little-1.jpg" alt=""></div>
+                                <div>
+                                    <h4>{:lang('COVID-19 Emergency Responses in Education')}</h4>
+                                    <p>{:lang('In the history of global education, 2020 will go down as the year the coronavirus pandemic savaged education systems...')}</p>
+                                    <p><i class="iconfont icon-ziyuan"></i> 2020-05-26</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="more-one-item">
+                            <a href="/index/about/newsDetails2" class="news-link">
+                                <div><img src="/canada/images/blockchain/little-2.jpg" alt=""></div>
+                                <div>
+                                    <h4>{:lang('Perfect Storm:')}</h4>
+                                    <p>{:lang('The fallout from the COVID-19 pandemic for higher education institutions (HEIs) in the United States will likely be pronounced ...')}</p>
+                                    <p><i class="iconfont icon-ziyuan"></i> 2020-05-26</p>
+                                </div>
+                            </a>
+                        </div>                     
+                    </div>
+                    <div class="more-one">
+                        <div class="more-one-item">
+                            <a href="/index/about/newsDetails3" class="news-link">
+                                <div><img src="/canada/images/blockchain/little-3.jpg" alt=""></div>
+                                <div>
+                                    <h4>{:lang('COVID-19 notice:')}</h4>
+                                    <p>{:lang('As of April 27th, 2020, the International Credential Evaluation Service (ICES) has made the online application available again and will be open to receiving...')}</p>
+                                    <p><i class="iconfont icon-ziyuan"></i> 2020-04-27</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="more-one-item">
+                            <a href="/index/about/newsDetails5" class="news-link">
+                                <div><img src="/canada/images/blockchain/little-5.jpg" alt=""></div>
+                                <div>
+                                    <h4>{:lang('Beyond Transcripts')}</h4>
+                                    <p>{:lang('For the last 100 years, a simple report called the academic transcript has operated as the official representation...')}</p>
+                                    <p><i class="iconfont icon-ziyuan"></i> 2020-03-13</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#praise").click(function () {
+            var praise_img = $("#praise-img");
+            var praise_txt = $("#praise-txt");
+            var num = parseInt(praise_txt.text());
+            if (praise_img.attr("src") == ("/canada/images/blockchain/yizan.png")) {
+                // $(this).html("<img src='/canada/images/blockchain/zan.png' id='praise-img' class='animation' />");
+                // praise_txt.removeClass("hover");
+                // $(".add-animation").removeClass("hover");
+                // num -= 1;
+                // praise_txt.text(num)
+            } else {
+                $(this).html("<img src='/canada/images/blockchain/yizan.png' id='praise-img' class='animation' />");
+                praise_txt.addClass("hover");
+                $(".add-animation").addClass("hover");
+                num += 1;
+                praise_txt.text(num)
+            }
+        });
+    })
+$(function () {
+        $("#last-zan").click(function () {
+            var last_zan_img = $("#last-zan-img");
+            var last_zan_txt = $("#last-zan-txt");
+            var full = parseInt(last_zan_txt.text());
+            if (last_zan_img.attr("src") == ("/canada/images/blockchain/yizan.png")) {
+                // $(this).html("<img src='/canada/images/blockchain/zan.png' id='praise-img' class='animation' />");
+                // praise_txt.removeClass("hover");
+                // $(".add-animation").removeClass("hover");
+                // num -= 1;
+                // praise_txt.text(num)
+            } else {
+                $(this).html("<img src='/canada/images/blockchain/yizan.png' id='last-zan-img' class='animation' />");
+                last_zan_txt.addClass("hover");
+                $(".add-animation").addClass("hover");
+                full += 1;
+                last_zan_txt.text(full)
+            }
+        });
+    })
+</script>

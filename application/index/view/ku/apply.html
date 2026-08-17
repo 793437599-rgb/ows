@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>UNITED KINGDOM EDUCATION DATA</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/application.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+</head>
+<body>
+
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'>
+        <a class="hd-logo" href="/">
+            <img src="/canada/images/logo.png"/>
+        </a>
+        <div class="infor-off">
+            <a href="/index/ku/logout">
+                <img src="/canada/images/off-icon.svg"/>
+                <span>Exit</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<section class="information-wrap">
+    <h2>PERSONAL DATA DISPLAY</h2>
+    <div class="information transcript">
+        <div class="header">
+            <div class="img-box">
+                <img src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"'/>
+            </div>
+            <div class="info">
+                <h3>{$info.name}</h3>
+            </div>
+
+            <ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a href="/index/ku/info/edu_id/{$v.id}">Information</a>
+                        </li>
+                        <li><a href="/index/ku/transcript/edu_id/{$v.id}">Transcript</a></li>
+                    </ol>
+                </li>
+
+                {/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/index/ku/info">Information</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+
+                <li><a href="/index/ku/transfer">TRANSFER</a></li>
+
+
+            </ul>
+
+        </div>
+    </div>
+    <div class="infor-right">
+
+        <div class="application border-shadow">
+            <div class="app_img">
+                <img src="/canada/images/application_1.png" alt="">
+            </div>
+            <div class="title">Send certification/verification reports to international institution through CA UNIVERSITY!</div>
+            <div class="app_btn">
+                <a href="/index/ku/apply_select">Send report</a>
+            </div>
+            <div class="normal-link">
+                <a href="/index/ku/apply_introduction" target="_blank">Function Introduction</a>
+            </div>
+        </div>
+
+        <div class="border-shadow college-bar clearfix">
+            <ul>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_1.jpg" alt="">
+                    </div>
+                    <div class="college-name">CollegeNET, Inc.</div>
+                    <div class="college-link">
+                        <a href="/index/ku/apply_college/CollegeNET" target="_blank">Introduction to Institutions</a><br>
+                        <a href="/index/ku/apply_how" target="_blank">How to Apply</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_2.jpg" alt="">
+                    </div>
+                    <div class="college-name">Parchment Inc.</div>
+                    <div class="college-link">
+                        <a href="/index/ku/apply_college/Parchment" target="_blank">Introduction to Institutions</a><br>
+                        <a href="/index/ku/apply_how" target="_blank">How to Apply</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_3.jpg" alt="">
+                    </div>
+                    <div class="college-name">National Student Clearinghouse</div>
+                    <div class="college-link">
+                        <a href="/index/ku/apply_college/NSC" target="_blank">Introduction to Institutions</a><br>
+                        <a href="/index/ku/apply_how" target="_blank">How to Apply</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_4.png" alt="">
+                    </div>
+                    <div class="college-name">Digitary</div>
+                    <div class="college-link">
+                        <a href="/index/ku/apply_college/Digitary" target="_blank">Introduction to Institutions</a><br>
+                        <a href="/index/ku/apply_how" target="_blank">How to Apply</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_5.png" alt="">
+                    </div>
+                    <div class="college-name">Dienst Uitvoering Onderwijs</div>
+                    <div class="college-link">
+                        <a href="/index/ku/apply_college/DUO" target="_blank">Introduction to Institutions</a><br>
+                        <a href="/index/ku/apply_how" target="_blank">How to Apply</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_6.png" alt="">
+                    </div>
+                    <div class="college-name">My eQuals</div>
+                    <div class="college-link">
+                        <a href="/index/ku/apply_college/>My_eQuals" target="_blank">Introduction to Institutions</a><br>
+                        <a href="/index/ku/apply_how" target="_blank">How to Apply</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_7.png" alt="">
+                    </div>
+                    <div class="college-name">World Education Services (WES)</div>
+                    <div class="college-link">
+                        <a href="/index/ku/apply_college/WES" target="_blank">Introduction to Institutions</a><br>
+                        <a href="/index/ku/apply_how" target="_blank">How to Apply</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_8.png" alt="">
+                    </div>
+                    <div class="college-name">China Study Abroad Network</div>
+                    <div class="college-link">
+                        <a href="/index/ku/apply_college/cscse" target="_blank">Introduction to Institutions</a><br>
+                        <a href="/index/ku/apply_how" target="_blank">How to Apply</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="college-img">
+                        <img src="/canada/images/college_9.png" alt="">
+                    </div>
+                    <div class="college-name">China Abroad Student Information Service Network</div>
+                    <div class="college-link">
+                        <a href="/index/ku/apply_college/cscss" target="_blank">Introduction to Institutions</a><br>
+                        <a href="/index/ku/apply_how" target="_blank">How to Apply</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="table-bg"></div>
+</section>
+
+
+
+<div class="infor-ft">
+    <a href="#">Home</a>&nbsp;|&nbsp;
+    <span>Copyright © Canada education data</span>
+</div>
+
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+
+</script>
+
+</body>
+</html>

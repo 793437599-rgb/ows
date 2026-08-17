@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+{__NOLAYOUT__}
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{:lang('Renew WSE-ECA Application V1')}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+
+    <script src="/static/js/jquery.min.js"></script>
+
+    <script src="/static/js/mobile.js"></script>
+
+    <script src="/static/js/layui/layui.js"></script>
+
+    <script src="/canada/js/html.js"></script>
+
+</head>
+
+<body>
+
+
+
+{include file="public/header-user" /}
+
+
+
+<section class="mainContent">
+
+    <div class="layui-container">
+
+
+
+        <div class="layui-row layui-col-space15">
+
+            <div class="layui-col-sm2">
+
+                <!--    nav-left    -->
+
+                {include file="public/nav-left" /}
+
+            </div>
+
+            <div class="layui-col-sm10">
+
+
+
+                <!--    user avatar    -->
+
+                <div class="layui-row user-avatar">
+
+                    <div class="layui-col-sm2 layui-col-xs4">
+
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+
+                    </div>
+
+                    <div class="layui-col-sm10 layui-col-xs8">
+
+                        <h1>{$order.name_en}</h1>
+
+                        <p><b>{$user.username}</b></p>
+
+                        <p>{$user.email}— {$user.search_id}</p>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <div class="steps-card">
+
+                            <h3>Required Steps</h3>
+
+                            <ol>
+
+                                {foreach name="app_step" item="vo"}
+
+                                <li {$vo.sort==$sort?"class='active'":"" } >
+
+                                    <a href="{$vo.sort}">
+
+                                        {if condition="in_array($vo.id,$step_ok)"}
+
+                                        <i class="fa fa-check-circle"></i>
+
+                                        {$vo.sort}. {$vo.step_en} - {:lang('Complete')}
+
+                                        {else}
+
+                                        <i class="fa fa-arrow-circle-right"></i>
+
+                                        {$vo.sort}. {$vo.step_en} - {:lang('Incomplete')}
+
+                                        {/if}
+
+                                    </a>
+
+                                </li>
+
+                                {/foreach}
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr/>
+
+
+
+                <!--    steps    -->
+
+                <div class="layui-row steps">
+
+                    <div class="layui-col-sm12">
+
+                        <h3>{:lang('READ INSTRUCTIONS')}</h3>
+
+                        <hr/>
+
+                        <p>{:lang('Please read and follow carefully to avoid delays')}</p>
+
+                        <hr/>
+
+                        <h5>{:lang('Application to Renew your WSE Degree Assessment Education for Canadian Immigration Programs')}</h5>
+
+                        <p>{:lang('The Degree Assessment Education (DAE) has been designated by the Immigration, Refugees and Citizenship Canada as of April 17th, 2013 to provide Degree Assessment Educations (DAE) for Canadian immigration programs.If you have obtained an ECA assessment report for immigration purposes from WSE that has since expired or about to expire,')}</p>
+
+                        <p>{:lang('For information about immigration programs visit')} <a href="https://www.canada.ca/en/services/immigration-citizenship.html" target="_blank">https://www.canada.ca/en/services/immigration-citizenship.html</a></p>
+
+                        <h5>{:lang('Your application to renew your original WSE-ECA Report will require')}:</h5>
+
+                        <ol>
+
+                            <li>{:lang('A completed online application')}</li>
+
+                            <li>{:lang('A colour copy of both sides of your government-issued photo identification showing your date of birth')}</li>
+
+                            <li>{:lang('If your name has changed since the issuance of your report, please provide a copy of your marriage certificate or a proof of name change document showing both your former name and current name.')}</li>
+
+                            <li>{:lang('A colour copy of your expired or about to expire WSE-ECA Report')}</li>
+
+                            <li>{:lang('Full payment of applicable WSE service fees')}</li>
+
+                        </ol>
+
+                        <p><strong>{:lang('NOTE')}</strong>: {:lang('Your assessment outcome may change to reflect current WSE policy. If it does, the new (renewed) report will supersede the previous report.')}</p>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save This Page')}</a>
+
+                        <a href="{:url('/save_next',['app_id'=>$fee.id,'sort'=>$sort+1])}" class="layui-btn mazarine right">{:lang('Next Page')}</a>
+
+                        <br/>
+
+                        <br/>
+
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save and Finish Later')}</a>
+
+                        <hr/>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</section>
+
+
+
+{include file="public/footer-login" /}
+
+
+
+</body>
+
+</html>

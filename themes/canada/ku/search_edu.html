@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+	<meta charset="utf-8" />
+	<title>Information</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="/canada/css/common.css" />
+	<link rel="stylesheet" href="/canada/fonts/iconfont.css">
+	<link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+	<link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+	<link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css" />
+	<link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css" />
+	<link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+	<link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+	<link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/jquery.flexslider-min.js"></script>
+	<script src="/static/js/viewer-jquery.min.js"></script>
+	<script src="/static/js/mobile.js"></script>
+	<script src="/static/js/layui/layui.js"></script>
+	<script src="/canada/js/html.js"></script>
+</head>
+<body>
+	<!-- <header class="User_hd_full">
+		<div class="T_main User_hd">
+			<a href="/"><img src="/static/images/logo.png" alt="logo" title="header-logo"/></a>
+			<div class="User_hd_bottom">
+				<ul class="layui-nav">
+					  <li class="layui-nav-item">
+						<a href="javascript:;">{:lang('Information')}</a>
+						{empty name="$admins"}
+						<dl class="layui-nav-child">
+						  <dd><a href="/search_edu">{:lang('School Information')}</a></dd>
+						  <dd><a href="/search_trans">{:lang('Transcript')}</a></dd>
+						</dl>
+						{/empty}
+					  </li>
+				</ul>
+			</div>
+		</div>
+	</header> -->
+	<!-- info hd -->
+	<div class="T_main Q_main">
+		<div class="Q_rt_line">
+			<h3 class="Q_tit">
+				<!-- {$info.username} | {$edu.academic_level} -->
+				PERSONAL DATA DISPLAYCAK | BACHEOR</h3>
+		</div>
+		<div class="Q_lt_box">
+			<div class="Qi_hd">
+				<div class="Qi_Hpic">
+					<img src="{$info.head_img}">
+				</div>
+				<div class="Qi_Hbasci">
+					<div class="qi_text">
+						<h3 class="Qi_tit">{$info.username}</h3>
+						<a href="{$urlss}/assess_report"><i class="iconfont icon-certificate"></i> WSE Evaluation Report</a>
+						<a href="{$urlss}/transcript"><i class="iconfont icon-wse-t"></i> WSE Transcript</a>
+					</div>
+					<div>
+						<table border="" cellspacing="" cellpadding="">
+							<tr>
+								<td><b>{:lang('WSE Number')}:</b> {$info.search_id}</td>
+								<td><b>{:lang('Gender')}:</b> {$info.sex=='Male'?"Male":"Female"}</td>
+								<!-- <td><b>{:lang('Maple Leaf Card')}:</b>{$info.id_number}</td> -->
+								<!-- <td>{:lang('WSE-Num')}:</td>
+								<td>{$info.search_id}</td>
+								<td>{:lang('Gender')}:</td>
+								<td>{$info.sex=='Male'?"Male":"Female"}</td>
+								<td>{:lang('Maple Leaf Card')}:</td>
+								<td>{$info.id_number}</td> -->
+							</tr>
+							<tr>
+								<td><b>{:lang('E-mail')}:</b> {$info.email}</td>
+								<td><b>{:lang('Country Of Citizenship')}:</b> {$edu.nationals}</td>
+							</tr>
+							<tr>
+								<td><b>{:lang('Date of Birth')}:</b> {$info.birth_time}</td>
+								<td><b>{:lang('Type Of ID')} :</b> {$info.document_group}</td>
+							</tr>
+						</table>
+					</div>
+					<p class="arch-check">
+					{if condition="$edu.status==4"}  
+                        <img class="check-img" src="/static/images/check-pass.png" alt="">
+                    {else/}
+                        <img class="check-img" src="/static/images/check-no-pass.png" alt="">
+                    {/if}
+					</p>
+				</div>
+			</div>
+			<div class="spacer_q"></div>
+			<div class="Qi_bd">
+				<table class="Qi_info" border="" cellspacing="" cellpadding="">
+					<tr>
+						<td>{:lang('School Name')}</td>
+						<td>{$edu.school}</td>
+						<td>{:lang('School Location')}</td>
+						<td>{$edu.nationals}</td>
+					</tr>
+					<tr>
+						<td>{:lang('Student ID')}</td>
+						<td>{$edu.student_id}</td>
+						<td>{:lang('Learning Level')}</td>
+						<td> {$edu.degree}</td>
+					</tr>
+					<tr>
+						<td>{:lang('Certificate Name')}</td>
+						<td>{$edu.degree_program}</td>
+						<td>{:lang('Research Areas')}</td>
+						<td>{$edu.faculty|getfaculty}</td>
+					</tr>
+					<tr>
+						<td>{:lang('Professional Title')}</td>
+						<td>{$edu.major|getfaculty}</td>
+						<td>{:lang('Starting Time')}</td>
+						<td>
+							{$info.create_time|substr=0,-9}
+						</td>
+					</tr>
+					<!-- <tr>
+						<td>{:lang('Length of Schooling')}</td><td >{$edu.school_year}</td>
+						<td>{:lang('Dissertation')}</td><td>{$edu.paper_name}</td>
+					</tr> -->
+					<tr>
+						<td>{:lang('Graduation Time')}</td>
+						<td>{$edu.enrollment_date}</td>
+						<td>{:lang('Application Time')}</td>
+						<td>{$edu.completion_date}</td>
+						<!-- <td>{:lang('Form of Study')}</td><td>full time</td> -->
+					</tr>
+					<tr>
+						<td>{:lang('Application status')}</td>
+						<td>{if condition="$edu.status eq '0' "} {:lang('not pass')} {else /} {:lang('already passed')}
+							{/if}</td>
+						<td>{:lang('Passing Time')}</td>
+						<td>{$info.update_time|substr=0,-9}</td>
+					</tr>
+					<tr>
+					</tr>
+				</table>
+				<div class="qi_block">
+					<a href=""><i class="iconfont icon-Blockchain"></i> Blockchain Storage Information</a>
+					<div class="score-table">
+						<ul>
+							<li>
+								<figure>
+                                    <i class="iconfont icon-suanfacopy"></i>
+								</figure>
+								<div>
+									<p>Ethash</p>
+									<span>Consensus algorithm</span>
+								</div>
+							</li>
+							<li>
+								<figure><i class="iconfont icon-gaodu"></i></figure>
+								<div>
+									<p>11111111</p>
+									<span>Latest height</span>
+								</div>
+							</li>
+							<li>
+								<figure><i class="iconfont icon-qukuaigaodu"></i></figure>
+								<div>
+									<p>124577777</p>
+									<span>Current height</span>
+								</div>
+							</li>
+							<li>
+								<figure><i class="iconfont icon-shangliantiaoyong"></i></figure>
+								<div>
+									<p>124444</p>
+									<span>On-chain information</span>
+								</div>
+							</li>
+						</ul>
+                        <table class="score-tdail" border="" cellspacing="" cellpadding="">
+							<tr>
+								<td>Block height</td>
+								<td colspan="2">25489634</td>
+							</tr>
+							<tr>
+								<td>Block hash</td>
+								<td>ss1s44s4s4s1s1</td>
+								<td class="score-right"><span>Copy</span></td>
+							</tr>
+							<tr>
+								<td>Current address</td>
+								<td>s1e542xf1s3e8r1f5s4ffs1a2r435ef</td>
+								<td><span>Copy</span></td>
+							</tr>
+							<tr>
+								<td>Time stamp on the chain</td>
+								<td colspan="2">2020-10-25 17:30:48</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<h3>WSE Description</h3>
+				<div class="qi_descrip">
+					<p>The award of Master in Mechanical Engineering was Issued in 2014 to replace the original</p>
+					<p>Diploma of Graduate Engineer in Mechanical Engineering, issued in 2005.</p>
+					<p>Registration as a Chartered Professional Engineer(CPEng),Engineering Technology
+						Practitioner(ETPract),Certified Engineering Technician(CertETn),Registered Engineering Associate
+						(REA) or Electriacl Engineer is determined by the appropriate occupational registration body.
+					</p>
+				</div>
+			</div>
+		</div>
+	</div>
+<!--主要内容-->
+	<footer class="User_ft">
+		<a href="/">{:lang('Home')}</a> | <span>© Copyright 2019 ca.university All Rights Reserved</span>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>Certificate Query</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/header.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/canada/css/header-anim.css">
+    <link rel="stylesheet" href="/canada/css/header-new.css">
+    <link rel="stylesheet" href="/canada/css/Evaluation.css">
+    <link rel="stylesheet" href="/canada/css/Transcript.css">
+    <link rel="stylesheet" href="/canada/css/VerificationServices.css">
+    <link rel="stylesheet" href="/canada/css/query.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/canada/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/user.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="/canada/js/jquery.ckSlide.js"></script>
+    <script src="/canada/js/waypoints.min.js"></script>
+    <script src="/canada/js/header-main.js"></script>
+    <link rel="stylesheet" href="/canada/css/animate.css">
+    <link rel="stylesheet" href="/canada/css/codehim-dropdown.css">
+    <script src="/canada/js/codehim.dropdown.js"></script>
+    <script src="/static/js/gt.js"></script>
+    <style type="text/css">
+        .eval-box, .eval-box .eval-item-box {
+            height: auto;
+        }
+        .eval-box {
+            background-image: none;
+        }
+    </style>
+</head>
+<body style="background-color: #fff;">
+{include file="public/header-new" /}
+
+<section class="query-table">
+    <table cellspacing="0">
+        <thead>
+        <tr>
+            <th colspan="5">{:lang('WSE certificate query system')}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{:lang('Name')}</td>
+            <td>{$user.chinaname2==''? $user.username:$user.chinaname2 } </td>
+            <td>{:lang('Date of Birth')}</td>
+            <td>{:date("j F Y",strtotime($user.birth_time))}</td>
+            <td rowspan="4">
+                <img class="query-table-img" src="{$user.head_img}" alt="">
+            </td>
+        </tr>
+        <tr>
+            <td>{:lang('Sex')}</td>
+            <td>{$user.sex}</td>
+            <td>{:lang('WSE Number')}</td>
+            <td>{$user.search_id} </td>
+        </tr>
+        <tr>
+            <td>{:lang('University Name')}</td>
+            <td>{$order.university}</td>
+            <td>{:lang('Storage date')}</td>
+            <td>{:date("j F Y",strtotime($certificate.create_time))}</td>
+        </tr>
+        <tr>
+            <td>{:lang('Professional title')}</td>
+            <td>{$order.major}</td>
+            <td>{:lang('Storage state')}</td>
+            <td>Stored</td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<aside  class="switch-box">
+    <div class="switchTab">
+        <span class="active">{:lang('Evaluation Certificate')}</span>
+        <span>{:lang('Transcript')}</span>
+    </div>
+</aside>
+
+<!--  Evaluation Certificate  -->
+<section class="eval-box Certificate">
+    <a class="aside-left" href="/index/about/blockchain.html">{:lang('File trusted verification')}</a>
+    {volist name="ray_c.certificate_png" id="vo" }
+    <img style="width: 100%;margin-bottom: 20px;" src="{$vo}"> 
+    {/volist}
+   <!--  <div class="eval-table-box">
+        <p style="text-align: right;">24 October 2020</p>
+        <table class="eval-table-1" style="margin-top: 0;">
+            <tbody><tr>
+                <td>Certificate Number:</td>
+                <td>ASE2020STO302365</td>
+            </tr>
+            <tr>
+                <td>Identity Document ID:</td>
+                <td>4127281995109194519</td>
+            </tr>
+            </tbody></table>
+        <table class="eval-table-1">
+            <tbody><tr>
+                <td>WSE ID:</td>
+                <td>WSE409419</td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td class="first-letter-capital">Beibei Bian</td>
+            </tr>
+            <tr>
+                <td>Date of Birth:</td>
+                <td>10 December 1993</td>
+            </tr>
+            </tbody></table>
+        <table class="eval-table-two">
+            <tbody><tr>
+                <td>Qualification:</td>
+                <td class="upper">Bachelor Of Arts     </td>
+            </tr>
+            <tr>
+                <td>Speciallsation:</td>
+                <td class="upper">
+                    Computer Science And Technology,Computer Science And Technology Computer Application Technology                                </td>
+            </tr>
+            <tr>
+                <td>Awarding Body:</td>
+                <td class="upper">Zhengzhou</td>
+            </tr>
+            <tr>
+                <td>Date of Award:</td>
+                <td>2014(completed in 2016)</td>
+            </tr>
+            <tr>
+                <td>Standard Programme Duration:</td>
+                <td class="upper">2 Years  Full Time</td>
+            </tr>
+            </tbody></table>
+        <div class="eval-dail-text">
+            <p>COMMENTS</p>
+            <p></p><p>
+            Yu jia fan is a China national. Born in China on January 27,1994, she has studied  Quantitative Finance at New York University since 2016 and obtained a Master's degree inScience               from the university in June 2018.
+        </p>
+            <p>
+                After verification, New York University is a Private university located in New York City, new York,United States. The school has established a  Quantitative Finance major. Yu jia fan's degree in  Quantitative Finance indicates that he has completed the relevant learning requirements for Science              .
+            </p><p></p>
+        </div>
+        <div class="eval-table-three">
+            <div>
+                <img src="/canada/images/signature.png" alt="" width="220">
+                <div style="margin-top: 10px;border-bottom: 2px solid #000"></div>
+                <p>Calvin Scott</p>
+                <p>Qualifications Evaluator</p>
+            </div>
+            <div>
+                <img src="/canada/images/signature1.png" alt="" width="220">
+                <div style="margin-top: 10px;border-bottom: 2px solid #000"></div>
+                <p>Roger Printup</p>
+                <p>Head : World Storage Education</p>
+            </div>
+        </div>
+    </div> -->
+</section>
+
+<!--  Transcript  -->
+<section class="eval-box Transcript">
+    <a class="aside-left" href="/index/about/blockchain.html">{:lang('File trusted verification')}</a>
+    {volist name="certificate.certificate_png" id="vo" }
+    <img style="width: 100%;margin-bottom: 20px;" src="{$vo}"> 
+    {/volist}
+    
+</section>
+
+<section class="certifi-box">
+    <div class="certifi-content" style="border-width: 1px;">
+        <div class="certifi-success-top">
+            <div class="block-info">
+                <h3 class="block-info-h3">{:lang('Electronic Certificate Blockchain Storage Information')}</h3>
+                <div class="cer-bottom-b1">
+                    <i class="iconfont icon-Blockchain"></i>
+                    <div>
+                        <h3>{:lang('Block Hash')}</h3>
+                        <!--   <p class="copy_text">5867cb92f30053d4888c3a9d4b167b4037785ea777d3cdf6eabce50ecc3b1456<span><i class="fa fa-copy" aria-hidden="true"></i></span></p>-->
+                        <p class="copy_text">{:lang('Blockchain Storage in Process')}</p>
+                    </div>
+                </div>
+                <div class="cer-bottom-b1 cer-bottom-flex">
+                    <div>
+                        <i class="iconfont icon-time"></i>
+                        <div class="cerdiv">
+                            <h3>{:lang('Deposit Time')}</h3>
+                            <p>2020-06-22 04:01:57</p>
+                        </div>
+                    </div>
+                    <div>
+                        <i class="iconfont icon-gaodu"></i>
+                        <div>
+                            <h3>{:lang('Block Height')}</h3>
+                            <p>11455067</p>
+                        </div>
+                    </div>
+                    <div>
+                        <i class="iconfont icon-report"></i>
+                        <div>
+                            <h3>{:lang('Type of Deposit')}</h3>
+                            <p>{:lang('Document Deposit')}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {if 1 > 0}
+            <h3 class="block-info-h3">{:lang('Academic Qualification Evaluation Storage')}</h3> {else/}     
+            <h3 class="block-info-h3">{:lang('Immigration Assessment')}</h3>   
+            {/if}
+            <div class="cer-bottom-b1 cer-bottom-flex">
+                <div>
+                    <i class="iconfont icon-certificate"></i>
+                    <div class="cerdiv">
+                        <h3>{:lang('Evaluation Certificate')}</h3>
+                        <p>{$ray_c.serial_number}</p>
+                    </div>
+                </div>
+                <div>
+                    <i class="iconfont icon-wse-t"></i>
+                    <div>
+                        <h3>{:lang('Transcript')}</h3>
+                        <p>{$certificate.serial_number}</p>
+                    </div>
+                </div>
+                <div>
+                    <a class="block-info-btn" href="javascript:;">{:lang('View Certificate Information')}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="certifi-box" style="display: none;">
+    <div class="certifi-content">
+        <div class="certifi-success-top">
+            <div class="certifi-flex">
+                <div class="cer-flex-logo cer-logo-red">
+                    <i class="iconfont icon-existence"></i>
+                    <img src="/canada/images/verification-failure.png" alt="">
+                </div>
+                <div class="cer-flex-right">
+                    <div class="cer-right-title cer-title-red">
+                        <h1>{:lang('does not exist')}</h1>
+                        <p>{:lang('the certificate')}</p>
+                    </div>
+                    <div class="cer-right-text">
+                        <div>
+                            <span>{:lang('This certificate is a certificate of academic evaluation issued by WSE')}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="legal-footer">
+        <div class="legal-box">
+            <div>
+                <ul>
+                    <li><a href="{$urlss}/index/Application/pact/id/13">{:lang('Legal Terms of Use')}</a></li>
+                    <li><a href="{$urlss}/index/Application/pact/id/14">{:lang('Legal Notices')}</a></li>
+                    <li><a href="{$urlss}/index/Application/pact/id/15">{:lang('Privacy Policy')}</a></li>
+                    <li><a href="{$urlss}/index/Application/pact/id/16">{:lang('Registration Agreement')}</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="footer-copyright">©{$C['site_copyright']}</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    $('.switchTab span').on('click', function () {
+        $(this).addClass('active').siblings().removeClass('active')
+        if ($(this).index() == 0) {
+            $('.Certificate').show()
+            $('.Transcript').hide()
+        } else {
+            $('.Certificate').hide()
+            $('.Transcript').show()
+        }
+    })
+</script>
+
+</body>
+</html>

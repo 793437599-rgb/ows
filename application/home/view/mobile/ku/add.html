@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{$C['site_title']}</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	    <link rel="stylesheet" href="/canada/css/common.css" />
+	    <link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+	    <link rel="stylesheet" type="text/css" href="/canada/css/education.css" />
+	    <link rel="stylesheet" type="text/css" href="/canada/css/mobile.css" />
+	    <link rel="stylesheet" href="/static/css/flexslider.min.css">
+	    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+	    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
+	    
+	    <meta name="description" content="{$C['seo_keyword']}">
+	    <meta name="keywords" content="{$C['seo_description']}">
+	    <script src="/canada/js/jquery.min.js"></script>
+	    <script src="/static/js/jquery.flexslider-min.js"></script>
+	    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+	    <script type="text/javascript" src="/canada/js/common.js"></script>
+	    <!-- share css & js -->
+	    <link rel="stylesheet" href="/static/share/css/share.min.css">
+	    <link rel="stylesheet" href="/static/share/css/share.more.css">
+	    <script src="/static/share/js/share.min.js"></script>
+	</head>
+	<body>
+		
+		
+		<div id="create" style="margin: auto;width: 40%;">
+			<form action="/create" method="post">
+				<div class="log-list">
+					{:lang('Username')}:
+					<!--<img id="blur_img_1" class="log-icon" src="/canada/images/name-icon.svg"/>-->
+	  				<input id="username" type="text" required="required" value="" name="name" placeholder="{:lang('Username')}"/>
+	  			</div>
+	  			<div class="log-list">{:lang('Passport No')}:
+					<!--<img id="blur_img_1" class="log-icon" src="/canada/images/pass-icon.svg"/>-->
+	  				<input id="password" type="text" required="required" value="" name="passport" placeholder="{:lang('Passport No')}"/>
+	  			</div>
+	  			<div class="log-list">{:lang('Reference')} ID:
+	  				<input id="reference_id" type="text" required="required" value="" name="reference_id" placeholder="{:lang('Reference')} ID"/>
+	  			</div>
+	  			<div class="log-list">{:lang('Sex')}:
+	  				<input type="radio" name="sex" id="sex" value="0" checked="checked" />{:lang('Mr')}
+	  				<input type="radio" name="sex" id="sex" value="1" />{:lang('lady')}
+	  			</div>
+	  			<div class="log-list">{:lang('Email')}:
+	  				<input id="email" type="text" required="required" value="" name="email" placeholder="{:lang('Email')}"/>
+	  			</div>
+	  			<div class="log-list">{:lang('Birthdate')}:
+	  				<input id="birthdate" type="date" value="" name="birthdate" placeholder="{:lang('Birthdate')}"/>
+	  			</div>
+	  			<div class="log-list">{:lang('Address')}:
+	  				<input id="address" type="text" value="" name="address" placeholder="{:lang('Address')}"/>
+	  			</div>
+	  			<div class="log-list">{:lang('Head portrait')}:
+	  				<input type="text" readonly="readonly" name="headimg" id="img" value="" />
+	  				<img id="headimage" width="320" src=""/>
+	  				<div class="layui-upload">
+						<button type="button" class="layui-btn" id="test1">
+							<i class="layui-icon">&#xe67c;</i>上传图片
+						</button>
+					</div>
+	  			</div>
+				<input type="submit" class="log-btn" value="{:lang('Sign In')}"/>
+			</form>
+		</div>
+		<script src="/static/js/layui/layui.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			layui.use(['upload','form'],function(){
+	  		var upload = layui.upload;
+	  		var form = layui.form;
+	  	
+			  //执行实例
+			  var uploadInst = upload.render({
+			    elem: '#test1' //绑定元素
+			    ,url: '/upload' //上传接口
+			    ,done: function(res){
+			      //上传完毕回调
+			    $('#img').val(res.msg);
+			//      document.getElementById('img').value=res.msg
+			//    form.val("image", {
+			//		  "image": res.msg, // "name": "value"
+			//		})
+			//    form.render()
+			
+			$("#headimage").attr('src',res.msg);
+			
+			console.log($('#img').val());
+			    }
+			    ,error: function(res){
+			      //请求异常回调
+			      console.log('error',res);
+			    }
+			     
+			  });
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+{__NOLAYOUT__}
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>{:lang('Request Duplicate Copies of WSE-DAE Report or Official Transcript V2')}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+
+    <script src="/static/js/jquery.min.js"></script>
+
+    <script src="/static/js/mobile.js"></script>
+
+    <script src="/static/js/layui/layui.js"></script>
+
+    <script src="/canada/js/html.js"></script>
+
+</head>
+
+<body>
+
+
+
+{include file="public/header-user" /}
+
+
+
+<section class="mainContent">
+
+    <div class="layui-container layui-form">
+
+
+
+        <div class="layui-row layui-col-space15">
+
+            <div class="layui-col-sm2">
+
+                <!--    nav-left    -->
+
+                {include file="public/nav-left" /}
+
+            </div>
+
+            <div class="layui-col-sm10">
+
+
+
+                <!--    user avatar    -->
+
+                <div class="layui-row user-avatar">
+
+                    <div class="layui-col-sm2 layui-col-xs4">
+
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+
+                    </div>
+
+                    <div class="layui-col-sm10 layui-col-xs8">
+
+                        <h1>{switch name="$Think.cookie.think_var"}
+
+                            {case value="en-us"}{$order.name_en}{/case}
+
+                            {case value="zh-cn"}{$order.app_name}{/case}
+
+                            {case value="ja-jp"}{$order.name_jp}{/case}
+
+                            {case value="de-de"}{$order.name_de}{/case}
+
+                            {case value="ko-kr"}{$order.name_kr}{/case}
+
+                            {case value="ru-ru"}{$order.name_ru}{/case}
+
+                            {case value="fr-fa"}{$order.name_fa}{/case}
+
+                            {/switch}</h1>
+
+                        <p><b>{$user.username}</b></p>
+
+                        <p>{$user.email}— {$user.search_id}</p>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <div class="steps-card">
+
+                            <h3>{:lang('Required Steps')}</h3>
+
+                            <ol>
+
+                                {foreach name="app_step" item="vo"}
+
+                                <li {$vo.sort==$sort?"class='active'":"" } >
+
+                                    <a href="{$vo.sort}">
+
+                                        {if condition="in_array($vo.id,$step_ok)"}
+
+                                        <i class="fa fa-check-circle"></i>
+
+                                        {$vo.sort}. {switch name="$Think.cookie.think_var"}
+
+                                        {case value="en-us"}{$vo.step_en}{/case}
+
+                                        {case value="zh-cn"}{$vo.step_name}{/case}
+
+                                        {case value="ja-jp"}{$vo.step_jp}{/case}
+
+                                        {case value="de-de"}{$vo.step_de}{/case}
+
+                                        {case value="ko-kr"}{$vo.step_kr}{/case}
+
+                                        {case value="ru-ru"}{$vo.step_ru}{/case}
+
+                                        {case value="fr-fa"}{$vo.step_fa}{/case}
+
+                                        {/switch} - {:lang('Complete')}
+
+                                        {else}
+
+                                        <i class="fa fa-arrow-circle-right"></i>
+
+                                        {$vo.sort}. {switch name="$Think.cookie.think_var"}
+
+                                        {case value="en-us"}{$vo.step_en}{/case}
+
+                                        {case value="zh-cn"}{$vo.step_name}{/case}
+
+                                        {case value="ja-jp"}{$vo.step_jp}{/case}
+
+                                        {case value="de-de"}{$vo.step_de}{/case}
+
+                                        {case value="ko-kr"}{$vo.step_kr}{/case}
+
+                                        {case value="ru-ru"}{$vo.step_ru}{/case}
+
+                                        {case value="fr-fa"}{$vo.step_fa}{/case}
+
+                                        {/switch} - {:lang('Incomplete')}
+
+                                        {/if}
+
+                                    </a>
+
+                                </li>
+
+                                {/foreach}
+
+                            </ol>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <hr/>
+
+
+
+                <!--    steps    -->
+
+                <div class="layui-row steps">
+
+                    <div class="layui-col-sm12">
+
+                        <h3>{:lang('DUPLICATE COPIES OF OFFICIAL TRANSCRIPT AND ADDITIONAL SERVICES')}</h3>
+
+                        <hr/>
+
+                        <p>{:lang('Service Options')}</p>
+
+                        <hr/>
+
+                        <h5>{:lang('Duplicate Copy of Official Transcript Service Fees')}</h5>
+
+                        <table class="layui-table">
+
+                            <thead>
+
+                            <tr>
+
+                                <th>{:lang('Service')}</th>
+
+                                <th>{:lang('Fee Per Third Party')}</th>
+
+                            </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                            <tr>
+
+                                <td>{:lang('Duplicate Copy of Official Transcript')} </td>
+
+                                <td>${$fee.othird_fee} + 13% {:lang('HST')}</td>
+
+                            </tr>
+
+                            </tbody>
+
+                        </table>
+
+                        <table class="layui-table">
+
+                            <thead>
+
+                            <tr>
+
+                                <th>{:lang('Delivery Type')}</th>
+
+                                <th>{:lang('Additional Fee')}</th>
+
+                            </tr>
+
+                            </thead>
+
+                            <tbody>
+
+                            <tr>
+
+                                <td>{:lang('Regular Mail Service within Canada')} - {:lang('tracking <strong>not</strong> available')}</td>
+
+                                <td>${$fee.mail_ca}</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>{:lang('Regular Mail Service International')} - {:lang('tracking <strong>not</strong> available')}</td>
+
+                                <td>${$fee.mail_int} + 13% {:lang('HST')}</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>{:lang('Courier Service within Canada')} - {:lang('tracking available')}</td>
+
+                                <td>${$fee.send_north} + 13% {:lang('HST')}</td>
+
+                            </tr>
+
+                            <tr>
+
+                                <td>{:lang('Courier Service International')} - {:lang('tracking available')}</td>
+
+                                <td>${$fee.send_int} + 13% {:lang('HST')}</td>
+
+                            </tr>
+
+                            </tbody>
+
+                            <input type="hidden" name="user_order_id" value="{$order.id}">
+
+                        </table>
+
+                        <p>{:lang('Request Duplicate Copy of WSE-DAE Report and Copy of Official Transcript')}</p>
+
+                        <hr/>
+
+                        <form class="layui-form">
+
+                        {if condition="!empty($order['other_third'])"}
+
+                        {foreach name="$order['other_third']" item="vo" key="k"}
+
+                        <div class="party">
+
+                            <div class="form-group buttons">
+
+                                <b><input type="checkbox" lay-filter="ThirdParty" name="third" value="{$k}" lay-skin="primary" title="{:lang('Send to Institutional Third Party')} {$k}"></b>
+
+                                <br><br><input type="button" class="layui-btn layui-btn-primary trans_del" lay-filter="ThirdParty{$k}" value="Delete ThirdParty{$k}">
+
+                            </div>
+
+                            <div class="ThirdParty-box hide">
+
+                                <div class="form-group">
+
+                                    <p><b>{:lang('Name of Organization')}</b><span class="necessary">*</span></p>
+
+                                    <input type="text" name="other_third[{$k}][third_name]"  lay-verify="required" value="{$vo.third_name}" class="form-input third_form" >
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <p><b>{:lang('Apt/Unit, Street Number, and Street')}</b><span class="necessary">*</span></p>
+
+                                    <input type="text" name="other_third[{$k}][third_street]"  lay-verify="required" value="{$vo.third_street}" class="form-input third_form" >
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <p><b>{:lang('City')}</b></p>
+
+                                    <input type="text" name="other_third[{$k}][third_city]"  value="{$vo.third_city}" class="form-input" >
+
+                                    <!-- <select name="third_city" class="form-input">
+
+                                         <option value="">1</option>
+
+                                     </select>-->
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <p><b>{:lang('Province/State')}</b></p>
+
+                                    <input type="text" name="other_third[{$k}][third_province]" value="{$vo.third_province}" class="form-input">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <p><b>{:lang('Country')}</b><span class="necessary">*</span></p>
+
+                                    <select name="other_third[{$k}][third_country]"  class="form-input">
+
+                                        {foreach name="country" item="vo2"}
+
+                                        <option {$vo.third_country==$vo2.id?"selected":""} value="{$vo2.id}">{$vo2.name}</option>
+
+                                        {/foreach}
+
+                                    </select>
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <p><b>{:lang('Postal Code')}</b></p>
+
+                                    <input type="text" name="other_third[{$k}][third_code]" value="{$vo.third_code}" class="form-input">
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <p><b>Email</b><span class="necessary">*</span></p>
+
+                                    <input type="text" name="other_third[{$k}][third_email]" lay-verify="email"  value="{$vo.third_email}" class="form-input third_form" >
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <p><b>{:lang('Phone')}</b><span class="necessary">*</span></p>
+
+                                    <input type="text" name="other_third[{$k}][third_phone]"  lay-verify="phone"  value="{$vo.third_phone}" class="form-input third_form" >
+
+                                </div>
+
+                                <div class="form-group">
+
+                                    <p><b>{:lang('Select Delivery Service')}</b><span class="necessary">*</span></p>
+
+                                    <input type="radio" name="other_third[{$k}][third_send]" {$vo.third_send==$fee.othird_fee+$fee.mail_ca?"checked":""} value="{$fee.othird_fee+$fee.mail_ca}" title="{:lang('Regular Mail Service within Canada')}" ><br/>
+
+                                    <input type="radio" name="other_third[{$k}][third_send]" {$vo.third_send==$fee.othird_fee+$fee.mail_int?"checked":""} value="{$fee.othird_fee+$fee.mail_int}" title="{:lang('Regular Mail Service International')}" ><br/>
+
+                                    <input type="radio" name="other_third[{$k}][third_send]" {$vo.third_send==$fee.othird_fee+$fee.send_north?"checked":""} value="{$fee.othird_fee+$fee.send_north}" title="{:lang('Courier Service within Canada')}" ><br/>
+
+                                    <input type="radio" name="other_third[{$k}][third_send]" {$vo.third_send==$fee.othird_fee+$fee.send_int?"checked":""} value="{$fee.othird_fee+$fee.send_int}" title="{:lang('Courier Service International')}" >
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        {/foreach}
+
+                        {/if}
+
+                        <div class="form-group buttons">
+
+                            <input type="button" class="layui-btn layui-btn-primary" id="third-add" value="Add New ThirdParty">
+
+                        </div>
+
+                            <input type="hidden" name="user_order_id" value="{$order.id}">
+
+                        </form>
+
+                    </div>
+
+                    <div class="layui-col-sm12">
+
+                        <a class="layui-btn layui-btn-primary save" lay-submit lay-filter="save">{:lang('Save This Page')}</a>
+
+                        <a href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort-1])}"  class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+
+                        <a class="layui-btn mazarine right" lay-submit lay-filter="save2">{:lang('Next Page')}</a>
+
+                        <br/>
+
+                        <br/>
+
+                        <a class="layui-btn layui-btn-primary save" lay-submit lay-filter="save">{:lang('Save and Finish Later')}</a>
+
+                        <hr/>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {if condition="$or_input3==1"}
+
+            <script>
+
+                $('input').attr('disabled',true);
+
+                $('input[type=checkbox]').attr('disabled',false);
+
+                $('select').attr('disabled',true);
+
+                $('button').attr('disabled',true);
+
+            </script>
+
+            {/if}
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+{include file="public/footer-login" /}
+
+
+
+<script>
+
+    layui.use(['form'], function(){
+
+        var form = layui.form;
+
+
+
+        form.on('checkbox(ThirdParty)', function(data){
+
+            if (data.elem.checked == true) {
+
+                //$('.ThirdParty1-box').fadeIn(200)
+
+                $(this).parents('.form-group').siblings('.ThirdParty-box').fadeIn(200)
+
+               // $('.third_form').attr('lay-verify','required');
+
+            } else {
+
+                //$('.third_form').removeAttr('lay-verify')
+
+                $(this).parents('.form-group').siblings('.ThirdParty-box').fadeOut(300)
+
+            }
+
+        });
+
+
+
+        var key = $('.party').length;
+
+        //jq添加
+
+        $('#third-add').click(function () {
+
+            key++;
+
+            if(key>4){
+
+                return layer.msg('No more than four');
+
+            }
+
+            $('#third-add').before('<div class="party party-new">\n'+
+
+                    '                        <div class="form-group buttons">\n' +
+
+                    '                            <b><input type="checkbox" lay-filter="ThirdParty" name="third" value="'+key+'" lay-skin="primary" title="{:lang(\'Send to Institutional Third Party\')} '+key+'"></b>\n' +
+
+                    '                            <br><br><input type="button" class="layui-btn layui-btn-primary trans_del_new" lay-filter="ThirdParty{'+key+'}" value="Delete ThirdParty'+key+'">\n' +
+
+                    '                        </div>\n'+
+
+                '                            <div class="form-group">\n' +
+
+                '                                <p><b>{:lang(\'Name of Organization\')}</b><span class="necessary">*</span></p>\n' +
+
+                '                                <input type="text" name="other_third['+key+'][third_name]" lay-verify="required" class="form-input third_form" >\n' +
+
+                '                            </div>\n' +
+
+                '                            <div class="form-group">\n' +
+
+                '                                <p><b>{:lang(\'Apt/Unit, Street Number, and Street\')}</b><span class="necessary">*</span></p>\n' +
+
+                '                                <input type="text" name="other_third['+key+'][third_street]"  lay-verify="required" class="form-input third_form" >\n' +
+
+                '                            </div>\n' +
+
+                '                            <div class="form-group">\n' +
+
+                '                                <p><b>{:lang(\'City\')}</b></p>\n' +
+
+                '                                <input type="text" name="other_third['+key+'][third_city]"  class="form-input" >\n' +
+
+                '                                <!-- <select name="third_city" class="form-input">\n' +
+
+                '                                     <option value="">1</option>\n' +
+
+                '                                 </select>-->\n' +
+
+                '                            </div>\n' +
+
+                '                            <div class="form-group">\n' +
+
+                '                                <p><b>{:lang(\'Province/State\')}</b></p>\n' +
+
+                '                                <input type="text" name="other_third['+key+'][third_province]"  class="form-input">\n' +
+
+                '                            </div>\n' +
+
+                '                            <div class="form-group">\n' +
+
+                '                                <p><b>{:lang(\'Country\')}</b><span class="necessary">*</span></p>\n' +
+
+                '                                <select name="other_third['+key+'][third_country]" style="display: block !important;" class="form-input">\n' +
+
+                '                                    {foreach name="country" item="vo"}\n' +
+
+                '                                    <option  value="{$vo.id}">{$vo.name}</option>\n' +
+
+                '                                    {/foreach}\n' +
+
+                '                                </select>\n' +
+
+                '                            </div>\n' +
+
+                '                            <div class="form-group">\n' +
+
+                '                                <p><b>{:lang(\'Postal Code\')}</b></p>\n' +
+
+                '                                <input type="text" name="other_third['+key+'][third_code]" class="form-input">\n' +
+
+                '                            </div>\n' +
+
+                '                            <div class="form-group">\n' +
+
+                '                                <p><b>Email</b><span class="necessary">*</span></p>\n' +
+
+                '                                <input type="text" name="other_third['+key+'][third_email]" lay-verify="email" class="form-input third_form" >\n' +
+
+                '                            </div>\n' +
+
+                '                            <div class="form-group">\n' +
+
+                '                                <p><b>{:lang(\'Phone\')}</b><span class="necessary">*</span></p>\n' +
+
+                '                                <input type="text" name="other_third['+key+'][third_phone]" lay-verify="phone" class="form-input third_form" >\n' +
+
+                '                            </div>\n' +
+
+                '                            <div class="form-group">\n' +
+
+                '                                <p><b>{:lang(\'Select Delivery Service\')}</b><span class="necessary">*</span></p>\n' +
+
+                '                                <input type="radio" name="other_third['+key+'][third_send]" class="layui-input" checked  value="60" title="{:lang(\'Regular Mail Service within Canada\')}" ><br/>\n' +
+
+                '                                <input type="radio" name="other_third['+key+'][third_send]" class="layui-input"   value="70" title="{:lang(\'Regular Mail Service International\')}" ><br/>\n' +
+
+                '                                <input type="radio" name="other_third['+key+'][third_send]" class="layui-input"   value="85" title="{:lang(\'Courier Service within Canada\')}" ><br/>\n' +
+
+                '                                <input type="radio" name="other_third['+key+'][third_send]" class="layui-input"   value="150" title="{:lang(\'Courier Service International\')}" >\n' +
+
+                '                            </div>\n' +
+
+                '                        </div>');
+
+            form.render();
+
+
+
+        });
+
+
+
+        //删除原有的
+
+        $(document).on('click',".trans_del", function () {
+
+            key--;
+
+            if(key==0){
+
+                $('.layui-form').append('<input type="hidden" name="other_third"><input type="hidden" name="other_third_fee">');
+
+            }
+
+            var that=$(this);
+
+
+
+            that.parents(".party").remove();
+
+            $.post('/other_third_del',$('.layui-form').serializeArray(),function (res) {
+
+                layer.msg(res.msg);
+
+            });
+
+        });
+
+        //删除新增的
+
+        $(document).on('click',".trans_del_new", function () {
+
+            var that=$(this);
+
+            that.parents(".party-new").remove();
+
+        });
+
+        form.on('submit(save)', function(data){
+
+            //console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+
+            $.post('/save_upload',data.field,function (result) {
+
+                //console.log(result);
+
+                window.location.reload();
+
+            });
+
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+
+        });
+
+        form.on('submit(save2)', function(data){
+
+            //console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+
+            $.post("{:url('/save_next',['app_id'=>$order.app_id,'sort'=>$sort+1])}",data.field,function (result) {
+
+                //console.log(result);
+
+                window.location.href="{:url('/app_step_info',['app_id'=>$order.app_id,'sort'=>$sort+1])}";
+
+            });
+
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+
+        });
+
+        form.verify({
+
+            required: function(value) {
+
+                if (value == '') {
+
+                    return 'Required can\'t be empty'
+
+                }
+
+            },
+
+
+
+            email: function(value) {
+
+                if (value == '') {
+
+                    return 'Email can\'t be empty'
+
+                }
+
+            },
+
+
+
+            phone: function(value) {
+
+                if (value == '') {
+
+                    return 'Phone can\'t be empty'
+
+                }
+
+            },
+
+
+
+            username: function(value){
+
+                if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+
+                    return 'User name must not have special characters';
+
+                }
+
+                if(/(^\_)|(\__)|(\_+$)/.test(value)){
+
+                    return 'User name cannot be underlined at the beginning and end\'_\'';
+
+                }
+
+                if(/^\d+\d+\d$/.test(value)){
+
+                    return 'User names cannot be all numbers';
+
+                }
+
+                if (value == '') {
+
+                    return 'Name can\'t be empty'
+
+                }
+
+            }
+
+        });
+
+    })
+
+</script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,223 @@
+<div class="layui-content">
+ 
+
+
+    
+    <div class="layui-row">
+        {include file="students/site"}
+        <div class="layui-card">
+            <div class="layui-form layui-form-item">
+                <form class="layui-form">
+                    <div class="layui-card-body">
+                        <div class="form-box">
+                       
+                            <div class="layui-form-item student-delete-box">
+                                <label class="layui-form-label">证件照</label>
+                                <div class="layui-input-block">
+                                    <div class="input-group  layui-upload-drag col-sm-4" id="id_photo">
+                                        {if condition="empty($student.id_photo)"}
+                                        <div class="id_photo_tips">
+                                            <i class="layui-icon"></i>
+                                            <p>点击上传证件照</p>
+                                        </div>
+                                        {/if}
+                                        <div class=" {if condition='empty($student.id_photo)'} layui-hide {/if} id_photo_preview">
+                                            <hr><img src="{$student.id_photo|getImgSrc}" alt="上传成功后渲染" style=" max-height: 80px">
+                                        </div>
+                                    </div>
+                                    <div class="upload-fial layui-hide">
+                                        <span class="layui-icon layui-icon-refresh-1"></span>
+                                        <p>重新上传</p>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="id_photo" lay-verify="required" lay-reqText="请上传证件照" value="{$student.id_photo|default=''}">
+                                <button type="button" class="layui-btn layui-btn-danger student-delete" data-id="{$student.id}">删除学生</button>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">姓名</label>
+                                <div class="layui-input-inline">
+                                    <input type="hidden"  name="id" value="{$id}">
+                                    <input type="text" value="{$student.username}" readonly="readonly" class="layui-input" name="username">
+                                </div>
+                                <label class="layui-form-label">学号</label>
+                                <div class="layui-input-inline">
+                                    <input type="text"  name="student_number" value="{$student.student_number}" class="date layui-input">
+                                    <button type="button" class="layui-btn layui-btn-primary copy-btn">
+                                        <img src="/static/js/clipboard/clippy.svg" alt="复制到剪切板" width="13">
+                                    </button>
+                                </div>
+                                <label class="layui-form-label">性别</label>
+                                <div class="layui-input-block">
+                                    <input type="radio" name="sex" value="1"  {if condition="$student.sex == 'Male'" }checked {/if} title="男">
+                                    <input type="radio" name="sex" value="0"  {if condition="$student.sex == 'Female'" }checked {/if} title="女">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">email</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="email" lay-verify="required|email" autocomplete="off" class="layui-input" value="{$student.email|default=''}">
+                                </div>
+                                <label class="layui-form-label">申请公司</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="application_company" id="application_company" autocomplete="off" class="layui-input" value="{$student.application_company|default=''}">
+                                </div>
+                                <label class="layui-form-label">申请时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="application_time" id="application_time" lay-verify="required" autocomplete="off" class="date layui-input" value="{$student.application_time|default=''}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">是否转学</label>
+                                <div class="layui-input-block">
+                                    <input type="radio" name="transfer" value="1" title="是" lay-filter="transfer" {if condition="isset($student.transfer) && $student.transfer == 1" } checked {/if} >
+                                    <input type="radio" name="transfer" value="0" title="否" lay-filter="transfer" {if condition="!isset($student.transfer) || (isset($student.transfer) && $student.transfer == 0)" } checked {/if} >
+                                </div>
+                            </div>
+                            <div class="shift_box {if condition=" !isset($student.transfer) || $student.transfer== 0"} layui-hide {/if}">
+                                <div class="layui-form-item">
+                                    <label class="layui-form-label">转出时间</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="out_time" autocomplete="off" value="{$student.out_time|default=''}" class="layui-input date" id="out-time">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </div>
+                                    <label class="layui-form-label">转出学校</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="transfer_school" autocomplete="off" value="{$student.transfer_school|default=''}" class="layui-input" {if condition="isset($student.transfer) && $student.transfer == 1" } lay-verify="required|only_en" {/if} >
+                                    </div>
+                                    <label class="layui-form-label">转出学分</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" name="transfer_credit" autocomplete="off" value="{$student.transfer_credit|default=''}" class="layui-input" {if condition="isset($student.transfer) && $student.transfer == 1" } lay-verify="required|only_en" {/if}>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">出生日期</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="brith_date" name="birth_date" lay-verify="required" autocomplete="off" class="layui-input date" value="{$student.birth_date|default=''}">
+                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                </div>
+                                <label class="layui-form-label">出生地</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="birth_place" lay-verify="required" autocomplete="off" class="layui-input" value="{$student.birth_place|default=''}">
+                                </div>
+                                <label class="layui-form-label">收件邮编</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="postcode" lay-verify="required" autocomplete="off" class="layui-input" value="{$student.postcode|default=''}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">当前居住地</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="current_residence" lay-verify="required" autocomplete="off"  class="layui-input" value="{$student.current_residence|default=''}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">籍贯居住地</label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="native_place" lay-verify="required" autocomplete="off"   class="layui-input" value="{$student.native_place|default=''}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">护照号</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="passport_no" lay-verify="required" autocomplete="off"  class="layui-input" value="{$student.passport_no|default=''}">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">学习专业</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" class="layui-input" name="major" value="{$student.major}" readonly>
+                                </div>
+                                <label class="layui-form-label">学习模式</label>
+                                <div class="layui-input-inline">
+                                    <select name="pattern" lay-filter="" lay-verify="required">
+                                        <option value="">==请选择==</option>
+                                        <option value="1" {if condition="isset($student.pattern) && $student->getData('pattern') == 1" } selected {/if} >全日制</option>
+                                        <option value="2" {if condition="isset($student.pattern) && $student->getData('pattern') == 2" } selected {/if} >非全日制</option>
+                                    </select>
+                                </div>
+                                <label class="layui-form-label">学位</label>
+                                <div class="layui-input-inline layui-row">
+                                    <div class="layui-col-xs6">
+                                        <select name="degree" lay-filter="degree" lay-verify="required">
+                                            <option value="">==请选择==</option>
+                                            <option value="1" {if condition="isset($student.degree) && $student->getData('degree') == 1" } selected {/if}>学士</option>
+                                            <option value="2" {if condition="isset($student.degree) && $student->getData('degree') == 2" } selected {/if}>硕士</option>
+                                            <option value="3" {if condition="isset($student.degree) && $student->getData('degree') == 3" } selected {/if}>博士</option>
+                                        </select>
+                                    </div>
+                                    <div class="layui-col-xs6">
+                                        <div  id="leanmonth1">
+                                        <select  lay-filter="leanmonth"  >
+                                            <option value="">==请选择==</option>
+                                            <option value="6"   {if $student.leanmonth==6}selected{/if}    >6个月(转学)</option>
+                                            <option value="12"  {if $student.leanmonth==12}selected{/if}     >12个月(转学)</option>
+                                            <option value="18"  {if $student.leanmonth==18}selected{/if}     >18个月(转学)</option>
+                                            <option value="24"  {if $student.leanmonth==24}selected{/if}     >24个月(转学)</option>
+                                            <option value="36"  {if $student.leanmonth==36}selected{/if}     >36个月(3年)</option>
+                                            <option value="48"  {if $student.leanmonth==48}selected{/if}     >48个月(4年)</option>
+                                            <option value="54"  {if $student.leanmonth==54}selected{/if}     >54个月(4.5年)</option>
+                                            <option value="57"  {if $student.leanmonth==57}selected{/if}     >57个月(5年)</option>
+                                        </select>
+                                        </div>
+                                        <div style="display: none;"  id="leanmonth2">
+                                        <select lay-filter="leanmonth"    >
+                                            <option value="">= =请选择==</option>
+                                            <option value="6" {if $student.leanmonth==6}selected{/if}    >6个月(转学)</option>     <!-- 硕士 -->
+                                            <option value="12" {if $student.leanmonth==12}selected{/if}    >12个月(1年 个别专业)</option>
+                                            <option value="18" {if $student.leanmonth==18}selected{/if}    >18个月(默认)</option>
+                                            <option value="24" {if $student.leanmonth==24}selected{/if}    >24个月(常规)</option>
+                                            <option value="27" {if $student.leanmonth==27}selected{/if}    >27个月(2年 挂科)</option>
+                                            <option value="30" {if $student.leanmonth==30}selected{/if}    >30个月(2年半 挂科)</option>
+                                        </select>
+                                        </div>
+                                        <input type="hidden" name="leanmonth" id="leanmonth"  value="{$student.leanmonth|default=''}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">入学时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="start_year_graduation" id="start_year_graduation"  autocomplete="off" class="layui-input" value="{$student.start_year_graduation|default=''}">
+                                </div>
+                                <label class="layui-form-label">入学季节</label>
+                                <div class="layui-input-inline">
+                                    <select name="season_graduation_start"   lay-verify="required"  >
+                                        <option value="1" {if condition="isset($student.season_graduation_start) && $student->getData('season_graduation_start') == 1" } selected {/if}  >春季：3月21日——6月21日</option>
+                                        <option value="3" {if condition="isset($student.season_graduation_start) && $student->getData('season_graduation_start') == 3" } selected {/if}>夏季：9月21日</option>
+                                        <option value="2"   {if condition="isset($student.season_graduation_start) && 
+                                        $student->getData('season_graduation_start') == 2" } selected {/if}>秋季：9月23日——12月21日</option>
+                                        <option value="4"   {if condition="isset($student.season_graduation_start) && $student->getData('season_graduation_start') == 4" } selected {/if}>冬季：1月15日</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">毕业时间</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="year_graduation"  id="year_graduation" autocomplete="off" class="layui-input" value="{$student.year_graduation|default=''}">
+                                </div>
+                                <label class="layui-form-label">毕业季节</label>
+                                <div class="layui-input-inline"> 
+                                    <select name="season_graduation" lay-filter="season_graduation" lay-verify="required" id="season_graduation">
+                                        <option value="1" {if condition="isset($student.season_graduation) && $student->getData('season_graduation') == 1" } selected {/if}>春季：5月25日</option>
+                                        <option value="3" {if condition="isset($student.season_graduation) && $student->getData('season_graduation') == 3" } selected {/if}>夏季： 9月21日</option>
+                                        <option value="2" {if condition="isset($student.season_graduation) && $student->getData('season_graduation') == 2" } selected {/if} >秋季：9月23日——12月21日</option>
+                                        <option value="4" {if condition="isset($student.season_graduation) && $student->getData('season_graduation') == 4" } selected {/if} >冬季：1月15日</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <input type="text" style="width: 300px" id="enrollment_date" autocomplete="off" class="layui-input" value="{$student.enrollment_date|default=''}">
+                            <input type="text" style="width: 300px" id="graduation_date" autocomplete="off" class="layui-input"  value="{$student.graduation_date|default=''}">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="col-sm-4 col-sm-offset-3" style="margin-left:30%;">
+                            <button type="button" class="layui-btn layui-btn-blue" lay-submit lay-filter="save"><i class="fa fa-save"></i>保存</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

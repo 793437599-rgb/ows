@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('Cooperative Agency Inquiry')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/header.css" />
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/canada/css/header-anim.css">
+    <link rel="stylesheet" href="/canada/css/header-new.css">
+    <link rel="stylesheet" href="/canada/css/VerificationServices.css">
+    <link rel="stylesheet" href="/canada/css/query.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="//aeis.alicdn.com/sd/ncpc/nc.js?t=2015052012"></script>
+    <!--page header & footer style-->
+    <link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script src="__JS__/nc.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="/canada/js/jquery.ckSlide.js"></script>
+    <script src="/canada/js/waypoints.min.js"></script>
+    <script src="/canada/js/header-main.js"></script>
+    <!-- share css & js -->
+    <link rel="stylesheet" href="/static/share/css/share.min.css">
+    <link rel="stylesheet" href="/static/share/css/share.more.css">
+    <script src="/static/share/js/share.min.js"></script>
+    <link rel="stylesheet" href="/canada/css/animate.css">
+    <link rel="stylesheet" href="/canada/css/codehim-dropdown.css">
+    <script src="/canada/js/codehim.dropdown.js"></script>
+    <script src="/static/js/gt.js"></script>
+</head>
+<body>
+{include file="public/header-new" /}
+<div class="agency-box">
+    <section class="verify">
+        <div class="agency-login-m">
+            <div class="login-welcome-left">
+                <h1>{:lang('WELCOME')}</h1>
+                <div class="login-wel-red"></div>
+                <h3>{:lang('World Storage Education')}</h3>
+                <p class="verify-text">{:lang('Unsure of the identity of the agent handling your business, please ask the agent for the agent number and name and verify it on the right.')}</p>
+            </div>
+        </div>
+        <div class="verify-left">
+            <form class="layui-form" action="" method="post" id="login" >
+                <div class="form-box-table form-box-table-1">
+                    <div class="Tr_info_list ">
+                        <input type="hidden" name="trans_encryption" id="huadong" value="0">
+                        <input type="hidden" name="mode" value="1">
+                        <h4>{:lang('Agency Name')}:</h4>
+                        <div class="Tr_formbox ">
+                            <input type="text" name="name"  value="" required   onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" />
+                        </div>
+                    </div>
+                    <div class="Tr_info_list certificate-verify">
+                        <h4>{:lang('Agency Number')}:</h4>
+                        <div class="Tr_formbox ">
+                            <input type="text" name="code" id="id_number" value="" onkeyup="this.value=this.value.replace(/^\s+|\s+$/g,'')" />
+                        </div>
+                    </div>
+                    {if config('verify') == 1}
+                    <div class="Tr_info_list ">
+                        <h4>{:lang('Verification')}:</h4>
+                        <div class="Tr_formbox">
+                            <div id="html_element"></div>
+                            <!--                                 <div id="your-dom-id"  ></div>-->
+                            <!--                                <input type="hidden" name="token" id="token" value="">-->
+                        </div>
+                    </div>
+                    {/if}
+                </div>
+                <a class="btn submit ver-sub" id="submit" href="javascript:;">{:lang('SUBMIT')}</a>
+            </form>
+            <form class="layui-form" action="" method="post" id="query-success" style="display:none;">
+                <div class="agency-form-box">
+                    <div class="agency-imgbox">
+                        <img src="/canada/images/logo.png" alt="">
+                    </div>
+                    <h3>{:lang('Online verification WSE agents information')}</h3>
+                    <table class="agency-table">
+<!--                        <tr>-->
+<!--                            <td colspan="2" class="imgcenter">-->
+<!--                                <img src="/canada/images/u=1336873622,399506567&fm=26&gp=0.jpg" alt="" class="avatar-img">-->
+<!--                            </td>-->
+<!--                        </tr>-->
+                        <tr>
+                            <td>{:lang('Name')}</td>
+                            <td class="agency-name">demon king</td>
+                        </tr>
+                        <tr>
+                            <td>{:lang('Numbering')}</td>
+                            <td class="agency-code">WSE1223332</td>
+                        </tr>
+                        <tr>
+                            <td>{:lang('Agency Service')}</td>
+                            <td>{:lang('Assessed Storage')}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="agency-company" style="height: 130px">
+                            
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <a class="btn submit ver-sub continue-verify" href="javascript:;">{:lang('Continue To Verify')}</a>
+                </div>
+            </form>
+            <form class="layui-form" action="" method="post" id="query-fail" style="display:none;" >
+                <div class="agency-form-box">
+                    <div class="agency-imgbox"><img src="/canada/images/logo.png" alt=""></div>
+                    <h3>{:lang('Online verification WSE agents information')}</h3>
+                    <div class="no-search-box">
+                        <div>
+                            <i class="iconfont icon-content"></i>
+                            <p>{:lang('No WSE cooperative agent has been retrieved, please pay attention to protect your private information.')}</p>
+                        </div>
+                    </div>
+                    <a class="btn submit ver-sub continue-verify" href="javascript:;" >{:lang('Continue To Verify')}</a>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
+<div class="load_root" id="load">
+    <div class="load_content">
+        <div class="load_boxmask">
+            <div class="load_model-top">
+                <div class="load_model" style="width:520px">
+                    <div class="load-modal-content">
+                        <div class="container">
+                            <div class="circle1"></div>
+                            <div class="circle2"></div>
+                            <p>{:lang('Querying')}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/canada/js/html.js"></script>
+<script src="https://www.recaptcha.net/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=en" async defer></script>
+<script>
+    function GetQueryString(name) {
+        var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if(r!=null)return  unescape(r[2]); return null;
+    }
+    var query = GetQueryString('query')
+    if (query == 1) {
+        $('.switchTab span:nth-child(2)').addClass('active').siblings().removeClass('active')
+        $('.verify-text').hide()
+        $('.search-text').show()
+        $('.certificate-search').show()
+        $('.certificate-verify').hide()
+        $('input[name="mode"]').val(2)
+    }
+    // $('.ver-sub').click(function(){
+    //     $('.load_root').show()
+    // })
+    $("#submit").click(function () {
+        let name = $('[name="name"]').val();
+        let code = $('#id_number').val();
+        if (!checkNull(name)){
+            layer.msg("{:lang('Please enter the correct agency name')}");
+            return;
+        }
+        if (!checkNull(code)){
+            layer.msg("{:lang("Please enter the correct agency number")}");
+            return;
+        }
+        submit();
+    })
+
+    $('.continue-verify').click(function () {
+        grecaptcha.reset();
+        $('#login').show().get(0).reset();
+        $('#query-success').hide();
+        $('#query-fail').hide();
+    });
+
+    $(document).keyup(function (event) {
+        if (event.keyCode == 13) {
+            submit();
+        }
+    });
+
+    function submit() {
+        $.post("{:url('index/application/cooperative_agency')}", $("#login").serialize(),
+            function (data) {
+                // grecaptcha.reset();
+                if (data.code == 20000){
+                    let agency = data.data;
+                    layer.msg(data.msg, {anim: 0}, function () {
+                        $('#login').hide();
+                        $('#query-fail').hide();
+                        $('#query-success').show();
+                        $('.agency-name').text(agency.username);
+                        $('.agency-code').text(agency.unique_code);
+                        $('.agency-company').text(agency.authorized);
+                        // if (!checkNull(agency.avatar)){
+                        //     $('.avatar-img').attr('src','/static/images/default-avatar.png')
+                        // }else {
+                        //     $('.avatar-img').attr('src', agency.avatar);
+                        // }
+                        // $('.agency-name').text(agency.unique_code);
+                    })
+                }else {
+                    layer.msg(data.msg,function () {
+                        if (data.code != 10001){
+                            $('#login').hide();
+                            $('#query-fail').show();
+                            $('#query-success').hide();
+                        }
+                    })
+                }
+            },
+            "json"
+        );
+    }
+    var onloadCallback = function () {
+        grecaptcha.render('html_element', {
+            'sitekey': '6LfiJLoZAAAAAPgIpo8P68CBeljDe05DKZY0SC_U',
+            'callback': function (token) {
+            }
+        });
+    };
+    $(document).ready(function (){
+        $('.aside-policy').hide()
+        $('.aside-message').hide()
+    });
+
+    $('.switchTab span').on('click', function () {
+        $(this).addClass('active').siblings().removeClass('active')
+        var index = $(this).index()
+        if (index == 0) {
+            $('.certificate-search').hide()
+            $('.certificate-verify').show()
+            $('.verify-text').show()
+            $('.search-text').hide()
+            $('input[name="mode"]').val(1)
+        } else {
+            $('.certificate-search').show()
+            $('.certificate-verify').hide()
+            $('.verify-text').hide()
+            $('.search-text').show()
+            $('input[name="mode"]').val(2)
+        }
+    })
+
+</script>
+{include file="public/footer-login" /}
+</body>
+</html>

@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('WSE-DAE for Immigration Programs')}111</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+     <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class=" layui-form">
+    <div class="layui-row ">
+        <div class="layui-col-sm2 nav-fixed">
+            <!--    nav-left    -->
+            {include file="public/nav-left" /}
+        </div>
+        <div class="layui-col-sm10">
+            <!--    user avatar    -->
+            <div class="layui-row user-avatar">
+                <div class="layui-col-sm2 layui-col-xs4">
+                    <a href="/profile"><img src="{$user.head_img}"></a>
+                </div>
+                <div class="layui-col-sm10 layui-col-xs8">
+                    <h1>{switch name="$Think.cookie.think_var"}
+                        {case value="en-us"}{$order.name_en}{/case}
+                        {case value="zh-cn"}{$order.app_name}{/case}
+                        {case value="ja-jp"}{$order.name_jp}{/case}
+                        {case value="de-de"}{$order.name_de}{/case}
+                        {case value="ko-kr"}{$order.name_kr}{/case}
+                        {case value="ru-ru"}{$order.name_ru}{/case}
+                        {case value="fr-fa"}{$order.name_fa}{/case}
+                        {/switch}</h1>
+                    <p><b>{$user.username}</b></p>
+                    <p>{$user.email}— {$user.search_id}</p>
+                </div>
+                <div class="layui-col-sm12">
+                    <div class="steps-card">
+                        <h3>{:lang('Required Steps')}</h3>
+                        <div class="step-arrow-box">
+                            {foreach name="app_step" item="vo"}
+                            <a href="{$vo.sort}">
+                                {if condition="in_array($vo.id,$step_ok)"}
+                                <div class="step-arrow-wrap step-arrow-complete">
+                                    {else}
+                                    <div class="step-arrow-wrap">
+                                        {/if}
+                                        <div class="step-arrow-left">
+                                            <div class="arrow-1"></div>
+                                            <div class="arrow-2"></div>
+                                        </div>
+                                        <div class="step-arrow-center">
+                                            <span class="layui-hide-xs">
+                                                {$vo.sort}. {switch name="$Think.cookie.think_var"}
+                                                {case value="en-us"}{$vo.step_en}{/case}
+                                                {case value="zh-cn"}{$vo.step_name}{/case}
+                                                {case value="ja-jp"}{$vo.step_jp}{/case}
+                                                {case value="de-de"}{$vo.step_de}{/case}
+                                                {case value="ko-kr"}{$vo.step_kr}{/case}
+                                                {case value="ru-ru"}{$vo.step_ru}{/case}
+                                                {case value="fr-fa"}{$vo.step_fa}{/case}
+                                                {/switch}
+                                            </span>
+                                            <span class="layui-hide-sm">{$vo.sort}</span>
+                                        </div>
+                                        <div class="step-arrow-right">
+                                            <div class="arrow-1"></div>
+                                            <div class="arrow-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            {/foreach}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr/>
+            <!--    steps    -->
+            <div class="layui-row steps">
+                <div class="layui-col-sm12">
+                    <h3>{:lang('APPLICANT INFORMATION')}</h3>
+                    <p>{:lang('Applicant Profile')}</p>
+                    <hr/>
+                    <div class="form-group">
+                        <p><b>{:lang('Salutation')}</b><span class="necessary">*</span></p>
+                        <select name="" class="form-input">
+                            <option value="Mr.">{:lang('Mr.')}</option>
+                            <option value="Mrs.">{:lang('Mrs.')}</option>
+                            <option value="Ms.">{:lang('Ms.')}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p><b>{:lang('Last Name/Surname')}</b><span class="necessary">*</span></p>
+                        <input type="text" class="form-input" lay-verify="username">
+                        <p class="variable-content">{:lang('Please fill in your name exactly as shown on your current government-issued identification.')}</p>
+                    </div>
+                    <div class="form-group">
+                        <p><b>{:lang('First/Given Name')}</b><span class="necessary">*</span></p>
+                        <input type="text" class="form-input" lay-verify="required">
+                    </div>
+                    <div class="form-group">
+                        <p><b>{:lang('Middle Name')}</b></p>
+                        <input type="text" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <p><b>{:lang('Maiden /Former Name(s)')}</b></p>
+                        <input type="text" class="form-input">
+                    </div>
+                    <div class="form-group date">
+                        <p><b>{:lang('Date of Birth')}:<span class="necessary">*</span></b></p>
+                        <input type="text" class="layui-input form-input" id="BirthDate" placeholder="{:lang('Click to select date')}" autocomplete="off" >
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <div class="form-group">
+                        <p><b>{:lang('Apt/Unit, Street Number, and Street')}</b><span class="necessary">*</span></p>
+                        <input type="text" class="form-input" lay-verify="required" placeholder="{:lang('Please enter your Apt/Unit, Street Number, and Street')}">
+                    </div>
+                    <div class="form-group">
+                        <p><b>{:lang('City')}</b></p>
+                        <select name="" class="form-input">
+                            <option value="">1</option>
+                            <option value="">1</option>
+                            <option value="">1</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p><b>{:lang('Province/State')}</b></p>
+                        <input type="text" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <p><b>{:lang('Country')} </b><span class="necessary">*</span></p>
+                        <select name="" class="form-input">
+                            <option value="">1</option>
+                            <option value="">1</option>
+                            <option value="">1</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <p><b>{:lang('Postal Code')}</b></p>
+                        <input type="text" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <p><b>{:lang('Email')}</b><span class="necessary">*</span></p>
+                        <input type="text" class="form-input" lay-verify="email">
+                        <p class="variable-content">{:lang('WSE will communicate with you primarily by email. For confidentiality, please ensure that this email address is used exclusively by yourself.')}</p>
+                    </div>
+                    <div class="form-group">
+                        <p><b>{:lang('Phone Number')}</b><span class="necessary">*</span></p>
+                        <input type="text" class="form-input" lay-verify="phone">
+                    </div>
+                    <div class="form-group">
+                        <p><b>{:lang('Intended Occupation')}</b></p>
+                        <input type="text" class="form-input">
+                    </div>
+                    <h5>{:lang('Valid Government-Issued ID')}<span class="necessary">*</span></h5>
+                    <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+                    <div class="variable-content">
+                        <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+                        <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                        <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                        <p>{:lang('One piece of valid government-issued identification (excluding health cards) showing date of birth is required to identify you as the rightful owner. If your name has changed since completing your studies, you must upload a copy of your proof of name change (e.g., marriage certificate) showing both your original and current name. All documents must be in English, French OR accompanied with official translations.')}</p>
+                    </div>
+                    <h5>{:lang('Translation of Government-Issued ID')}</h5>
+                    <p class="file"><b>{:lang('File Name')}</b><input type="file"><a type="button" class="layui-btn layui-btn-primary">{:lang('Upload')}</a></p>
+                    <div class="variable-content">
+                        <p>{:lang('The maximum allowed file size for uploads is')} 10240 KB.</p>
+                        <p>{:lang('The file extensions allowed for uploads are')}: doc,docx,jpg,pdf,png.</p>
+                        <p>{:lang('File uploads may not be supported on mobile devices. Use a supported device to complete a file upload.')}</p>
+                    </div>
+                    <div>
+                        <p>{:lang('Have you changed your name since completing your credentials?')}</p>
+                        <input type="radio" name="completingCredentials" value="" title="{:lang('Yes')}" ><br/>
+                        <input type="radio" name="completingCredentials" value="" title="{:lang('No')}" >
+                    </div>
+                </div>
+                <div class="layui-col-sm12">
+                    <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save This Page')}</a><a class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+                    <a class="layui-btn mazarine right">{:lang('Next Page')}</a>
+                    <br/>
+                    <br/>
+                    <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save and Finish Later')}</a>
+                    <hr/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+{include file="public/footer-login" /}
+<script>
+    layui.use(['form', 'laydate'], function(){
+        var form = layui.form
+            ,laydate = layui.laydate;
+            laydate.render({
+            elem: '#BirthDate' ,
+            lang: 'en',
+        });
+        form.verify({
+            required: function(value) {
+                if (value == '') {
+                    return '{:lang("Required cannot be empty")}'
+                }
+            },
+            email: function(value) {
+                if (value == '') {
+                    return '{:lang("Email cannot be empty")}'
+                }
+            },
+            phone: function(value) {
+                if (value == '') {
+                    return '{:lang("Phone cannot be empty")}'
+                }
+            },
+            username: function(value){
+                if(!new RegExp("^[a-zA-Z0-9_\u4e00-\u9fa5\\s·]+$").test(value)){
+                    return '{:lang("User name must not have special characters")}';
+                }
+                if(/(^\_)|(\__)|(\_+$)/.test(value)){
+                    return '{:lang("User name cannot be underlined at the beginning and end “_” ")}';
+                }
+                if(/^\d+\d+\d$/.test(value)){
+                    return '{:lang("User names cannot be all numbers")}';
+                }
+                if (value == '') {
+                    return '{:lang("Name cannot be empty")}'
+                }
+            }
+        });
+    })
+</script>
+</body>
+</html>

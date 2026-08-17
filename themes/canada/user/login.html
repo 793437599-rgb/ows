@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8" />
+    <title>{:lang('Login')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
+    <link rel="stylesheet" href="/canada/css/header-footer.css">
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/canada/css/login-new.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="__JS__/nc.js"></script>
+    <style type="text/css">
+        .nc-container .nc_scale span {
+            height: 34px;
+        }
+    </style>
+</head>
+<body>
+    {include file="public/header-login" /}
+<section class="main">
+        <div class="row">
+            <div class="col-sm-6 login">
+                <div class="row-login">
+                    <h2>{:lang('Log In')}</h2>
+                    <div class="alert-danger hide">
+                        <i class="fa fa-exclamation-triangle"></i>
+                        <span>{:lang('  Invalid username or password')}</span>
+                    </div>
+                    <form class="" id="log_form">
+                        <div class="form-group">
+                            <label for="username" id="username-label" class="form-label">{:lang('Email Address')}</label>
+                            <input type="email" name="email" id="username" class="form-input"
+                                value="{php} echo @$_COOKIE['useremail'];{/php}"  >
+                            <p id="email-error"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" id="password-label" class="form-label">{:lang('Password')}</label>
+                            <input type="password" name="password" id="password" class="form-input" value="{php} echo @$_COOKIE['userpwd'];{/php}" >
+                            <p id="pwd-error"></p>
+                        </div>
+                        {if config('verify') == 1}
+                        <div class="form-group">
+                            <label for="" class="form-label">{:lang('Verification')}</label>
+                             <div id="html_element"></div>
+<!--                            <div id="your-dom-id"></div><input type="hidden" name="trans_encryption" id="huadong" value="0">-->
+                        </div>
+                        {/if}
+                        <br>
+                        <button type="button" class="btn btn-primary btn-block" id="log-btn">
+                            <div><span class="btn-text">{:lang('Log In')}</span><span class="fa fa-angle-right"></span>
+                            </div>
+                        </button>
+                        <div class="row login-actions">
+                            <div class="col-sm-6">
+                                <label for="keep">
+                                    <input type="checkbox" name="rem" id="keep">{:lang('Keep Me Logged In')}
+                                </label>
+                            </div>
+                            <div class="col-sm-6">
+                                <a href="/forget_pass" class="forgotten">{:lang('Forgotten Password')}</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-sm-6 register">
+                <div class="row-register">
+                    <h2>{:lang('New to Prospects')}?</h2>
+                    <p>{:lang('Register to Receive Career Advice Relevant to You')}.</p>
+                    <a class="btn btn-block add-register">
+                        <div><span class="btn-text">{:lang('Register')}</span><span class="fa fa-angle-right"></span>
+                        </div>
+                    </a>
+                    <div class="why-register">
+                        <h2>{:lang('Why Register')}?</h2>
+                        <ul>
+                            <li>
+                                <i class="iconfont icon-analysis"></i>
+                                <p>{:lang('Authoritative evaluation analysis')}</p>
+                            </li>
+                            <li>
+                                <i class="iconfont icon-qukuailian"></i>
+                                <p>{:lang('Blockchain permanent storage')}</p>
+                            </li>
+                            <li>
+                                <i class="iconfont icon-share"></i>
+                                <p>{:lang('Share anytime, anywhere')}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://www.recaptcha.net/recaptcha/api.js?onload=onloadCallback&render=explicit&hl=en" async defer></script>
+    <script type="text/javascript">
+        var onloadCallback = function () {
+            grecaptcha.render('html_element', {
+                'sitekey': '6LfiJLoZAAAAAPgIpo8P68CBeljDe05DKZY0SC_U',
+                'callback': function (token) {
+                }
+            });
+        };
+    </script>
+    <script>
+        $('.form-input').on('input', function () {
+            let a = $(this).val();
+            let b = a.replace(/^\s+/g, '');
+            console.log(a == b);
+            $(this).val(b)
+        })
+        $(document).on('keyup', function (e) {
+            if (e.keyCode == 13) {
+                $('.btn-primary').click();
+            }
+        })
+        // $(document).on('click','.btn-primary',fucntion(){
+        // })
+        $('.btn-primary').click(function () {
+            var eml = $('#username').val();
+            var res = /^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/;
+            if (!res.test(eml)) {
+                $('.alert-danger').removeClass('hide');
+                $('.alert-danger span').text('Incorrect email format');
+                return false;
+            }
+            $.post("/index/user/login", $("#log_form").serialize(),
+                function (result) {
+                    if (result.code == 1) {
+                        window.location.href = result.url;
+                        /*layer.msg('login success',{time:500},function(){
+                            window.location.href=data.url;
+                        })*/
+                    } else {
+                        if (result.msg == 'invalid token') {
+                            $('.alert-danger').removeClass('hide');
+                            $('.alert-danger span').text('Error submitted. Please refresh and try again');
+                        } else {
+                            $('.alert-danger').removeClass('hide');
+                            var password = $("#password").val().trim();
+                            var len = password.length;
+                            if (result.msg == 'password requre') {
+                                $('#password').siblings('#pwd-error').text('The password cannot be empty');
+                            } else if (6 > len || len >= 30) {
+                                $('#password').siblings('#pwd-error').text('The password length should be greater than 6 and less than 30');
+                            } else if (result.msg == 'email requre') {
+                                $('#username').siblings('#email-error').text('The Email cannot be empty');
+                            } else if (result.msg == 'email not a valid email address') {
+                                $('#username').siblings('#email-error').text('Incorrect email format');
+                            }
+                            $('.alert-danger span').text(result.msg);
+                        }
+                        grecaptcha.reset();
+                    }
+                });
+        });
+        $('.add-register').click(function () {
+            window.location.href = '/index/user/add';
+        });
+        let complete = function () {
+            let username = $('#username').val()
+            let password = $('#password').val()
+            console.log(username);
+            console.log(password);
+            if (!isEmpty(username) && !isEmpty(password)) {
+                $('#log-btn').css({
+                    "background-color": "#013763",
+                    "color": "#fff"
+                })
+            } else {
+                $('#log-btn').css({
+                    "background-color": "#ebebeb",
+                    "color": "#D3101B"
+                })
+            }
+        }
+
+        function isEmpty(obj) {
+            if (typeof obj == "undefined" || obj == null || obj == "") {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        $('#username').on('input', function () {
+            complete();
+        })
+        $('#password').on('input', function () {
+            complete();
+        })
+    </script>
+
+    {include file="public/footer-login" /}
+</body>
+</html>

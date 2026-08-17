@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('WSE-DAE for General Use')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+  
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="edu-form" id="infodata">
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm12">
+                <div class="layui-row user-avatar">
+                    <h1>{:lang('Basic Information')}</h1>
+                    <div class="public-user-header center-header-new2">
+                        {include file="public/_user_basic_information"}
+                    </div>
+                </div>
+                <div class="layui-row steps">
+                    <div class="layui-col-sm12 cave">
+                        <div class="bg-top"></div>
+                        <div class="table-slse">
+                            <h3>{:lang('File Preview')}</h3>
+                            <p>{:lang('Please view the preview file of your evaluation book and select the file type to be printed.')}</p>
+                            <hr>
+                            <div class="file-preview image_preview">
+                                {notempty name="certificate.certificate_png"}
+                                <div>
+                                    <div class="layer-photo-certificate">
+                                        {volist name="certificate.certificate_png" id="vo" }
+                                        <img  src="{$vo}"  alt=""  layer-src="{$vo}">
+                                        {/volist}
+                                    </div>
+                                    <div class="switch-box is-primary">
+                                        <input id="choose_transcript" class="switch-box-input" type="checkbox" checked />
+                                        <label for="choose_transcript" class="switch-box-slider"></label>
+                                        <label for="choose_transcript" class="switch-box-label"><b>{:lang('Assessment')}</b></label>
+                                    </div>
+                                </div>
+                                {/notempty}
+                                {notempty name="tran.certificate_png"}
+                                <div>
+                                    <div class="layer-photo-transcript">
+                                        {volist name="tran.certificate_png" id="vo" }
+                                        <img src="{$vo}" layer-src="{$vo}" > 
+                                        {/volist}
+                                    </div>
+                                    
+                                    <div class="switch-box is-primary">
+                                        <input id="choose_assessment" class="switch-box-input" type="checkbox" checked />
+                                        <label for="choose_assessment" class="switch-box-slider"></label>
+                                        <label for="choose_assessment" class="switch-box-label"><b>{:lang('Transcript')}</b></label>
+                                    </div>
+                                </div>
+                                {/notempty}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-sm12 buttons">
+                        <a class="layui-btn mazarine right" id="save">{:lang('Submit')}</a>
+                        <br/>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/static/js/layui/layui.all.js"></script>
+<script src="/static/js/Img2Blobjs/js/img2blob.js"></script>
+<script>
+   $('#save').click(function () {
+        let value1 =  $('#choose_transcript').is(':checked') 
+        let value2=  $('#choose_assessment').is(':checked') 
+        if ( !value1 &&  !value2) 
+        { 
+            layer.msg('至少选中一个副本', {icon:2, time: 1000});
+            return false; 
+        }
+        let order_id = '{$oid|default=""}';
+        console.log(order_id)
+            $.ajax({
+                url:"{:url('index/user/user_copy_select')}",
+                type:'post',
+                data:{order_id:order_id,t1:value1,t2:value2},
+                dataType:'JSON',
+                success:function (result) {
+                    if (result.code == 20000) {
+                        window.location.href = result.data;
+                    } else {
+                        layer.msg(result.msg, {icon: 2, time: 1000});
+                    }
+                }
+            })
+    });
+
+    $(function () {
+
+        $('.image_preview img').each(function(){
+            drawAndShareImage(this);
+        }) 
+   
+        function drawAndShareImage(obj){
+            var canvas = document.createElement("canvas");
+            canvas.width = $(obj).width();  
+            canvas.height =$(obj).height();  
+            var context = canvas.getContext("2d");
+            context.rect(0 , 0 , canvas.width , canvas.height);
+            context.fillStyle = "#fff";
+            context.fill();
+            var myImage = new Image();
+            myImage.src = $(obj).attr('src');    //背景图片  你自己本地的图片或者在线图片
+            myImage.crossOrigin = 'Anonymous';
+            myImage.onload = function(){
+                context.drawImage(myImage , 0 , 0 ,  canvas.width  , canvas.height);
+                context.font = "30px Courier New";
+                var myImage2 = new Image();
+                myImage2.src = "/canada/images/sample.png";   //你自己本地的图片或者在线图片
+                myImage2.crossOrigin = 'Anonymous';
+                myImage2.onload = function(){
+                    context.drawImage(myImage2 , 0,0, canvas.width , canvas.height);
+                    var base64 = canvas.toDataURL("image/png");  //"image/png" 这里注意一下
+                    var img = $(obj)[0];
+                    img.setAttribute('src' , base64);
+                    layer.photos({
+                        photos: '.layer-photo-certificate'
+                        , anim: 5//0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+                    });
+                    layer.photos({
+                        photos: '.layer-photo-transcript'
+                        , anim: 5//0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+                    });
+                }
+            }
+        }
+
+
+    })
+</script>
+
+</body>
+</html>

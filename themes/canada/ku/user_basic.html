@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+	<head>
+		<meta charset="utf-8" />
+		<title>Basic Information</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" href="/canada/css/common.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css"/>
+		<link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css"/>
+		<link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+		<link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+		<script src="/static/js/jquery.min.js"></script>
+		<script src="/static/js/jquery.flexslider-min.js"></script>
+		<script src="/static/js/viewer-jquery.min.js"></script>
+		<script src="/static/js/selectFilter.js"></script>
+		<script src="/static/js/mobile.js"></script>
+		<script src="/static/js/layui/layui.js"></script>
+		<script src="/canada/js/html.js"></script>
+	</head>
+	<body>
+	<body>
+		<header class="User_hd_full">
+			<div class="T_main User_hd">
+				<a href="#"><img src="/static/images/logo.png"/></a>
+				<div class="User_hd_bottom">
+					<ul class="layui-nav">
+						  <!--<li class="layui-nav-item"><a href="">Application review</a></li>
+					  <li class="layui-nav-item"><a href="">Data exchange</a></li>
+					  <li class="layui-nav-item"><a href="">Order</a></li>-->
+<li class="layui-nav-item">
+						<a href="javascript:;">{:lang('Profile')}</a>
+							<dl class="layui-nav-child">
+							  <dd><a href="/user_basic">{:lang('Account Settings')}</a></dd>
+							  <dd><a href="/logout">{:lang('Sign Out')}</a></dd>
+							</dl>
+						  </li>
+					</ul>
+				</div>
+			</div>
+		</header>
+<!-- info hd -->
+		<div class="T_main User_info">
+			<div class=" User_Avatar">
+				<a class="User_logo" href="#"><img src="/static/images/person-icon.png" ></a>
+				<div class="User_Avatar_down">
+					<form action="" method="">
+						<div class="User_Ava_tit">
+							{:lang('Edit Profile Picture')}
+							<i class="fa fa-close"></i>
+						</div>
+						<label for="profile" class="User_per">
+							<input name="profileImage" id="profile" type="file">
+							<i class="fa fa-long-arrow-right "></i>
+							<span >{:lang('Add Your Profile Photo')}</span>
+						</label>
+						<p>{:lang('Max File Size')}: 5 MB</p>
+						<p>{:lang('File Formats')}: PNG, JPEG, GIF</p>
+						<a href="javascript:;"  class="User_per">
+							<i class="fa fa-long-arrow-right "></i>
+							<span >{:lang('Remove Photo')}</span>
+						</a>
+					</form>
+					<div class="User_direction_icon fa fa-play"> </div>
+				</div>
+			</div>
+			<div class="User_Avart">
+				<div class="User_Ava_nav"> <a class="User_edit" href="#">{:lang('Edit')}</a></div>
+			<h2>{$user.username}</h2>
+			</div>
+</div>
+<div class="clearfix"></div>
+		<!--主要内容-->
+		<div class="User_mian_full">
+			<div class="T_main">
+				<div class="User_account">
+					<div class="Tr_rebox Uac_tit">
+						<h3>
+							{:lang('Login Information')}
+							<span>*{:lang('Required Field')}</span>
+						</h3>
+					</div>
+					<form class="layui-form" id="up_pass" action="" method="post"  lay-filter="example">
+						<div class="User_form-item">
+							<label>{:lang('Primary Email Account')} *</label>
+							<input class="User_readonly" type="text" name="email" id="" readonly value="{$user.email}" />
+						</div>
+						<div class="User_pass">
+							<h5 class="User_pass_tit">{:lang('Change your Password')}</h5>
+							<div class="User_pass_box">
+								<div class="User_form-item">
+									<label>{:lang('Current Password')} *</label>
+									<input type="text" name="password_old" id="" value="" />
+								</div>
+								<div class="User_form-item">
+									<label>{:lang('New Password')} *</label>
+									<input type="text" name="password_new" id="" value="" />
+								</div>
+								<div class="User_form-item">
+									<label>{:lang('Confirm New Password')} *</label>
+									<input type="text" name="password_new2" id="" value="" />
+								</div>
+								<div class="user_btn_box">
+									<button id="up_pass-submit" type="button">{:lang('Save')}</button>
+									<a class="User_pass_close" href="javascript:;">{:lang('Cancel')}</a>
+								</div>
+</div>
+</div>
+					</form>
+				</div>
+				<div class="User_account">
+					<div class="Tr_rebox Uac_tit">
+						<h3>
+							{:lang('Your Information')}
+							<span>*{:lang('Required Field')}</span>
+						</h3>
+					</div>
+					<form class="layui-form" id="up_info" method="post"  lay-filter="example">
+						<div class="User_form-item User_form-three">
+							<label>{:lang('First Name')}*</label>
+							<input type="text" name="firstname" id="" value="{$user.firstname}" />
+						</div>
+<div class="User_form-item User_form-three">
+							<label>{:lang('Middle Name')}*</label>
+							<input type="text" name="middlename" id="" value="{$user.middlename}" />
+						</div>
+						<div class="User_form-item User_form-three">
+							<label>{:lang('Last Name')}*</label>
+							<input type="text" name="lastname" id="" value="{$user.lastname}" />
+						</div>
+						<div class="User_form-item User_form-three">
+							<label>{:lang('Date of birth')}*</label>
+							<input class="User_birth" type="text" name="birth_time" id="" value="{$user.birth_time}" />
+						</div>
+						<div class="User_form-item User_form-three">
+							<label>{:lang('Type of ID')}*</label>
+							<select class="Tr_sele_box" name="id_type">
+								<option {$user.id_type=='Visa'?'selected':''}  value="Visa">{:lang('Visa')}</option>
+								<option {$user.id_type=='Passport'?'selected':''}  value="Passport">{:lang('Passport')}</option>
+								<option {$user.id_type=='Identity Card'?'selected':''}  value="Identity Card">{:lang('Identity Card')}</option>
+								<option {$user.id_type=='Green Card'?'selected':''}  value="Green Card">{:lang('Green Card')}</option>
+								<option {$user.id_type=='Credit Card'?'selected':''}  value="Credit Card">{:lang('Credit Card')}</option>
+							</select>
+						</div>
+						<div class="User_form-item User_form-three">
+							<label>{:lang('ID number')}*</label>
+							<input  type="text" name="id_number" id="" value="{$user.id_number}" />
+						</div>
+						<div class="User_form-item User_form-three">
+							<label>{:lang('Country of Citizenship')}*</label>
+							<select class="Tr_sele_box" name="nationality">
+								{foreach name="country" item="country"}
+								<option {$user.nationality==$country?'selected':''} value="{$country}">{$country}</option>
+								{/foreach}
+							</select>
+						</div>
+						<div class="User_form-item User_form-three">
+							<label>{:lang('Gender')}*</label>
+							<input type="radio" name="sex"  {$user.sex=='Male'?'checked':''} value="Male" title="Male"/>
+							<input type="radio" name="sex"  {$user.sex=='Female'?'checked':''} value="Female" title="Female" />
+						</div>
+						<div class="user_btn_box">
+							<button id="up_info-submit" type="button">{:lang('Save')}</button>
+							<a  href="javascript:;">{:lang('Cancel')}</a>
+						</div>
+</form>
+				</div>
+			</div>
+		</div>
+<footer class="User_ft">
+			<a href="/">{:lang('Home')}</a> | <span>© Copyright 2019 ca.university All Rights Reserved</span>
+		</footer>
+		<script>
+			$(function(){
+				layui.use(['form', 'layedit', 'laydate'], function(){
+					var form = layui.form
+					,layer = layui.layer
+					,layedit = layui.layedit
+					,laydate = layui.laydate;
+					 laydate.render({
+					  elem: '.User_birth' ,//指定元素
+					  lang: 'en',
+					});
+					//修改密码
+					$('#up_pass-submit').click(function(){
+						$.ajax({
+							type:"post",
+							url:"/up_basic",
+							async:false,
+							data:$('#up_pass').serializeArray(),
+							success:function(result){
+								if (result.code==1) {
+									layer.open({
+									  title: 'success提示'
+									  ,content: result.msg
+									});
+									//window.location.href="/register_verification";
+								} else{
+									layer.open({
+									  title: 'error提示'
+									  ,content: result.msg
+									});
+								}
+							},
+							error:function(msg){
+								layer.open({
+									  title: 'error验证提示'
+									  ,content: msg
+									});
+							}
+						});
+					});
+//修改信息
+					$('#up_info-submit').click(function(){
+						$.ajax({
+							type:"post",
+							url:"/up_basic",
+							async:false,
+							data:$('#up_info').serializeArray(),
+							success:function(result){
+								if (result.code==1) {
+									layer.open({
+									  title: 'success提示'
+									  ,content: result.msg
+									});
+									//window.location.href="/register_verification";
+								} else{
+									layer.open({
+									  title: 'error提示'
+									  ,content: result.msg
+									});
+								}
+							},
+							error:function(msg){
+								layer.open({
+									  title: 'error验证提示'
+									  ,content: msg
+									});
+							}
+						});
+					});
+})
+			});
+$(function(){
+				$('.User_pass_box').hide();
+				$('.User_pass_tit').click(function(){
+					$(this).next().show()
+					$(this).hide()
+				})
+				$('.User_pass_close').click(function(){
+					$('.User_pass_box').hide();
+					$('.User_pass_tit').show();
+				})
+			})
+		</script>
+	</body>
+</html>

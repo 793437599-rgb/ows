@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div>
+<div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                <!--    user avatar    -->
+                {include file="public/_nav_center_header" /}
+                <!--    transfer information    -->
+                <section class="layui-row information-wrap">
+                    <h2>{:lang('How to apply for data transfer?')}</h2>
+                    <div class="application border-shadow">
+                        <div class="apply clearfix">
+							<div class="apply_btm apply_ltop">
+								<div class="apply-lt-cell">
+									<h5>{:lang('Log in to WSE')}</h5>
+									<p>{:lang('If you cannot get an online certification report here')} <a href="javascript:;" onclick="link('3')">{:lang('Please go to apply for a full account')}</a></p>
+								</div>
+								<div class="apply_main_arrow_2 apply-arrow-down">
+									<span></span>
+								</div>
+								<div class="apply-lt-cell">
+									<h5>{:lang('Go to "Data Transfer"')}</h5>
+									<p>{:lang('Choose the transmission method of "Institution-University Data Transmission" or "Mailbox Data Transmission"')}</p>
+								</div>
+							</div>
+                            <div class="layui-row apply_main">
+                                <div class="layui-col-sm6 layui-col-xs12">
+                                    <div class="apply_main_left">
+                                        <div class="left_top">
+                                            <h4>{:lang('Institution/University Data Transmission')}</h4>
+                                            <!--<a>{:lang('Sample')}</a>-->
+                                        </div>
+                                        <div class="left_bottom"></div>
+                                        <div class="layui-row">
+                                            <div class="layui-col-sm2 layui-col-xs2 left_l">
+                                                <span class="one"></span>
+                                                <span class="arrow_1"></span>
+                                                <span class="two"></span>
+                                                <span class="arrow_2"></span>
+                                                <span class="three"></span>
+                                            </div>
+                                            <div class="layui-col-sm10 layui-col-xs10 left_r">
+                                                <div class="one">
+                                                    <h5>{:lang('Select transmission agency')}</h5>
+                                                    <p>{:lang('The data will be transferred to the organization you choose, please choose carefully.')}</p>
+                                                </div>
+                                                <div class="two">
+                                                    <h5>{:lang('Verify the accuracy of transmitted data')}</h5>
+                                                    <p>{:lang('Preview and transfer data and target organization.')}</p>
+                                                </div>
+                                                <div class="three">
+                                                    <h5>{:lang('Transfer application completed')}</h5>
+                                                    <p>{:lang('Wait for the transmission result (about 5-7 working days to complete the entire institution/university transmission).')}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm6 layui-col-xs12">
+                                    <div class="apply_main_right">
+                                        <div class="left_top">
+                                            <h4>{:lang('Email Data Transmission')}</h4>
+                                            <!--<a>{:lang('Sample')}</a>-->
+                                        </div>
+                                        <div class="left_bottom"></div>
+                                        <div class="layui-row">
+                                            <div class="layui-col-sm2 layui-col-xs2 left_l">
+                                                <span class="one"></span>
+                                                <span class="arrow_1"></span>
+                                                <span class="two"></span>
+                                                <span class="arrow_2"></span>
+                                                <span class="three"></span>
+                                            </div>
+                                            <div class="layui-col-sm10 layui-col-xs10 left_r">
+                                                <div class="one">
+                                                    <h5>{:lang('Fill in the data transmission acceptance mailbox')}</h5>
+                                                    <p>{:lang('The data will be sent to this mailbox, please fill in carefully.')}</p>
+                                                </div>
+                                                <div class="two">
+                                                    <h5>{:lang('Verify the accuracy of transmitted data')}</h5>
+                                                    <p>{:lang('Preview and confirm the transmission data and fill in the mailbox.')}</p>
+                                                </div>
+                                                <div class="three">
+                                                    <h5>{:lang('Transfer application completed')}</h5>
+                                                    <p>{:lang('Waiting for the transmission result (about 24h working days to complete the entire mailbox transmission).')}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-sm12">
+                                    <div class="layui-col-sm6 layui-col-xs6 apply_main_arrow_1">
+                                        <span></span>
+                                    </div>
+                                    <div class="layui-col-sm6 layui-col-xs6 apply_main_arrow_2">
+                                        <span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="apply_btm">
+                                {:lang('Go to “International Cooperative Application” under “WSE” to send reports to your applied institution.')}
+                                <a class="send_report layui-btn mazarine" href="#">{:lang('Send Report')}</a>
+                            </div>
+                            <p class="apply_text">{:lang('（Flowchart of Cooperative Application）')}</p>
+                            <div class="note">
+                                <p>{:lang('Firstly complete the online application according to WSE’s requirement. Then follow the instructions below to apply for verification report(s) and submit to international institution through the WSE Portal Service.')}</p>
+                                <ol class="listOl">
+                                    <li class="fontB">
+										<h5><span>{:lang('STEP 1:')}</span>{:lang('REGISTER')}{:lang('a WSE ACCOUNT')}</h5>
+										<p>{:lang('If you do not have a WSE account yet, you need to go to the registration page to apply for an account. If you already have a WSE account, you can ignore this step.')}</p>
+										<a class="layui-btn mazarine" href="#">{:lang('Go to registers')}</a>
+									</li>
+									<li class="fontB">
+										<h5><span>{:lang('STEP 2:')}</span>{:lang('Find the service application page to submit the information')}</h5>
+										<p>{:lang('If you have already registered your WSE account and successfully logged in, you can go to the application page to fill in the information and submit the information as prompted.')}</p>
+										<a class="layui-btn mazarine" href="#">{:lang('Go to register')}</a>
+									</li>
+									<li class="fontB">
+										<h5><span>{:lang('STEP 3:')}</span>{:lang('We accept your information for evaluation')}</h5>
+										<p>{:lang('After you fill in all the information and submit all the information, we will evaluate your information in about 5 working days. Of course, if the information you submit is not true, we will not evaluate your information.')}</p>
+									</li>
+									<li class="fontB">
+										<h5><span>{:lang('STEP 4:')}</span>{:lang('We will send you the assessment result file')}</h5>
+										<p>{:lang('After we have verified your information without problems and successfully made an assessment, we will notify you by email and mail the documents to your home.')}</p>
+									</li>
+									<li class="fontB">
+										<h5><span>{:lang('STEP 5:')}</span>{:lang('Store your information file')}</h5>
+										<p>{:lang('After you have successfully received the evaluation document and confirmed that it is correct, we will store your information and data in the blockchain. This process will take a while.')}</p>
+									</li>
+                                </ol>
+                               <!--  <p><b>{:lang("Note: Pricing of WSE's Verification Reports")}</b></p> -->
+                                <br>
+                                <p>{:lang('Contact:')} 416-526-2352</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+</div>
+</section>
+</body>
+</html>

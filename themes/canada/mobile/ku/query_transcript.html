@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+<head>
+    <meta charset="utf-8"/>
+    <title>UNITED KINGDOM EDUCATION DATA</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+</head>
+<body>
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'><a class="hd-logo" href="/"> <img src="/canada/images/logo.png"/> </a>
+        <div class="infor-off"><a href="/logout"> <img src="/canada/images/off-icon.svg"/> <span>Exit</span>
+        </a></div>
+    </div>
+</header>
+<section class="information-wrap"><h2>PERSONAL DATA DISPLAY</h2>
+    <div class="information transcript">
+        <div class="header">
+            <div class="img-box"><img src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"'/>
+            </div>
+            <div class="info">
+                <h3>{$info.name}</h3>
+                <p>
+                    <i class="icon iconfont icon-UK-address"></i>
+                    <b>{$edu.school}</b>
+                </p>
+            </div>
+            <ul class="tab"> {notempty name="edulist"} {foreach name="edulist" item="v"}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="{$v.id==$edu.id? 'infor-active':''}" href="/query/ku_id/{$info.id}/edu_id/{$v.id}">Information</a>
+                        </li>
+                        <li><a href="/query_transcript/ku_id/{$info.id}/edu_id/{$v.id}">Transcript</a></li>
+                    </ol>
+                </li>
+                {/foreach} {else /}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/info">Information</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+                <li><a href="/transfer">TRANSFER</a></li>
+            </ul>
+        </div>
+<div class="table-items">
+        	{foreach name="scoreList" id="scoreItem"} {foreach name="scoreItem" id="score"  key="k"} 
+        	<h3>{$score.years}- {$score.fallterm}
+        	</h3>
+            <table>
+                <tbody>
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Title</th>
+                    <th>Credit</th>
+                    <th>Grade</th>
+                    <th>Points</th>
+                </tr>
+                {foreach name="score['content']" id="content" key="k"}
+                <tr>
+                    <td>{$content['class']}</td>
+                    <td>{$content['description']}</td>
+                    <td>{$content['units']}</td>
+                    <td>{$content['grade']}</td>
+                    <td>{$content['points'] ?? '-'}</td>
+                </tr>
+                {/foreach}
+                </tbody>
+            </table>
+            {/foreach} {/foreach}
+        </div>
+    </div>
+</section>
+<div class="infor-ft"><a href="#">Home</a>&nbsp;|&nbsp; <span>Copyright © Canada education data</span></div>
+<script>    $('.menu-down').click(function (e) {
+    e.stopPropagation();
+    $(this).children('.menu').toggle();
+    $(this).siblings().children('.menu').hide()
+});
+$(document).click(function () {
+    $('.menu').hide()
+});</script>
+</body>
+</html>

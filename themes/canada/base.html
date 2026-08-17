@@ -1,0 +1,91 @@
+<!DOCTYPE html >
+<html lang="{:lang_code()}">
+<head>
+    <meta charset="utf-8" />
+    <title>{$C['site_title']}</title><!-- {$title?='--'.$title} -->
+    <meta name="description" content="{$C['seo_keyword']}">
+    <!--  <meta name="description" content="{$C['seo_title']}"> -->
+    <meta name="keywords" content="{$C['seo_description']}">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css" />
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/css/flexslider.min.css">
+    <link rel="stylesheet" href="/canada/css/animate.css">
+    <link rel="stylesheet" href="/canada/css/codehim-dropdown.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/education.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/header.css" />
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css" />
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/canada/css/header-anim.css">
+    <link rel="stylesheet" href="/canada/css/header-new.css">
+    <script src="/canada/js/jquery-1.9.1.min.js"></script>
+    <script src="/static/js/jquery.flexslider-min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <script type="text/javascript" src="/canada/js/common.js"></script>
+    <script type="text/javascript" src="/canada/js/selectFilter.js"></script>
+    <script src="/canada/js/codehim.dropdown.js"></script>
+    <!--  header  -->
+    <script src="/canada/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="/canada/js/jquery.ckSlide.js"></script>   
+    <script src="/canada/js/waypoints.min.js"></script>
+    <script src="/canada/js/header-main.js"></script>
+    <!-- slider slick -->
+    <link rel="stylesheet" href="/canada/js/slick/slick.css">
+    <!-- share css & js -->
+    <link rel="stylesheet" href="/static/share/css/share.min.css">
+    <link rel="stylesheet" href="/static/share/css/share.more.css">
+    <script src="/static/share/js/share.min.js"></script>
+    <script src="/static/js/langCookie.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script src="/canada/js/slick/slick.min.js"></script>
+</head>
+<body>
+    {include file="public/header-new" /} {__CONTENT__} {include file="public/footer-login" /}
+<script>
+        $(function () {
+            $(".con-selbox").click(function (e) {
+                $(".con-select").toggleClass('con-open');
+                e.stopPropagation();
+            });
+            $(".con-seldel li").click(function (e) {
+                var _this = $(this);
+                $(".con-select> .con-selbox").text(_this.attr('value'));
+                _this.addClass("con-Selected").siblings().removeClass("con-Selected");
+                $(".con-select").removeClass("con-open");
+                e.stopPropagation();
+            });
+            $(document).on('click', function () {
+                $(".con-select").removeClass("con-open");
+            })
+            let texts = [];
+            var elems = $(document);
+            function getTexts(elem)
+            {
+                let elems = $(elem).children();
+                // console.log(elems);
+                // console.log(elems.length);
+                if (elems.length ==  0){
+                    let t = $(elem).text();
+                   if (t != '' && t != null && t != undefined){
+                       // console.log(t);
+                       texts.push(t);
+                   }
+                }else{
+                    $.each(elems,function (index,item) {
+                        getTexts(item);
+                    })
+                }
+                return texts;
+            }
+            getTexts($(document));
+            // console.log(texts);
+        });
+    </script>
+</body>
+</html>

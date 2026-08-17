@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+<head>
+    <meta charset="utf-8"/>
+    <title>CANADA.EDUCATION DATA</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="Keywords" content=""/>
+    <meta name="Description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/education.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <script src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+</head>
+<body>
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'><a class="hd-logo" href="/"> <img src="/canada/images/logo.png"/> </a>
+        <div class="infor-off"><a href="/logout"> <img src="/canada/images/off-icon.svg"/> <span>Exit</span>
+        </a></div>
+    </div>
+</header>
+<section class="information-wrap">
+    <h2>PERSONAL DATA DISPLAY</h2>
+    <div class="information transcript">
+        <div class="header">
+            <div class="img-box">
+                <img src="{$info.headimg}" onerror='javascript:this.src="/canada/images/pic-hd.jpg"'/>
+            </div>
+            <div class="info">
+                <h3>{$info.name}</h3>
+            </div>
+<ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a href="/info/edu_id/{$v.id}">Information</a>
+                        </li>
+                        <li><a href="/transcript/edu_id/{$v.id}">Transcript</a></li>
+                    </ol>
+                </li>
+{/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/info">Information</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+<li><a href="/transfer">TRANSFER</a></li>
+</ul>
+</div>
+    </div>
+    <div class="infor-right">
+        <div class="application border-shadow">
+            <div class="introduction"><h4>China Aborad Student Information Service Network</h4>
+                <div style="text-align: justify;"><p><a href="https://www.cscss.com.cn/" target="_blank">China Abroad
+                    Student Information Service Network</a>，It was officially launched in November 2008 and upgraded in
+                    February 2009. The opening of China Abroad Student Information Service Network has been warmly
+                    welcomed by domestic universities and colleges. People's Network, China Net, CCTV, Sina, Sohu,
+                    Netease, Tencent, Qianlong The network, China Education News and other well-known domestic media
+                    have reported extensively. China Abroad Student Information Service Network is a website dedicated
+                    to the return of employment services for international students. It is led by the Beijing Institute
+                    of Sociology and is the only national information service platform in China that is jointly
+                    established by overseas educational institutions, industry associations, research institutes and
+                    relevant experts and scholars. </p>
+                    <p>China Abroad Student Information Service Network seeks to avoid the shortcomings of many
+                        educational websites, lack of specificity, single scope, single service, and reliable
+                        information. It is committed to creating a truly professional student information service
+                        platform for overseas students. Educational professionals provide a medium for timely access to
+                        truly usable and reliable news information, a channel for in-depth observation of the focus of
+                        Chinese overseas students' college education, a place where schools communicate with the
+                        government, a platform for interactive study of overseas students and college students, an
+                        overseas International students show their stage.</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="table-bg"></div>
+</section>
+<div class="infor-ft"><a href="#">Home</a>&nbsp;|&nbsp; <span>Copyright © Canada education data</span></div>
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+</script>
+</body>
+</html>

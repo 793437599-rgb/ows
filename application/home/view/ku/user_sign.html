@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+
+<html>
+
+{__NOLAYOUT__}
+
+	<head>
+
+		<meta charset="utf-8" />
+
+		<title>Signature</title>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<link rel="stylesheet" href="/canada/css/common.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css"/>
+
+		<link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css"/>
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+
+		<link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+
+		<script src="/static/js/jquery.min.js"></script>
+
+		<script src="/static/js/jquery.flexslider-min.js"></script>
+
+		<script src="/static/js/viewer-jquery.min.js"></script>
+
+		<script src="/static/js/selectFilter.js"></script>
+
+		<script src="/static/js/mobile.js"></script>
+
+		<script src="/static/js/layui/layui.js"></script>
+
+		<script src="/canada/js/html.js"></script>
+
+	</head>
+
+	<body>
+
+		<header class="User_hd_full">
+
+			<div class="T_main User_hd">
+
+				<a href="/"><img src="/static/images/logo.png" alt="logo" title="header-logo"/></a>
+
+			<div class="User_hd_bottom">
+
+				<ul class="layui-nav">
+
+					  <!--<li class="layui-nav-item"><a href="">Application review</a></li>
+
+					  <li class="layui-nav-item"><a href="">Data exchange</a></li>
+
+					  <li class="layui-nav-item"><a href="">Order</a></li>-->
+
+					  
+
+					  <li class="layui-nav-item">
+
+						<a href="javascript:;">{:lang('Profile')}</a>
+
+							<dl class="layui-nav-child">
+
+							  <dd><a href="/user_basic">{:lang('Account Settings')}</a></dd>
+
+							  <dd><a href="/logout">{:lang('Sign Out')}</a></dd>
+
+							</dl>
+
+						  </li>
+
+					</ul>
+
+				</div>
+
+			</div>
+
+		</header>
+
+		1234
+
+		<!-- info hd -->
+
+		<div class="T_main User_info">
+
+			<div class=" User_Avatar">
+
+				<a class="User_logo" href="/user_index"><img src="user-img/person-icon.png" ></a>
+
+				<div class="User_Avatar_down">
+
+					<form action="" method="">
+
+						<div class="User_Ava_tit">
+
+							{:lang('Edit Profile Picture')}
+
+							<i class="fa fa-close"></i>
+
+						</div>
+
+						<label for="profile" class="User_per">
+
+							<input name="profileImage" id="profile" type="file">
+
+							<i class="fa fa-long-arrow-right "></i>
+
+							<span >{:lang('Add Your Profile Photo')}</span>
+
+						</label>
+
+						<p>{:lang('Max File Size')}: 5 MB</p>
+
+						<p>{:lang('File Formats')}: PNG, JPEG, GIF</p>
+
+						<a href="javascript:;"  class="User_per">
+
+							<i class="fa fa-long-arrow-right "></i>
+
+							<span >{:lang('Remove Photo')}</span>
+
+					</a>
+
+				</form>
+
+				<div class="User_direction_icon fa fa-play"> </div>
+
+			</div>
+
+		</div>
+
+		<div class="User_Avart">
+
+			<div class="User_Ava_nav"> <a class="User_edit" href="#">{:lang('Edit')}</a></div>
+
+			<h2>{$user.username}</h2>
+
+			</div>
+
+			
+
+		</div>
+
+		
+
+		<!--主要内容-->
+
+		<div class=" User_mian_full">
+
+			<div class="T_main ">
+
+				<ul class="User_step">
+
+					<li class="User_list_step">
+
+						<h3>1</h3>
+
+						<p>{:lang('Education Information')}</p>
+
+						<span class="User_step_dot"></span>
+
+					</li>
+
+					<li class="User_list_step">
+
+						<h3>2</h3>
+
+						<p>{:lang('Data upload')}</p>
+
+						<span class="User_step_dot"></span>
+
+					</li>
+
+					<li class="User_list_step">
+
+						<h3>3</h3>
+
+						<p>{:lang('Agree')}</p>
+
+						<span class="User_step_dot"></span>
+
+					</li>
+
+					<li>
+
+						<h3>4</h3>
+
+						<p>{:lang('Carry out')}</p>
+
+						<span class="User_step_dot"></span>
+
+					</li>
+
+				</ul>
+
+				
+
+				<div class="Ua_box">
+
+					<form class="layui-form" action="" method="post"  lay-filter="example">
+
+						<div class="Tr_rebox ">
+
+							<h3>Provide consent</h3>
+
+							<p>I agree to upload my information to WSE</p>
+
+						</div>
+
+						<div class="User_form-item">
+
+							<label>Sign here with your mouse or finger</label>
+
+							<div class="Us_box">
+
+								<div class="Us_sign" id="signatureparent">
+
+									<div id="signature"></div>
+
+								</div>
+
+								<button class="Us_clear" type="button">
+
+									Clear signature
+
+								</button>
+
+								
+
+							</div>
+
+						</div>
+
+						
+
+						<div class="clearfix"></div>
+
+						<div class="User_form-item User_form-three">
+
+							<label>Signature content*</label>
+
+							<input type="text" name="" id="" value="" lay-reqtext="Professional name cannot be empty"  />
+
+						</div>
+
+						<div class="Tr_protocol">
+
+							<div class="Tr_pro_btn">
+
+								<input type="checkbox" name="" id="" value="">
+
+								<div class="layui-unselect layui-form-checkbox ">
+
+									<i class="layui-icon layui-icon-ok"></i>
+
+								</div>
+
+							</div>
+
+							<span>I am proof that I am the above individual in accordance with the law and I have the right to take this action.</span>
+
+						</div>
+
+						
+
+						<div class="User_apply">
+
+							<a href="#">Previous</a>
+
+							<button>Save</button>
+
+						</div>
+
+					</form>
+
+				</div>	
+
+			</div>
+
+		</div>
+
+		<div id="signatureparent">
+
+			<div id="signature"></div>
+
+		</div>
+
+		<div id="tools"></div>
+
+		<footer class="User_ft">
+
+			<a href="#">Home</a> | <span>© Copyright 2019 ca.university All Rights Reserved</span>
+
+		</footer>
+
+		<script>
+
+			layui.use(['form', 'layedit', 'laydate'], function(){
+
+				
+
+			})
+
+		</script>
+
+		<script src="static/js/jSignature.js"></script>
+
+		<script src="static/js/jSignature.CompressorBase30.js"></script>
+
+		<script src="static/js/jSignature.CompressorSVG.js" type="text/javascript" charset="utf-8"></script>
+
+		<script src="static/js/jSignature.UndoButton.js" type="text/javascript" charset="utf-8"></script>
+
+		<script>
+
+			$(document).ready(function () {
+
+
+
+				var arguments = {
+
+					width: '100%',
+
+					height: '150px',
+
+					cssclass: 'zx11',
+
+					signatureLine: false,//去除默认画布上那条横线
+
+					lineWidth: '2'
+
+				};
+
+				$("#signature").jSignature(arguments);
+
+
+
+				$('.Us_clear').click(function () {
+
+					$("#signature").jSignature("reset");
+
+				});
+
+				
+
+			});
+
+</script>
+
+		</script>
+
+	</body>
+
+
+
+</html>

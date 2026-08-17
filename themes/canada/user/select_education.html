@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('WSE-DAE for General Use')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+
+
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <style type="text/css">
+        .zeromodal-box {
+            margin-top: 50px;
+        }
+        .zeromodal-title1 {
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="edu-form" id="infodata">
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                <div class="layui-row user-avatar">
+                    <h1>{:lang('Basic Information')}</h1>
+                    <div class="public-user-header center-header-new2">
+                        {include file="public/_user_basic_information"}
+                    </div>
+                </div>
+                <div class="layui-row steps">
+                    <div class="layui-col-sm12 cave">
+                        <div class="bg-top"></div>
+                        <div class="table-select-edu">
+                            {if  !empty($orders)  }
+                            <h3>{:lang('Choice of Academic Qualifications')}</h3>
+                            <p>{:lang('After applying for a copy, we will reprint and print your evaluation report. Please select your academic information and make sure that the information is correct.')}</p>
+                            <hr>
+                           
+                            <div class="table-wrap">
+                                <table>
+                                    <tbody  id="tips_mark1">
+                                        <tr>
+                                            <th>{:lang('Select')}</th>
+                                            <th>{:lang('School Name')}</th>
+                                            <th>{:lang('Learning Level')}</th>
+                                            <th>{:lang('Study Country')}</th>
+                                            <th>{:lang('Profession')}</th>
+                                            <th>{:lang('Evaluation Time')}</th>
+                                            <th>{:lang('View')}</th>
+                                        </tr>
+                                        {volist name="orders" id="order" key="k"}
+                                        {if !empty($order.order_detail)}
+                                        <tr><!-- {if condition="$k == 1" } checked {/if} -->
+                                            <td><input type="radio" value="{$order.order_number}"   name="select_education"  {if condition="$k == 1" } checked {/if} 
+                                                ></td>
+                                            <td>{$order.order_detail.university}</td>
+                                            <td>
+                                                {if !empty($order.order_detail.degree) &&  !empty($order.order_detail.degree_program) }
+                                                {$order.order_detail.degree . ' of ' . $order.order_detail.degree_program}
+                                                {/if}
+                                            </td>
+                                            <td>{$order.order_detail.edu_nationality}</td>
+                                            <td>{$order.order_detail.major}</td>
+                                            <td>{$order.update_time}</td>
+                                            <td><a class="layui-btn mazarine layui-btn-xs" href="{:url('index/user/user_copy_application',['order_no'=>$order.order_number,'sort'=>2])}">{:lang('View')}</a></td>
+                                        </tr>
+                                        {/if}
+                                        {/volist}
+                                        <!-- <tr>  
+                                             <td><input type="radio" value="1110"   name="select_education"></td> 
+                                             <td>郑州大学</td> 
+                                             <td>理学学士</td> 
+                                             <td>中国</td> 
+                                             <td>经济学</td> 
+                                             <td>2020-05-20</td> 
+                                             <td><a class="layui-btn mazarine layui-btn-xs" href="#">{:lang('View')}</a></td> 
+                                        </tr>  -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            {else/}
+
+                            <div class="zeromodal-box">
+                                <div class="zeromodal-icon show-zero2 zeromodal-icon-info">!</div>
+                                <div class="zeromodal-title1">{:lang('Please apply for WSE Degree Assessed Education Storage service before applying for this project.')}</div>
+                                <div class="zeromodal-btn-container">
+                                    <button class="zeromodal-btn zeromodal-btn-primary">{:lang('Apply')}!</button>
+                                </div>
+                            </div>
+
+                            {/if}
+                        </div>
+                        <div class="layui-col-sm12 buttons">
+                            {if   !empty($orders) }
+                            <a class="layui-btn mazarine right"  >{:lang('Next')}</a>
+                            {/if}
+                            <br/>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="/static/js/layui/layui.js"></script>
+<script src="/static/js/layui/layui.all.js"></script>
+<script type="text/javascript">
+
+    $(document).on('click', '.table-wrap tr', function () {
+        $(this).find('input[type="radio"]').prop('checked', true)
+    })
+
+    $('.right').click(function () {
+        var no =   $("input[type='radio']:checked").val();
+        if (no == '' || no == null || no == undefined)  {
+            //layer.msg('Please',{icon:5})
+            layer.tips('{:lang("Please select education information")}', '#tips_mark1', {
+                tips: [3, '#FF5722']
+            })
+            return false;
+        }
+        location.href =  "{:url('/index/user/user_copy_application')}?order_no="+no+"&sort=3" ;
+    });
+
+</script>
+
+</body>
+</html>

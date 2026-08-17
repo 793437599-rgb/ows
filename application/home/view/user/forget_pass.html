@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+	<meta charset="utf-8"/>
+	<title>Reset password</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+	<link rel="stylesheet" href="/canada/css/header-footer.css">
+	<link rel="stylesheet" href="/canada/css/login-new.css">
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/mobile.js"></script>
+</head>
+<body>
+{include file="public/header-login" /}
+
+<section class="reset-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-10 col-sm-offset-1 col-md-7 col-md-offset-0 col-lg-6">
+				<div class="reset-password">
+					<h2>{:lang('Reset password')}</h2>
+					<!--有报错显示，无报错隐藏-->
+					<div class="alert-danger">
+						<i class="fa fa-exclamation-triangle"></i>
+						<span>{:lang('Invalid username or password')}</span>
+					</div>
+					<form id="forget_pass">
+						{:token()}
+						<div class="form-group">
+							<label for="username" id="username-label" class="form-label">{:lang('Email address')}</label>
+							<input type="email" name="email" id="username" class="form-input" value="{php} echo @$_COOKIE['useremail'];{/php}">
+							<p class="hide">{:lang('Please enter a valid email')}</p>
+						</div>
+						<div class="row">
+							<div class="col-xs-8 col-xs-offset-2">
+								<button type="button" class="btn btn-block">
+									<div><span class="btn-text">{:lang('Send reset link')}</span><span class="fa fa-angle-right"></span></div>
+								</button>
+							</div>
+						</div>
+						<div class="reset-cancel">
+							<a href="/home/user/log">{:lang('Back')}</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+	$('.alert-danger').hide();
+	$('.btn').click(function () {
+	     var re = /^\w+@[a-z0-9]+\.[a-z]{2,4}$/;
+	     var eml = $('#username').val();
+	    if(re.test(eml)){
+            $.post('/forget_pass',$('#forget_pass').serialize(),
+                function(result){
+                    if(result.code==1){
+                        console.log(result);
+                        window.location.href=result.url;
+                    }else{
+                        //提交错误，请刷新后重试
+                        if (result.msg=='invalid token') {
+                            $('.alert-danger').show();
+                            $('.alert-danger span').text('Error submitted. Please refresh and try again');
+                        } else{
+                            $('.alert-danger').show();
+                            $('.alert-danger span').text(result.msg);
+                        }
+                    }
+                });
+		}else{
+            $('.alert-danger').show();
+            $('.alert-danger span').text('Incorrect Email format');
+		}
+    });
+</script>
+{include file="public/footer-login" /}
+</body>
+</html>

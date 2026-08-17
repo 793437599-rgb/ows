@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+
+<html>
+
+
+
+	<head>
+
+		<meta charset="utf-8" />
+
+		<title>Application Information</title>
+
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<link rel="stylesheet" href="css/common.css" />
+
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="css/flexslider.min.css" />
+
+		<link rel="stylesheet" type="text/css" href="layui/css/layui.css"/>
+
+		<link rel="stylesheet" type="text/css" href="css/content.css" />
+
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+
+		<link rel="stylesheet" type="text/css" href="css/user.css" />
+
+		<script src="js/jquery.min.js"></script>
+
+		<script src="js/jquery.flexslider-min.js"></script>
+
+		<script src="js/selectFilter.js"></script>
+
+		<script src="js/mobile.js"></script>
+
+		<script src="layui/layui.js"></script>
+
+	</head>
+
+	<body>
+
+	<header class="User_hd_full">
+
+			<div class="T_main User_hd">
+
+				<a href="#"><img src="images/logo.png"/></a>
+
+				<div class="User_hd_bottom">
+
+					<!-- <img src="user-img/user_profession.png"/>
+
+					<img src="user-img/user_safety.png"/> -->
+
+					<form class="layui-form" action="" method="post"  lay-filter="example">
+
+							<div class="filter-box">
+
+								<select name="filter">
+
+									<option value="new" selected disabled>Switch language</option>
+
+									<option value="unaudited">简体中文</option>
+
+									<option value="nothrough">繁体中文</option>
+
+									<option value="audit">日本語</option>
+
+									<option value="audited">Deutsch</option>
+
+									<option value="passed">已通过</option>
+
+									<option value="1">한국어</option>
+
+									<option value="2">Русский</option>
+
+									<option value="3">Français</option>
+
+								</select>
+
+							</div>
+
+					</form>
+
+					<dl class="User_hd-rt">
+
+						<dt>
+
+							<i class="fa fa-user"></i>
+
+							qiaojie xu
+
+							<i class="fa fa-angle-down"></i>
+
+						</dt>
+
+						<dd><i class="fa fa-sign-out"></i> sign out</dd>
+
+					</dl>
+
+				</div>
+
+			</div>
+
+		</header>
+
+		<!--主要内容-->
+
+		<p></p>
+
+		<div class=" User_mian_full">
+
+			<div class="T_main  U_mian">
+
+				<div class="User_left">
+
+					<h3><i class="fa fa-mortar-board"></i>Function List</h3>
+
+					<ul class="User_ltbox">
+
+						<li><a href="#">Basic Information <i class="fa fa-angle-right"></i></a></li>
+
+						<li><a href="#">My application <i class="fa fa-angle-right"></i></a></li>
+
+						<li><a href="#">Payment details<i class="fa fa-angle-right"></i></a></li>
+
+						<li><a href="#">change Password<i class="fa fa-angle-right"></i></a></li>
+
+					</ul>
+
+					<dl class="U_soft">
+
+						<dt >
+
+							<img src="user-img/soft_icon1.png" >
+
+							<img src="user-img/soft_icon2.png" >
+
+							<img src="user-img/soft_icon3.png" >
+
+							<img src="user-img/soft_icon4.png" >
+
+						</dt>
+
+						<dd>
+
+							WSE protects users' privacy, science majors, and security hubs for academic qualification assessment.
+
+						</dd>
+
+							
+
+					</dl>
+
+				</div>
+
+				
+
+				<div class="User_right">
+
+					<ul class="User_step">
+
+						<li class="User_list_step">
+
+							<h3>1</h3>
+
+							<p>Basic Information</p>
+
+							<span class="User_step_dot"></span>
+
+						</li>
+
+						<li class="User_list_step">
+
+							<h3>2</h3>
+
+							<p>Application Information</p>
+
+							<span class="User_step_dot"></span>
+
+						</li>
+
+						<li>
+
+							<h3>3</h3>
+
+							<p>Data upload</p>
+
+							<span class="User_step_dot"></span>
+
+						</li>
+
+						<li>
+
+							<h3>4</h3>
+
+							<p>Selection agency</p>
+
+							<span class="User_step_dot"></span>
+
+						</li>
+
+						<li>
+
+							<h3>5</h3>
+
+							<p>carry out</p>
+
+							<span class="User_step_dot"></span>
+
+						</li>
+
+					</ul>
+
+					<div class="Ua_box">
+
+						<form class="layui-form" action="" method="post"  lay-filter="example">
+
+							<div class="Tr_rebox">
+
+								<h3>
+
+									Educational information
+
+									
+
+								</h3>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>Study abroad country</span>
+
+								<select  lay-verify="required" lay-search="" lay-reqtext="The country of study cannot be empty">
+
+									<option value="">Choose a country to study abroad</option>
+
+									<option  value="2">china</option>
+
+									<option  value="3">china</option>
+
+								</select>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>School name</span>
+
+								<select lay-verify="required" lay-search="" lay-reqtext="Study abroad institutions cannot be empty">
+
+									<option>lalal</option>
+
+									<option>china</option>
+
+									<option>china</option>
+
+								</select>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>Learning level</span>
+
+								<select lay-reqtext="Learning level cannot be empty">
+
+									<option>Junior college course</option>
+
+									<option>Undergraduate course</option>
+
+									<option>Master's course</option>
+
+									<option>Doctoral course</option>
+
+								</select>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>School nature</span>
+
+								<select lay-reqtext="Learning level cannot be empty">
+
+									<option>Private university</option>
+
+									<option>Public universities</option>
+
+									<option>Distance Education</option>
+
+									<option>language school</option>
+
+									<option>training school</option>
+
+									<option>Other types</option>
+
+								</select>
+
+							</div>
+
+							<div class="Ua_list" lay-reqtext="Subject category cannot be empty">
+
+								<span>Subject category</span>
+
+								<select>
+
+									<option>Subject</option>
+
+									<option>other</option>
+
+									
+
+								</select>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>professional title</span>
+
+								<input type="text" name="" id="" value="" lay-reqtext="Professional name cannot be empty"  placeholder="Enter a professional name"/>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>student ID</span>
+
+								<input type="text" name="" id="" value="" lay-verify="number" lay-reqtext="student ID cannot be empty" placeholder="Enter the student number"/>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>SSN</span>
+
+								<input type="text" name="" id="" value=""  placeholder="Apply for a degree assessment in the US, if not, you can leave it blank."/>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>Paper name</span>
+
+								<input type="text" name="" id="" value=""  lay-reqtext="Paper name cannot be empty" placeholder="Enter Paper name"/>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>Start date</span>
+
+								<input class=" Sinput_date_time" type="text" name="" id="" value="" lay-reqtext="Start date cannot be empty cannot be empty"  placeholder="Enter the start date"/>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>Graduation date</span>
+
+								<input class=" Ginput_date_time" type="text" name="" id="" value=""  lay-reqtext="Graduation date cannot be empty cannot be empty" placeholder="Enter the start date"/>
+
+							</div>
+
+							<div class="Tr_rebox">
+
+								<h3>
+
+									Evaluation report mailing address
+
+									<span>The address cannot be modified after submission. Please fill in carefully.</span>
+
+								</h3>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>Mailing country</span>
+
+								<select lay-verify="required" lay-search="" lay-reqtext="Mailing country cannot be empty cannot be empty">
+
+									<option value="">Choose the country to mail</option>
+
+									<option value="1">China</option>
+
+									
+
+								</select>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>Full address by mail</span>
+
+								<input type="text" name="" id="" value="" lay-reqtext="Mailing country cannot be empty cannot be empty" placeholder="Enter the Full address by mail"/>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>Recipient</span>
+
+								<input type="text" name="" id="" value=""  placeholder="Enter recipient name"/>
+
+							</div>
+
+							<div class="Ua_list">
+
+								<span>Recipient contact information</span>
+
+								<input type="text" name="" id="" value=""  placeholder="Enter recipient contact information"/>
+
+							</div>
+
+							<div class="User_apply">
+
+								<a href="#">Previous</a>
+
+								<button class="layui-btn" lay-submit="">Next step</button>
+
+							</div>
+
+						</form>
+
+					
+
+					</div>
+
+				</div>
+
+				
+
+			</div>
+
+			
+
+		</div>
+
+		<footer class="User_ft">
+
+			<a href="#">Home</a> | <span>© Copyright 2019 ca.university All Rights Reserved</span>
+
+		</footer>
+
+		<script src="layui/layui.js"></script>
+
+		<script>
+
+			layui.use(['form', 'layedit', 'laydate'], function(){
+
+				
+
+				var form = layui.form
+
+				,layer = layui.layer
+
+				,layedit = layui.layedit
+
+				,laydate = layui.laydate;
+
+				  //执行一个laydate实例
+
+			    laydate.render({
+
+				  elem: '.Sinput_date_time' ,//指定元素
+
+				  lang: 'en',
+
+				
+
+			    });
+
+			    laydate.render({
+
+				  elem: '.Ginput_date_time' ,//指定元素
+
+				  lang: 'en',
+
+								
+
+			    });
+
+				
+
+			})
+
+			
+
+			
+
+		</script>
+
+	</body>
+
+
+
+</html>

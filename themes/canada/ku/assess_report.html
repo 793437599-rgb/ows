@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8" />
+    <title>Information</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css" />
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/flexslider.min.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/viewer.min.css" />
+    <link rel="stylesheet" href="/canada/css/evcommon.css">
+    <link rel="stylesheet" href="/canada/css/Evaluation.css">
+    <link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/jquery.flexslider-min.js"></script>
+    <script src="/static/js/viewer-jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <style type="text/css">
+        .tabBtn {
+            padding: 20px 0;
+        }
+        .tabBtn.Qi_Hbasci {
+            padding-left: 0
+        }
+        .tabBtn .qi_text a {
+            margin-left: 0;
+            margin-right: 10px;
+        }
+        .eval-body {
+            width: 1200px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+<div class="eval-body" >
+    <div class="layui-tab layui-tab-brief">
+        <div class="layui-tab-content">
+            <div class="eval-box" id="certificate">
+                <div class="eval-item-box" >
+                    <div class="eval-table-box">
+                        <p class="page-tit">Certificate Number: ASE2020STO325642</p>
+                        <p>{:date("j F Y",strtotime($edu.issued_date))}</p>
+                        <table class="eval-table-one">
+                            <tr>
+                                <td>Application:</td>   
+                                <td>{$user.search_id}</td>
+                            </tr>
+                            <tr>
+                                <td>Name:</td>
+                                <td>{$user.username}</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Birth:</td>
+                                <td>{:date("j F Y",strtotime($user.birth_time))}</td>
+                            </tr>
+                        </table>
+                        <table class="eval-table-two">
+                            <tr>
+                                <td>Qualification</td>
+                                <td>{$edu.degree} in computer science and technology </td>
+                            </tr>
+                            <tr>
+                                <td>Speciallsation</td>
+                                <td>
+                                    {$edu.faculty|getfaculty='title_en'} {$edu.major|getfaculty='title_en'}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Awarding Body</td>
+                                <td>{$school}</td>
+                            </tr>
+                            <tr>
+                                <td>Date of Award</td>
+                                <td>{:substr($edu.issued_date,0,4)}</td>
+                            </tr>
+                            <tr>
+                                <td>Standard Programme Duration</td>
+                                <td>{$year} years full time</td>
+                            </tr>
+                        </table>
+                        <div class="eval-dail-text">
+                            <div class="eval-dail-ct">
+                                <span>Assessment Outcome</span>
+                                <span>A {$edu.degree} width honours degree at Leval 8</span>
+                            </div>
+                            <p>COMMENTS</p>
+                            <p>{$user.assess}</p>
+                            <p>{$sub_assess}</p>
+                        </div>
+                        <div class="eval-table-three">
+                            <div class="eval-div">
+                                <img src="/template/images/signature.png" alt="">
+                                <div style="margin: 10px 0px;border-bottom: 2px solid #000;"></div>
+                                <p>Calvin Scott</p>
+                                <p>Qualifications Evaluator</p>
+                            </div>
+                            <div class="eval-div eval-div-t2">
+                                <img src="/template/images/signature1.png" alt="">
+                                <div style="margin: 10px 0px;border-bottom: 2px solid #000;"></div>
+                                <p>Roger Printup</p>
+                                <p>Head：World Storage Education</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="trans_border">
+                    <h3>WSE Course Evaluation Report Description</h3>
+                    <p>The expiration date of the review : 2025/07/25</p>
+                    <p>Check the verification address : www.ve.wse.org</p>
+                </div>
+                <div class="trans-note">
+                    <h3>Note:</h3>
+                    <p>Other certificate forms that do not pass the WSE electronic certificate sharing form (email or link) include but are not limited to screenshots, files, etc., which do not have WSE certificate rights.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

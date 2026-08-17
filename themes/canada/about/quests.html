@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <link rel="stylesheet" href="/css/chat_box.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/layim.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+<style>
+    .message {
+        width: 100%;
+        float: left;
+    }
+    .layim-chat-main {
+        height: 456px;
+    }
+.layim-chat-textarea {
+        width: 99%;
+        margin: 0 auto;
+    }
+.layim-chat-textarea textarea {
+        width: 99%;
+        margin: 5px 0 0;
+        padding: 0px;
+        border: 1px solid #eee;
+    }
+.user-info-table{
+        width: 90%;
+        margin: 10px auto;
+        table-layout:fixed;
+    }
+    .user-info-table td {
+        word-wrap:break-word;
+    }
+    .layui-table tbody tr:hover {
+        background-color: white;
+    }
+    .user-img-info {
+        width: 90%;
+        margin: 20px auto;
+        color: #666;
+        font-size: 14px;
+}
+    .user-img-info img {
+        max-width: 60%;
+        margin-bottom: 5px;
+        border: 3px solid #eee;
+    }
+.user-img-box {
+        text-align: center;
+    }
+    .layim-chat-main img {
+        max-width: 100px!important;
+    }
+    .chat-img-preview {
+        display: inline-block;
+    }
+</style>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div >
+<div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+<div class="layui-col-sm10">
+            <div class="layui-row mainContent-header">
+                <div class="layui-col-sm10 layui-col-xs8">
+                    <h1 style="font-size: 24px;margin-bottom: .5em;line-height: 1.25em;color: #505050; font-weight: 800;">{:lang('Advisory Service')}</h1>
+                </div>
+            </div>
+            <hr/>
+<div class="lain-contbox">
+            <div class="layui-tab-card message">
+                <div class="layui-layer-title" style="cursor: move;">​{:lang('WSE customer service')}</div>
+                <div class="layim-chat-box">
+                    <div class="layim-chat layim-chat-friend layui-show">
+                        <div class="layui-unselect layim-chat-title">
+                            <div class="layim-chat-other"></div>
+                        </div>
+                        <div class="layim-chat-main" style="height: 300px;">
+                            <ul>
+                                <!-- foreach -->
+                                <!-- <li class="layim-chat-mine">
+                                    <div class="layim-chat-user">
+                                        <img src=""><cite><i>2020-06-23
+                                                15:58:10</i>纸飞机</cite></div>
+                                    <div class="layim-chat-text">rth hsdfhdfg</div>
+                                </li> -->
+                                {volist name="messages" id="vo" key="k"}
+                                    <li class="{neq name='$vo.is_reply' value='2'} layim-chat-mine {/neq}" {if condition="$k == count($messages)" } id="latest-chat-msg" {/if} >
+                                        <div class="layim-chat-user">
+                                            <img src="{$vo.head_img}">
+                                            <cite>
+                                                <i>{$vo.create_time|date="Y-m-d H:i:s",###}</i>
+                                                {$vo.sender}
+                                            </cite>
+                                        </div>
+                                        <div class="layim-chat-text">{$vo.message}</div>
+                                    </li>
+                                {/volist}   
+</ul>
+                        </div>
+                        <div class="layim-chat-footer">
+                            <form class="layui-form">
+                               <!--  <div class="layui-unselect layim-chat-tool">
+                                    <span class="layui-icon layui-icon-face-smile-fine" title="选择表情" layim-event="face"></span>
+                                    <span class="layui-icon layui-icon-picture-fine" title="上传图片" layim-event="image">
+                                        <input type="file" name="file">
+                                    </span>
+                                    <span class="layui-icon layim-tool-image" title="发送文件" layim-event="image"
+                                        data-type="file">
+                                        <input type="file" name="file">
+                                    </span>
+                                    <span class="layim-tool-log" layim-event="chatLog"><i
+                                            class="layui-icon"></i>聊天记录</span>
+                                </div> -->
+                                <div class="layim-chat-textarea">
+                                    <textarea class="layui-textarea" id="chat-textarea"></textarea>
+                                </div>
+                                <div class="layim-chat-bottom">
+                                    <div class="layim-chat-send">
+                                        <button type="button" class="layui-btn layui-btn-sm"
+                                            layim-event="send" lay-submit lay-filter="send">{:lang('send')}</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $(function () {
+var ele = $('.layim-chat-main').get(0);
+        //判断元素是否出现了滚动条
+        if(ele.scrollHeight > ele.clientHeight) {
+            //设置滚动条到最底部
+            ele.scrollTop = ele.scrollHeight;
+        }
+        $('.layim-chat-text img').wrap("<div class='chat-img-preview'></div>");
+layui.use(['layedit','form','layer'], function () {
+            var layer =layui.layer;
+            var layedit = layui.layedit;
+            var form = layui.form;
+            var edit = layedit.set({
+                uploadImage: {
+                    url: '{:url("index/about/localupload")}' //接口url
+                }
+            });
+            layedit.build('chat-textarea', {
+                height: 190
+            }); //建立编辑器
+form.on('submit(send)', function(data){
+                let content = layedit.getContent(edit.index);
+                let uid = '{$user.id}';
+                console.log(uid);  console.log(content);
+if (content == '' || content == null){
+                    return layer.msg('回复内容不能为空');
+                }
+                $.ajax({
+                    url:'{:url("index/about/sendMessage")}'
+                    ,type:'post'
+                    ,data:{content:content,user_id:uid}
+                    ,dataType:'json'
+                    ,success:function (result) {
+                        if (result.code == 1){
+                            location.reload();
+                        }else {
+                            layer.msg(result.msg,function () {
+                            });
+}
+                    }
+                })
+            });
+layer.photos({
+            photos: '.chat-img-preview'
+            ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+        });
+               layer.photos({
+            photos: '.layer-preview'
+            ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
+        });
+});
+})
+</script>
+</body>
+</html>

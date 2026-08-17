@@ -1,0 +1,134 @@
+<!--侧边导航-->
+<div class="nav-left">
+    <ul class="layui-nav layui-nav-tree">
+
+        {if condition="$_SERVER.PATH_INFO eq 'index/user/index'"}
+            <li class="layui-nav-item" style="background-color: #88C34D" >
+                <a href="/home/user/index">{:lang('Home Page')}</a>
+            </li>
+        {else /}
+            <li class="layui-nav-item" >
+                <a href="/home/user/index">{:lang('Home Page')}</a>
+            </li>
+        {/if}
+
+        <li class="layui-nav-item">
+            <a href="javascript:;">{:lang('Profile')}</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/profile">{:lang('Basic Information')}</a></dd>
+                <dd><a href="/change_pass?user_id={$user.id}">{:lang('Change Password')}</a></dd>
+            </dl>
+        </li>
+
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">{:lang('My Applications')}</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/applications_lists">{:lang('Application Project')}</a></dd>
+                {volist name="applications" id="vo"}
+                <dd><a href="/applications_info/id/{$vo.id}">
+                    {switch name="$Think.cookie.think_var"}
+                    {case value="en-us"}{$vo.name_en}{/case}
+                    {case value="zh-cn"}{$vo.app_name}{/case}
+                    {case value="ja-jp"}{$vo.name_jp}{/case}
+                    {case value="de-de"}{$vo.name_de}{/case}
+                    {case value="ko-kr"}{$vo.name_kr}{/case}
+                    {case value="ru-ru"}{$vo.name_ru}{/case}
+                    {case value="fr-fa"}{$vo.name_fa}{/case}
+                    {/switch}
+                </a></dd>
+                {/volist}
+            </dl>
+        </li>
+
+        <!--数据传输-->
+        <li class="layui-nav-item layui-nav-itemed">
+            <a href="javascript:;">{:lang('Transfer')}</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/apply_all">{:lang('Transfer')}</a></dd>
+                <dd><a href="/apply_introduction">{:lang('Introduction')}</a></dd>
+                <dd><a href="/apply_how">{:lang('How to Apply')}</a></dd>
+                <dd><a href="/apply_order">{:lang('Data Transfer Order')}</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+
+<style>
+    .nav-left-mobile {
+        display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+        .nav-left {
+            display: none;
+        }
+        .nav-left-mobile {
+            display: block;
+        }
+    }
+</style>
+
+<div class="nav-left nav-left-mobile">
+    <ul class="layui-nav layui-nav-tree">
+        <li class="layui-nav-item">
+            <a href="/home/user/index">{:lang('Home Page')}</a>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">{:lang('Profile')}</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/profile">{:lang('Profile')}</a></dd>
+                <dd><a href="/change_pass?user_id={$user.id}">{:lang('Change Password')}</a></dd>
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">{:lang('My Applications')}</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/applications_all">{:lang('My Applications')}</a></dd>
+                {volist name="applications" id="vo"}
+                <dd><a href="/applications_info/id/{$vo.id}">
+                    {switch name="$Think.cookie.think_var"}
+                    {case value="en-us"}{$vo.name_en}{/case}
+                    {case value="zh-cn"}{$vo.app_name}{/case}
+                    {case value="ja-jp"}{$vo.name_jp}{/case}
+                    {case value="de-de"}{$vo.name_de}{/case}
+                    {case value="ko-kr"}{$vo.name_kr}{/case}
+                    {case value="ru-ru"}{$vo.name_ru}{/case}
+                    {case value="fr-fa"}{$vo.name_fa}{/case}
+                    {/switch}
+                </a></dd>
+                {/volist}
+
+            </dl>
+        </li>
+        <li class="layui-nav-item">
+            <a href="javascript:;">{:lang('Transfer')}</a>
+            <dl class="layui-nav-child">
+                <dd><a href="/apply_all">{:lang('Transfer')}</a></dd>
+                <dd><a href="/apply_introduction">{:lang('Introduction')}</a></dd>
+                <dd><a href="/apply_how">{:lang('How to Apply')}</a></dd>
+                <dd><a href="/apply_order">{:lang('Data Transfer Order')}</a></dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+
+<ul class="layui-fixbar">
+    <li class="layui-icon layui-fixbar-top" lay-type="top" style="display: list-item;"></li>
+</ul>
+<script>
+    $(document).ready(function(){
+        /*   侧边导航   */
+        $('.layui-nav-child a').each(function () {
+            $this = $(this);
+            if(String(window.location).indexOf($this[0].href) != -1) {
+                $this.parent().addClass('act')
+            }
+        })
+    });
+    /*   回到顶部   */
+    $(".layui-fixbar-top").click(function() {
+        $("html, body").animate({ scrollTop: 0 }, "slow");
+        return false;
+    });
+</script>
+

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('Renew WSE-DAE Application V1')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+     <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div >
+<div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+<!--    user avatar    -->
+                <div class="layui-row user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{$order.name_en}</h1>
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email}— {$user.search_id}</p>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <div class="steps-card">
+                            <h3>Required Steps</h3>
+                            <div class="step-arrow-box">
+                                {foreach name="app_step" item="vo"}
+                                <a href="{$vo.sort}">
+                                    {if condition="in_array($vo.id,$step_ok)"}
+                                    <div class="step-arrow-wrap step-arrow-complete">
+                                        {else}
+                                        <div class="step-arrow-wrap">
+                                            {/if}
+                                            <div class="step-arrow-left">
+                                                <div class="arrow-1"></div>
+                                                <div class="arrow-2"></div>
+                                            </div>
+                                            <div class="step-arrow-center">
+                                                <span class="layui-hide-xs">
+                                                    {$vo.sort}. {switch name="$Think.cookie.think_var"}
+                                                    {case value="en-us"}{$vo.step_en}{/case}
+                                                    {case value="zh-cn"}{$vo.step_name}{/case}
+                                                    {case value="ja-jp"}{$vo.step_jp}{/case}
+                                                    {case value="de-de"}{$vo.step_de}{/case}
+                                                    {case value="ko-kr"}{$vo.step_kr}{/case}
+                                                    {case value="ru-ru"}{$vo.step_ru}{/case}
+                                                    {case value="fr-fa"}{$vo.step_fa}{/case}
+                                                    {/switch}
+                                                </span>
+                                                <span class="layui-hide-sm">{$vo.sort}</span>
+                                            </div>
+                                            <div class="step-arrow-right">
+                                                <div class="arrow-1"></div>
+                                                <div class="arrow-2"></div>
+                                            </div>
+                                        </div>
+                                </a>
+                                {/foreach}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+<!--    steps    -->
+                <div class="layui-row steps">
+                    <div class="layui-col-sm12">
+                        <h3>{:lang('READ INSTRUCTIONS')}</h3>
+                        <hr/>
+                        <p>{:lang('Please read and follow carefully to avoid delays')}</p>
+                        <hr/>
+                        <h5>{:lang('Application to Renew your WSE Degree Assessment Education for Canadian Immigration Programs')}</h5>
+                        <p>{:lang('The Degree Assessment Education (DAE) has been designated by the Immigration, Refugees and Citizenship Canada as of April 17th, 2013 to provide Degree Assessment Educations (DAE) for Canadian immigration programs.If you have obtained an DAE assessment report for immigration purposes from WSE that has since expired or about to expire,')}</p>
+                        <p>{:lang('For information about immigration programs visit')} <a href="https://www.canada.ca/en/services/immigration-citizenship.html" target="_blank">https://www.canada.ca/en/services/immigration-citizenship.html</a></p>
+                        <h5>{:lang('Your application to renew your original WSE-DAE Report will require')}:</h5>
+                        <ol>
+                            <li>{:lang('A completed online application')}</li>
+                            <li>{:lang('A colour copy of both sides of your government-issued photo identification showing your date of birth')}</li>
+                            <li>{:lang('If your name has changed since the issuance of your report, please provide a copy of your marriage certificate or a proof of name change document showing both your former name and current name.')}</li>
+                            <li>{:lang('A colour copy of your expired or about to expire WSE-DAE Report')}</li>
+                            <li>{:lang('Full payment of applicable WSE service fees')}</li>
+                        </ol>
+                        <p><strong>{:lang('NOTE')}</strong>: {:lang('Your assessment outcome may change to reflect current WSE policy. If it does, the new (renewed) report will supersede the previous report.')}</p>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save This Page')}</a>
+                        <a href="{:url('/save_next',['app_id'=>$fee.id,'sort'=>$sort+1])}" class="layui-btn mazarine right">{:lang('Next Page')}</a>
+                        <br/>
+                        <br/>
+                        <a class="layui-btn layui-btn-primary" lay-submit>{:lang('Save and Finish Later')}</a>
+                        <hr/>
+                    </div>
+                </div>
+</div>
+        </div>
+</div>
+</section>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('WSE-DAE for General Use')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css" />
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <link rel="stylesheet" href="/static/js/zeroModal/css/zeroModal.css">
+    <script src="/static/js/zeroModal/js/zeroModal.min.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div >
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+                <!--    user avatar   -->
+                {include file="public/_nav_center_header" /}
+                <!--    steps    -->
+                <div class="layui-row steps  card-style">
+                    <div class="layui-col-sm12 ">
+                        <h3>{:lang('Choose the type of data to update')}</h3>
+                        <br>
+                        <div class="layui-row layui-col-space20 updateIconBox">
+                            <div class="layui-col-sm6 layui-col-xs6"  >
+                                <a href="javascript:;" id="promotion">
+                                    <i class="iconfont icon-edu-degree"></i>
+                         <!--      <img src="/static/images/default_thumb.png" style="height: 120px;margin-bottom: 5px;">  -->
+                                <p>{:lang('Education Promotion')}</p></a>
+                            </div>
+                            <div class="layui-col-sm6 layui-col-xs6">
+                                <a href="{:url('index/user/modification_of_education_order_data')}" id="">
+                                <i class="iconfont icon-edu-upgrade"></i>
+                           <!--      <img src="/static/images/default_thumb.png" style="height: 120px;margin-bottom: 5px;"> -->
+                                <p>{:lang('Modify Storage Information')}</p>
+                                </a>
+                            </div>
+                        </div>
+                        <hr/>
+                        <h5>{:lang('Data update service description')}</h5>
+                        <br/>
+                        <p>{:lang('Data update should select different update types according to your current actual situation. Currently WSE only provides the above two data update methods. For specific data update instructions, please see the following:')}</p>
+                            <br>
+                        <p style="line-height: 28px;">{:lang('1. Education promotion: When you have already submitted an application in WSE, and the application education you submitted does not match your current education, you want to update the latest education information, then you can choose the data update method of "education improvement"')}</p> <br>
+                        <p style="line-height: 28px;">{:lang('2. Modification of current academic information: If you have just applied for WSE recently, but your information is submitted incorrectly due to negligence, and the information on your assessment report is also wrong, you can submit relevant information to update your data')}</p> <br>
+                        <p style="line-height: 28px;">{:lang('Both are suitable for different application requirements, please determine your data update requirements before choosing. You can decide which data update method to use according to your different needs')}</p>
+                    </div>
+                    <div class="layui-col-sm12">
+                        <br/>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $('#promotion').click(function () {
+        $.ajax({
+            url: "{:url('index/order/precondition')}",
+            type:'get',
+            data: {app_id: 18},
+            dataType:'json',
+            success:function (res) {
+                if (res.code == 20000) {
+                    location.href = "{:url('index/user/applications_info',['id'=>18])}"
+                }else {
+                    zeroModal.alert({
+                       content:  '{:lang("Please apply for WSE Degree Assessed Education Storage service before applying for this project.")}',    
+                       okTitle: '{:lang("UPGRADE TO FULL ACCOUNT!")}',  
+
+                       okFn: function() {
+                            location.href="{:url('/applications_info',['id'=>3])}";
+                       }  ,
+                        cancel:true,
+                    });
+                }
+            }
+        })
+    })
+    $('#current').click(function () {
+        $.ajax({
+            url: "{:url('index/order/precondition')}",
+            type:'get',
+            data: {app_id: 19},
+            dataType:'json',
+            success:function (res) {
+                // console.log(res);
+                if (res.code == 20000) {
+                    location.href = "{:url('index/user/applications_info',['id'=>19])}"
+                }else {
+                    zeroModal.alert({
+                       content: res.msg,
+                       okTitle: '{:lang("Apply for Degree Assessed Storage")}',
+                       okFn: function() {
+                            location.href="{:url('/applications_info',['id'=>3])}";
+                       },
+                        cancel:true,
+                        cancelTitle: '{:lang("Cancel")}',
+                    });
+                }
+            }
+        })
+    })
+</script>
+</body>
+</html>

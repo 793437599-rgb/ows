@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+	<meta charset="utf-8"/>
+	<title>{:lang('Register')}</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+	<link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/js/layui/css/layui.css">
+	<link rel="stylesheet" href="/canada/css/header-footer.css">
+	<link rel="stylesheet" href="/canada/css/login-new.css">
+	<script src="/static/js/jquery.min.js"></script>
+	<script src="/static/js/layui/layui.js"></script>
+	<script src="/static/js/mobile.js"></script>
+	<script src="/static/js/langCookie.js"></script>
+</head>
+<body>
+<style>
+	.layui-layer-btn .layui-layer-btn0 {
+		border-color: #dedede;
+		background-color: #fff;
+		color: #333;
+	}
+	.layui-layer-btn a:hover {
+		border-color: #1E9FFF;
+		background-color: #1E9FFF;
+		color: #fff;
+	}
+</style>
+{include file="public/header-login" /}
+<section class="main">
+	<div class="container">
+		<div class="row register-form">
+			<div class="col-xs-12">
+				<h1>{:lang('Registration: Step 1 of 2')}</h1>
+				<p>{:lang('Create an account below for a personalised Prospects experience')}.</p>
+				<p>{:lang('Please make sure you have read and accept our <a href="" target="_blank">privacy policy</a> before continuing.')}</p>
+				<p class="registration-message">* {:lang('denotes required information')}</p>
+				<div class="register-center">
+					<div class="alert-danger hide">
+						<i class="fa fa-exclamation-triangle"></i>
+						<span>{:lang('There is an errors. Please correct them')}.</span>
+						<ul>
+							<li class="email-hide hide">
+								<a href="#registerEmail">
+									<i class="fa fa-angle-down"></i>
+									<span class="li-span">{lang('Email address: Must be valid')}.</span>
+								</a>
+							</li>
+							<li class="firstname-hide hide">
+								<a href="#firstNames">
+									<i class="fa fa-angle-down"></i>
+									<span>{:lang('First name: Required')}</span>
+								</a>
+							</li>
+							<li class="lastname-hide hide">
+								<a href="#lastName">
+									<i class="fa fa-angle-down"></i>
+									<span>{:lang('Last name: Required')}</span>
+								</a>
+							</li>
+							<li class="checkbox-hide hide">
+								<a href="#privacy-policy">
+									<i class="fa fa-angle-down"></i>
+									<span>{:lang('I accept the privacy policy: Required')}</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<form id="user-register">
+<div class="form-group">
+							<label for="registerEmail" class="form-label">{:lang('Email address')}<span class="asterisk">*</span></label>
+							<input type="email" name="email" id="registerEmail" placeholder="{:lang('you@email.com')}" class="form-input">
+							<p class="email-p1 asterisk hide">{:lang('Must be valid')}.</p>
+						</div>
+<div class="form-group">
+							<label for="password" class="form-label">{:lang('PassWord')}<span class="asterisk">*</span></label>
+							<input type="password" name="password" id="password" placeholder="{:lang('Please enter a password of 4-12 units in length')}" class="form-input">
+							<p class="email-p1 asterisk hide">{:lang('Must be valid')}.</p>
+						</div>
+<div class="form-group">
+							<label for="firstNames" class="form-label">{:lang('First name')}<span class="asterisk">*</span></label>
+							<input type="firstNames" name="firstname" id="firstNames" class="form-input" >
+							<p class="asterisk hide">{:lang('Required')}.</p>
+						</div>
+						<div class="form-group">
+							<label for="MiddleNames" class="form-label">{:lang('Middle name')}<span class="label-extra">( {:lang('optional')} )</span></label>
+							<input type="MiddleNames" name="middlename" id="MiddleNames"  class="form-input">
+						</div>
+						<div class="form-group">
+							<label for="lastName" class="form-label">{:lang('Last name')}<span class="asterisk">*</span></label>
+							<input type="lastName" name="lastname" id="lastName"  class="form-input">
+							<p class="asterisk hide">{:lang('Required')}</p>
+						</div>
+						<div class="consent">
+							<div class="form-group">
+								<label for="privacy-policy" class="form-label"><a href="javascript:void(0);" style="color: #0C0C0C;text-decoration:none" id="protocol">{:lang('I accept the privacy policy')}</a><span class="asterisk">*</span></label>
+								<input type="checkbox" name="check" id="privacy-policy">
+								<p class="asterisk hide">{:lang('Required')}</p>
+							</div>
+<button type="button" class="btn btn-block" disabled  id="btn">
+								<div><span class="btn-text">{:lang('Next Step')}</span><span class="fa fa-angle-right"></span></div>
+							</button>
+</div>
+					</form>
+				</div>
+				<p>{:lang('Already have an account')}? <a href="/index/user/log">{:lang('Log in')}</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+<script>
+    $(document).ready(function () {
+$('#registerEmail').blur(function () {
+            var eml = $('#registerEmail').val();
+            var res = /^[0-9A-Za-z][\.-_0-9A-Za-z]*@[0-9A-Za-z]+(\.[0-9A-Za-z]+)+$/;
+            if (res.test(eml)){
+                $('#registerEmail').siblings('.email-p1').addClass('hide');
+            }else {
+                $('#registerEmail').siblings('.email-p1').removeClass('hide');
+            }
+        });
+$('#password').blur(function () {
+			var pass = $('#password').val();
+			if (pass != ''){
+			    if (pass.length>=4 && pass.length<=12){
+			        $('#password').css({border:''});
+				}else {
+                    $('#password').css({border:'1px solid red'});
+				}
+                $('#password').siblings('.asterisk').addClass('hide');
+			} else {
+                $('#password').siblings('.asterisk').removeClass('hide');
+			}
+        });
+$('#firstNames').blur(function () {
+            var fname = $('#firstNames').val();
+            if ( fname !=''){
+                $('#firstNames').siblings('.asterisk').addClass('hide');
+            }else {
+                $('#firstNames').siblings('.asterisk').removeClass('hide');
+            }
+        });
+$('#lastName').blur(function () {
+            var lname = $('#lastName').val();
+            if ( lname !=''){
+                $('#lastName').siblings('.asterisk').addClass('hide');
+            }else {
+                $('#lastName').siblings('.asterisk').removeClass('hide');
+            }
+        });
+        $('#privacy-policy').click(function () {
+            var chk = $("#privacy-policy").prop("checked");
+            //console.log('checked',chk);
+            if (chk) {
+                $('.btn').prop('disabled',false);
+                $('#privacy-policy').siblings('.asterisk').addClass('hide');
+            }else {
+                $('.btn').prop('disabled',true);
+                $('#privacy-policy').siblings('.asterisk').removeClass('hide');
+            }
+        });
+$('#protocol').click(function () {
+            layer.open({
+                title: '{:lang("protocol")}'
+                ,content: '{:lang("You should read the following agreement carefully before clicking on the consent process during the registration process. Please be sure to read and fully understand the terms of the agreement, including:")}'+
+					'{:lang("1: Terms of agreement with you for exemption or limitation of liability;")}'+
+					'{:lang("2: Agreement with you on the applicable terms and jurisdiction of the law;")}'+
+					'{:lang("3: Other important terms are marked with bold underline.")}'+
+					'{:lang("If you have any questions about the agreement, you can consult the platform customer service.")}'+
+					'{:lang("Tip: When you follow the instructions on the registration page to fill out the information, read and agree to the agreement and complete all registration procedures, you have fully read, understood and accepted the entire contents of the agreement. If you have any disputes about the platform services, the Service Agreement will apply. If you are in dispute with other users during the use of Platform Services, they will be processed according to the agreement you have with other users.")}'+
+					'{:lang("In the process of reading the agreement, if you do not agree to the relevant agreement or any terms and conditions, you should immediately stop the registration process")}'
+                ,area: '500px'
+				,btn: ['{:lang("Close prompt")}']
+            });
+        })
+    });
+layui.use(['form','upload'], function(){
+        var form = layui.form;
+        $('.btn').click(function () {
+                var pass = $('#password').val();
+                var len = pass.length;
+if (len != 0){
+                    if (len<=4 || len>=12) {
+                        // 代表密码规则不符合,不能注册
+                        layer.msg('{:lang("Cannot Submit")}', {time: 1000, icon: 2});
+                        $('#password').css({border:'solid 1px red'});
+                        return false;
+					}else{
+                        // 代表密码规则符合,可以进行注册
+                        $.post("/index/user/create", $("#user-register").serialize(), function(result){
+                            if(result.code==1){
+                                layer.open({
+                                    title: '{:lang("prompt")}',
+                                    content:'{:lang("Registration is complete")}',
+                                    btn: ['{:lang("log in system")}', '{:lang("Back to home")}','{:lang("Close prompt")}'],
+                                    yes: function(index, layero){
+                                        //按钮【按钮一】的回调
+                                        window.location.href = '/index/user/login';
+                                    }
+                                    ,btn2: function(index, layero){
+                                        //按钮【按钮二】的回调
+                                        window.location.href = '/';
+                                        //return false 开启该代码可禁止点击该按钮关闭
+                                    }
+                                    ,btn3: function(index, layero){
+                                        //按钮【按钮三】的回调
+                                        window.location.href=result.url;
+                                        //return false 开启该代码可禁止点击该按钮关闭
+                                    }
+                                    ,cancel: function(){
+                                        //右上角关闭回调
+                                        window.location.href=result.url;
+                                        //return false 开启该代码可禁止点击该按钮关闭
+                                    }
+                                });
+                            }else{
+                                //提交错误，请刷新后重试
+                                if (result.msg=='invalid token') {
+                                    $('.alert-danger').removeClass('hide');
+                                    $('.alert-danger span').text('Error submitted. Please refresh and try again');
+                                } else{
+                                    $('.alert-danger').removeClass('hide');
+                                    var password = $("#firstNames").val().trim();
+                                    var len =password.length;
+if (result.msg=='email require'){
+$('.email-hide').removeClass('hide');
+                                        $('.email-hide').siblings('ul li').addClass('hide');
+                                        $('#registerEmail').siblings('.email-p1').removeClass('hide');
+                                        $('#registerEmail').siblings('.email-p1').text('The Email cannot be empty');
+}else if (result.msg=='email not a valid email address'){
+$('.email-hide').removeClass('hide');
+                                        $('.email-hide').siblings('ul li').addClass('hide');
+                                        $('#registerEmail').siblings('.email-p1').removeClass('hide');
+                                        $('#registerEmail').siblings('.email-p1').text(result.msg);
+                                        //$('#registerEmail').siblings('.email-p1').text('I accept the privacy policy: Required');
+                                    }else if (result.msg=='firstname require' ){
+                                        //alert(123);
+                                        $('.firstname-hide').removeClass('hide');
+                                        $('.firstname-hide').find('a span').text(result.msg);
+                                        $('.firstname-hide').siblings('ul li').addClass('hide');
+                                        $('#firstNames').siblings('.asterisk').removeClass('hide');
+                                        $('#firstNames').siblings('.asterisk').text('The firstname cannot be empty');
+                                    }else if (1 >= len || len>= 18){
+                                        $('.firstname-hide').removeClass('hide');
+                                        $('.firstname-hide').find('a span').text('The firstname length should be greater than 1 and less than 18');
+                                        $('.firstname-hide').siblings('ul li').addClass('hide');
+                                        $('#firstNames').siblings('.asterisk').removeClass('hide');
+                                        $('#firstNames').siblings('.asterisk').text('The firstname length should be greater than 1 and less than 18');
+                                    }else if (result.msg=='lastname require'){
+                                        $('.lastname-hide').removeClass('hide');
+                                        $('.lastname-hide').find('a span').text(result.msg);
+                                        $('.lastname-hide').siblings('ul li').addClass('hide');
+                                        $('#lastName').siblings('.asterisk').removeClass('hide');
+                                        $('#lastName').siblings('.asterisk').text('The lastname cannot be empty');
+                                    }else if (1 >= len || len>= 18){
+                                        $('.lastname-hide').removeClass('hide');
+                                        $('.lastname-hide').find('a span').text('The lastname length should be greater than 1 and less than 18');
+                                        $('.lastname-hide').siblings('ul li').addClass('hide');
+                                        $('#lastName').siblings('.asterisk').removeClass('hide');
+                                        $('#lastName').siblings('.asterisk').text('The lastname length should be greater than 1 and less than 18');
+                                    }else if (result.msg=='check require'){
+                                        $('.checkbox-hide').removeClass('hide');
+                                        //$('.checkbox-hide').find('a span').text('The lastname length should be greater than 1 and less than 18');
+                                        $('.checkbox-hide').siblings('ul li').addClass('hide');
+                                        $('#privacy-policy').siblings('.asterisk').removeClass('hide');
+                                        //$('#privacy-policy').siblings('.asterisk').text('The lastname length should be greater than 1 and less than 18');
+                                    }
+                                    $('.alert-danger span').text(result.msg);
+									$("html, body").animate({ scrollTop: 0 }, 'fast');
+                                }
+                            }
+                        });
+					}
+				} else{
+                    layer.msg('{:lang("Cannot Submit")}', {time: 1000, icon: 2});
+                    return false;
+				}
+        });
+    });
+</script>
+{include file="public/footer-login" /}
+</body>
+</html>

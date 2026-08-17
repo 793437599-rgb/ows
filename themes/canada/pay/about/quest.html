@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/application.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/mobile.css"/>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="layui-container">
+<div class="layui-row layui-col-space15">
+            <div class="layui-col-sm2">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+<section class="message-content">
+        <div class="lain-contbox">
+            <div class="layui-tab-card message">
+                <div class="layui-layer-title" style="cursor: move;">​张三</div>
+                <div class="layim-chat-box">
+                    <div class="layim-chat layim-chat-friend layui-show">
+                        <div class="layui-unselect layim-chat-title">
+                            <div class="layim-chat-other"></div>
+                        </div>
+                        <div class="layim-chat-main">
+                            <ul>
+                                <!-- foreach -->
+                                <li class="layim-chat-mine">
+                                    <div class="layim-chat-user">
+                                        <img src=""><cite><i>2020-06-23
+                                                15:58:10</i>纸飞机</cite></div>
+                                    <div class="layim-chat-text">rth hsdfhdfg</div>
+                                </li>
+</ul>
+                        </div>
+                        <div class="layim-chat-footer">
+                            <form class="layui-form">
+                                <div class="layui-unselect layim-chat-tool">
+                                    <span class="layui-icon layui-icon-face-smile-fine" title="选择表情" layim-event="face"></span>
+                                    <span class="layui-icon layui-icon-picture-fine" title="上传图片" layim-event="image">
+                                        <input type="file" name="file">
+                                    </span>
+                                    <span class="layui-icon layim-tool-image" title="发送文件" layim-event="image"
+                                        data-type="file">
+                                        <input type="file" name="file">
+                                    </span>
+<span class="layim-tool-log" layim-event="chatLog"><i
+                                            class="layui-icon"></i>聊天记录</span>
+                                </div>
+                                <div class="layim-chat-textarea">
+                                    <textarea class="layui-textarea" id="chat-textarea"></textarea>
+                                </div>
+                                <div class="layim-chat-bottom">
+                                    <div class="layim-chat-send">
+                                        <button type="button" class="layui-btn layui-btn-sm"
+                                            layim-event="send">发送</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="chatlist">
+                <div class="chatin">
+                    <div class="cahtin-box">
+                        <h3>留信网</h3>
+                        <span>巴扎黑</span>
+                        <p class="chart-right">2020-06-17 : 14 : 30</p>
+                    </div>
+                </div>
+<div class="chatout">
+                    <div class="cahtin-box">
+                        <h3>客户名</h3>
+                        <span>萨瓦迪卡</span>
+                        <p class="chart-left">2020-06-17 : 14 : 30</p>
+                    </div>
+</div>
+            </div>
+<div class="putin">
+                <div class="putin-top">
+                  <img src="images/图片.png" alt="">
+                </div>
+                <textarea class="putin-input" style="width:99.5%;height:140px;resize: none;" placeholder="请在此处输入内容" ></textarea>
+                <button type="button" class="mui-btn mui-btn-danger">发送</button>
+            </div> -->
+        </div>
+    </section>
+</div>
+        </div>
+</div>
+</section>
+{include file="public/footer-login" /}
+</body>
+</html>

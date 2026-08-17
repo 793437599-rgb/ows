@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>CANADA.EDUCATION DATA-NEWS</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/mobile.css"/>
+    <script src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+</head>
+<body>
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'>
+        <a class="hd-logo" href="/">
+            <img src="/canada/images/logo.png"/>
+        </a>
+        <div class="infor-off">
+            <a href="/home/ku/logout">
+                <img src="/canada/images/off-icon.svg"/>
+                <span>Exit</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+<div class="info-main">
+    <div class="infor-left">
+        {notempty name="edulist"}
+        {foreach name="edulist" item="v"}
+        <h3>{$v.academic_level}</h3>
+        <ul>
+            <li><a href="/home/ku/info/edu_id/{$v.id}">Information</a></li>
+            <li><a class="{$v.id==$edu.id? 'infor-active':''}" href="/home/ku/transcript/edu_id/{$v.id}">Transcript</a>
+            </li>
+        </ul>
+        {/foreach}
+        {else /}
+        <ul>
+            <li><a class="infor-active" href="/home/ku/info">Information</a></li>
+        </ul>
+        {/notempty}
+        <h3><a href="/home/ku/transfer">TRANSFER</a></h3>
+    </div>
+    <div class="infor-right">
+        <ul class="tr-tit">
+            <li>{$info.name}</li>
+            <li>{$info.passport}</li>
+            <li>{$edu.school} {$edu.major}</li>
+            <li>{$edu.academic_level}</li>
+        </ul>
+        <div class="tr-cn">
+            <h3>Grades</h3>
+            <p>your final grades for the selected term are displayed below</p>
+        </div>
+        <div class="tr-mian">
+            <ul class="tr-tab">
+                {foreach name="scoreList" id="score" key="k"}
+                <li><a class="" href="javascript:;">{$k}</a></li>
+                {/foreach}
+            </ul>
+            <div class="tr-content">
+                {foreach name="scoreList" id="scoreItem"}
+                <div class="tr-tab-box">
+                    {foreach name="scoreItem" id="score" key="k"}
+                    <div class="tr-list">
+                        <h3>Class Grades- {$score.fallterm}</h3>
+                        <table border="" cellspacing="" cellpadding="">
+                            <thead>
+                            <tr>
+                                <th>Class</th>
+                                <Th>Description</Th>
+                                <Th>Units</Th>
+                                <Th>Grade</Th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {foreach name="score['content']" id="content" key="k"}
+                            <tr>
+                                <td>{$content['class']}</td>
+                                <td>{$content['description']}</td>
+                                <td>{$content['units']}</td>
+                                <td>{$content['grade']}</td>
+                            </tr>
+                            {/foreach}
+                            </tbody>
+
+                        </table>
+                    </div>
+                    {/foreach}
+                </div>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="infor-ft">
+    <a href="/">Home</a>&nbsp;|&nbsp;
+    <span>{$C['site_copyright']}</span>
+</div>
+<style>
+    .tr-tab-box:not(:first-child) {
+        display: none;
+    }
+</style>
+<script>
+    $(".tr-tab a").eq(0).addClass("tr-tab-active");
+    $(".tr-tab li").click(function () {
+        var index = $(this).index();
+        if ($(this).find('a').hasClass("tr-tab-active")) {
+            return;
+        } else {
+            $(".tr-tab-active").removeClass("tr-tab-active")
+            $(this).find("a").addClass("tr-tab-active");
+            $(".tr-tab-box").eq(index).show().siblings().hide();
+        }
+    })
+</script>
+</body>
+</html>

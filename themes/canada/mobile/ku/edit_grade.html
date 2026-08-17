@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+<head>
+    <meta charset="utf-8"/>
+    <title>UKED</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/information.css">
+    <link rel="stylesheet" type="text/css" href="/canada/iconfont/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
+    <script src="/static/js/layui/layui.js"></script>
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+</head>
+<body>
+<header>
+    <div class="hd-line"></div>
+    <div class='hd-sear'><a class="hd-logo" href="/"> <img src="/canada/images/logo.png"/> </a>
+        <div class="infor-off"><a href="/logout"> <img src="/canada/images/off-icon.svg"/> <span>{:lang('Exit')}</span>
+        </a></div>
+    </div>
+</header>
+<section class="information-wrap">
+    <h2>{:lang('PERSONAL DATA DISPLAY')}<a class="edit_ku"><i class="icon iconfont icon-uk-apply"></i>{:lang('Edit')}</a></h2>
+    <div class="information">
+        <div class="header">
+            <div class="img-box"><img src="/canada/images/pic-hd.jpg"/></div>
+            <div class="info">
+                <h3><a href="/info" style="color: #f7683b;">{$info.name}</a></h3>
+                <p>
+                    <i class="icon iconfont icon-UK-address"></i>
+                    <b>{$edu.school}</b>
+                </p>
+            </div>
+            <ul class="tab">
+                {notempty name="edulist"}
+                {foreach name="edulist" item="v"}
+                <li class="menu-down">
+                    <i class="icon iconfont icon-degree"></i>{$v.academic_level}
+                    <ol class="menu">
+                        <li><a class="{$v.id==$edu.id? 'infor-active':''}" href="/info/edu_id/{$v.id}">{:lang('Information')}</a>
+                        </li>
+                        <li><a class="{$v.id==$edu.id? 'infor-active':''}" href="/edit_edu/edu_id/{$v.id}">{:lang('Edit degree')}</a>
+                        </li>
+                        <li><a href="/transcript/edu_id/{$v.id}">{:lang('Transcript')}</a></li>
+                    </ol>
+                </li>
+                {/foreach}
+                {else /}
+                <li class="menu-down"><i class="icon iconfont icon-UK-major"></i>{:lang('major')}
+                    <ol class="menu">
+                        <li><a class="infor-active" href="/info">{:lang('Information')}</a></li>
+                    </ol>
+                </li>
+                {/notempty}
+                <li><a href="/transfer">{:lang('TRANSFER')}</a></li>
+            </ul>
+        </div>
+        <div class="table">
+            <div class="table-items">  <h3>{$score.years} > {$score.fallterm}</h3>
+</div>
+            <div class="info-edit layui-form">
+<form action="" method="post">
+<div class="info-edit-item">
+                    <div>
+<label><i class="icon iconfont icon-UK-Personal"></i><b>{:lang('Year')}:</b></label>
+                        <input type="text" name="years" value="{$score.years}" />
+                    </div>
+                    <div>
+                        <label><b>{:lang('Course Code')}:</b></label>
+                        <input type="text" name="fallterm" value="{$score.fallterm}">
+                    </div>
+                </div>
+{foreach name="scorelist" item="fallitem" key="k"}
+<div class="info-edit-item layui-input">
+                    <div>
+                        <label><b>{:lang('Course Title')}:</b></label>
+                        <input type="text" name="fallterm_content[{$k}][class]" value="{$fallitem.class}" required lay-verify="required" placeholder="{:lang('Class')}" > 
+                    </div>
+                    <div>
+                        <label><b>{:lang('Description')}:</b></label>
+                        <input type="text" name="fallterm_content[{$k}][description]"  value="{$fallitem.description}" required lay-verify="required" placeholder="{:lang('Description')}" > 
+                    </div>
+                </div>
+                <div class="info-edit-item layui-input">
+                    <div>
+                        <label><b>{:lang('Credit')}:</b></label>
+                        <input type="text" name="fallterm_content[{$k}][units]"  value="{$fallitem.units}" required lay-verify="required" placeholder="{:lang('Units(3.00)')}" style="width:80px"> 
+                    </div>
+                    <div>
+                        <label><b>{:lang('Grade')}:</b></label>
+                        <input type="text" name="fallterm_content[{$k}][grade]"  value="{$fallitem.grade}" required lay-verify="required" placeholder="Grade(A)"    style="width:80px"> 
+</div>
+                </div>
+                <div class="info-edit-item layui-input">
+                	<div>
+                        <label><b>{:lang('Points')}:</b></label>
+                        <input type="text" name="fallterm_content[{$k}][points]"  value="{$fallitem.points ?? ''}" required lay-verify="required" placeholder="{:lang('Points')}"   style="width:80px">
+                    </div>
+                    <div></div>
+                </div>
+                {/foreach}
+                <div class="info-edit-item remark">
+                    <div>
+                        <a href="/add_grade/edu_id/{$score.edu_id}/score_id/{$score.id}" class="add">{:lang('Add')}</a>
+                        <input type="submit" style="width: 150px;height: 50px;background-color: #f7683b;color: #fff;font-size: 0.2rem;border-radius: 5px;" value="{:lang('Save')}"/>
+                    </div>
+                </div>
+                <!--<input type="submit" class="submit" value=""/>-->
+            	</form>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="infor-ft"><a href="#">Home</a>&nbsp;|&nbsp; <span>Copyright © Canada education data</span></div>
+<script>
+    $('.menu-down').click(function (e) {
+        e.stopPropagation();
+        $(this).children('.menu').toggle();
+        $(this).siblings().children('.menu').hide()
+    });
+    $(document).click(function () {
+        $('.menu').hide()
+    });
+    layui.use(['form','laydate'], function(){
+        var form = layui.form;
+    });
+</script>
+</body>
+</html>

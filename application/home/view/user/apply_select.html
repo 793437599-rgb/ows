@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" type="text/css" href="/canada/css/application.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/mobile.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+</head>
+<body>
+
+{include file="public/header-user" /}
+
+<section class="mainContent">
+    <div class="layui-container">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-sm2">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm10">
+
+                <!--    user avatar    -->
+                <div class="layui-row user-avatar">
+                    <div class="layui-col-sm2 layui-col-xs4">
+                        <a href="/profile"><img src="{$user.head_img}"></a>
+                    </div>
+                    <div class="layui-col-sm10 layui-col-xs8">
+                        <h1>{:lang('Transfer')}</h1>
+                        <p><b>{$user.username}</b></p>
+                        <p>{$user.email} — {$user.search_id}</p>
+                    </div>
+                </div>
+                <hr/>
+
+                <!--    transfer    -->
+                <div class="layui-row">
+
+                    <div class="application border-shadow">
+                        <!--  选择机构 -->
+                        <h2>{:lang('Select Institutions')}</h2>
+                        <div class="progress-bars">
+                            <ul class="clearfix">
+                                <li class="li_1 active">{:lang('Select Institutions')}<i class="i_1"><i></i></i></li>
+                                <li class="li_2 ">{:lang('Select Report')}<i class="i_1"><i></i></i></li>
+                                <li class="li_3 ">{:lang('Confirm Report')}</li>
+                            </ul>
+                        </div>
+                        <div class="college_msg">
+                            <div class="title">{:lang('Please select the international organization that needs to send the report.')}
+                            </div>
+                            <div class="select-institutions">
+                                <select name="" class="">
+                                    <option value="">{:lang('Canada')}</option>
+                                    <option value="">{:lang('USA')}</option>
+                                    <option value="">{:lang('CHINA')}</option>
+                                    <option value="">{:lang('AUSTRALIA')}</option>
+                                    <option value="">{:lang('UK')}</option>
+                                    <option value="">{:lang('Netherlands')}</option>
+                                    <option value="">{:lang('Ireland')}</option>
+                                    <option value="">{:lang('New Zealand')}</option>
+                                    <option value="">{:lang('France')}</option>
+                                    <option value="">{:lang('Japan')}</option>
+                                    <option value="">{:lang('Russia')}</option>
+                                    <option value="">{:lang('Spain')}</option>
+                                    <option value="">{:lang('Italy')}</option>
+                                </select>
+                                <select name="" class="">
+                                    {foreach name="$third" item="vo"}
+                                    <option value="{$vo.cost}">
+                                        {switch name="$Think.cookie.think_var"}
+                                        {case value="en-us"}{$vo.third_ename}{/case}
+                                        {case value="zh-cn"}{$vo.third_cname}{/case}
+                                        {case value="ja-jp"}{$vo.third_jname}{/case}
+                                        {case value="de-de"}{$vo.third_dname}{/case}
+                                        {case value="ko-kr"}{$vo.third_kname}{/case}
+                                        {case value="ru-ru"}{$vo.third_rname}{/case}
+                                        {case value="fr-fa"}{$vo.third_fname}{/case}
+                                        {/switch}
+                                    </option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                            <!--<div class="select_con">
+                                <div class="college_select">
+                                    <a class="chosen_default">
+                                        <span>{:lang('Please choose an international agency')}</span>
+                                        <b></b>
+                                    </a>
+                                    <div class="chosen_drop">
+                                        <ol class="chosen_results">
+                                            {foreach name="$third" item="vo"}
+                                            <li class="active_result chosen_results_li_{$vo.id}">
+                                                <img src="{$vo.icon_img}" alt="">
+                                                <input class="cosr" type="hidden" value="{$vo.cost}">
+                                                <span>{switch name="$Think.cookie.think_var"}
+                                                        {case value="en-us"}{$vo.third_ename}{/case}
+                                                        {case value="zh-cn"}{$vo.third_cname}{/case}
+                                                        {case value="ja-jp"}{$vo.third_jname}{/case}
+                                                        {case value="de-de"}{$vo.third_dname}{/case}
+                                                        {case value="ko-kr"}{$vo.third_kname}{/case}
+                                                        {case value="ru-ru"}{$vo.third_rname}{/case}
+                                                        {case value="fr-fa"}{$vo.third_fname}{/case}
+                                                        {/switch}</span>
+                                            </li>
+                                            {/foreach}
+                                            <li class="active_result other">
+                                                <span>{:lang('Sent to the designated agency(business or institution)')}</span>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                                <span id="jigou-err" style="color: #bc1a16"></span>
+                            </div>
+                            <div class="select_input">
+                                <p>{:lang('Or enter an email address')}</p>
+                                <input type="email">
+                            </div>-->
+                        </div>
+                        <div class="select_college_1">
+                            <div class="college_msg">
+                                <div class="college_btn">
+                                    <a class="green_btn" id="next">{:lang('Next')}</a>
+                                    <a href="" class="gray_btn">{:lang('Cancel')}</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 选择报告 -->
+                        <div class="select_report">
+                            <ul>
+                                <li>
+                                    <div class="report_name">{:lang('Higher Education Student Status Verification Report')}</div>
+                                    <div class="report_sel">
+                                        <select id="edu-select" name="">
+                                            {foreach name="edu" item="vo"}
+                                            <option value="{$vo.name_en}_{$vo.title_en}_{$vo.academic_level}">{$vo.name_en}_{$vo.title_en}_{$vo.academic_level}</option>
+                                            {/foreach}
+                                        </select>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <div class="college_btn">
+                                <a class="green_btn" id="second">{:lang('Next')}</a>
+                                <a href="" class="gray_btn">{:lang('Cancel')}</a>
+                            </div>
+                        </div>
+
+                        <!-- 确认报告 -->
+                        <div class="select_check">
+                            <ul>
+                                <li>
+                                    <div class="report_name">{:lang('The international agency you need to send')}：</div>
+                                    <div class="report_option" id="jigou-show">{:lang('Educational Credential Evaluators, Inc.')}</div>
+                                    <div class="report_option">{:lang('Total')}:<span id="total_fee" style="color: #bc1a16">$1560</span></div>
+                                    <input type="hidden" id="jigou-show2" name="third" value="">
+                                </li>
+                                <li>
+                                    <div class="report_name">{:lang('Personal information you entered')}：</div>
+                                    <div class="report_option">
+                                        <p><b>{:lang('Name')}：</b><span>{$user.username}</span></p>
+                                        <p><b>{:lang('Education')}：</b><span id="edu-show">Peking University_Pharmacy_Bachelor</span></p>
+                                        <p><b>{:lang('Email')}：</b><span>{$user.email}</span></p>
+                                        <p><b>{:lang('Phone')}：</b><span>{$user.mobile}</span></p>
+                                    </div>
+                                </li>
+                                <!--付费页面-->
+                                <style>
+                                    .Uf_pay{height: 100px;}
+                                    .Uf_pay label{float: left;}
+                                </style>
+                                <li>
+                                    <div class="select_con">
+                                        {:lang('You need to pay for the transmission fee!')}
+                                        <a class="normal-link">{:lang('Payment transfer fee')}</a>
+                                    </div>
+                                    <div class="Uf_pay">
+                                        <label class="Uf_paylist" for="pay-1">
+                                            <div class="Uf_check">
+                                                <input type="radio"  id="pay-1" name="pay" value="" checked />
+
+                                            </div>
+                                            <img src="/static/images/pay_Google.png" >
+                                        </label>
+                                        <label class="Uf_paylist" for="pay-2">
+                                            <div class="Uf_check">
+                                                <input type="radio"  id="pay-2" name="pay" value="" />
+
+                                            </div>
+                                            <img src="/static/images/pay_pal.png" >
+                                        </label>
+                                        <label class="Uf_paylist" for="pay-3">
+                                            <div class="Uf_check">
+                                                <input type="radio"  id="pay-3" name="pay" value="" />
+
+                                            </div>
+                                            <img src="/static/images/pay_apple.png" >
+                                        </label>
+                                    </div>
+                                </li>
+                                <!--付费页面结束-->
+                            </ul>
+                            <div class="college_btn">
+                                <a class="green_btn" id="check">{:lang('Save and pay')}</a>
+                                <a href="" class="gray_btn">{:lang('Cancel')}</a>
+                            </div>
+                        </div>
+
+                        <!-- 发送成功 -->
+                        <div class="send_success">
+                            <img src="/canada/images/check.png" alt="">
+                            <h3>{:lang('Your report has started to send')}</h3>
+                            <p>{:lang('It will usually be sent within half an hour. If it is sent for a long time, please contact us.')}</p>
+                            <div class="college_btn">
+                                <a href="/apply_all" class="green_btn">{:lang('Back')}</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+{include file="public/footer-login" /}
+
+<script>
+    $(function () {
+        $('.chosen_default').click(function (e) {
+            e.stopPropagation();
+            if ($('.chosen_default b').hasClass("rotate")) {
+                $('.chosen_default b').removeClass("rotate").addClass("rotate_1");
+            } else {
+                $('.chosen_default b').removeClass("rotate_1").addClass("rotate");
+            }
+            if ($(".chosen_drop").is(":hidden")) {
+                $(".chosen_drop").show();
+                $('.active_result').click(function (e) {
+                    e.stopPropagation();
+                    $('.chosen_drop').hide();
+                    $('.chosen_default span').html($(this).html());
+                    $('#jigou-show').text($(this).text());
+                    $('#total_fee').text('$'+$(this).children('.cosr').val()+'+13%HST');
+                    $('#jigou-show2').val($(this).text());
+                    //console.log($(this).text());
+                });
+            } else {
+                $(".chosen_drop").hide();
+            }
+        });
+
+
+
+        $(document).click(function () {
+            $('.chosen_drop').hide()
+        });
+
+        $('.active_result').click(function () {
+            $('.select_input').hide();
+            $('.chosen_default b').removeClass("rotate_1").addClass("rotate");
+        });
+
+        $('.other').click(function () {
+            $('.select_input').show();
+        });
+
+        $('#next').click(function () {
+            if($('.chosen_default span').text()!='Please choose an international agency'){
+                $('.li_2').addClass('active').siblings().removeClass('active');
+                $('.college_msg').hide();
+                $('.select_report').show();
+            }else {
+                $('#jigou-err').text('Please choose an international agency');
+            }
+
+        });
+        $('#next_1').click(function () {
+            $('.li_2').addClass('active').siblings().removeClass('active');
+            $('.college_msg').hide();
+            $('.select_report').show();
+        });
+        $('#second').click(function () {
+            $('.li_3').addClass('active').siblings().removeClass('active');
+            $('.select_report').hide();
+            $('.select_check').show();
+            $('#edu-show').text($('#edu-select').val());
+        });
+        $('#check').click(function () {
+            $('.select_check').hide();
+            $('.send_success').show();
+        });
+    })
+</script>
+
+</body>
+</html>

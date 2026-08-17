@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>Certificate query</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="/canada/css/common.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/content.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/header.css" />
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/canada/css/header-anim.css">
+    <link rel="stylesheet" href="/canada/css/header-new.css">
+    <link rel="stylesheet" href="/canada/css/VerificationServices.css">
+    <link rel="stylesheet" href="/canada/css/query.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css" />
+    <link rel="stylesheet" type="text/css" href="/static/js/layui/css/layui.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans&display=swap" rel="stylesheet">
+    <script type="text/javascript" charset="utf-8" src="//aeis.alicdn.com/sd/ncpc/nc.js?t=2015052012"></script>
+    <!--page header & footer style-->
+    <link rel="stylesheet" type="text/css" href="/canada/css/index.css" />
+    <link rel="stylesheet" type="text/css" href="/canada/css/user.css" />
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script type="text/javascript" src="/canada/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/canada/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/jquery.SuperSlide.2.1.1.js"></script>
+    <script src="/canada/js/jquery.ckSlide.js"></script>
+    <script src="/canada/js/waypoints.min.js"></script>
+    <script src="/canada/js/header-main.js"></script>
+    <script src="/static/js/clipboard.min.js"></script>
+    <!-- share css & js -->
+    <link rel="stylesheet" href="/static/share/css/share.min.css">
+    <link rel="stylesheet" href="/static/share/css/share.more.css">
+    <script src="/static/share/js/share.min.js"></script>
+    <link rel="stylesheet" href="/canada/css/animate.css">
+    <link rel="stylesheet" href="/canada/css/codehim-dropdown.css">
+    <script src="/canada/js/codehim.dropdown.js"></script>
+    <script src="/static/js/gt.js"></script>
+    <style>
+        .layui-layer-tips .layui-layer-content{
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+{include file="public/header-new" /}
+<div class="certifi-box">
+    <div class="certifi-content">
+        <div class="certifi-success-top">
+            <div class="certifi-flex">
+                <div class="cer-flex-logo">
+                    <i class="iconfont icon-existence"></i>
+                    <img src="/canada/images/verification-right.png" alt="">
+                </div>
+                <div class="cer-flex-right">
+                    <div class="cer-right-title">
+                        <h1>{:lang('WSE storage user')}</h1>
+                        <p>{:lang('This user successfully stores the academic qualification evaluation')}</p>
+                    </div>
+                    <div class="cer-right-text">
+                        <div>
+                            <span>{:lang('The e-Cert is being deposited into WSE blockchain')}</span>
+                        </div>
+                        <div>
+                            <span>{:lang('User e-certificate blockchain deposit certificate information has been generated for you below')}</span>
+                        </div>
+                        <div><span>{:lang('User storage certificate encoding information has been shown for you below')}</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-info">
+                <h3 class="block-info-h3">{:lang('Electronic Certificate Blockchain Storage Information')}</h3>
+                <div class="cer-bottom-b1">
+                    <i class="iconfont icon-Blockchain"></i>
+                    <div>
+                        <h3>{:lang('Block Hash')}</h3>
+                        <!--                        <p class="copy_text">5867cb92f30053d4888c3a9d4b167b4037785ea777d3cdf6eabce50ecc3b1456<span><i class="fa fa-copy" aria-hidden="true"></i></span></p>-->
+                        <p class="copy_text">{:lang('Blockchain Storage in Process')}</p>
+                    </div>
+                </div>
+                <div class="cer-bottom-b1 cer-bottom-flex">
+                    <div>
+                        <i class="iconfont icon-time"></i>
+                        <div class="cerdiv">
+                            <h3>{:lang('Deposit Time')}</h3>
+                            <p>2020-06-22 04:01:57</p>
+                        </div>
+                    </div>
+                    <div>
+                        <i class="iconfont icon-gaodu"></i>
+                        <div>
+                            <h3>{:lang('Block Height')}</h3>
+                            <p>11455067</p>
+                        </div>
+                    </div>
+                    <div>
+                        <i class="iconfont icon-report"></i>
+                        <div>
+                            <h3>{:lang('Type of Deposit')}</h3>
+                            <p>{:lang('Document Deposit')}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {empty name="transcript"}        {else/}
+            <h3 class="block-info-h3">{:lang('Academic Qualification Evaluation Storage')}</h3>
+            <div class="cer-bottom-b1 cer-bottom-flex">
+                <div>
+                    <i class="iconfont icon-certificate"></i>
+                    <div class="cerdiv">
+                        <h3>{:lang('Evaluation Certificate')}</h3>
+                        <p>{$transcript.serial_number}</p>
+                    </div>
+                </div>
+                <div>
+                    <i class="iconfont icon-wse-t"></i>
+                    <div>
+                        <h3>{:lang('Transcript')}</h3>
+                        <p>{$transcript.serial_number1}</p>
+                    </div>
+                </div>
+                <div><!-- href="/index/find/certificate_query_detail.html" -->
+                    <a class="block-info-btn view-btn"  id="ttt11">{:lang('View Certificate Information')}</a>
+                </div>
+            </div>
+            {/empty}
+            {if $e > 0}
+            <h3 class="block-info-h3">{:lang('Immigration Assessment')}</h3>
+            <!--  <p class="block-info-p">{:lang('为空 查看证书信息查看证书信息查看证书信息查看证书信息')}</p> -->
+            <div class="cer-bottom-b1 cer-bottom-flex">
+                <div>
+                    <i class="iconfont icon-certificate"></i>
+                    <div class="cerdiv">
+                        <h3>{:lang('Evaluation Certificate')}</h3>
+                        <p>{$eva.serial_number}</p>
+                    </div>
+                </div>
+                <div>
+                    <i class="iconfont icon-wse-t"></i>
+                    <div>
+                        <h3>{:lang('Transcript')}</h3>
+                        <p>{$eva.serial_number1}</p>
+                    </div>
+                </div>
+                <div> <!-- href="/index/find/certificate_query_detail.html" -->
+                    <a class="block-info-btn view-btn">{:lang('View Certificate Information')}</a>
+                </div>
+            </div>
+            {/if}
+        </div>
+    </div>
+    <!-- <div class="cer-btn">
+        <div class="cer-btn-sure">
+            <a href="javascript:;" id="view-btn">{:lang('View File Information')}</a>
+            <a href="/index/about/blockchain.html">{:lang('Document Trusted Verification')}</a>
+        </div>
+    </div> -->
+    <div class="cer-tips" id="block-kk" style="display: none;">
+        <div class="cer-tips-boxmask"></div>
+        <div class="cer-tips-top">
+            <div class="cer-tips-model" style="width: 750px;">
+                <div class="cer-tips-content">
+                    <div class="cer-content-top">
+                        <h1>{:lang('E-mail Verification')}</h1>
+                    </div>
+                    <div class="cer-txt-center"><p>{:lang('In order to ensure the privacy and security of the information of
+                        the queried person, please contact the queried person to provide the verification code sent
+                        to the mailbox and enter it below. If the verification code is not received, please repeat
+                        this operation')}</p></div>
+                    <div class="cer-input-code layui-row">
+                        <div class="layui-col-md12">
+                            <span>{:lang('E-mail verification code')}: </span>
+                            <input type="text" name="num" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="cer-btn-two">
+                        <a href="javascript:;" class="cancel">{:lang('Cancel')}</a>
+                        <a href="#" id="enter">{:lang('Confirm')}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="certifi-box" style="display: none;">
+    <div class="certifi-content">
+        <div class="certifi-success-top">
+            <div class="certifi-flex">
+                <div class="cer-flex-logo cer-logo-red">
+                    <i class="iconfont icon-existence"></i>
+                    <img src="/canada/images/verification-failure.png" alt="">
+                </div>
+                <div class="cer-flex-right">
+                    <div class="cer-right-title cer-title-red">
+                        <h1>{:lang('does not exist')}</h1>
+                        <p>{:lang('the certificate')}</p>
+                    </div>
+                    <div class="cer-right-text">
+                        <div><span>{:lang('This certificate is a certificate of academic evaluation issued by WSE')}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <div class="legal-footer">
+        <div class="legal-box">
+            <div>
+                <ul>
+                    <li><a href="{$urlss}/index/Application/pact/id/13">{:lang('Legal Terms of Use')}</a></li>
+                    <li><a href="{$urlss}/index/Application/pact/id/14">{:lang('Legal Notices')}</a></li>
+                    <li><a href="{$urlss}/index/Application/pact/id/15">{:lang('Privacy Policy')}</a></li>
+                    <li><a href="{$urlss}/index/Application/pact/id/16">{:lang('Registration Agreement')}</a></li>
+                </ul>
+            </div>
+            <div>
+                <p class="footer-copyright">©{$C['site_copyright']}</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript">
+    $('#ttt11').click(function () {
+        $.ajax({
+            url: "{:url('index/find/email_query_check2')}",
+            data: {email: 0},
+            type: 'post',
+            success: function (res) {
+                if (res.code == 20000) {
+                    layer.msg(res.msg, {shift: -1, time: 1500}, function () {
+                        window.location.href = res.data.url;
+                
+                    });
+                } else {
+                    layer.msg(res.msg, {shift: -1, time: 1500});
+                }
+            }
+        })
+    });
+    /*   to top */
+    $("a[href='#top']").on('click', function () {
+        $("html, body").animate({
+            scrollTop: 0
+        }, "slow");
+        return false;
+    });
+    var sort = '{$sort?$sort:"100"} ';
+    if (sort > 0 && sort < 10) {
+        $('.step-arrow-box a').eq(sort - 1).children('.step-arrow-wrap').removeClass('step-arrow-complete').addClass(
+            'step-arrow-current');
+    }
+    $('.cer-btn-sure a:first-child').mouseenter(function () {
+        layer.tips('{:lang("View file information: Through this operation, you can view the file information of this encoded file, but you need to get your consent to view it.")}', this, {
+            tips: [1, '#D0DF00'],
+            time: 4000
+        });
+    }).mouseleave(function () {
+        layer.closeAll('tips');
+    })
+    $('.cer-btn-sure a:nth-child(2)').mouseenter(function () {
+        layer.tips('{:lang("File credibility verification: upload a scanned copy of this encoded file or electronic file to check whether the information of the verification copy is tampered with.")}', this, {
+            tips: [1, '#D0DF00'],
+            time: 4000
+        });
+    }).mouseleave(function () {
+        layer.closeAll('tips');
+    })
+    var clipboard = new ClipboardJS('.fa-copy', {
+        text: function (trigger) {
+            return $('.copy_text').text();
+        }
+    });
+    clipboard.on('success', function (e) {
+        layer.msg('Copy successfully');
+        e.clearSelection();
+    });
+    clipboard.on('error', function (e) {
+        console.error('Action:', e.action);
+        console.error('Trigger:', e.trigger);
+    });
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+</body>
+</html>

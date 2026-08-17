@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="{:lang_code()}">
+{__NOLAYOUT__}
+<head>
+    <meta charset="UTF-8">
+    <title>{:lang('WSE-DAE for General Use')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/common.css"/>
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css"/>
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+    <script src="/static/js/layui/layui.js"></script>
+    <script src="/canada/js/html.js"></script>
+    <style>
+        .layui-table tbody td {
+            cursor: pointer;
+        }
+
+        .steps {
+            padding: 0;
+        }
+
+        .steps h3 {
+            margin-bottom: .64em;
+            font-size: 24px;
+            color: #000;
+            letter-spacing: -.1px;
+            line-height: 1.3em;
+            font-weight: 500;
+        }
+
+        .buttons {
+            padding: 0 15px;
+        }
+
+        .layer-photos-demo {
+            display: flex;
+        }
+
+        .picture .update-imgbix {
+            width: 105px;
+            height: 120px;
+            border: 1px solid #EEEEEE;
+            overflow: hidden;
+            margin-right: 10px;
+            padding: 10px;
+            position: relative;
+        }
+
+        .picture .layer-photos-demo img {
+            width: 100%;
+            height: 100%;
+
+        }
+
+        .layui-upload-drag {
+            width: 105px;
+            height: 120px;
+            padding: 41px;
+        }
+
+        .picture .update-dels {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+
+        .picture .update-dels i {
+            font-size: 20px;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+{include file="public/header-user" /}
+<section class="mainContent">
+    <div class="edu-form" id="infodata">
+        <div class="layui-row ">
+            <div class="layui-col-sm2 nav-fixed">
+                <!--    nav-left    -->
+                {include file="public/nav-left" /}
+            </div>
+            <div class="layui-col-sm12">
+                <div class="layui-row user-avatar">
+                    <h1>{:lang('Basic Information')}</h1>
+                    <div class="public-user-header center-header-new2">
+                        {include file="public/_user_basic_information"}
+                    </div>
+                </div>
+                <div class="layui-row steps">
+                    <form class="edu-form" id="infoForm">
+                    <div class="layui-col-sm12 cave">
+                        <div class="bg-top"></div>
+                        <div class="table-slse">
+                            <h3>Order Number：<span>{$order.order_number}</span></h3>
+                            <hr>
+                                <table border="1">
+                                    <tr class="layui-hide-xs">
+                                        <td colspan="4" class="table-title">{:lang('Basic Information')}</td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Username')}</td>
+                                        <td class="cell-edit-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span>{$order.username}</span>
+                                            <input class="cell-input" name="username" type="text" value="{$order.username}">
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                        <td>{:lang('Gender')}</td>
+                                        <td class="cell-edit-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span>{$user.sex|lang}</span>
+                                            <div class="layui-form">
+                                                <input type="radio" name="sex" value="Male" title="{:lang('Male')}"  {$user.sex=='Male'?'checked':''}>
+                                                <input type="radio" name="sex" value="Female" {$user.sex=='Female'?'checked':''} title="{:lang('Female')}" >
+                                            </div>
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('WSE Num')}</td>
+                                        <td>{$user.search_id}</td>
+                                        <td>{:lang('Email')}</td>
+                                        <td class="cell-edit-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span class="lowercase">{$user.email}</span>
+                                            <input class="lowercase cell-input" type="text" name="email" value="{$user.email}">
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Document Group')}</td>
+                                        <td class="cell-edit-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span>{$order.document_group}</span>
+                                            <select name="document_group"  lay-filter="doc-group" id="doc-group" lay-verify="required" lay-ignore>
+                                            </select>
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                        <td>{:lang('Document Type')}</td>
+                                        <td class="cell-edit-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span>{$order.document_type}</span>
+                                            <select name="document_type"  lay-filter="doc-type" id="doc-type" lay-verify="required" lay-ignore>
+                                            </select>
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{$order.document_type}</td>
+                                        <td class="cell-edit-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span>{$order.id_no}</span>
+                                            <input type="text" class="cell-input" name="id_no" value="{$order.id_no}">
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td colspan="4" class="table-title">{:lang('Educational Information')}</td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Educational location')}</td>
+                                        <td colspan="3" class="cell-edit-wrap location-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span>
+                                                {$order.edu_nationality} ,
+                                                {notempty name="$order.edu_province"}
+                                                {$order.edu_province} ,
+                                                {/notempty}
+                                                {$order.edu_city}
+                                            </span>
+                                            <div class="three-level-linkage layui-row">
+                                                <div class="layui-col-sm4">
+                                                    <input type="text" list="country_list" id="country" name="edu_nationality" autocomplete="off" class="cell-input" value="{$order.edu_nationality}" lay-verify="required|en" autocomplete="off" placeholder="{:lang('Please select or enter your Country')}"/>
+                                                    <datalist id="country_list" lang="en">
+                                                        {foreach name="country" item="vo"}<option value="{$vo.name_en}"  label="{:lang($vo.name_en)}">{/foreach}
+                                                    </datalist>
+                                                </div>
+                                                <div class="layui-col-sm4" {if empty($edu_provinces) && empty($order.edu_province) && $order.edu_city } style="display: none;"{/if}>
+                                                <input type="text"  list="province_list" name="edu_province" id="province" autocomplete="off" class="cell-input" value="{$order.edu_province}" lay-verify="required|en" autocomplete="off" placeholder="{:lang('Please select or enter your Province')}"/>
+                                                <datalist id="province_list" lang="en">
+                                                    {volist name="edu_provinces" id="vo"}
+                                                    <option value="{$vo.name_en}"  label="{:lang($vo.name_en)}">{/volist}
+                                                </datalist>
+                                            </div>
+                                            <div class="layui-col-sm4">
+                                                <input type="text"  id="city" list="city_list" name="edu_city" autocomplete="off" class="cell-input" value="{$order.edu_city}" lay-verify="required|en" autocomplete="off" placeholder="{:lang('Please select or enter your City')}"/>
+                                                <datalist id="city_list" lang="en">
+                                                    {volist name="edu_cities" id="vo"}
+                                                    <option value="{$vo.name_en}"  label="{:lang($vo.name_en)}">
+                                                    {/volist}
+                                                </datalist>
+                                            </div>
+                                            </div>
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Name of academic institution')}</td>
+                                        <td class="cell-edit-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span>{$order.university|lang}</span>
+                                            <input type="text" list="cars" name="university" autocomplete="off" class="cell-input" value="{$order.university}" lay-verify="required|en" placeholder="{:lang('Please select or enter your Name of Academic Institution')}"/>
+                                            <datalist id="cars">
+                                                {volist name="schools" id="vo"}<option value="{$vo.name_en}" label="{:lang($vo.name_en)}">{/volist}
+                                            </datalist>
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                        <td>{:lang('University nature')}</td>
+                                        <td class="cell-edit-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span>
+                                                {if $order.university_type == 1}
+                                                {:lang('Public universities')}
+                                                {elseif $order.university_type == 2}
+                                                {:lang('Private university')}
+                                                {elseif $order.university_type == 3}
+                                                {:lang('Language school')}
+                                                {elseif $order.university_type == 4}
+                                                {:lang('Preparatory school')}
+                                                {elseif $order.university_type == 5}
+                                                {:lang('Training school')}
+                                                {else /}
+                                                {:lang('Other school')}
+                                                {/if}
+                                            </span>
+                                            <select name="university_type" id="">
+                                                <option value="1" {if $order.university_type == 1 } selected {/if}>{:lang('Public universities')}</option>
+                                                <option value="2" {if $order.university_type == 2 } selected {/if}>{:lang('Private university')}</option>
+                                                <option value="3" {if $order.university_type == 3 } selected {/if}>{:lang('Language school')}</option>
+                                                <option value="4" {if $order.university_type == 4 } selected {/if}>{:lang('Preparatory school')}</option>
+                                                <option value="5" {if $order.university_type == 5 } selected {/if}>{:lang('Training school')}</option>
+                                            </select>
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{:lang('Certificate/Diploma/degree')}</td>
+                                        <td class="cell-edit-wrap" colspan="3">
+                                            <div class="cell-edit-border"></div>
+                                            <span>{$order.degree . ' of ' . $order.degree_program}</span>
+                                            <div class="degree-btn layui-form">
+                                                <button type="button" {if $order['degree']=='' || ($order['degree']=='Bachelor')}class="layui-btn layui-btn-sm" {else/}  class="layui-btn layui-btn-primary layui-btn-sm"  {/if} data-degree="Bachelor">{:lang('Bachelor')}</button>
+                                                <button type="button" {$order['degree']=='Master' ?'class="layui-btn layui-btn-sm"':'class="layui-btn layui-btn-primary layui-btn-sm"'} data-degree="Master">{:lang('Master')}</button>
+                                                <button type="button" {$order['degree']=='Ph.D' ?'class="layui-btn layui-btn-sm"':'class="layui-btn layui-btn-primary layui-btn-sm"'} data-degree="Ph.D"  onclick="searchaa()">{:lang('Ph.D')}</button>
+                                                <button type="button" {$order['degree']=='Diploma' ?'class="layui-btn layui-btn-sm"':'class="layui-btn layui-btn-primary layui-btn-sm"'} data-degree="Diploma">{:lang('Diplomas')}</button>
+                                                &nbsp;&nbsp;of &nbsp; &nbsp;
+                                                <input type="hidden" name="degree" id="degrees" value="{$order.degree|default=''}" lay-verify="required">
+                                                <input  class="cell-input onceschox1" type="text" list="degreeBox" name="degree_program" value="{$order.degree_program}" placeholder="{:lang('Please select or enter your Name of Academic Institution')}" autocomplete="off">
+                                                <datalist id="degreeBox">
+                                                    {if $order['degree']=='Master' || $order['degree']=='Ph.D' }
+                                                    <option value="Science"   label="{:lang('Science')}">
+                                                    <option value="Engineering"   label="{:lang('Engineering')}">
+                                                    <option value="Business Administration"   label="{:lang('Business Administration')}">
+                                                    {else /}
+                                                    <option value="Engineering"  label="{:lang('Engineerings')}">
+                                                    <option value="Science"  label="{:lang('Sciences ')}">
+                                                    <option value="Arts"  label="{:lang('Arts')}">
+                                                    <option value="Education"  label="{:lang('Educations ')}">
+                                                    <option value="BusinessAdm"  label="{:lang('BusinessAdms')}">
+                                                    {/if}
+                                                </datalist>
+                                            </div>
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Research areas')}</td>
+                                        <td class="cell-edit-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span>{$order.faculty}</span>
+                                            <input type="text" class="cell-input" value="{$order.faculty}" name="faculty" lay-verify="required|en"  list="main_subject" autocomplete="off" placeholder="{:lang('Please select or enter your Main subject area of study')}">
+                                            <datalist id="main_subject">
+                                                {volist name="subjects" id="vo"}
+                                                <option value="{$vo.title_en}" label="{:lang($vo.title_en)}">
+                                                {/volist}
+                                            </datalist>
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                        <td>{:lang('Profession')}</td>
+                                        <td class="cell-edit-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span>{$order.major}</span>
+                                            <input type="text" class="cell-input" value="{$order.major}" name="major" list="majors" lay-verify="required|en" autocomplete="off" placeholder="{:lang('Please select or enter your Major')}">
+                                            <datalist id="majors">
+                                                {volist name="majors" id="vo"}
+                                                <option value="{$vo.name_en}" label="{:lang($vo.name_en)}">
+                                                {/volist}
+                                            </datalist>
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Whether to graduate')}</td>
+                                        <td class="cell-edit-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span>{:lang($order.graduated == 1 ? 'Graduated' : 'Undergraduate')}</span>
+                                            <div class="layui-form">
+                                                <input type="radio" name="graduated" checked lay-verify="required" value="1" title="{:lang('Graduated')}" lay-filter='graduated'>
+                                                <input type="radio" name="graduated" {$order.graduated== 0 ? "checked":""} lay-verify="required" value="0" title="{:lang('Undergraduate')}" lay-filter='graduated' >
+                                            </div>
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                        <td>{:lang('Admission time')} ~ {:lang('Graduation time')}</td>
+                                        <td class="cell-edit-wrap date-wrap">
+                                            <div class="cell-edit-border"></div>
+                                            <span>{$order.start_date} ~ {$order.completion_date}</span>
+                                            <div class="layui-form">
+                                                <input type="date" name="start_date" class="dateInput" id="startDate" value="{$order.start_date}">
+                                                <input type="date" name="completion_date" class="dateInput" id="completionDate" value="{$order.completion_date}">
+                                            </div>
+                                            {eq name="$app.id" value="19"}<i class="fa fa-edit" aria-hidden="true"></i> {/eq}
+                                        </td>
+                                    </tr>
+
+                                    <tr class="layui-hide-xs">
+                                        <td colspan="4" class="table-title">{:lang('Additional Services')}</td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Number of copies')}</td>
+                                        <td>{$order.copy_number} {:lang('copies')}</td>
+                                        <td>{:lang('Delivery Options')}</td>
+                                        <td>
+                                            {if $order.send_for == 25}
+                                            {:lang('Courier Service within Canada and Continental USA')}
+                                            {else /}
+                                            {:lang('Courier Service International')}
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Addressee')}</td>
+                                        <td>{$order.addressee}</td>
+                                        <td>{:lang('Phone')}</td>
+                                        <td>{$order.area_code} - {$order.mobile}</td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Shipping Address')}</td>
+                                        <td colspan="3">{$order.mail_nationality|lang}, {$order.mail_province|lang}, {$order.mail_city|lang} {$order.address}</td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Postcode')}</td>
+                                        <td colspan="3">{$order.zip}</td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td colspan="4" class="table-title">{:lang('Image Information')}</td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('ID picture')}</td>
+                                        <td colspan="3">
+                                            <div class="picture">
+                                                <div class="layer-photos-demo" data-field="certificate_img">
+                                                    {volist name="$order.certificate_img" id="vo"}
+                                                    <div class="update-imgbix">
+                                                        <img src="{$vo}" alt="" layer-index="0">
+                                                        {eq name="$app.id" value="19"}
+                                                        <div class="update-dels">
+                                                            <i class="fa fa-trash dels-id" data-field="certificate_img"></i>
+                                                        </div>
+                                                        <input type="hidden" class="certificate-input" value="{$vo}">
+                                                        {/eq}
+                                                    </div>
+                                                    {/volist}
+                                                    {eq name="$app.id" value="19"}
+                                                    <div class="layui-upload-drag upload-file-btn" id="ID-upload">
+                                                        <i class="icon iconfont"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></i>
+                                                    </div>
+                                                    {/eq}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Upload Degree Certificate')}</td>
+                                        <td colspan="3">
+                                            <div class="picture">
+                                                <div class="layer-photos-demo" data-field="diploma">
+                                                    {volist name="$order.diploma" id="vo"}
+                                                    {php}
+                                                    $ext = strtolower(pathinfo($vo, PATHINFO_EXTENSION));
+                                                    {/php}
+                                                    <div class="update-imgbix">
+                                                        <img src="{if $ext == 'pdf'}/canada/images/icon-images/PDF.png{else/}{$vo}{/if}" alt="" layer-index="0">
+                                                        {eq name="$app.id" value="19"}
+                                                        <div class="update-dels">
+                                                            <i class="fa fa-trash dels-id" data-field="diploma"></i>
+                                                        </div>
+                                                        <input type="hidden" class="diploma-input" value="{$vo}">
+                                                        {/eq}
+                                                    </div>
+                                                    {/volist}
+                                                    {eq name="$app.id" value="19"}
+                                                    <div class="layui-upload-drag upload-file-btn">
+                                                        <i class="icon iconfont"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></i>
+                                                    </div>
+                                                    {/eq}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Upload Transcript')}</td>
+                                        <td colspan="3">
+                                            <div class="picture">
+                                                <div class="layer-photos-demo" data-field="transcript">
+                                                    {volist name="$order.transcript" id="vo"}
+                                                    {php}
+                                                    $ext = strtolower(pathinfo($vo, PATHINFO_EXTENSION));
+                                                    {/php}
+                                                    <div class="update-imgbix">
+                                                        <img src="{if $ext == 'pdf'}/canada/images/icon-images/PDF.png{else/}{$vo}{/if}" alt="" layer-index="0">
+                                                        {eq name="$app.id" value="19"}
+                                                        <div class="update-dels">
+                                                            <i class="fa fa-trash dels-id" data-field="transcript"></i>
+                                                        </div>
+                                                        {/eq}
+                                                    </div>
+                                                    <input type="hidden" class="transcript-input" value="{$vo}">
+                                                    {/volist}
+                                                    {eq name="$app.id" value="19"}
+                                                    <div class="layui-upload-drag upload-file-btn">
+                                                        <i class="icon iconfont"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></i>
+                                                    </div>
+                                                    {/eq}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Handheld Diploma')}
+                                        <td colspan="3">
+                                            <div class="picture">
+                                                <div class="layer-photos-demo" data-field="hand_diploma">
+                                                    {volist name="$order.hand_diploma" id="vo"}
+                                                    <div class="update-imgbix">
+                                                        <img src="{$vo}" alt="" layer-index="0">
+                                                        {eq name="$app.id" value="19"}
+                                                        <div class="update-dels">
+                                                            <i class="fa fa-trash dels-id" data-field="hand_diploma"></i>
+                                                        </div>
+                                                        {/eq}
+                                                    </div>
+                                                    <input type="hidden" class="h-diploma-input" value="{$vo}">
+                                                    {/volist}
+                                                    {eq name="$app.id" value="19"}
+                                                    <div class="layui-upload-drag upload-file-btn">
+                                                        <i class="icon iconfont"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></i>
+                                                    </div>
+                                                    {/eq}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-xs">
+                                        <td>{:lang('Handheld Diploma')}
+                                        <td colspan="3">
+                                            <div class="picture">
+                                                <div class="layer-photos-demo" data-field="hand_transcript">
+                                                    {volist name="$order.hand_transcript" id="vo"}
+                                                    <div class="update-imgbix">
+                                                        <img src="{$vo}" alt="" layer-index="0">
+                                                        {eq name="$app.id" value="19"}
+                                                        <div class="update-dels">
+                                                            <i class="fa fa-trash dels-id" data-field="hand_transcript"></i>
+                                                        </div>
+                                                        {/eq}
+                                                    </div>
+                                                    <input type="hidden" class="h-transcript-input" value="{$vo}">
+                                                    {/volist}
+                                                    {eq name="$app.id" value="19"}
+                                                    <div class="layui-upload-drag upload-file-btn">
+                                                        <i class="icon iconfont"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"></font></font></i>
+                                                    </div>
+                                                    {/eq}
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr class="layui-hide-sm">
+                                        <td colspan="2" class="table-title">{:lang('Basic Information')}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Name')}</td>
+                                        <td>{$user.username}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Gender')}</td>
+                                        <td>{$user.sex|lang}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('WSE Num')}</td>
+                                        <td>1010</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Email')}</td>
+                                        <td>{$user.email}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Document Group')}</td>
+                                        <td>{$order.document_group}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Document Type')}</td>
+                                        <td>{$order.document_type}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{$order.document_type}</td>
+                                        <td>{$order.id_no}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td colspan="2" class="table-title">{:lang('Educational Information')}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Educational location')}</td>
+                                        <td>{$order.edu_nationality}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Name of academic institution')}</td>
+                                        <td>{$order.university}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Certificate/Diploma/degree')}</td>
+                                        <td>{$order.degree_program} of {$order.degree}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Research areas')}</td>
+                                        <td>{$order.faculty}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Profession')}</td>
+                                        <td>{$order.major}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Whether to graduate')}</td>
+                                        <td>{$order.faculty == 1 ? 'graduated' : 'undergraduate'}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Dates Attended - To')}</td>
+                                        <td>{$order.start_date} - {$order.completion_date}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td colspan="2" class="table-title">{:lang('Additional Services')}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Number of copies')}</td>
+                                        <td>{$order.copy_number}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Delivery Options')}</td>
+                                        <td>
+                                            {if $order.send_for == 25}
+                                            {:lang('Courier Service within Canada and Continental USA')}
+                                            {else /}
+                                            {:lang('Courier Service International')}
+                                            {/if}
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Addressee')}</td>
+                                        <td>{$order.addressee}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Phone')}</td>
+                                        <td>{$order.area_code} - {$order.mobile}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Shipping Address')}</td>
+                                        <td>{$order.address} {$order.mail_city|get_world_area='city',###} {$order.mail_province|get_world_area='province',###} {$order.mail_nationality|get_world_area='country',###}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td>{:lang('Postcode')}</td>
+                                        <td>{$order.zip}</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td colspan="2" class="table-title">{:lang('Image Information')}1</td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td colspan="2">{:lang('Upload ID')}</td>
+                                    </tr>
+                                    <tr class="img-infor layui-hide-sm">
+                                        <td colspan="2">
+                                            <div class="layer-photos-demo" data-field="certificate_img">
+                                                {volist name="$order.certificate_img" id="vo"}
+                                                <img src="{$vo}" alt="">
+                                                {/volist}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td colspan="2">{:lang('Upload Degree Certificate')}</td>
+                                    </tr>
+                                    <tr class="img-infor layui-hide-sm">
+                                        <td colspan="2">
+                                            <div class="layer-photos-demo" data-field="diploma">
+                                                {volist name="$order.diploma" id="vo"}
+                                                <img src="{$vo}" alt="">
+                                                {/volist}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="layui-hide-sm">
+                                        <td colspan="2">{:lang('Upload Transcript')}</td>
+                                    </tr>
+                                    <tr class="img-infor layui-hide-sm">
+                                        <td colspan="2">
+                                            <div class="layer-photos-demo" data-field="transcript">
+                                                {volist name="$order.transcript" id="vo"}
+                                                <img src="{$vo}" alt="">
+                                                {/volist}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                    <form class="edu-form">
+                        <div class="layui-col-sm12 buttons">
+                            <!-- <a class="layui-btn layui-btn-primary save" lay-submit lay-filter="save">{:lang('Save This Page')}</a> -->
+                            <a href="javascript:window.history.go(-1);"  class="layui-btn layui-btn-primary">{:lang('Previous Page')}</a>
+                            {if $app.id == 19}
+                            <a class="layui-btn mazarine right" lay-submit lay-filter="save">{:lang('Submit')}</a>
+                            {/if}
+                            {if $app.id == 8}
+                            <a class="layui-btn mazarine right" href="{:url('index/user/user_copy_application',['order_no'=>$order.order_number,'sort'=>3])}">{:lang('confirm and continue application')}</a>
+                            {/if}
+                            <br/>
+                            <br/>
+                            <!-- <a class="layui-btn layui-btn-primary save" lay-submit lay-filter="save">{:lang('Save and Finish Later')}</a> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    $(function () {
+        if ($('.copy-number-primary').attr('checked') == 'checked') {
+            $('.tipss_hidden').hide()
+        }
+
+        $('.copy_table tr').on('click', function () {
+            var index = $(this).index()
+            if (index == 0) {
+                $('.tipss_hidden').hide()
+            } else {
+                $('.tipss_hidden').show()
+            }
+        })
+    })
+
+    let copy_number = 0;
+    let send_for = 0;
+
+    layui.use(['form', 'layer', 'upload', 'laydate'], function () {
+        var form = layui.form;
+        var upload = layui.upload;
+        var laydate = layui.laydate;
+
+        let source_data = {};
+        let revised_data = {};
+        let get_input_val = function (elem) {
+            let data = [];
+            let len = elem.length;
+            if (len > 0 && elem.is('input')) {
+                elem.each(function () {
+                    data.push($(this).val());
+                })
+            }
+            return data;
+        }
+
+        let ModifyClass = {
+            /**
+             * 数据初始化方法，页面加载完成只调用一次
+             * @constructor
+             */
+            Initialize: function () {
+                source_data.certificate_img = get_input_val($('.certificate-input'));
+                source_data.diploma = get_input_val($('.diploma-input'));
+                source_data.transcript = get_input_val($('.transcript-input'));
+                source_data.hand_diploma = get_input_val($('.h-diploma-input'));
+                source_data.hand_transcript = get_input_val($('.h-transcript-input'));
+                revised_data = jQuery.extend(true, {}, source_data);
+            },
+            remove: function (field, index) {
+                if (revised_data[field] !== undefined && (revised_data[field].length - 1) > index) {
+                    revised_data[field].splice(index, 1);
+                }
+            },
+            increase: function (field, val) {
+                if (revised_data[field] !== undefined) {
+                    revised_data[field].push(val);
+                } else {
+                    revised_data[field] = [val];
+                }
+            },
+            isObjectValueEqual: function (a, b) {
+                //取对象a和b的属性名
+                var aProps = Object.getOwnPropertyNames(a);
+                var bProps = Object.getOwnPropertyNames(b);
+                //判断属性名的length是否一致
+                if (aProps.length != bProps.length) {
+                    return false;
+                }
+                //循环取出属性名，再判断属性值是否一致
+                for (var i = 0; i < aProps.length; i++) {
+                    var propName = aProps[i];
+                    if (a[propName] !== b[propName]) {
+                        return false;
+                    }
+                }
+                return true;
+            },
+        };
+        ModifyClass.Initialize();
+        $('.areaBox div').on('click', function () {
+            if (!$(this).hasClass('areaDisabled')) {
+                $(this).siblings().fadeIn()
+            }
+        })
+
+        $('.areaBox li').on('click', function (e) {
+            e.stopPropagation();
+            $('.areaBox ul').fadeOut()
+            var src = $(this).attr('data-src'),
+                areaNum = $(this).attr('data-area');
+            console.log(areaNum)
+            $('.areaBox div img').attr('src', src)
+            $('.areaBox div span').text(areaNum)
+        })
+
+        $(document).click(function (event) {
+            var _con = $('.areaBox');  // 设置目标区域
+            if (!_con.is(event.target) && _con.has(event.target).length === 0) { // Mark 1
+                $('.areaBox ul').fadeOut();     //淡出消失
+            }
+        });
+
+        $(document).on('click', '.dels-id', function () {
+            $(this).parents('.update-imgbix').remove()
+            let index = $(this).parents('.update-imgbix').index();
+            let field = $(this).data('field');
+            ModifyClass.remove(field, index)
+        })
+
+        let field = '';
+        $(document).on('click', '.upload-file-btn', function () {
+            field = $(this).parents('.layer-photos-demo').data('field');
+        })
+
+        let uploadInst = upload.render({
+            elem: '.upload-file-btn' //绑定元素
+            , url: '/upload'
+            , accept: 'file'
+            , multiple: true
+            , exts: 'pdf|jpeg|png|jpg'
+            // , auto: false
+            , before: function (obj) {
+                //预读本地文件示例，不支持ie8
+                load_index = layer.load();
+                obj.preview(function (index, file, result) {
+                    console.log(index);
+                    console.log(file);
+                    console.log(result);
+                })
+            }
+            , done: function (res, index) {
+                layer.close(load_index);
+                if (res.code != 1) {
+                    return layer.msg('Upload Failed');
+                } else {
+                    ModifyClass.increase(field, res.msg)
+                    // 添加 DOM
+                    $('.layer-photos-demo[data-field="' + field + '"]').find('.upload-file-btn').before("<div class=\"update-imgbix\">\n" +
+                        "<img src=\"" + res.msg + "\" alt=\"\" layer-index=\"0\">\n" +
+                        "<div class=\"update-dels\">\n" +
+                        "    <i class=\"fa fa-trash dels-id\" data-field=\"" + field + "\"></i>\n" +
+                        "</div>\n" +
+                        "<input type=\"hidden\" class=\"" + field + "-input\" value=\"" + res.msg + "\" disabled=\"disabled\">\n" +
+                        "</div>");
+                    console.log(revised_data);
+                }
+            }
+        });
+
+        // edit cell
+        let trIndex = 0,
+            tdIndex = 0;
+        $('.cell-edit-wrap .fa').click(function () {
+            $(this).parents('tr').siblings().find('.cell-input, select, .layui-form').hide()
+            $(this).parents('tr').siblings().find('span').show()
+            $(this).parents('tr').siblings().find('.cell-edit-border').css('border-color', 'transparent')
+            $(this).siblings('span').hide()
+            $(this).parents('td').find('.cell-input, select, .layui-form').show()
+            $(this).siblings('.cell-edit-border').css('border-color', '#013763')
+            trIndex = $(this).parents('tr').index() + 1
+            tdIndex = $(this).parents('td').index() + 1
+        })
+
+        $(document).click(function (event) {
+            var _con = $('.cell-edit-wrap');
+            let error = false;
+            if (!_con.is(event.target) && _con.has(event.target).length === 0) {
+                let cell = $('#infoForm tr:nth-child(' + trIndex + ') td:nth-child(' + tdIndex + ')')
+                let inputVal = ''
+                if (cell.find('input[type="text"]').length == 1) {
+                    inputVal = cell.find('input[type="text"]').val()
+                    let name = cell.find('input[type="text"]').attr('name');
+                    if (name == 'degree_program'){
+                        inputVal = $('input[name="degree"]').val() + ' of ' + inputVal;
+                    }
+                } else if (cell.find('input[type="radio"]').length > 0) {
+                    inputVal = cell.find('input[type="radio"]:checked').attr('title')
+                } else if (cell.find('select').length == 1) {
+                    inputVal = cell.find('select option:selected').text()
+                } else if (cell.find('input[type="date"]').length > 0) {
+                    inputVal = $('#startDate').val() + ' ~ ' + $('#completionDate').val()
+                } else if (cell.find('input[type="text"]').length > 1) {
+                    let elems = cell.find('input[type="text"]');
+                    $.each(elems, function (index, elem) {
+                        inputVal += $(elem).val();
+                        if (!$(elem).is(':hidden')  &&  $(elem).val() === ''){
+                            error = true;
+                            return false;
+                        }
+                        if (inputVal != '' && index != elems.length - 1 && !$(elem).is(':hidden')) {
+                            inputVal += ', ';
+                        }
+                    })
+                }
+                if (error || inputVal == ''){
+                    cell.find('.cell-edit-border').css('border-color', 'red');
+                    return;
+                }
+                cell.find('span').text(inputVal)
+                cell.find('.cell-input, select, .layui-form').hide()
+                cell.find('span').show()
+                cell.find('.cell-edit-border').css('border-color', 'transparent')
+            }
+        });
+
+        // submit
+        form.on('submit(save)', function () {
+            let data = revised_data;
+            let formData = new FormData($('#infoForm').get(0));
+            formData.append('order_no','{$order.order_number}');
+            formData.append('sort',2);
+            $.each(revised_data,function (index,val){
+                formData.append(index,val);
+            })
+            $.ajax({
+                url:"{:url('index/user/modification_of_education_order_data')}",
+                type:'post',
+                data:formData,
+                processData:false,   //  告诉jquery不要处理发送的数据
+                contentType:false,   // 告诉jquery不要设置content-Type请求头
+                dataType:'JSON',
+                success:function (result) {
+                    if (result.code == 20000) {
+                        window.location.href = result.data;
+                    } else {
+                        layer.msg(result.msg, {icon: 5, time: 1000});
+                    }
+                }
+            })
+        })
+
+        let document_types = {}
+        let get_doc_types = function (doc_group, doc_type) {
+            if (JSON.stringify(document_types) === '{}') {
+                $.ajax({
+                    url: '{:url("index/common/getDocumentType")}',
+                    type: 'post',
+                    async: false,
+                    dataType: 'json',
+                    success: function (result) {
+                        document_types = result;
+                    }
+                })
+            }
+            let default_data = document_types.default;
+            let en_data = document_types['en-us'];
+            if (doc_group == undefined) {
+                doc_group = '{$order.document_group|default=""}';
+            }
+            if (doc_type == undefined) {
+                doc_type = '{$order.document_type|default=$user.""}';
+            }
+            $('#doc-group option').eq(0).siblings().remove();
+            $('#doc-type option').eq(0).siblings().remove();
+            let group_option = '';
+            let type_option = '';
+            let doc_items = [];
+            let group_index = -1;
+            $.each(default_data, function (index, item) {
+                let sel = '';
+                if (doc_group == en_data[index]['title']) {
+                    // $('#doc-group').css('border', '1px solid #bec5c6');
+                    sel = 'selected';
+                    doc_items = item['items'];
+                    group_index = index;
+                }
+                group_option += '<option value="' + en_data[index]['title'] + '" ' + sel + '>' + item.title + '</option>';
+            })
+            if (doc_items.length > 0 && group_index > -1) {
+                $.each(doc_items, function (key, val) {
+                    let sel = '';
+                    if (doc_type == en_data[group_index]['items'][key]) {
+                        // $('#doc-type').css('border', '1px solid #bec5c6');
+                        sel = 'selected';
+                        $('.number_text').text(val)
+                    }
+                    type_option += '<option value="' + en_data[group_index]['items'][key] + '" ' + sel + '>' + val + '</option>';
+                })
+            }
+            $('#doc-group').append(group_option);
+            $('#doc-type').append(type_option);
+            // form.render('select');
+        }
+        get_doc_types();
+        $('[name="document_group"]').change(function () {
+            let t = $(this).val();
+            get_doc_types(t, '');
+            $('[name="id_number"]').val('')
+        })
+        $('[name="document_type"]').change(function () {
+            let t = $(this).find("option:selected").text();
+            $('.number_text').text(t);
+            $('[name="id_number"]').val('')
+        })
+        $('#country').on('input', function () {
+            let national = $(this).val();
+            let nationals = $('#country_list option');
+            if (national != '{$address.national|default=""}') {
+                $('#province').val('').parents('.layui-col-sm4').show();
+                $('#city').val('').parents('.layui-col-sm4').show();
+                $('#province_list').empty();
+                $('#city_list').empty();
+                // $('[name="university"]').val('');
+                $('#cars option').remove();
+                $.each(nationals, function (index, item) {
+                    let val = $(item).val();
+                    if (national == val) {
+                        falg = false;
+                        $.ajax({
+                            type: "POST",
+                            url: "{:url('/index/common/getProvince')}",
+                            dataType: "json",
+                            data: {
+                                national: national,
+                                type: 'NAME'
+                            },
+                            success: function (res) {
+                                let option = '';
+                                if (res.city != undefined && res.city.length >
+                                    0) {
+                                    $.each(res.city, function (index, item) {
+                                        option += '<option value="' + item.name_en + '">' + item.name_en + '</option>';
+                                    });
+                                    $('#province_list').parents('.layui-col-sm4').hide();
+                                    $('#city_list').empty().append(option);
+                                } else if ((res.province != undefined && res.province.length > 0)) {
+                                    $.each(res.province, function (index, item) {
+                                        option += '<option value="' + item.name_en + '">' + item.name_en + '</option>';
+                                    });
+                                    $('#province_list').parents('.layui-col-sm4').show();
+                                    $('#province_list').empty().append(option);
+                                }
+                            }
+                        })
+                        $.ajax({
+                            type: "POST",
+                            url: "{:url('/index/common/getSchools')}",
+                            dataType: "json",
+                            data: {country: national},
+                            success: function (res) {
+                                let html = '';
+                                $.each(res.data,function(index,item){
+                                    html += '<option value="'+ item.name_en +'" label="'+ item.name_en +'">';
+                                });
+                                $('#cars').append(html);
+                            }
+                        })
+                        return false;
+                    }
+                })
+            }
+        })
+        $('#province').on('input', function () {
+            let province = $(this).val();
+            let provinces = $('#province_list option');
+            if (province != '{$address.province|default=""}') {
+                $('#city').val('').parents('.layui-col-sm4').show();
+                $('#city_list').empty();
+                $.each(provinces, function (index, item) {
+                    let val = $(item).val();
+                    if (province == val) {
+                        $.ajax({
+                            type: "POST",
+                            url: "{:url('/index/common/getCity')}",
+                            dataType: "json",
+                            data: {
+                                province: province,
+                                type: 'NAME'
+                            },
+                            success: function (res) {
+                                console.log(res);
+                                let option = '';
+                                $.each(res, function (index, item) {
+                                    option += '<option value="' + item
+                                            .name_en + '">' + item.name_en +
+                                        '</option>';
+                                });
+                                $('#city_list').empty().append(option);
+                            }
+                        })
+                        return false;
+                    }
+                })
+            }
+        })
+        $('.degree-btn button').on('click', function () {
+            $('.degree-btn a').removeClass('layui-form-danger');
+            if ($(this).hasClass('layui-btn-primary')) {
+                $(this).removeClass('layui-btn-primary').siblings('button').addClass('layui-btn-primary')
+            }
+            degree = $(this).attr('data-degree')
+            $('#degrees').val(degree);
+            let o = "     <option value=\"Engineering\"  label=\"{:lang('Engineerings')}\">\n" +
+                " <option value=\"Science\"  label=\"{:lang('Sciences ')}\">\n" +
+                " <option value=\"Arts\"  label=\"{:lang('Arts')}\">\n" +
+                " <option value=\"Education\"  label=\"{:lang('Educations ')}\">\n" +
+                " <option value=\"BusinessAdm\"  label=\"{:lang('BusinessAdms')}\">";
+            $('input[name="degree_program"]').val('');
+             if (degree=='Master' || degree=='PH.D') {
+                o = '  <option value="Science"   label="{:lang(\'Science\')}">\n' +
+                    '  <option value="Engineering"   label="{:lang(\'Engineering\')}">\n' +
+                    '<option value="Business Administration"   label="{:lang(\'Business Administration\')}">';
+            }
+            $('#degreeBox').empty().append(o);
+        })
+    });
+</script>
+</body>
+</html>

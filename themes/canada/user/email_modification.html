@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+{__NOLAYOUT__}
+<head>
+    <meta charset="utf-8"/>
+    <title>{:lang('email')}</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="/canada/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/js/layui/css/layui.css">
+    <link rel="stylesheet" href="/canada/css/header-footer.css">
+    <link rel="stylesheet" href="/canada/fonts/iconfont.css">
+    <link rel="stylesheet" href="/canada/css/login-new.css">
+    <link rel="stylesheet" href="/canada/css/user-new.css"/>
+    <link rel="stylesheet" href="/canada/css/Underlying-changes.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/mobile.js"></script>
+</head>
+<body>
+{include file="public/header-login" /}
+<section class="main">
+    <div class="email-mod-box layui-form">
+        <div class="email-mod-items">
+            <div class="email-mod-tops">
+                <h1>{:lang('Verify Current Email')}</h1>
+                <div>
+                    <label for="" class="email-label">{:lang('Current Email Address')}</label>
+                    <div style="display: flex;">
+                        <input name="orig_email" type="text" disabled="disabled" class="email-input" value="{$email}" lay-verify="required|email" lay-reqText="{:lang('please enter your vaild email')}">
+                        <button class="email-button" data-type="Original">{:lang('Get Verification Code')}</button>
+                    </div>
+                </div>
+                <div class="email-content-two">
+                    <label for="" class="email-label">{:lang('Verification Code')}</label>
+                    <input type="text"  name="orig_code" class="email-input" placeholder="{:lang('Please enter a valid email address')}" lay-verify="required" lay-reqText="{:lang('Verification code must be filled')}">
+                </div>
+            </div>
+            <div class="email-mod-tops">
+                <h1>{:lang('Add New Email')}</h1>
+                <div>
+                    <label for="" class="email-label">{:lang('New Email Address')}</label>
+                    <div style="display: flex;">
+                        <input type="text" class="email-input" name="new_email" lay-verify="required|email" lay-reqText="{:lang('please enter your vaild email')}">
+                        <button class="email-button" data-type="New">{:lang('Get Verification Code')}</button>
+                    </div>
+                </div>
+                <div class="email-content-two">
+                    <label for="" class="email-label">{:lang('Verification Code')}</label>
+                    <input type="text" name="new_code" id="" class="email-input" placeholder="{:lang('Please enter a valid email address')}" lay-verify="required" lay-reqText="{:lang('Verification code must be filled')}" >
+                </div>
+            </div>
+            <div class="email-btn-box">
+                <a href="javascript:;" class="email-btn-cancel">{:lang('Cancel')}</a>
+                <a href="javascript:;" class="email-btn-sumit" id="submit" lay-submit lay-filter="*">{:lang('Submit')}</a>
+            </div>
+        </div>
+    </div>
+</section>
+{include file="public/footer-login" /}
+</body>
+<script src="/static/js/layui/layui.js"></script>
+<script src="__JS__/layui/layui.all.js"></script>
+<script type="text/javascript">
+    $(function () {
+        let falg = true;
+        let diff  = 'Original';
+        $('.email-button').click(function () {
+            let email = $(this).siblings('input').val();
+            let type = $(this).data('type');
+            let that = $(this);
+            if (!checkEmail(email)) {
+                layer.tips("{:lang('Please enter your vaild email')}", $(this).siblings('input'), {tips: [3, '#FF5722']});
+                return false;
+            }
+            if (!falg && type == diff) {
+                return;
+            }
+            $.ajax({
+                url: '{:url("index/user/getEmailCode")}',
+                type: 'post',
+                data: {email: email, type: type},
+                dataType: 'json',
+                success: function (res) {
+                    if (res.code == 20000) {
+                        let second = 60;
+                        that.removeClass('email-button-gray').addClass('email-button-gray');
+                        var interval = setInterval(function () {
+                            diff = type
+                            second--
+                            falg = false;
+                            that.text('Resend after ' + (second) + "s")
+                            if (second === -1) {
+                                that.text("{:lang('Resend')}").removeClass('email-button-gray').addClass('layui-btn-primary');
+                                clearInterval(interval)
+                                falg = true;
+                            }
+                        }, 1000)
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            })
+        });
+        var checkEmail = function (emailStr) {
+            var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/;
+            if (!reg.test(emailStr)) {
+                return false;
+            }
+            return true;
+        }
+
+        layui.use('form', function () {
+            let form = layui.form;
+            form.on('submit(*)', function (data) {
+                $.ajax({
+                    url: '{:url("index/user/replaceEmail")}',
+                    type: 'post',
+                    data: data.field,
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.code == 20000) {
+                            layer.msg(res.msg, {icon: 1},function () {
+                                location.href = "{:url('index/user/log')}"
+                            })
+                        } else {
+                            layer.msg(res.msg, {icon: 2})
+                        }
+                    },
+                })
+            });
+        })
+    })
+</script>
+</html>
